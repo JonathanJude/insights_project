@@ -1,9 +1,27 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { api, buildUrl } from '../lib/apiClient';
-import type { Politician, SearchFilters, PaginatedResponse } from '../types';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { PAGINATION_CONFIG } from '../constants';
+import {
+  generateSentimentInsights,
+  getTrendingPoliticians,
+  mockApiDelay,
+  mockPaginate,
+  mockPoliticians,
+  searchPoliticians as searchPoliticiansSimple
+} from '../mock';
 import { useFilterStore } from '../stores/filterStore';
 import { useUIStore } from '../stores/uiStore';
-import { PAGINATION_CONFIG } from '../constants';
+import type { AgeGroup, Gender, NigerianState, PaginatedResponse, PoliticalLevel, PoliticalParty, Politician, SearchFilters } from '../types';
+
+// Interface for insight filters
+interface InsightFilters {
+  platform?: string[];
+  startDate?: string;
+  endDate?: string;
+  timeframe?: string;
+  ageGroup?: string[];
+  gender?: string[];
+  state?: string[];
+}
 
 // Query keys for React Query cache management
 export const politiciansKeys = {
@@ -37,9 +55,78 @@ export const usePoliticians = (page: number = 1, limit: number = PAGINATION_CONF
   return useQuery<PaginatedResponse<Politician>, Error>({
     queryKey: politiciansKeys.list(searchParams),
     queryFn: async (): Promise<PaginatedResponse<Politician>> => {
-      const url = buildUrl('/politicians', searchParams as unknown as Record<string, unknown>);
-      const response = await api.getPaginated<Politician>(url);
-      return response;
+      await mockApiDelay(300); // Simulate API delay
+      
+      // Enhanced search function that handles filters
+      const searchPoliticiansWithFilters = (filters: {
+        query?: string;
+        party?: PoliticalParty[];
+        state?: NigerianState[];
+        level?: PoliticalLevel[];
+        gender?: Gender[];
+        ageGroup?: AgeGroup[];
+        sortBy?: string;
+        sortOrder?: 'asc' | 'desc';
+      }) => {
+        let results = filters.query ? searchPoliticiansSimple(filters.query) : mockPoliticians;
+        
+        // Apply filters
+        if (filters.party?.length) {
+          results = results.filter(p => filters.party!.includes(p.party));
+        }
+        if (filters.state?.length) {
+          results = results.filter(p => filters.state!.includes(p.state));
+        }
+        if (filters.level?.length) {
+          results = results.filter(p => filters.level!.includes(p.politicalLevel));
+        }
+        if (filters.gender?.length) {
+          results = results.filter(p => filters.gender!.includes(p.gender));
+        }
+        if (filters.ageGroup?.length) {
+          results = results.filter(p => filters.ageGroup!.includes(p.ageGroup));
+        }
+        
+        // Apply sorting
+        if (filters.sortBy) {
+          results.sort((a, b) => {
+            const aVal = (a as any)[filters.sortBy!];
+            const bVal = (b as any)[filters.sortBy!];
+            const comparison = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+            return filters.sortOrder === 'desc' ? -comparison : comparison;
+          });
+        }
+        
+        return results;
+      };
+      
+      const filteredPoliticians = searchPoliticiansWithFilters({
+        query: searchParams.q,
+        party: searchParams.party,
+        state: searchParams.state,
+        level: searchParams.level,
+        gender: searchParams.gender,
+        ageGroup: searchParams.ageGroup,
+        sortBy: searchParams.sortBy,
+        sortOrder: searchParams.sortOrder
+      });
+      
+      const paginatedResult = mockPaginate(filteredPoliticians, searchParams.page, searchParams.limit);
+      
+      return {
+        success: true,
+        data: paginatedResult.data,
+        pagination: {
+          currentPage: paginatedResult.pagination.page,
+          totalPages: paginatedResult.pagination.totalPages,
+          totalItems: paginatedResult.pagination.total,
+          itemsPerPage: paginatedResult.pagination.limit,
+          hasNext: paginatedResult.pagination.hasNext,
+          hasPrevious: paginatedResult.pagination.hasPrev
+        },
+        message: 'Politicians retrieved successfully',
+        timestamp: new Date().toISOString()
+      };
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
@@ -54,8 +141,14 @@ export const usePolitician = (id: string) => {
   return useQuery({
     queryKey: politiciansKeys.detail(id),
     queryFn: async (): Promise<Politician> => {
-      const response = await api.get<Politician>(`/politicians/${id}`);
-      return response.data;
+      await mockApiDelay(200);
+      
+      const politician = mockPoliticians.find(p => p.id === id);
+      if (!politician) {
+        throw new Error(`Politician with id ${id} not found`);
+      }
+      
+      return politician;
     },
     enabled: !!id,
     staleTime: 10 * 60 * 1000, // 10 minutes
@@ -65,24 +158,32 @@ export const usePolitician = (id: string) => {
 };
 
 // Hook for fetching politician sentiment insights
-interface InsightFilters {
-  platform?: string[];
-  startDate?: string;
-  endDate?: string;
-  timeframe?: string;
-  ageGroup?: string[];
-  gender?: string[];
-  state?: string[];
-}
-
 export const usePoliticianInsights = (id: string, filters?: InsightFilters) => {
   
   return useQuery({
     queryKey: politiciansKeys.insight(id, filters),
     queryFn: async () => {
-      const url = buildUrl(`/politicians/${id}/insights`, filters as unknown as Record<string, unknown>);
-      const response = await api.get(url);
-      return response.data;
+      await mockApiDelay(400);
+      
+      // Generate mock insights for the politician
+      const insights = generateSentimentInsights(id, 30);
+      
+      // Apply filters if provided
+      let filteredInsights = insights;
+      if (filters?.platform && filters.platform.length > 0) {
+        filteredInsights = insights.filter(insight => 
+          filters.platform!.includes(insight.platform)
+        );
+      }
+      
+      return {
+        insights: filteredInsights,
+        summary: {
+          totalMentions: filteredInsights.reduce((sum, insight) => sum + insight.mentionCount, 0),
+          averageSentiment: filteredInsights.reduce((sum, insight) => sum + insight.sentimentScore, 0) / filteredInsights.length,
+          totalEngagement: filteredInsights.reduce((sum, insight) => sum + insight.engagementCount, 0)
+        }
+      };
     },
     enabled: !!id,
     staleTime: 2 * 60 * 1000, // 2 minutes (insights change more frequently)
@@ -97,8 +198,10 @@ export const useTrendingPoliticians = (limit: number = 10) => {
   return useQuery({
     queryKey: [...politiciansKeys.trending(), limit],
     queryFn: async () => {
-      const response = await api.get(`/politicians/trending?limit=${limit}`);
-      return response.data;
+      await mockApiDelay(250);
+      
+      const trendingPoliticians = getTrendingPoliticians(limit);
+      return trendingPoliticians;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
@@ -114,8 +217,10 @@ export const usePoliticianSuggestions = (query: string, enabled: boolean = true)
     queryFn: async (): Promise<Politician[]> => {
       if (!query || query.length < 2) return [];
       
-      const response = await api.get<Politician[]>(`/politicians/suggestions?q=${encodeURIComponent(query)}&limit=10`);
-      return response.data;
+      await mockApiDelay(150);
+      
+      const suggestions = searchPoliticiansSimple(query).slice(0, 10);
+      return suggestions;
     },
     enabled: enabled && query.length >= 2,
     staleTime: 30 * 1000, // 30 seconds
@@ -131,8 +236,14 @@ export const useFavoritePolitician = () => {
   
   return useMutation({
     mutationFn: async ({ politicianId, action }: { politicianId: string; action: 'add' | 'remove' }) => {
-      const response = await api.post(`/politicians/${politicianId}/favorite`, { action });
-      return response.data;
+      await mockApiDelay(200);
+      
+      // Mock favorite action - in real app this would update user preferences
+      return {
+        success: true,
+        message: `Politician ${action === 'add' ? 'added to' : 'removed from'} favorites`,
+        data: { politicianId, action }
+      };
     },
     onSuccess: (_data, variables) => {
       // Invalidate and refetch politician details
@@ -162,8 +273,14 @@ export const usePrefetchPolitician = () => {
     queryClient.prefetchQuery({
       queryKey: politiciansKeys.detail(politicianId),
       queryFn: async (): Promise<Politician> => {
-        const response = await api.get<Politician>(`/politicians/${politicianId}`);
-        return response.data;
+        await mockApiDelay(100);
+        
+        const politician = mockPoliticians.find(p => p.id === politicianId);
+        if (!politician) {
+          throw new Error(`Politician with id ${politicianId} not found`);
+        }
+        
+        return politician;
       },
       staleTime: 10 * 60 * 1000
     });

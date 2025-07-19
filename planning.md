@@ -66,7 +66,7 @@ Build a comprehensive React-based dashboard that provides real-time sentiment an
 
 ### Frontend
 - **Framework**: React 18 with TypeScript
-- **Styling**: TailwindCSS + Shadcn/ui components
+- **Styling**: UnoCSS (utility-first CSS engine) + Shadcn/ui components
 - **Charts**: Recharts (lightweight, React-native)
 - **State Management**: Zustand (simpler than Redux for this scope)
 - **API Layer**: React Query + Axios
@@ -131,6 +131,44 @@ Build a comprehensive React-based dashboard that provides real-time sentiment an
 4. **Accessibility**: WCAG 2.1 AA compliance
 5. **Performance**: Lazy loading and code splitting
 6. **Consistency**: Unified color scheme and typography
+
+## 🎨 UnoCSS Migration (Updated)
+
+### Migration Summary
+**Completed**: Successfully migrated from TailwindCSS to UnoCSS for improved performance and developer experience.
+
+### Key Changes Made:
+1. **Dependencies Updated**:
+   - Removed: `tailwindcss`, `@tailwindcss/postcss`, `@tailwindcss/typography`, `autoprefixer`, `postcss`
+   - Added: `unocss`, `@unocss/reset`
+
+2. **Configuration Files**:
+   - **Deleted**: `tailwind.config.ts`, `postcss.config.js`
+   - **Created**: `uno.config.ts` with equivalent theme settings
+   - **Updated**: `vite.config.ts` to use UnoCSS plugin
+
+3. **CSS Structure**:
+   - **Updated**: `src/index.css` to use UnoCSS imports instead of Tailwind directives
+   - **Migrated**: All `@layer components` to UnoCSS shortcuts in config
+   - **Preserved**: All existing utility classes remain compatible
+
+### Benefits of UnoCSS:
+- **Performance**: Faster build times and smaller bundle sizes
+- **Flexibility**: More powerful configuration options
+- **Compatibility**: 100% Tailwind CSS class compatibility
+- **Developer Experience**: Better IDE support and debugging
+
+### Styling Approach:
+- **Utility Classes**: All existing Tailwind classes work unchanged
+- **Custom Components**: Now defined as shortcuts in `uno.config.ts`
+- **Theme**: Preserved all custom colors, animations, and design tokens
+- **Responsive**: All responsive utilities remain functional
+
+### No Breaking Changes:
+- All existing component styling remains intact
+- Custom gradients and effects preserved
+- Responsive design unaffected
+- Component library compatibility maintained
 
 ## 🔐 Security Considerations
 

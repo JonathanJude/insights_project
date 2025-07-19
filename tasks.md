@@ -4,7 +4,7 @@
 
 ### Initial Setup Tasks
 - [ ] Initialize React + TypeScript project with Vite
-- [ ] Configure TailwindCSS and Shadcn/ui
+- [x] Configure UnoCSS and Shadcn/ui (migrated from TailwindCSS)
 - [ ] Set up ESLint, Prettier, and TypeScript configs
 - [ ] Create folder structure (components, pages, hooks, types, etc.)
 - [ ] Install core dependencies (React Query, Zustand, Recharts, React Router)

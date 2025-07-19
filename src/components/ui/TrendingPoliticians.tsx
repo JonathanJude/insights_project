@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import type { TrendingPolitician } from '../../types';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
 import { useUIStore } from '../../stores/uiStore';
+import { getFallbackAvatarUrl } from '../../utils/avatarUtils';
 
 interface TrendingPoliticiansProps {
   politicians: TrendingPolitician[];
@@ -80,7 +81,7 @@ const TrendingPoliticians: React.FC<TrendingPoliticiansProps> = ({
               className="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(politician.politician.name)}&background=random`;
+                target.src = getFallbackAvatarUrl(politician.politician.name, 48);
               }}
             />
           </div>
