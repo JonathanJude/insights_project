@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import type { Politician } from '../../types';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
 import { useUIStore } from '../../stores/uiStore';
+import { getFallbackAvatarUrl } from '../../utils/avatarUtils';
 
 interface PoliticianCardProps {
   politician: Politician;
@@ -62,19 +63,11 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
         <div className="flex items-start space-x-4 mb-4">
           {/* Avatar */}
           <div className="flex-shrink-0">
-            {politician.imageUrl ? (
-              <img 
-                src={politician.imageUrl} 
-                alt={politician.name}
-                className="w-16 h-16 rounded-full object-cover border-2 border-gray-100"
-              />
-            ) : (
-              <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center border-2 border-gray-100">
-                <span className="text-lg font-medium text-gray-600">
-                  {politician.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                </span>
-              </div>
-            )}
+            <img 
+              src={politician.imageUrl || getFallbackAvatarUrl(politician.name)} 
+              alt={politician.name}
+              className="w-16 h-16 rounded-full object-cover border-2 border-gray-100"
+            />
           </div>
           
           {/* Basic Info */}

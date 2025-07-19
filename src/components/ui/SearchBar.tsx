@@ -4,6 +4,7 @@ import { usePoliticianSuggestions } from '../../hooks/usePoliticians';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
 import type { Politician } from '../../types';
+import { getFallbackAvatarUrl } from '../../utils/avatarUtils';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -214,19 +215,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     }`}
                   >
                     <div className="flex items-center space-x-3">
-                      {politician.imageUrl ? (
-                        <img 
-                          src={politician.imageUrl} 
-                          alt={politician.name}
-                          className="w-8 h-8 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
-                          <span className="text-xs font-medium text-gray-600">
-                            {politician.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                          </span>
-                        </div>
-                      )}
+                      <img 
+                        src={politician.imageUrl || getFallbackAvatarUrl(politician.name)} 
+                        alt={politician.name}
+                        className="w-8 h-8 rounded-full object-cover"
+                      />
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium text-gray-900">
                           {highlightMatch(politician.name, query)}

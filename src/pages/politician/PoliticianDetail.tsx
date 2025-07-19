@@ -5,6 +5,7 @@ import { usePolitician, usePoliticianInsights } from '../../hooks/usePoliticians
 import { useUIStore } from '../../stores/uiStore';
 import { useFilterStore } from '../../stores/filterStore';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS, SOCIAL_PLATFORMS } from '../../constants';
+import { getFallbackAvatarUrl } from '../../utils/avatarUtils';
 import { SentimentChart } from '../../components/charts';
 import StatsCard from '../../components/ui/StatsCard';
 
@@ -232,7 +233,7 @@ const PoliticianDetail: React.FC = () => {
               className="w-24 h-24 rounded-full object-cover border-4 border-gray-200"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(politician.name)}&background=random&size=96`;
+                target.src = getFallbackAvatarUrl(politician.name, 96);
               }}
             />
           </div>

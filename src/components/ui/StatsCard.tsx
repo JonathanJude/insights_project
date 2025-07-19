@@ -25,14 +25,14 @@ const StatsCard: React.FC<StatsCardProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="interactive-card animate-pulse">
+      <div className="interactive-card animate-pulse p-8">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-3/4 mb-3"></div>
-            <div className="h-8 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-1/2 mb-3"></div>
+            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-3/4 mb-4"></div>
+            <div className="h-10 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-1/2 mb-4"></div>
             <div className="h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-full"></div>
           </div>
-          <div className="w-14 h-14 bg-gradient-to-r from-gray-200 to-gray-300 rounded-xl"></div>
+          <div className="w-16 h-16 bg-gradient-to-r from-gray-200 to-gray-300 rounded-2xl"></div>
         </div>
       </div>
     );
@@ -49,47 +49,49 @@ const StatsCard: React.FC<StatsCardProps> = ({
   };
 
   return (
-    <div className="interactive-card group relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-purple-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    <div className="interactive-card group relative overflow-hidden p-8">
+      {/* Enhanced background pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-transparent to-purple-50/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      <div className="relative flex items-center justify-between">
-        <div className="flex-1">
-          <p className="text-sm font-semibold text-gray-600 mb-2 tracking-wide uppercase">{title}</p>
-          <p className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">{value}</p>
+      {/* Subtle border accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <div className="relative flex items-start justify-between">
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-bold text-gray-500 mb-3 tracking-wider uppercase letter-spacing-wide">{title}</p>
+          <p className="text-4xl font-black text-gray-900 mb-4 tracking-tight leading-none">{value}</p>
           
           {/* Trend indicator */}
           {trend && (
-            <div className="flex items-center space-x-2">
-              <div className={`flex items-center space-x-1 px-2 py-1 rounded-full text-xs font-semibold ${
+            <div className="flex items-center space-x-3 mb-2">
+              <div className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm ${
                 trend.isPositive 
-                  ? 'bg-green-100 text-green-700 border border-green-200' 
-                  : 'bg-red-100 text-red-700 border border-red-200'
+                  ? 'bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200/60' 
+                  : 'bg-gradient-to-r from-red-100 to-pink-100 text-red-800 border border-red-200/60'
               }`}>
                 {trend.isPositive ? (
-                  <ArrowUpIcon className="h-3 w-3" />
+                  <ArrowUpIcon className="h-3.5 w-3.5" />
                 ) : (
-                  <ArrowDownIcon className="h-3 w-3" />
+                  <ArrowDownIcon className="h-3.5 w-3.5" />
                 )}
                 <span>
                   {trend.value.toFixed(1)}%
                 </span>
               </div>
-              {description && (
-                <span className="text-xs text-gray-500 font-medium">{description}</span>
-              )}
             </div>
           )}
           
-          {/* Description without trend */}
-          {description && !trend && (
-            <p className="text-xs text-gray-500 font-medium">{description}</p>
+          {/* Description */}
+          {description && (
+            <p className="text-sm text-gray-600 font-medium leading-relaxed">{description}</p>
           )}
         </div>
         
-        {/* Icon */}
-        <div className={`p-4 rounded-xl ${getIconBgGradient(iconColor)} shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
-          <Icon className="h-7 w-7 text-white" />
+        {/* Enhanced Icon */}
+        <div className="flex-shrink-0 ml-6">
+          <div className={`p-5 rounded-2xl ${getIconBgGradient(iconColor)} shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+            <Icon className="h-8 w-8 text-white" />
+          </div>
         </div>
       </div>
     </div>
