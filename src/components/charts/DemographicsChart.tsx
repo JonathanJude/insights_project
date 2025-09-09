@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Bar,
   BarChart,
@@ -16,6 +16,7 @@ import { SENTIMENT_COLORS } from '../../constants';
 import { simulateDataLoading } from '../../lib/chartDataUtils';
 import { useChartFilterStore } from '../../stores/chartFilterStore';
 import type { ChartFilter } from '../../types';
+import ExportButton from '../ui/ExportButton';
 
 interface DemographicData {
   category: string;
@@ -36,6 +37,7 @@ interface DemographicsChartProps {
   filter?: ChartFilter;
   onFilterChange?: (filter: ChartFilter) => void;
   showFilters?: boolean;
+  showExport?: boolean;
 }
 
 type ViewType = 'gender' | 'ageGroup' | 'state';
@@ -46,7 +48,8 @@ const DemographicsChart: React.FC<DemographicsChartProps> = ({
   height = 400,
   filter,
   onFilterChange,
-  showFilters = true
+  showFilters = true,
+  showExport = true
 }) => {
   const { chartFilter, setTimeRange } = useChartFilterStore();
   const [activeView, setActiveView] = useState<ViewType>('gender');
@@ -56,6 +59,7 @@ const DemographicsChart: React.FC<DemographicsChartProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
   
   // Use provided filter or store filter
   const activeFilter = filter || chartFilter;
@@ -282,6 +286,7 @@ const DemographicsChart: React.FC<DemographicsChartProps> = ({
 
   return (
     <div 
+      ref={chartRef}
       className="space-y-4"
       onTouchStart={isMobile ? handleTouchStart : undefined}
       onTouchMove={isMobile ? handleTouchMove : undefined}
@@ -293,6 +298,17 @@ const DemographicsChart: React.FC<DemographicsChartProps> = ({
             Demographics Analysis
           </h3>
           <div className="flex items-center space-x-2">
+            {showExport && (
+              <ExportButton
+                chartElement={chartRef.current}
+                chartType="demographics-analysis"
+                data={currentData}
+                filters={{ ...activeFilter, view: activeView, chartType }}
+                view="dashboard"
+                size={isMobile ? 'sm' : 'md'}
+                className="mr-2"
+              />
+            )}
             {isMobile ? (
               // Mobile: Horizontal scrollable buttons
               <div className="flex space-x-2 overflow-x-auto pb-2">

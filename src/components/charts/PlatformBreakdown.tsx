@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Bar,
   BarChart,
@@ -14,6 +14,7 @@ import { simulateDataLoading } from '../../lib/chartDataUtils';
 import { useChartFilterStore } from '../../stores/chartFilterStore';
 import type { ChartFilter, PlatformSentiment } from '../../types';
 import { SocialPlatform } from '../../types';
+import ExportButton from '../ui/ExportButton';
 
 interface PlatformBreakdownProps {
   data?: PlatformSentiment[];
@@ -22,6 +23,7 @@ interface PlatformBreakdownProps {
   filter?: ChartFilter;
   onFilterChange?: (filter: ChartFilter) => void;
   showFilters?: boolean;
+  showExport?: boolean;
 }
 
 const PlatformBreakdown: React.FC<PlatformBreakdownProps> = ({ 
@@ -30,11 +32,13 @@ const PlatformBreakdown: React.FC<PlatformBreakdownProps> = ({
   height = 300,
   filter,
   onFilterChange,
-  showFilters = true
+  showFilters = true,
+  showExport = true
 }) => {
   const { chartFilter, setTimeRange } = useChartFilterStore();
   const [internalLoading, setInternalLoading] = useState(false);
   const [chartData, setChartData] = useState<any[]>([]);
+  const chartRef = useRef<HTMLDivElement>(null);
   
   // Use provided filter or store filter
   const activeFilter = filter || chartFilter;
@@ -210,13 +214,24 @@ const PlatformBreakdown: React.FC<PlatformBreakdownProps> = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" ref={chartRef}>
       {showFilters && (
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             Platform Breakdown
           </h3>
           <div className="flex items-center space-x-2">
+            {showExport && (
+              <ExportButton
+                chartElement={chartRef.current}
+                chartType="platform-breakdown"
+                data={chartData}
+                filters={activeFilter}
+                view="dashboard"
+                size="md"
+                className="mr-2"
+              />
+            )}
             <select 
               value={activeFilter.timeRange}
               onChange={(e) => handleFilterChange({ 

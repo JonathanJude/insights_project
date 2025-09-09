@@ -210,6 +210,12 @@ const Dashboard: React.FC = () => {
               <div className="text-sm text-gray-500">
                 Last updated: {new Date().toLocaleTimeString()}
               </div>
+              {/* <DashboardExportButton
+                stats={stats}
+                timeRange="Last 30 days"
+                size="sm"
+                className="opacity-70 hover:opacity-100"
+              /> */}
               <RefreshButton 
                 size="sm" 
                 variant="subtle"

@@ -1,17 +1,17 @@
 import {
-    ChartBarIcon,
-    ClockIcon,
-    HomeIcon,
-    MagnifyingGlassIcon,
-    StarIcon,
-    TagIcon,
-    UserGroupIcon
+  ChartBarIcon,
+  ClockIcon,
+  HomeIcon,
+  MagnifyingGlassIcon,
+  StarIcon,
+  TagIcon,
+  UserGroupIcon
 } from '@heroicons/react/24/outline';
 import {
-    ChartBarIcon as ChartBarIconSolid,
-    HomeIcon as HomeIconSolid,
-    MagnifyingGlassIcon as MagnifyingGlassIconSolid,
-    UserGroupIcon as UserGroupIconSolid
+  ChartBarIcon as ChartBarIconSolid,
+  HomeIcon as HomeIconSolid,
+  MagnifyingGlassIcon as MagnifyingGlassIconSolid,
+  UserGroupIcon as UserGroupIconSolid
 } from '@heroicons/react/24/solid';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';

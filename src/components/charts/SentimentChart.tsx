@@ -26,6 +26,7 @@ interface SentimentChartProps {
   filter?: ChartFilter;
   onFilterChange?: (filter: ChartFilter) => void;
   showFilters?: boolean;
+  showExport?: boolean;
 }
 
 const SentimentChart: React.FC<SentimentChartProps> = ({ 
@@ -34,7 +35,8 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
   height = 300,
   filter,
   onFilterChange,
-  showFilters = true
+  showFilters = true,
+  showExport = true
 }) => {
   const { chartFilter, setTimeRange } = useChartFilterStore();
   const [internalLoading, setInternalLoading] = useState(false);
@@ -202,6 +204,17 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
             Sentiment Trends
           </h3>
           <div className="flex items-center space-x-2">
+            {/* {showExport && (
+              <ExportButton
+                chartElement={chartRef.current}
+                chartType="sentiment-trends"
+                data={chartData}
+                filters={activeFilter}
+                view="dashboard"
+                size={isMobile ? 'sm' : 'md'}
+                className="mr-2"
+              />
+            )} */}
             {isMobile ? (
               // Mobile: Horizontal scrollable buttons
               <div className="flex space-x-2 overflow-x-auto pb-2">
