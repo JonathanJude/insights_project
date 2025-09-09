@@ -8,10 +8,10 @@ import Layout from './components/layout/Layout';
 
 // Pages
 import Dashboard from './pages/dashboard/Dashboard';
+import PartyAnalytics from './pages/party/PartyAnalytics';
 import PoliticianDetail from './pages/politician/PoliticianDetail';
 import SearchResults from './pages/search/SearchResults';
 import TrendingTopics from './pages/trending/TrendingTopics';
-import PartyAnalytics from './pages/party/PartyAnalytics';
 
 // Store
 import { useUIStore } from './stores/uiStore';
@@ -44,19 +44,24 @@ function App() {
 
   // Add demo notifications on app initialization
   useEffect(() => {
-    if (notifications.length === 0) {
+    // Check if we already have persistent notifications to avoid duplicates
+    const hasPersistentNotifications = notifications.some(n => n.isPersistent);
+    
+    if (!hasPersistentNotifications) {
       addNotification({
         type: 'info',
         title: 'Welcome to Insight Intelligence',
         message: 'Your political sentiment dashboard is ready to use.',
-        duration: 0 // Persistent notification
+        duration: 0, // Persistent notification
+        isPersistent: true // Mark as persistent demo notification
       });
       
       addNotification({
         type: 'success',
         title: 'Data Updated',
         message: 'Latest sentiment data has been synchronized.',
-        duration: 0
+        duration: 0,
+        isPersistent: true // Mark as persistent demo notification
       });
     }
   }, []); // Only run once on app mount

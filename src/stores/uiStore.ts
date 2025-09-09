@@ -42,12 +42,14 @@ interface UIStore extends UIState {
     message: string;
     timestamp: number;
     duration?: number;
+    isPersistent?: boolean; // For demo notifications that shouldn't be cleared
   }>;
   
   // Notification actions
   addNotification: (notification: Omit<UIStore['notifications'][0], 'id' | 'timestamp'>) => void;
   removeNotification: (id: string) => void;
   clearNotifications: () => void;
+  clearNonPersistentNotifications: () => void;
 }
 
 const initialState: UIState = {
@@ -159,8 +161,8 @@ export const useUIStore = create<UIStore>()((set, get) => ({
       notifications: [...state.notifications, newNotification]
     }));
     
-    // Auto-remove notification after duration
-    if (newNotification.duration > 0) {
+    // Auto-remove notification after duration (but not if it's persistent)
+    if (newNotification.duration > 0 && !newNotification.isPersistent) {
       setTimeout(() => {
         get().removeNotification(id);
       }, newNotification.duration);
@@ -168,10 +170,16 @@ export const useUIStore = create<UIStore>()((set, get) => ({
   },
   
   removeNotification: (id: string) => set((state) => ({
-    notifications: state.notifications.filter((n) => n.id !== id)
+    notifications: state.notifications.filter((n) => n.id !== id || n.isPersistent)
   })),
   
-  clearNotifications: () => set({ notifications: [] })
+  clearNotifications: () => set((state) => ({
+    notifications: state.notifications.filter((n) => n.isPersistent)
+  })),
+  
+  clearNonPersistentNotifications: () => set((state) => ({
+    notifications: state.notifications.filter((n) => n.isPersistent)
+  }))
 }));
 
 // Utility hooks for common UI operations

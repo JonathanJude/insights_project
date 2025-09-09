@@ -1,11 +1,11 @@
 import {
-    BellIcon,
-    CheckIcon,
-    ExclamationTriangleIcon,
-    InformationCircleIcon,
-    TrashIcon,
-    XCircleIcon,
-    XMarkIcon
+  BellIcon,
+  CheckIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+  TrashIcon,
+  XCircleIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import { useUIStore } from '../../stores/uiStore';
@@ -16,7 +16,7 @@ interface NotificationsPanelProps {
 }
 
 const NotificationsPanel: React.FC<NotificationsPanelProps> = ({ isOpen, onClose }) => {
-  const { notifications, removeNotification, clearNotifications } = useUIStore();
+  const { notifications, removeNotification, clearNotifications, clearNonPersistentNotifications } = useUIStore();
 
   if (!isOpen) return null;
 
@@ -66,11 +66,11 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = ({ isOpen, onClose
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Panel */}
       <div className="fixed right-0 top-0 h-full w-full max-w-md transform bg-card shadow-xl transition-transform">
         {/* Header */}
@@ -110,13 +110,15 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = ({ isOpen, onClose
                 <span className="text-sm text-secondary">
                   {notifications.length} notification{notifications.length !== 1 ? 's' : ''}
                 </span>
-                <button
-                  onClick={clearNotifications}
-                  className="text-sm text-red-600 hover:text-red-700 font-medium flex items-center space-x-1"
-                >
-                  <TrashIcon className="h-4 w-4" />
-                  <span>Clear all</span>
-                </button>
+                {notifications.some(n => !n.isPersistent) && (
+                  <button
+                    onClick={clearNonPersistentNotifications}
+                    className="text-sm text-red-600 hover:text-red-700 font-medium flex items-center space-x-1"
+                  >
+                    <TrashIcon className="h-4 w-4" />
+                    <span>Clear all</span>
+                  </button>
+                )}
               </div>
 
               {/* Notifications list */}
@@ -132,9 +134,16 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = ({ isOpen, onClose
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <h4 className="text-sm font-medium text-primary">
-                            {notification.title}
-                          </h4>
+                          <div className="flex items-center space-x-2">
+                            <h4 className="text-sm font-medium text-primary">
+                              {notification.title}
+                            </h4>
+                            {notification.isPersistent && (
+                              <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400">
+                                Demo
+                              </span>
+                            )}
+                          </div>
                           <p className="text-sm text-secondary mt-1">
                             {notification.message}
                           </p>
@@ -142,13 +151,15 @@ const NotificationsPanel: React.FC<NotificationsPanelProps> = ({ isOpen, onClose
                             {formatTimestamp(notification.timestamp)}
                           </p>
                         </div>
-                        <button
-                          onClick={() => removeNotification(notification.id)}
-                          className="ml-2 flex-shrink-0 rounded-md p-1 text-secondary hover:text-primary hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          aria-label="Dismiss notification"
-                        >
-                          <XMarkIcon className="h-4 w-4" />
-                        </button>
+                        {!notification.isPersistent && (
+                          <button
+                            onClick={() => removeNotification(notification.id)}
+                            className="ml-2 flex-shrink-0 rounded-md p-1 text-secondary hover:text-primary hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            aria-label="Dismiss notification"
+                          >
+                            <XMarkIcon className="h-4 w-4" />
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
