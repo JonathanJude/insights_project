@@ -38,7 +38,14 @@ const initialState: UIState = {
   sidebarOpen: true,
   theme: 'light',
   loading: false,
-  error: null
+  error: null,
+  modals: {
+    settingsModal: false,
+    notificationsPanel: false
+  },
+  isMobile: false,
+  recentPoliticians: [],
+  searchHistory: []
 };
 
 export const useUIStore = create<UIStore>()((set, get) => ({
@@ -79,6 +86,47 @@ export const useUIStore = create<UIStore>()((set, get) => ({
   // Error actions
   setError: (error: string | null) => set({ error }),
   clearError: () => set({ error: null }),
+  
+  // Modal actions
+  openModal: (modalName: string) => set((state) => ({
+    modals: {
+      ...state.modals,
+      [modalName]: true
+    }
+  })),
+  closeModal: (modalName: string) => set((state) => ({
+    modals: {
+      ...state.modals,
+      [modalName]: false
+    }
+  })),
+  
+  // Mobile detection
+  setIsMobile: (isMobile: boolean) => set({ isMobile }),
+  
+  // Recently viewed politicians
+  addToRecentlyViewed: (politician: { id: string }) => set((state) => {
+    const filtered = state.recentPoliticians.filter(id => id !== politician.id);
+    return {
+      recentPoliticians: [politician.id, ...filtered].slice(0, 10) // Keep only last 10
+    };
+  }),
+  clearRecentlyViewed: () => set({ recentPoliticians: [] }),
+  
+  // Search history
+  addToSearchHistory: (query: string) => set((state) => {
+    if (!query.trim() || state.searchHistory.includes(query)) return state;
+    return {
+      searchHistory: [query, ...state.searchHistory.filter(h => h !== query)].slice(0, 10)
+    };
+  }),
+  removeFromSearchHistory: (query: string) => set((state) => ({
+    searchHistory: state.searchHistory.filter(h => h !== query)
+  })),
+  getSearchSuggestions: (limit = 5) => {
+    const state = get();
+    return state.searchHistory.slice(0, limit);
+  },
   
   // Notification actions
   addNotification: (notification: Omit<UIStore['notifications'][0], 'id' | 'timestamp'>) => {

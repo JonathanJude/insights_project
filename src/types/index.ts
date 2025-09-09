@@ -303,6 +303,13 @@ export interface UIState {
   theme: 'light' | 'dark';
   loading: boolean;
   error: string | null;
+  modals: {
+    settingsModal: boolean;
+    notificationsPanel: boolean;
+  };
+  isMobile: boolean;
+  recentPoliticians: string[];
+  searchHistory: string[];
 }
 
 export interface FilterState {
