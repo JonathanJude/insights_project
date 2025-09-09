@@ -13,7 +13,11 @@ import PoliticianDetail from './pages/politician/PoliticianDetail';
 import SearchResults from './pages/search/SearchResults';
 import TrendingTopics from './pages/trending/TrendingTopics';
 
+// Loading Components
+
 // Store
+import GlobalLoadingIndicator from './components/ui/GlobalLoadingIndicator';
+import { LoadingProvider } from './providers/LoadingProvider';
 import { useUIStore } from './stores/uiStore';
 
 
@@ -46,7 +50,7 @@ function App() {
   useEffect(() => {
     // Check if we already have persistent notifications to avoid duplicates
     const hasPersistentNotifications = notifications.some(n => n.isPersistent);
-    
+
     if (!hasPersistentNotifications) {
       addNotification({
         type: 'info',
@@ -55,7 +59,7 @@ function App() {
         duration: 0, // Persistent notification
         isPersistent: true // Mark as persistent demo notification
       });
-      
+
       addNotification({
         type: 'success',
         title: 'Data Updated',
@@ -68,22 +72,25 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/politician/:id" element={<PoliticianDetail />} />
-            <Route path="/search" element={<SearchResults />} />
-            <Route path="/trending" element={<TrendingTopics />} />
-            <Route path="/party" element={<PartyAnalytics />} />
-          </Routes>
-        </Layout>
-      </Router>
-      
-      {/* React Query Devtools - only in development */}
-      {import.meta.env.DEV && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
+      <LoadingProvider minLoadingTime={300} debounceTime={100}>
+        <Router>
+          <GlobalLoadingIndicator position="top" height={3} />
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/politician/:id" element={<PoliticianDetail />} />
+              <Route path="/search" element={<SearchResults />} />
+              <Route path="/trending" element={<TrendingTopics />} />
+              <Route path="/party" element={<PartyAnalytics />} />
+            </Routes>
+          </Layout>
+        </Router>
+
+        {/* React Query Devtools - only in development */}
+        {import.meta.env.DEV && (
+          <ReactQueryDevtools initialIsOpen={false} />
+        )}
+      </LoadingProvider>
     </QueryClientProvider>
   );
 }
