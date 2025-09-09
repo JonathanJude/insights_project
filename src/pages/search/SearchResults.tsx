@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import FiltersPanel from '../../components/filters/FiltersPanel';
+import PoliticianCard from '../../components/ui/PoliticianCard';
+import { SORT_OPTIONS } from '../../constants';
 import { usePoliticians } from '../../hooks/usePoliticians';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
-import PoliticianCard from '../../components/ui/PoliticianCard';
-import FiltersPanel from '../../components/filters/FiltersPanel';
-import { SORT_OPTIONS } from '../../constants';
 import type { Politician } from '../../types';
 
 const SearchResults: React.FC = () => {
@@ -29,27 +29,60 @@ const SearchResults: React.FC = () => {
 
   const { addToSearchHistory } = useUIStore();
 
-  // Sync URL params with store
+  // Sync URL params with store and reset page on query change
   useEffect(() => {
     const query = searchParams.get('q');
-    if (query && query !== searchQuery) {
-      setSearchQuery(query);
-      addToSearchHistory(query);
+    const filter = searchParams.get('filter');
+    const sort = searchParams.get('sort');
+    const previousQuery = searchQuery;
+    
+    // Handle search query
+    if (query !== searchQuery) {
+      setSearchQuery(query || '');
+      if (query) {
+        addToSearchHistory(query);
+      }
+      
+      // Reset to first page when search query changes (but not on initial load)
+      if (previousQuery !== '' || query !== null) {
+        setCurrentPage(1);
+      }
     }
-  }, [searchParams, searchQuery, setSearchQuery, addToSearchHistory]);
 
-  // Update URL when search query changes
-  useEffect(() => {
-    if (searchQuery) {
-      setSearchParams({ q: searchQuery });
+    // Handle positive politicians filter
+    if (filter === 'positive') {
+      setSortBy('sentiment');
+      setSortOrder('desc');
+      setCurrentPage(1);
     }
-  }, [searchQuery, setSearchParams]);
+
+    // Handle sort parameter
+    if (sort === 'sentiment') {
+      setSortBy('sentiment');
+      setSortOrder('desc');
+    }
+  }, [searchParams, searchQuery, setSearchQuery, addToSearchHistory, setSortBy, setSortOrder]);
+
+  // Update URL when search query changes (but avoid infinite loops)
+  useEffect(() => {
+    const currentQuery = searchParams.get('q');
+    if (searchQuery && searchQuery !== currentQuery) {
+      setSearchParams({ q: searchQuery });
+    } else if (!searchQuery && currentQuery) {
+      setSearchParams({});
+    }
+  }, [searchQuery, setSearchParams, searchParams]);
 
   const { data: paginatedData, isLoading, error } = usePoliticians(currentPage, pageSize);
   
   const politicians = paginatedData?.data || [];
   const totalCount = paginatedData?.pagination?.totalItems || 0;
   const totalPages = paginatedData?.pagination?.totalPages || 1;
+
+  // Reset page when search query changes from filter store
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
 
 
 
@@ -183,7 +216,8 @@ const SearchResults: React.FC = () => {
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {searchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians'}
+            {searchParams.get('filter') === 'positive' ? 'Most Positive Politicians' :
+             searchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians'}
           </h1>
           <p className="text-gray-600">
             {isLoading ? 'Searching...' : `${totalCount} politician${totalCount !== 1 ? 's' : ''} found`}

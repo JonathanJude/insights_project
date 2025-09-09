@@ -1,12 +1,17 @@
-import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { PoliticalParty } from '../../types';
+import React, { useEffect, useState } from 'react';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { POLITICAL_PARTIES } from '../../constants';
+import { simulateDataLoading } from '../../lib/chartDataUtils';
+import { useChartFilterStore } from '../../stores/chartFilterStore';
+import { PoliticalParty, type ChartFilter } from '../../types';
 
 interface PartyDistributionChartProps {
-  data: Record<PoliticalParty, number>;
+  data?: Record<PoliticalParty, number>;
   isLoading?: boolean;
   height?: number;
+  filter?: ChartFilter;
+  onFilterChange?: (filter: ChartFilter) => void;
+  showFilters?: boolean;
 }
 
 const COLORS: Record<PoliticalParty, string> = {
@@ -24,24 +29,98 @@ const COLORS: Record<PoliticalParty, string> = {
 const PartyDistributionChart: React.FC<PartyDistributionChartProps> = ({ 
   data, 
   isLoading = false, 
-  height = 300 
+  height = 300,
+  filter,
+  onFilterChange,
+  showFilters = true
 }) => {
-  if (isLoading) {
+  const { chartFilter, setTimeRange } = useChartFilterStore();
+  const [internalLoading, setInternalLoading] = useState(false);
+  const [chartData, setChartData] = useState<any[]>([]);
+  
+  // Use provided filter or store filter
+  const activeFilter = filter || chartFilter;
+  
+  // Handle filter changes
+  const handleFilterChange = async (newFilter: Partial<ChartFilter>) => {
+    const updatedFilter = { ...activeFilter, ...newFilter };
+    
+    if (onFilterChange) {
+      onFilterChange(updatedFilter);
+    } else {
+      // Update store if no external handler
+      if (newFilter.timeRange) {
+        setTimeRange(newFilter.timeRange);
+      }
+    }
+    
+    // Simulate loading for better UX
+    setInternalLoading(true);
+    await simulateDataLoading(300);
+    setInternalLoading(false);
+  };
+  
+  // Generate chart data based on filter
+  useEffect(() => {
+    const generateData = async () => {
+      if (data) {
+        const formattedData = Object.entries(data).map(([party, percentage]) => {
+          const partyInfo = POLITICAL_PARTIES.find(p => p.value === party);
+          return {
+            name: partyInfo?.label || party,
+            value: percentage,
+            party: party as PoliticalParty
+          };
+        });
+        setChartData(formattedData);
+        return;
+      }
+      
+      setInternalLoading(true);
+      await simulateDataLoading(200);
+      
+      // Generate mock data based on filter
+      const mockData: Record<PoliticalParty, number> = {
+        [PoliticalParty.APC]: 35.2 * (activeFilter.timeRange === '7d' ? 1.1 : 1),
+        [PoliticalParty.PDP]: 28.5 * (activeFilter.timeRange === '7d' ? 0.9 : 1),
+        [PoliticalParty.LP]: 15.3 * (activeFilter.timeRange === '3m' ? 1.2 : 1),
+        [PoliticalParty.NNPP]: 8.7,
+        [PoliticalParty.APGA]: 4.2,
+        [PoliticalParty.ADC]: 3.1,
+        [PoliticalParty.SDP]: 2.8,
+        [PoliticalParty.YPP]: 1.5,
+        [PoliticalParty.OTHER]: 0.7
+      };
+      
+      const formattedData = Object.entries(mockData).map(([party, percentage]) => {
+        const partyInfo = POLITICAL_PARTIES.find(p => p.value === party);
+        return {
+          name: partyInfo?.label || party,
+          value: percentage,
+          party: party as PoliticalParty
+        };
+      });
+      
+      setChartData(formattedData);
+      setInternalLoading(false);
+    };
+    
+    generateData();
+  }, [activeFilter, data]);
+
+  if (isLoading || internalLoading) {
     return (
-      <div className="animate-pulse" style={{ height }}>
+      <div className="animate-pulse" style={{ height: height + (showFilters ? 60 : 0) }}>
+        {showFilters && (
+          <div className="flex justify-between items-center mb-4">
+            <div className="h-6 bg-gray-200 rounded w-32"></div>
+            <div className="h-8 bg-gray-200 rounded w-32"></div>
+          </div>
+        )}
         <div className="h-full bg-gray-200 rounded"></div>
       </div>
     );
   }
-
-  const chartData = Object.entries(data).map(([party, percentage]) => {
-    const partyInfo = POLITICAL_PARTIES.find(p => p.value === party);
-    return {
-      name: partyInfo?.label || party,
-      value: percentage,
-      party: party as PoliticalParty
-    };
-  });
 
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }: {
     cx?: number;
@@ -99,8 +178,30 @@ const PartyDistributionChart: React.FC<PartyDistributionChartProps> = ({
   };
 
   return (
-    <div style={{ height }}>
-      <ResponsiveContainer width="100%" height="100%">
+    <div style={{ height: height + (showFilters ? 60 : 0) }}>
+      {showFilters && (
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Party Distribution
+          </h3>
+          <div className="flex items-center space-x-2">
+            <select 
+              value={activeFilter.timeRange}
+              onChange={(e) => handleFilterChange({ 
+                timeRange: e.target.value as ChartFilter['timeRange'] 
+              })}
+              className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            >
+              <option value="7d">Last 7 days</option>
+              <option value="30d">Last 30 days</option>
+              <option value="3m">Last 3 months</option>
+              <option value="1y">Last year</option>
+            </select>
+          </div>
+        </div>
+      )}
+      <div style={{ height }}>
+        <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={chartData}
@@ -115,7 +216,7 @@ const PartyDistributionChart: React.FC<PartyDistributionChartProps> = ({
             {chartData.map((entry, index) => (
               <Cell 
                 key={`cell-${index}`} 
-                fill={COLORS[entry.party] || COLORS[PoliticalParty.OTHER]} 
+                fill={COLORS[entry.party as PoliticalParty] || COLORS[PoliticalParty.OTHER]} 
               />
             ))}
           </Pie>
@@ -131,6 +232,7 @@ const PartyDistributionChart: React.FC<PartyDistributionChartProps> = ({
           />
         </PieChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 };

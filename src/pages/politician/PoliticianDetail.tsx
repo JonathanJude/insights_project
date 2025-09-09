@@ -1,13 +1,16 @@
+import { ChartBarIcon, ChatBubbleLeftRightIcon, EyeIcon, UsersIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ChatBubbleLeftRightIcon, EyeIcon, ChartBarIcon, UsersIcon } from '@heroicons/react/24/outline';
-import { usePolitician, usePoliticianInsights } from '../../hooks/usePoliticians';
-import { useUIStore } from '../../stores/uiStore';
-import { useFilterStore } from '../../stores/filterStore';
-import { POLITICAL_PARTIES, SENTIMENT_COLORS, SOCIAL_PLATFORMS } from '../../constants';
-import { getFallbackAvatarUrl } from '../../utils/avatarUtils';
+import { Link, useParams } from 'react-router-dom';
 import { SentimentChart } from '../../components/charts';
+import DemographicsChart from '../../components/charts/DemographicsChart';
+import PlatformBreakdown from '../../components/charts/PlatformBreakdown';
+import PoliticianImage from '../../components/ui/PoliticianImage';
 import StatsCard from '../../components/ui/StatsCard';
+import { POLITICAL_PARTIES, SENTIMENT_COLORS, SOCIAL_PLATFORMS } from '../../constants';
+import { usePolitician, usePoliticianInsights } from '../../hooks/usePoliticians';
+import { useFilterStore } from '../../stores/filterStore';
+import { useUIStore } from '../../stores/uiStore';
+import { SentimentLabel } from '../../types';
 
 // Utility functions
 const getSentimentColor = (sentiment: number) => {
@@ -21,7 +24,6 @@ const getSentimentLabel = (sentiment: number) => {
   if (sentiment <= 0.4) return 'Negative';
   return 'Neutral';
 };
-import { SentimentLabel } from '../../types';
 
 // Add utility functions and interfaces at the top
 interface PoliticianInsightsResponse {
@@ -227,14 +229,10 @@ const PoliticianDetail: React.FC = () => {
         <div className="flex flex-col lg:flex-row lg:items-start lg:space-x-6">
           {/* Profile Image */}
           <div className="flex-shrink-0 mb-4 lg:mb-0">
-            <img
-              src={politician.imageUrl}
-              alt={politician.name}
-              className="w-24 h-24 rounded-full object-cover border-4 border-gray-200"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = getFallbackAvatarUrl(politician.name, 96);
-              }}
+            <PoliticianImage
+              politician={politician}
+              size="lg"
+              className="border-4 border-gray-200"
             />
           </div>
 
@@ -403,11 +401,11 @@ const PoliticianDetail: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
               <h3 className="text-lg font-medium text-gray-900 mb-4">Sentiment Trend</h3>
               <SentimentChart 
-                data={insights?.trendData?.map(item => ({
+                data={insights?.sentimentTrend?.map(item => ({
                   date: item.date,
-                  positive: 60, // Mock data - would come from API
-                  neutral: 25,
-                  negative: 15
+                  positive: (item as any).positive || 0,
+                  neutral: (item as any).neutral || 0,
+                  negative: (item as any).negative || 0
                 })) || []}
                 isLoading={insightsLoading}
                 height={300}
@@ -428,12 +426,41 @@ const PoliticianDetail: React.FC = () => {
                 </div>
               ) : (
                 <div className="space-y-3">
-                  {(insights?.topTopics || []).map((topic: { topic: string; count: number; sentiment: number }, index: number) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <span className="text-sm text-gray-900">#{topic.topic}</span>
-                      <span className="text-sm text-gray-500">{topic.count} mentions</span>
+                  {(insights?.topTopics || []).slice(0, 8).map((topic: { topic: string; count: number; sentiment: number }, index: number) => {
+                    const sentimentColor = getSentimentColor(topic.sentiment);
+                    return (
+                      <div key={index} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center space-x-3">
+                          <div 
+                            className="w-2 h-2 rounded-full"
+                            style={{ backgroundColor: sentimentColor }}
+                          />
+                          <span className="text-sm font-medium text-gray-900 capitalize">
+                            {topic.topic}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-xs text-gray-500">
+                            {topic.count} mentions
+                          </span>
+                          <span 
+                            className="text-xs font-medium px-2 py-1 rounded-full"
+                            style={{ 
+                              backgroundColor: `${sentimentColor}20`,
+                              color: sentimentColor 
+                            }}
+                          >
+                            {((topic.sentiment + 1) * 50).toFixed(0)}%
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {(!insights?.topTopics || insights.topTopics.length === 0) && (
+                    <div className="text-center py-8 text-gray-500">
+                      <p>No trending topics available</p>
                     </div>
-                  ))}
+                  )}
                 </div>
               )}
             </div>
@@ -441,132 +468,380 @@ const PoliticianDetail: React.FC = () => {
         )}
 
         {activeTab === 'sentiment' && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Detailed Sentiment Analysis</h3>
-            <SentimentChart 
-                data={insights?.trendData?.map(item => ({
+          <div className="space-y-6">
+            {/* Detailed Sentiment Chart */}
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Detailed Sentiment Analysis</h3>
+              <SentimentChart 
+                data={insights?.sentimentTrend?.map(item => ({
                   date: item.date,
-                  positive: 60, // Mock data - would come from API
-                  neutral: 25,
-                  negative: 15
+                  positive: (item as any).positive || 0,
+                  neutral: (item as any).neutral || 0,
+                  negative: (item as any).negative || 0
                 })) || []}
                 isLoading={insightsLoading}
-                height={300}
+                height={400}
               />
+            </div>
+
+            {/* Sentiment Breakdown */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-green-50 rounded-lg p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-4 h-4 rounded-full bg-green-500"></div>
+                  <h4 className="text-lg font-medium text-green-800">Positive Sentiment</h4>
+                </div>
+                <div className="text-3xl font-bold text-green-600 mb-2">
+                  {insights?.overallSentiment?.breakdown?.positive?.toFixed(1) || '0.0'}%
+                </div>
+                <p className="text-sm text-green-700">
+                  Average positive mentions across all platforms
+                </p>
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-4 h-4 rounded-full bg-gray-500"></div>
+                  <h4 className="text-lg font-medium text-gray-800">Neutral Sentiment</h4>
+                </div>
+                <div className="text-3xl font-bold text-gray-600 mb-2">
+                  {insights?.overallSentiment?.breakdown?.neutral?.toFixed(1) || '0.0'}%
+                </div>
+                <p className="text-sm text-gray-700">
+                  Neutral or informational mentions
+                </p>
+              </div>
+
+              <div className="bg-red-50 rounded-lg p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-4 h-4 rounded-full bg-red-500"></div>
+                  <h4 className="text-lg font-medium text-red-800">Negative Sentiment</h4>
+                </div>
+                <div className="text-3xl font-bold text-red-600 mb-2">
+                  {insights?.overallSentiment?.breakdown?.negative?.toFixed(1) || '0.0'}%
+                </div>
+                <p className="text-sm text-red-700">
+                  Critical or negative mentions
+                </p>
+              </div>
+            </div>
+
+            {/* Top Keywords */}
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h4 className="text-lg font-medium text-gray-900 mb-4">Top Keywords</h4>
+              <div className="flex flex-wrap gap-2">
+                {(insights?.topKeywords || []).map((keyword, index) => (
+                  <span 
+                    key={index}
+                    className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+                  >
+                    {keyword}
+                  </span>
+                ))}
+                {(!insights?.topKeywords || insights.topKeywords.length === 0) && (
+                  <p className="text-gray-500">No keywords available</p>
+                )}
+              </div>
+            </div>
           </div>
         )}
 
         {activeTab === 'platforms' && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Platform Performance</h3>
-            {insightsLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[...Array(6)].map((_, i) => (
+          <div className="space-y-6">
+            {/* Platform Performance Chart */}
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">Platform Performance</h3>
+              {insightsLoading ? (
+                <div className="h-64 bg-gray-200 rounded animate-pulse"></div>
+              ) : (
+                <PlatformBreakdown 
+                  data={insights?.platformBreakdown?.map(platform => ({
+                    platform: platform.platform as any,
+                    totalMentions: platform.mentionCount,
+                    sentimentBreakdown: platform.sentimentBreakdown,
+                    averageEngagement: platform.engagementCount / platform.mentionCount,
+                    topPoliticians: [politician?.id || '']
+                  })) || []}
+                  height={300}
+                  showFilters={false}
+                />
+              )}
+            </div>
+
+            {/* Platform Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {insightsLoading ? (
+                [...Array(6)].map((_, i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="h-20 bg-gray-200 rounded"></div>
+                    <div className="h-32 bg-gray-200 rounded-lg"></div>
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {(insights?.platformBreakdown || []).map((platform) => {
+                ))
+              ) : (
+                (insights?.platformBreakdown || []).map((platform) => {
                   const platformInfo = SOCIAL_PLATFORMS.find(p => p.value === platform.platform);
+                  const sentimentColor = getSentimentColor(platform.sentimentScore);
+                  
                   return (
-                    <div key={platform.platform} className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-center space-x-3 mb-3">
+                    <div key={platform.platform} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-center space-x-3 mb-4">
                         <div 
-                          className="w-4 h-4 rounded"
+                          className="w-5 h-5 rounded"
                           style={{ backgroundColor: platformInfo?.color }}
                         />
-                        <h4 className="font-medium text-gray-900">{platformInfo?.label}</h4>
+                        <h4 className="font-semibold text-gray-900">{platformInfo?.label}</h4>
                       </div>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Mentions:</span>
-                          <span className="font-medium">{formatNumber(platform.mentionCount)}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Sentiment:</span>
-                          <span 
-                            className="font-medium"
-                            style={{ color: getSentimentColor(platform.sentimentScore) }}
-                          >
-                            {(platform.sentimentScore * 100).toFixed(1)}%
+                      
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Total Mentions</span>
+                          <span className="font-semibold text-gray-900">
+                            {formatNumber(platform.mentionCount)}
                           </span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Engagement:</span>
-                          <span className="font-medium">{formatNumber(platform.engagementCount)}</span>
+                        
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Avg Sentiment</span>
+                          <span 
+                            className="font-semibold px-2 py-1 rounded-full text-xs"
+                            style={{ 
+                              backgroundColor: `${sentimentColor}20`,
+                              color: sentimentColor 
+                            }}
+                          >
+                            {((platform.sentimentScore + 1) * 50).toFixed(1)}%
+                          </span>
+                        </div>
+                        
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm text-gray-600">Engagement</span>
+                          <span className="font-semibold text-gray-900">
+                            {formatNumber(platform.engagementCount)}
+                          </span>
+                        </div>
+                        
+                        {/* Sentiment Breakdown Bar */}
+                        <div className="mt-3">
+                          <div className="text-xs text-gray-500 mb-1">Sentiment Breakdown</div>
+                          <div className="flex h-2 rounded-full overflow-hidden bg-gray-200">
+                            <div 
+                              className="bg-green-500"
+                              style={{ width: `${platform.sentimentBreakdown.positive}%` }}
+                            />
+                            <div 
+                              className="bg-gray-400"
+                              style={{ width: `${platform.sentimentBreakdown.neutral}%` }}
+                            />
+                            <div 
+                              className="bg-red-500"
+                              style={{ width: `${platform.sentimentBreakdown.negative}%` }}
+                            />
+                          </div>
+                          <div className="flex justify-between text-xs text-gray-500 mt-1">
+                            <span>{platform.sentimentBreakdown.positive.toFixed(0)}%</span>
+                            <span>{platform.sentimentBreakdown.neutral.toFixed(0)}%</span>
+                            <span>{platform.sentimentBreakdown.negative.toFixed(0)}%</span>
+                          </div>
                         </div>
                       </div>
                     </div>
                   );
-                })}
-              </div>
-            )}
+                })
+              )}
+            </div>
           </div>
         )}
 
         {activeTab === 'demographics' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Gender Breakdown */}
+          <div className="space-y-6">
+            {/* Demographics Chart */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Sentiment by Gender</h3>
-              {insightsLoading ? (
-                <div className="h-64 bg-gray-200 rounded animate-pulse"></div>
-              ) : (
-                <div className="space-y-4">
-                  {(insights?.demographicBreakdown?.byGender || []).map((item) => (
-                    <div key={item.gender} className="flex items-center justify-between">
-                      <span className="text-sm text-gray-900 capitalize">{item.gender}</span>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="h-2 rounded-full"
-                            style={{ 
-                              width: `${item.sentimentScore * 100}%`,
-                              backgroundColor: getSentimentColor(item.sentimentScore)
-                            }}
-                          />
-                        </div>
-                        <span className="text-sm font-medium w-12 text-right">
-                          {(item.sentimentScore * 100).toFixed(0)}%
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <DemographicsChart 
+                data={{
+                  gender: insights?.demographicBreakdown?.byGender?.map(item => ({
+                    category: item.gender,
+                    positive: ((item.sentimentScore + 1) / 2) * 100, // Convert -1 to 1 scale to 0-100
+                    neutral: 100 - (((item.sentimentScore + 1) / 2) * 100) - (((1 - item.sentimentScore) / 2) * 100),
+                    negative: ((1 - item.sentimentScore) / 2) * 100,
+                    total: item.mentionCount
+                  })) || [],
+                  ageGroup: insights?.demographicBreakdown?.byAgeGroup?.map(item => ({
+                    category: item.ageGroup,
+                    positive: ((item.sentimentScore + 1) / 2) * 100,
+                    neutral: 100 - (((item.sentimentScore + 1) / 2) * 100) - (((1 - item.sentimentScore) / 2) * 100),
+                    negative: ((1 - item.sentimentScore) / 2) * 100,
+                    total: item.mentionCount
+                  })) || [],
+                  state: (insights?.demographicBreakdown as any)?.byState?.map((item: any) => ({
+                    category: item.state,
+                    positive: ((item.sentimentScore + 1) / 2) * 100,
+                    neutral: 100 - (((item.sentimentScore + 1) / 2) * 100) - (((1 - item.sentimentScore) / 2) * 100),
+                    negative: ((1 - item.sentimentScore) / 2) * 100,
+                    total: item.mentionCount
+                  })) || []
+                }}
+                isLoading={insightsLoading}
+                height={400}
+                showFilters={false}
+              />
             </div>
 
-            {/* Age Group Breakdown */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Sentiment by Age Group</h3>
-              {insightsLoading ? (
-                <div className="h-64 bg-gray-200 rounded animate-pulse"></div>
-              ) : (
-                <div className="space-y-4">
-                  {(insights?.demographicBreakdown?.byAgeGroup || []).map((item) => (
-                    <div key={item.ageGroup} className="flex items-center justify-between">
-                      <span className="text-sm text-gray-900">{item.ageGroup}</span>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
-                          <div 
-                            className="h-2 rounded-full"
-                            style={{ 
-                              width: `${item.sentimentScore * 100}%`,
-                              backgroundColor: getSentimentColor(item.sentimentScore)
-                            }}
-                          />
-                        </div>
-                        <span className="text-sm font-medium w-12 text-right">
-                          {(item.sentimentScore * 100).toFixed(0)}%
-                        </span>
+            {/* Detailed Demographics Cards */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Gender Breakdown */}
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h4 className="text-lg font-medium text-gray-900 mb-4">By Gender</h4>
+                {insightsLoading ? (
+                  <div className="space-y-3">
+                    {[...Array(3)].map((_, i) => (
+                      <div key={i} className="animate-pulse">
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-2 bg-gray-200 rounded"></div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {(insights?.demographicBreakdown?.byGender || []).map((item) => {
+                      const sentimentColor = getSentimentColor(item.sentimentScore);
+                      const sentimentPercentage = ((item.sentimentScore + 1) / 2) * 100;
+                      
+                      return (
+                        <div key={item.gender} className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-900 capitalize">
+                              {item.gender}
+                            </span>
+                            <span className="text-xs text-gray-500">
+                              {item.percentage}% ({formatNumber(item.mentionCount)})
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div 
+                                className="h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${sentimentPercentage}%`,
+                                  backgroundColor: sentimentColor
+                                }}
+                              />
+                            </div>
+                            <span 
+                              className="text-xs font-medium w-10 text-right"
+                              style={{ color: sentimentColor }}
+                            >
+                              {sentimentPercentage.toFixed(0)}%
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Age Group Breakdown */}
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h4 className="text-lg font-medium text-gray-900 mb-4">By Age Group</h4>
+                {insightsLoading ? (
+                  <div className="space-y-3">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="animate-pulse">
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-2 bg-gray-200 rounded"></div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {(insights?.demographicBreakdown?.byAgeGroup || []).map((item) => {
+                      const sentimentColor = getSentimentColor(item.sentimentScore);
+                      const sentimentPercentage = ((item.sentimentScore + 1) / 2) * 100;
+                      
+                      return (
+                        <div key={item.ageGroup} className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-900">
+                              {item.ageGroup}
+                            </span>
+                            <span className="text-xs text-gray-500">
+                              {item.percentage}% ({formatNumber(item.mentionCount)})
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div 
+                                className="h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${sentimentPercentage}%`,
+                                  backgroundColor: sentimentColor
+                                }}
+                              />
+                            </div>
+                            <span 
+                              className="text-xs font-medium w-10 text-right"
+                              style={{ color: sentimentColor }}
+                            >
+                              {sentimentPercentage.toFixed(0)}%
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* State Breakdown */}
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h4 className="text-lg font-medium text-gray-900 mb-4">By State</h4>
+                {insightsLoading ? (
+                  <div className="space-y-3">
+                    {[...Array(6)].map((_, i) => (
+                      <div key={i} className="animate-pulse">
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-2 bg-gray-200 rounded"></div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {((insights?.demographicBreakdown as any)?.byState || []).slice(0, 6).map((item: any) => {
+                      const sentimentColor = getSentimentColor(item.sentimentScore);
+                      const sentimentPercentage = ((item.sentimentScore + 1) / 2) * 100;
+                      
+                      return (
+                        <div key={item.state} className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium text-gray-900">
+                              {item.state}
+                            </span>
+                            <span className="text-xs text-gray-500">
+                              {item.percentage}% ({formatNumber(item.mentionCount)})
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className="flex-1 bg-gray-200 rounded-full h-2">
+                              <div 
+                                className="h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${sentimentPercentage}%`,
+                                  backgroundColor: sentimentColor
+                                }}
+                              />
+                            </div>
+                            <span 
+                              className="text-xs font-medium w-10 text-right"
+                              style={{ color: sentimentColor }}
+                            >
+                              {sentimentPercentage.toFixed(0)}%
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}

@@ -1,4 +1,4 @@
-import { defineConfig, presetUno, presetAttributify, presetTypography } from 'unocss'
+import { defineConfig, presetAttributify, presetTypography, presetUno } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -6,6 +6,7 @@ export default defineConfig({
     presetAttributify(),
     presetTypography(),
   ],
+  darkMode: 'class',
   theme: {
     fontFamily: {
       sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -48,21 +49,28 @@ export default defineConfig({
     },
   },
   shortcuts: {
-    // Custom component shortcuts equivalent to Tailwind @layer components
-    'card-gradient': 'bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm',
+    // Custom component shortcuts with dark mode support
+    'card-gradient': 'bg-[var(--card-bg)] backdrop-blur-sm border border-[var(--border-color)]',
     'primary-gradient': 'bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600',
     'secondary-gradient': 'bg-gradient-to-r from-emerald-500 to-teal-600',
     'accent-gradient': 'bg-gradient-to-r from-orange-500 to-pink-500',
     'success-gradient': 'bg-gradient-to-r from-green-500 to-emerald-600',
     'warning-gradient': 'bg-gradient-to-r from-yellow-500 to-orange-500',
     'danger-gradient': 'bg-gradient-to-r from-red-500 to-pink-600',
-    'glass-effect': 'bg-white/80 backdrop-blur-md border border-white/20 shadow-xl',
+    'glass-effect': 'bg-[var(--card-bg)]/80 backdrop-blur-md border border-[var(--border-color)]/20 shadow-xl',
     'hover-lift': 'transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg',
-    'interactive-card': 'card-gradient hover-lift border border-gray-200/50 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300',
+    'interactive-card': 'card-gradient hover-lift rounded-xl shadow-sm hover:shadow-xl transition-all duration-300',
     'btn-primary': 'primary-gradient text-white font-semibold py-2.5 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/30',
-    'btn-secondary': 'bg-white text-gray-700 font-semibold py-2.5 px-6 rounded-lg border border-gray-300 shadow-sm hover:shadow-md hover:bg-gray-50 transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-gray-500/30',
+    'btn-secondary': 'bg-[var(--card-bg)] text-[var(--text-primary)] font-semibold py-2.5 px-6 rounded-lg border border-[var(--border-color)] shadow-sm hover:shadow-md hover:bg-[var(--bg-secondary)] transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-gray-500/30',
     'text-gradient': 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent',
     'chart-container': 'interactive-card p-6',
+    // Theme-aware text and background utilities
+    'text-primary': 'text-[var(--text-primary)]',
+    'text-secondary': 'text-[var(--text-secondary)]',
+    'bg-primary': 'bg-[var(--bg-primary)]',
+    'bg-secondary': 'bg-[var(--bg-secondary)]',
+    'bg-card': 'bg-[var(--card-bg)]',
+    'border-default': 'border-[var(--border-color)]',
   },
   content: {
     filesystem: [

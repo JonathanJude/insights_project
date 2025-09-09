@@ -290,6 +290,13 @@ export interface TimeSeriesDataPoint {
   label?: string;
 }
 
+export interface ChartFilter {
+  timeRange: '7d' | '30d' | '3m' | '1y';
+  platforms?: SocialPlatform[];
+  parties?: PoliticalParty[];
+  states?: NigerianState[];
+}
+
 // UI State Types
 export interface UIState {
   sidebarOpen: boolean;

@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  Legend
+    CartesianGrid,
+    Legend,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
 } from 'recharts';
-import { generateTrendPoints } from '../../mock';
 import { SENTIMENT_COLORS } from '../../constants';
+import { convertToChartData, generateFilteredChartData, simulateDataLoading } from '../../lib/chartDataUtils';
+import { useChartFilterStore } from '../../stores/chartFilterStore';
+import type { ChartFilter } from '../../types';
 
 interface SentimentChartProps {
   isLoading?: boolean;
@@ -21,25 +23,65 @@ interface SentimentChartProps {
     negative: number;
   }>;
   height?: number;
+  filter?: ChartFilter;
+  onFilterChange?: (filter: ChartFilter) => void;
+  showFilters?: boolean;
 }
 
 const SentimentChart: React.FC<SentimentChartProps> = ({ 
   isLoading = false, 
   data,
-  height = 300 
+  height = 300,
+  filter,
+  onFilterChange,
+  showFilters = true
 }) => {
-  // Generate mock data if none provided
-  const chartData = data || generateTrendPoints(30).map(point => ({
-    date: new Date(point.date).toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric' 
-    }),
-    sentiment: (point.value + 1) * 50, // Convert -1 to 1 range to 0-100
-    mentions: point.metadata?.mentionCount || 0,
-    engagement: (point.metadata?.engagementCount || 0) * 100,
-    positive: Math.max(0, point.value) * 100,
-    negative: Math.abs(Math.min(0, point.value)) * 100
-  }));
+  const { chartFilter, setTimeRange } = useChartFilterStore();
+  const [internalLoading, setInternalLoading] = useState(false);
+  const [chartData, setChartData] = useState<any[]>([]);
+  
+  // Use provided filter or store filter
+  const activeFilter = filter || chartFilter;
+  
+  // Handle filter changes
+  const handleFilterChange = async (newFilter: Partial<ChartFilter>) => {
+    const updatedFilter = { ...activeFilter, ...newFilter };
+    
+    if (onFilterChange) {
+      onFilterChange(updatedFilter);
+    } else {
+      // Update store if no external handler
+      if (newFilter.timeRange) {
+        setTimeRange(newFilter.timeRange);
+      }
+    }
+    
+    // Simulate loading for better UX
+    setInternalLoading(true);
+    await simulateDataLoading(300);
+    setInternalLoading(false);
+  };
+  
+  // Generate chart data based on filter
+  useEffect(() => {
+    const generateData = async () => {
+      if (data) {
+        setChartData(data);
+        return;
+      }
+      
+      setInternalLoading(true);
+      await simulateDataLoading(200);
+      
+      const trendPoints = generateFilteredChartData(activeFilter);
+      const formattedData = convertToChartData(trendPoints, activeFilter.timeRange);
+      setChartData(formattedData);
+      
+      setInternalLoading(false);
+    };
+    
+    generateData();
+  }, [activeFilter, data]);
 
   const CustomTooltip = ({ active, payload, label }: {
     active?: boolean;
@@ -76,82 +118,111 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
     return null;
   };
 
-  if (isLoading) {
+  if (isLoading || internalLoading) {
     return (
-      <div className="animate-pulse" style={{ height }}>
+      <div className="animate-pulse" style={{ height: height + (showFilters ? 60 : 0) }}>
+        {showFilters && (
+          <div className="flex justify-between items-center mb-4">
+            <div className="h-6 bg-gray-200 rounded w-32"></div>
+            <div className="h-8 bg-gray-200 rounded w-32"></div>
+          </div>
+        )}
         <div className="h-full bg-gray-200 rounded"></div>
       </div>
     );
   }
 
   return (
-    <div style={{ height }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart
-          data={chartData}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-          <XAxis 
-            dataKey="date" 
-            stroke="#6b7280"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-          />
-          <YAxis 
-            stroke="#6b7280"
-            fontSize={12}
-            tickLine={false}
-            axisLine={false}
-            domain={[0, 100]}
-            tickFormatter={(value) => `${value}%`}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend 
-            wrapperStyle={{ paddingTop: '20px' }}
-            iconType="circle"
-          />
-          
-          {/* Sentiment line */}
-          <Line
-            type="monotone"
-            dataKey="sentiment"
-            stroke={SENTIMENT_COLORS.neutral}
-            strokeWidth={3}
-            dot={{ fill: SENTIMENT_COLORS.neutral, strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: SENTIMENT_COLORS.neutral, strokeWidth: 2 }}
-            name="Overall Sentiment"
-          />
-          
-          {/* Positive sentiment line */}
-          <Line
-            type="monotone"
-            dataKey="positive"
-            stroke={SENTIMENT_COLORS.positive}
-            strokeWidth={2}
-            dot={false}
-            strokeDasharray="5 5"
-            name="Positive %"
-          />
-          
-          {/* Negative sentiment line */}
-          <Line
-            type="monotone"
-            dataKey="negative"
-            stroke={SENTIMENT_COLORS.negative}
-            strokeWidth={2}
-            dot={false}
-            strokeDasharray="5 5"
-            name="Negative %"
-          />
-        </LineChart>
-      </ResponsiveContainer>
+    <div style={{ height: height + (showFilters ? 60 : 0) }}>
+      {showFilters && (
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Sentiment Trends
+          </h3>
+          <div className="flex items-center space-x-2">
+            <select 
+              value={activeFilter.timeRange}
+              onChange={(e) => handleFilterChange({ 
+                timeRange: e.target.value as ChartFilter['timeRange'] 
+              })}
+              className="border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            >
+              <option value="7d">Last 7 days</option>
+              <option value="30d">Last 30 days</option>
+              <option value="3m">Last 3 months</option>
+              <option value="1y">Last year</option>
+            </select>
+          </div>
+        </div>
+      )}
+      <div style={{ height }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={chartData}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <XAxis 
+              dataKey="date" 
+              stroke="#6b7280"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+            />
+            <YAxis 
+              stroke="#6b7280"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+              domain={[0, 100]}
+              tickFormatter={(value) => `${value}%`}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend 
+              wrapperStyle={{ paddingTop: '20px' }}
+              iconType="circle"
+            />
+            
+            {/* Sentiment line */}
+            <Line
+              type="monotone"
+              dataKey="sentiment"
+              stroke={SENTIMENT_COLORS.neutral}
+              strokeWidth={3}
+              dot={{ fill: SENTIMENT_COLORS.neutral, strokeWidth: 2, r: 4 }}
+              activeDot={{ r: 6, stroke: SENTIMENT_COLORS.neutral, strokeWidth: 2 }}
+              name="Overall Sentiment"
+            />
+            
+            {/* Positive sentiment line */}
+            <Line
+              type="monotone"
+              dataKey="positive"
+              stroke={SENTIMENT_COLORS.positive}
+              strokeWidth={2}
+              dot={false}
+              strokeDasharray="5 5"
+              name="Positive %"
+            />
+            
+            {/* Negative sentiment line */}
+            <Line
+              type="monotone"
+              dataKey="negative"
+              stroke={SENTIMENT_COLORS.negative}
+              strokeWidth={2}
+              dot={false}
+              strokeDasharray="5 5"
+              name="Negative %"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

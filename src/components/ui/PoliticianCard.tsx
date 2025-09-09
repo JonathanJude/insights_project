@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import type { Politician } from '../../types';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
 import { useUIStore } from '../../stores/uiStore';
-import { getFallbackAvatarUrl } from '../../utils/avatarUtils';
+import type { Politician } from '../../types';
+import PoliticianImage from './PoliticianImage';
 
 interface PoliticianCardProps {
   politician: Politician;
@@ -53,7 +53,7 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
   };
 
   return (
-    <div className={`bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-all duration-200 hover:shadow-md ${className}`}>
+    <div className={`bg-card rounded-lg border border-default hover:border-default transition-all duration-200 hover:shadow-md ${className}`}>
       <Link 
         to={`/politician/${politician.id}`} 
         onClick={handleClick}
@@ -63,19 +63,19 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
         <div className="flex items-start space-x-4 mb-4">
           {/* Avatar */}
           <div className="flex-shrink-0">
-            <img 
-              src={politician.imageUrl || getFallbackAvatarUrl(politician.name)} 
-              alt={politician.name}
-              className="w-16 h-16 rounded-full object-cover border-2 border-gray-100"
+            <PoliticianImage 
+              politician={politician}
+              size="md"
+              className="border-2 border-gray-100"
             />
           </div>
           
           {/* Basic Info */}
           <div className="flex-1 min-w-0">
-            <h3 className="text-lg font-semibold text-gray-900 truncate">
+            <h3 className="text-lg font-semibold text-primary truncate">
               {politician.name}
             </h3>
-            <p className="text-sm text-gray-600 mb-1">
+            <p className="text-sm text-secondary mb-1">
               {politician.position}
             </p>
             <div className="flex items-center space-x-2">
@@ -88,8 +88,8 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
               >
                 {partyInfo?.label || politician.party}
               </span>
-              <span className="text-xs text-gray-500">•</span>
-              <span className="text-xs text-gray-500">{politician.state}</span>
+              <span className="text-xs text-secondary">•</span>
+              <span className="text-xs text-secondary">{politician.state}</span>
             </div>
           </div>
           
@@ -111,18 +111,18 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
 
         {/* Stats */}
         {showStats && politician.recentSentiment && (
-          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+          <div className="grid grid-cols-3 gap-4 pt-4 border-t border-default">
             <div className="text-center">
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-lg font-semibold text-primary">
                 {formatNumber(politician.recentSentiment.mentionCount)}
               </div>
-              <div className="text-xs text-gray-500">Mentions</div>
+              <div className="text-xs text-secondary">Mentions</div>
             </div>
             <div className="text-center">
-              <div className="text-lg font-semibold text-gray-900">
+              <div className="text-lg font-semibold text-primary">
                 {politician.recentSentiment.changePercentage.toFixed(1)}%
               </div>
-              <div className="text-xs text-gray-500">Change</div>
+              <div className="text-xs text-secondary">Change</div>
             </div>
             <div className="text-center">
               <div 
@@ -131,16 +131,16 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
               >
                 {((politician.recentSentiment.score + 1) * 50).toFixed(0)}%
               </div>
-              <div className="text-xs text-gray-500">Sentiment</div>
+              <div className="text-xs text-secondary">Sentiment</div>
             </div>
           </div>
         )}
 
         {/* Social Media Handles */}
         {politician.socialMediaHandles && Object.keys(politician.socialMediaHandles).length > 0 && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
+          <div className="mt-4 pt-4 border-t border-default">
             <div className="flex items-center space-x-3">
-              <span className="text-xs text-gray-500">Social:</span>
+              <span className="text-xs text-secondary">Social:</span>
               <div className="flex space-x-2">
                 {politician.socialMediaHandles?.twitter && (
                   <a 
@@ -188,9 +188,9 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
 
         {/* Trend Indicator */}
         {politician.recentSentiment && (
-          <div className="mt-4 pt-4 border-t border-gray-100">
+          <div className="mt-4 pt-4 border-t border-default">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-500">Trend:</span>
+              <span className="text-xs text-secondary">Trend:</span>
               <div className="flex items-center space-x-1">
                 {politician.recentSentiment.trend === 'up' ? (
                   <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
