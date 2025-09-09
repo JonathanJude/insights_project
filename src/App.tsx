@@ -1,5 +1,6 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 // Layout Components
@@ -9,58 +10,109 @@ import Layout from './components/layout/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import PartyAnalytics from './pages/party/PartyAnalytics';
 import PoliticianDetail from './pages/politician/PoliticianDetail';
+import Profile from './pages/profile/Profile';
 import SearchResults from './pages/search/SearchResults';
+import TrendingTopics from './pages/trending/TrendingTopics';
+
+// Error Handling
+
+// Loading Components
+import GlobalLoadingIndicator from './components/ui/GlobalLoadingIndicator';
+import { LoadingProvider } from './providers/LoadingProvider';
+
+// Store
+import DashboardErrorBoundary from './components/ui/DashboardErrorBoundary';
+import { createEnhancedQueryClient } from './lib/queryErrorHandler';
+import { useUIStore } from './stores/uiStore';
+
+// Enhanced Query Client with error handling
 
 
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes
-      retry: 2,
-      refetchOnWindowFocus: false,
-    },
-    mutations: {
-      retry: 1,
-    },
-  },
-});
+// Create enhanced query client with error handling
+const queryClient = createEnhancedQueryClient();
 
 function App() {
+  const { theme, addNotification, notifications } = useUIStore();
+  // const { isLoadingSharedState } = useShareableLink();
+
+  // Initialize theme on app load
+  useEffect(() => {
+    // Apply the current theme to the document
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  // Add demo notifications on app initialization
+  useEffect(() => {
+    // Check if we already have persistent notifications to avoid duplicates
+    const hasPersistentNotifications = notifications.some(n => n.isPersistent);
+
+    if (!hasPersistentNotifications) {
+      addNotification({
+        type: 'info',
+        title: 'Welcome to Insight Intelligence',
+        message: 'Your political sentiment dashboard is ready to use.',
+        duration: 0, // Persistent notification
+        isPersistent: true // Mark as persistent demo notification
+      });
+
+      addNotification({
+        type: 'success',
+        title: 'Data Updated',
+        message: 'Latest sentiment data has been synchronized.',
+        duration: 0,
+        isPersistent: true // Mark as persistent demo notification
+      });
+    }
+  }, []); // Only run once on app mount
+
+  // Show loading indicator while shared state is being loaded
+  // if (isLoadingSharedState) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+  //       <div className="text-center">
+  //         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+  //         <p className="text-gray-600 dark:text-gray-400">Loading shared view...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <div className="min-h-screen bg-gray-50">
-          <Layout>
-            <Routes>
-              {/* Dashboard - Home page */}
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              
-              {/* Politician routes */}
-              <Route path="/politician/:id" element={<PoliticianDetail />} />
-              
-              {/* Party analytics */}
-              <Route path="/party" element={<PartyAnalytics />} />
-              <Route path="/party/:partyId" element={<PartyAnalytics />} />
-              
-              {/* Search results */}
-              <Route path="/search" element={<SearchResults />} />
-              
-              {/* Catch all route - redirect to dashboard */}
-              <Route path="*" element={<Dashboard />} />
-            </Routes>
-          </Layout>
-        </div>
-      </Router>
-      
-      {/* React Query Devtools - only in development */}
-      {import.meta.env.DEV && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
-    </QueryClientProvider>
+    <DashboardErrorBoundary
+      onError={(error, errorInfo) => {
+        // Log error to console in development
+        if (import.meta.env.DEV) {
+          console.error('App Error Boundary:', error, errorInfo);
+        }
+        
+        // In production, you would send this to an error reporting service
+        // Example: Sentry.captureException(error, { extra: errorInfo });
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <LoadingProvider minLoadingTime={300} debounceTime={100}>
+          <Router>
+            <GlobalLoadingIndicator position="top" height={3} />
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/politician/:id" element={<PoliticianDetail />} />
+                <Route path="/search" element={<SearchResults />} />
+                <Route path="/trending" element={<TrendingTopics />} />
+                <Route path="/party" element={<PartyAnalytics />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+            </Layout>
+          </Router>
+
+          {/* React Query Devtools - only in development */}
+          {import.meta.env.DEV && (
+            <ReactQueryDevtools initialIsOpen={false} />
+          )}
+        </LoadingProvider>
+      </QueryClientProvider>
+    </DashboardErrorBoundary>
   );
 }
 

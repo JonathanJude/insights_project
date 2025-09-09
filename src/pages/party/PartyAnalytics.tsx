@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useFilterStore } from '../../stores/filterStore';
-import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
-import { PartyCompareChart, DemographicsChart } from '../../components/charts';
+import React, { useState } from 'react';
+import { DemographicsChart, PartyCompareChart } from '../../components/charts';
+import FilterBar from '../../components/filters/FilterBar';
+import FilterIndicator from '../../components/filters/FilterIndicator';
 import StatsCard from '../../components/ui/StatsCard';
-import FiltersPanel from '../../components/filters/FiltersPanel';
+import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
+import { generateFilteredDemographicsData, getPartyInsights, mockDashboardStats } from '../../mock';
+import { useFilterStore } from '../../stores/filterStore';
 import type { PartyInsight } from '../../types';
-import { getPartyInsights, mockDashboardStats } from '../../mock';
 
 const PartyAnalytics: React.FC = () => {
   const { 
@@ -19,7 +20,7 @@ const PartyAnalytics: React.FC = () => {
   
   const [showFilters, setShowFilters] = useState(false);
   const [selectedMetric, setSelectedMetric] = useState<'sentiment' | 'mentions' | 'engagement'>('sentiment');
-  const [chartType, setChartType] = useState<'bar' | 'radar' | 'line'>('bar');
+  const [chartType, setChartType] = useState<'bar' | 'radar' | 'line' | 'comparison'>('comparison');
 
   // Fetch party insights
   const { data: partyInsights, isLoading: insightsLoading } = useQuery({
@@ -31,6 +32,12 @@ const PartyAnalytics: React.FC = () => {
   const { data: dashboardStats, isLoading: statsLoading } = useQuery({
     queryKey: ['dashboardStats', selectedParties, selectedStates, selectedPlatforms, dateRange],
     queryFn: () => Promise.resolve(mockDashboardStats)
+  });
+
+  // Fetch demographics data
+  const { data: demographicsData, isLoading: demographicsLoading } = useQuery({
+    queryKey: ['demographicsData', selectedParties, selectedStates, selectedPlatforms, dateRange],
+    queryFn: () => Promise.resolve(generateFilteredDemographicsData(selectedParties.map(p => p.toString())))
   });
 
   const getSentimentColor = (sentiment: number) => {
@@ -116,34 +123,21 @@ const PartyAnalytics: React.FC = () => {
             Compare sentiment and engagement across political parties
           </p>
         </div>
-        
-        <div className="flex items-center space-x-4 mt-4 lg:mt-0">
-          {hasActiveFilters() && (
-            <span className="text-sm text-gray-500">
-              Filters applied
-            </span>
-          )}
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
-            </svg>
-            <span>Filters</span>
-          </button>
-        </div>
       </div>
 
-      {/* Filters Panel */}
-      {showFilters && (
-        <div className="mb-8">
-          <FiltersPanel 
-            isOpen={showFilters}
-            onClose={() => setShowFilters(false)}
-          />
-        </div>
-      )}
+      {/* Enhanced Filter Bar */}
+      <div className="mb-6">
+        <FilterBar 
+          showFilterButton={true}
+          showSortOptions={false}
+          className="mb-4"
+        />
+        
+        {/* Active Filters Indicator */}
+        {hasActiveFilters() && (
+          <FilterIndicator className="mb-4" />
+        )}
+      </div>
 
       {/* Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -178,7 +172,7 @@ const PartyAnalytics: React.FC = () => {
       </div>
 
       {/* Party Comparison Chart */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-24">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-4 lg:mb-0">
             Party Comparison
@@ -210,6 +204,13 @@ const PartyAnalytics: React.FC = () => {
             {/* Chart Type Selection */}
             <div className="flex space-x-2">
               <ChartTypeButton
+                type="comparison"
+                label="Side-by-Side"
+                icon="⚖️"
+                isActive={chartType === 'comparison'}
+                onClick={() => setChartType('comparison')}
+              />
+              <ChartTypeButton
                 type="bar"
                 label="Bar"
                 icon="📊"
@@ -238,11 +239,23 @@ const PartyAnalytics: React.FC = () => {
           data={partyInsights || []}
           isLoading={insightsLoading}
           height={400}
+          selectedParties={selectedParties}
+          enableDrillDown={true}
+          showExportButtons={true}
+          chartType={chartType}
+          metric={selectedMetric}
+          onPartyClick={(party) => {
+            console.log('Party clicked for drill-down:', party);
+          }}
+          onExport={(format) => {
+            console.log('Exporting data as:', format);
+          }}
         />
       </div>
 
-      {/* Party Details Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+      {/* Party Details Grid - Only show when not in comparison view */}
+      {chartType !== 'comparison' && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
         {insightsLoading ? (
           [...Array(6)].map((_, index) => (
             <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-pulse">
@@ -343,6 +356,7 @@ const PartyAnalytics: React.FC = () => {
           })
         )}
       </div>
+      )}
 
       {/* Demographics Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -351,13 +365,10 @@ const PartyAnalytics: React.FC = () => {
             Sentiment by Gender
           </h3>
           <DemographicsChart
-            data={{
-              gender: [],
-              ageGroup: [],
-              state: []
-            }}
-            isLoading={insightsLoading}
+            data={demographicsData}
+            isLoading={demographicsLoading}
             height={300}
+            showFilters={false}
           />
         </div>
         
@@ -366,13 +377,10 @@ const PartyAnalytics: React.FC = () => {
             Sentiment by Age Group
           </h3>
           <DemographicsChart
-            data={{
-              gender: [],
-              ageGroup: [],
-              state: []
-            }}
-            isLoading={insightsLoading}
+            data={demographicsData}
+            isLoading={demographicsLoading}
             height={300}
+            showFilters={false}
           />
         </div>
       </div>

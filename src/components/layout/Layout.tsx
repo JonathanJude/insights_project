@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useUIStore } from '../../stores/uiStore';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isMobile = useMediaQuery('(max-width: 1024px)');
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
+    <div className="min-h-screen bg-primary">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && isMobile && (
         <div 
@@ -49,7 +49,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Header />
         
         {/* Page content */}
-        <main className="p-6 min-h-screen">
+        <main className="p-6 min-h-screen bg-primary">
           <div className="max-w-7xl mx-auto">
             {children}
           </div>

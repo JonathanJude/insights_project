@@ -1,21 +1,21 @@
 import type {
-  SentimentInsight,
-  PartyInsight,
-  DashboardStats,
-  TrendingPolitician,
-  PlatformSentiment,
-  TrendPoint
+    DashboardStats,
+    PartyInsight,
+    PlatformSentiment,
+    SentimentInsight,
+    TrendingPolitician,
+    TrendPoint
 } from '../types';
 import {
-  PoliticalParty,
-  PoliticalPosition,
-  PoliticalLevel,
-  SocialPlatform,
-  SentimentLabel,
-  Gender,
-  AgeGroup,
-  NigerianState,
-  TimeFrame
+    AgeGroup,
+    Gender,
+    NigerianState,
+    PoliticalLevel,
+    PoliticalParty,
+    PoliticalPosition,
+    SentimentLabel,
+    SocialPlatform,
+    TimeFrame
 } from '../types';
 import { mockPoliticians } from './politicians';
 
@@ -370,6 +370,422 @@ export const mockTrendingPoliticians: TrendingPolitician[] = [
   }
 ];
 
+// Enhanced mock data generators for politician profiles
+
+// Generate trending topics for a politician
+export const generateTrendingTopics = (politicianId: string, count: number = 10): Array<{
+  id: string;
+  keyword: string;
+  mentionCount: number;
+  sentiment: number;
+  trend: 'rising' | 'falling' | 'stable';
+  changePercentage: number;
+  relatedPoliticians: string[];
+}> => {
+  const topicKeywords = [
+    'economic policy', 'infrastructure development', 'education reform', 'healthcare system',
+    'security challenges', 'corruption fight', 'youth empowerment', 'agriculture support',
+    'technology advancement', 'governance transparency', 'job creation', 'poverty reduction',
+    'climate change', 'energy sector', 'transportation', 'housing policy', 'tax reform',
+    'foreign relations', 'trade agreements', 'social welfare', 'women empowerment',
+    'digital transformation', 'electoral reforms', 'judicial independence', 'press freedom'
+  ];
+  
+  return Array.from({ length: count }, (_, i) => {
+    const keyword = topicKeywords[Math.floor(Math.random() * topicKeywords.length)];
+    const mentionCount = Math.floor(Math.random() * 500) + 50;
+    const sentiment = Math.random() * 2 - 1; // -1 to 1
+    const trends = ['rising', 'falling', 'stable'] as const;
+    const trend = trends[Math.floor(Math.random() * trends.length)];
+    
+    return {
+      id: `topic_${politicianId}_${i}`,
+      keyword,
+      mentionCount,
+      sentiment,
+      trend,
+      changePercentage: (Math.random() - 0.5) * 40, // -20% to +20%
+      relatedPoliticians: [politicianId]
+    };
+  });
+};
+
+// Generate enhanced sentiment history for a politician
+export const generateEnhancedSentimentHistory = (politicianId: string, days: number = 30): Array<{
+  date: string;
+  sentimentScore: number;
+  mentionCount: number;
+  engagementCount: number;
+  positive: number;
+  neutral: number;
+  negative: number;
+}> => {
+  const history = [];
+  const baseDate = new Date();
+  
+  for (let i = days - 1; i >= 0; i--) {
+    const date = new Date(baseDate);
+    date.setDate(date.getDate() - i);
+    
+    // Generate realistic sentiment patterns
+    const dayOfWeek = date.getDay();
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    
+    // Weekend typically has lower activity
+    const activityMultiplier = isWeekend ? 0.6 : 1.0;
+    
+    const mentionCount = Math.floor((Math.random() * 200 + 50) * activityMultiplier);
+    const engagementCount = Math.floor(mentionCount * (Math.random() * 0.15 + 0.05)); // 5-20% engagement
+    
+    // Generate sentiment breakdown that adds up to 100%
+    const positive = Math.random() * 60 + 20; // 20-80%
+    const negative = Math.random() * 30 + 5;  // 5-35%
+    const neutral = 100 - positive - negative;
+    
+    const sentimentScore = (positive - negative) / 100; // -1 to 1 scale
+    
+    // Ensure values add up to exactly 100% by rounding and adjusting
+    const roundedPositive = Math.round(positive * 10) / 10;
+    const roundedNegative = Math.round(negative * 10) / 10;
+    const roundedNeutral = Math.round((100 - roundedPositive - roundedNegative) * 10) / 10;
+    
+    history.push({
+      date: date.toISOString().split('T')[0],
+      sentimentScore,
+      mentionCount,
+      engagementCount,
+      positive: roundedPositive,
+      neutral: roundedNeutral,
+      negative: roundedNegative
+    });
+  }
+  
+  return history;
+};
+
+// Generate demographic breakdown for a politician
+export const generateDemographicBreakdown = (politicianId: string): {
+  byGender: Array<{
+    gender: string;
+    sentimentScore: number;
+    mentionCount: number;
+    percentage: number;
+  }>;
+  byAgeGroup: Array<{
+    ageGroup: string;
+    sentimentScore: number;
+    mentionCount: number;
+    percentage: number;
+  }>;
+  byState: Array<{
+    state: string;
+    sentimentScore: number;
+    mentionCount: number;
+    percentage: number;
+  }>;
+} => {
+  const genders = ['Male', 'Female', 'Other'];
+  const ageGroups = ['18-25', '26-35', '36-45', '46-55', '55+'];
+  const states = ['Lagos', 'Abuja', 'Kano', 'Rivers', 'Oyo', 'Kaduna', 'Anambra', 'Delta'];
+  
+  const generateCategoryData = (categories: string[], totalMentions: number = 1000) => {
+    const data = categories.map(category => {
+      const percentage = Math.random() * 30 + 10; // 10-40%
+      const mentionCount = Math.floor((percentage / 100) * totalMentions);
+      const sentimentScore = Math.random() * 2 - 1; // -1 to 1
+      
+      return {
+        [category.includes('-') ? 'ageGroup' : category.length <= 10 ? 'gender' : 'state']: category,
+        sentimentScore,
+        mentionCount,
+        percentage
+      };
+    });
+    
+    // Normalize percentages to sum to 100%
+    const totalPercentage = data.reduce((sum, item) => sum + item.percentage, 0);
+    return data.map(item => ({
+      ...item,
+      percentage: Math.round((item.percentage / totalPercentage) * 100 * 10) / 10
+    }));
+  };
+  
+  return {
+    byGender: generateCategoryData(genders).map(item => ({
+      gender: item.gender || '',
+      sentimentScore: item.sentimentScore,
+      mentionCount: item.mentionCount,
+      percentage: item.percentage
+    })),
+    byAgeGroup: generateCategoryData(ageGroups).map(item => ({
+      ageGroup: item.ageGroup || '',
+      sentimentScore: item.sentimentScore,
+      mentionCount: item.mentionCount,
+      percentage: item.percentage
+    })),
+    byState: generateCategoryData(states).map(item => ({
+      state: item.state || '',
+      sentimentScore: item.sentimentScore,
+      mentionCount: item.mentionCount,
+      percentage: item.percentage
+    }))
+  };
+};
+
+// Generate platform breakdown for a politician
+export const generatePlatformBreakdown = (politicianId: string): Array<{
+  platform: string;
+  sentimentScore: number;
+  mentionCount: number;
+  engagementCount: number;
+  sentimentBreakdown: {
+    positive: number;
+    neutral: number;
+    negative: number;
+  };
+}> => {
+  const platforms = Object.values(SocialPlatform);
+  
+  return platforms.map(platform => {
+    const mentionCount = Math.floor(Math.random() * 800) + 100;
+    const engagementCount = Math.floor(mentionCount * (Math.random() * 0.2 + 0.05)); // 5-25% engagement
+    
+    // Generate sentiment breakdown
+    const positive = Math.random() * 60 + 15; // 15-75%
+    const negative = Math.random() * 25 + 5;  // 5-30%
+    const neutral = 100 - positive - negative;
+    
+    const sentimentScore = (positive - negative) / 100; // -1 to 1 scale
+    
+    // Ensure values add up to exactly 100% by rounding and adjusting
+    const roundedPositive = Math.round(positive * 10) / 10;
+    const roundedNegative = Math.round(negative * 10) / 10;
+    const roundedNeutral = Math.round((100 - roundedPositive - roundedNegative) * 10) / 10;
+    
+    return {
+      platform,
+      sentimentScore,
+      mentionCount,
+      engagementCount,
+      sentimentBreakdown: {
+        positive: roundedPositive,
+        neutral: roundedNeutral,
+        negative: roundedNegative
+      }
+    };
+  });
+};
+
+// Enhanced comprehensive politician insights with better error handling and edge cases
+export const generatePoliticianInsights = (politicianId: string, filters?: {
+  startDate?: string;
+  endDate?: string;
+  platforms?: string[];
+}) => {
+  // Validate input
+  if (!politicianId || typeof politicianId !== 'string') {
+    throw new Error('Invalid politician ID provided');
+  }
+  
+  // Determine date range
+  let days = 30;
+  if (filters?.startDate && filters?.endDate) {
+    const start = new Date(filters.startDate);
+    const end = new Date(filters.endDate);
+    if (start > end) {
+      throw new Error('Start date cannot be after end date');
+    }
+    days = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+    days = Math.max(1, Math.min(days, 365)); // Clamp between 1 and 365 days
+  }
+  
+  const sentimentHistory = generateEnhancedSentimentHistory(politicianId, days);
+  const trendingTopics = generateTrendingTopics(politicianId, 8);
+  const demographicBreakdown = generateDemographicBreakdown(politicianId);
+  const platformBreakdown = generatePlatformBreakdown(politicianId);
+  
+  // Handle edge case: no data
+  if (sentimentHistory.length === 0) {
+    return {
+      overallSentiment: { score: 0, breakdown: { positive: 0, neutral: 100, negative: 0 } },
+      totalMentions: 0,
+      totalEngagement: 0,
+      engagementRate: 0,
+      mentionsTrend: { value: 0, isPositive: false },
+      engagementTrend: { value: 0, isPositive: false },
+      platformBreakdown: [],
+      demographicBreakdown,
+      trendData: [],
+      sentimentTrend: [],
+      topTopics: [],
+      topKeywords: [],
+      reachTrend: 0,
+      totalReach: 0,
+      lastUpdated: new Date().toISOString(),
+      dataQuality: { score: 0, issues: ['No data available'] }
+    };
+  }
+  
+  // Calculate overall metrics with null safety
+  const totalMentions = sentimentHistory.reduce((sum, day) => sum + (day.mentionCount || 0), 0);
+  const totalEngagement = sentimentHistory.reduce((sum, day) => sum + (day.engagementCount || 0), 0);
+  const avgSentiment = sentimentHistory.length > 0 
+    ? sentimentHistory.reduce((sum, day) => sum + (day.sentimentScore || 0), 0) / sentimentHistory.length 
+    : 0;
+  
+  // Calculate sentiment breakdown with validation
+  const sentimentBreakdown = {
+    positive: sentimentHistory.length > 0 
+      ? sentimentHistory.reduce((sum, day) => sum + (day.positive || 0), 0) / sentimentHistory.length 
+      : 0,
+    neutral: sentimentHistory.length > 0 
+      ? sentimentHistory.reduce((sum, day) => sum + (day.neutral || 0), 0) / sentimentHistory.length 
+      : 100,
+    negative: sentimentHistory.length > 0 
+      ? sentimentHistory.reduce((sum, day) => sum + (day.negative || 0), 0) / sentimentHistory.length 
+      : 0
+  };
+  
+  // Ensure sentiment breakdown adds up to 100%
+  const total = sentimentBreakdown.positive + sentimentBreakdown.neutral + sentimentBreakdown.negative;
+  if (total > 0 && Math.abs(total - 100) > 0.1) {
+    const factor = 100 / total;
+    sentimentBreakdown.positive *= factor;
+    sentimentBreakdown.neutral *= factor;
+    sentimentBreakdown.negative *= factor;
+  }
+  
+  const overallSentiment = {
+    score: avgSentiment,
+    breakdown: sentimentBreakdown
+  };
+  
+  const engagementRate = totalMentions > 0 ? totalEngagement / totalMentions : 0;
+  
+  // Calculate trends with better error handling
+  let mentionsTrend = { value: 0, isPositive: false };
+  let engagementTrend = { value: 0, isPositive: false };
+  
+  if (sentimentHistory.length >= 14) {
+    const recentData = sentimentHistory.slice(-7);
+    const previousData = sentimentHistory.slice(-14, -7);
+    
+    const recentMentions = recentData.reduce((sum, day) => sum + (day.mentionCount || 0), 0);
+    const previousMentions = previousData.reduce((sum, day) => sum + (day.mentionCount || 0), 0);
+    
+    if (previousMentions > 0) {
+      mentionsTrend = {
+        value: ((recentMentions - previousMentions) / previousMentions) * 100,
+        isPositive: recentMentions >= previousMentions
+      };
+    }
+    
+    const recentEngagement = recentData.reduce((sum, day) => sum + (day.engagementCount || 0), 0);
+    const previousEngagement = previousData.reduce((sum, day) => sum + (day.engagementCount || 0), 0);
+    
+    if (previousEngagement > 0) {
+      engagementTrend = {
+        value: ((recentEngagement - previousEngagement) / previousEngagement) * 100,
+        isPositive: recentEngagement >= previousEngagement
+      };
+    }
+  }
+  
+  // Filter platform breakdown if platforms filter is provided
+  let filteredPlatformBreakdown = platformBreakdown;
+  if (filters?.platforms && filters.platforms.length > 0) {
+    filteredPlatformBreakdown = platformBreakdown.filter(p => 
+      filters.platforms!.includes(p.platform)
+    );
+  }
+  
+  // Data quality assessment
+  const dataQuality = assessDataQuality(sentimentHistory, trendingTopics, filteredPlatformBreakdown);
+  
+  return {
+    overallSentiment,
+    totalMentions,
+    totalEngagement,
+    engagementRate,
+    mentionsTrend,
+    engagementTrend,
+    platformBreakdown: filteredPlatformBreakdown,
+    demographicBreakdown,
+    trendData: sentimentHistory,
+    sentimentTrend: sentimentHistory,
+    topTopics: trendingTopics.map(topic => ({
+      topic: topic.keyword,
+      count: topic.mentionCount,
+      sentiment: topic.sentiment
+    })),
+    topKeywords: trendingTopics.slice(0, 5).map(topic => topic.keyword),
+    reachTrend: Math.random() * 20 - 10, // -10% to +10%
+    totalReach: Math.floor(totalMentions * (Math.random() * 5 + 2)), // 2-7x mentions
+    lastUpdated: new Date().toISOString(),
+    dataQuality,
+    filters: filters || null
+  };
+};
+
+// Data quality assessment function
+const assessDataQuality = (
+  sentimentHistory: any[],
+  trendingTopics: any[],
+  platformBreakdown: any[]
+): { score: number; issues: string[]; recommendations: string[] } => {
+  const issues: string[] = [];
+  const recommendations: string[] = [];
+  let score = 100;
+  
+  // Check data completeness
+  if (sentimentHistory.length === 0) {
+    issues.push('No sentiment history data');
+    score -= 50;
+  } else if (sentimentHistory.length < 7) {
+    issues.push('Limited sentiment history (less than 7 days)');
+    score -= 20;
+    recommendations.push('Collect more historical data for better insights');
+  }
+  
+  if (trendingTopics.length === 0) {
+    issues.push('No trending topics data');
+    score -= 15;
+  }
+  
+  if (platformBreakdown.length === 0) {
+    issues.push('No platform breakdown data');
+    score -= 15;
+  }
+  
+  // Check data consistency
+  const hasInconsistentSentiment = sentimentHistory.some(day => {
+    const total = (day.positive || 0) + (day.neutral || 0) + (day.negative || 0);
+    return Math.abs(total - 100) > 1; // Allow 1% tolerance
+  });
+  
+  if (hasInconsistentSentiment) {
+    issues.push('Inconsistent sentiment percentages detected');
+    score -= 10;
+    recommendations.push('Review sentiment calculation methodology');
+  }
+  
+  // Check for data anomalies
+  const mentionCounts = sentimentHistory.map(day => day.mentionCount || 0);
+  const avgMentions = mentionCounts.reduce((sum, count) => sum + count, 0) / mentionCounts.length;
+  const hasAnomalies = mentionCounts.some(count => count > avgMentions * 10 || count < avgMentions * 0.1);
+  
+  if (hasAnomalies) {
+    issues.push('Unusual mention count patterns detected');
+    score -= 5;
+    recommendations.push('Investigate potential data collection issues');
+  }
+  
+  // Ensure score is between 0 and 100
+  score = Math.max(0, Math.min(100, score));
+  
+  return { score, issues, recommendations };
+};
+
 // Helper function to get sentiment insights by politician
 export const getSentimentInsightsByPolitician = (politicianId: string): SentimentInsight[] => {
   return generateSentimentInsights(politicianId, 30);
@@ -389,4 +805,72 @@ export const getPlatformSentiment = (platform?: SocialPlatform): PlatformSentime
     return mockPlatformSentiment.filter(sentiment => sentiment.platform === platform);
   }
   return mockPlatformSentiment;
+};
+// Generate mock demographics data for party analytics
+export const generatePartyDemographicsData = () => {
+  return {
+    gender: [
+      { category: 'Male', positive: 42.5, neutral: 35.2, negative: 22.3, total: 18500 },
+      { category: 'Female', positive: 48.1, neutral: 31.8, negative: 20.1, total: 16200 },
+      { category: 'Other', positive: 45.3, neutral: 33.5, negative: 21.2, total: 1200 }
+    ],
+    ageGroup: [
+      { category: '18-25', positive: 52.8, neutral: 28.5, negative: 18.7, total: 12500 },
+      { category: '26-35', positive: 46.2, neutral: 33.1, negative: 20.7, total: 14800 },
+      { category: '36-45', positive: 41.5, neutral: 36.8, negative: 21.7, total: 8900 },
+      { category: '46-55', positive: 38.9, neutral: 38.2, negative: 22.9, total: 5200 },
+      { category: '55+', positive: 35.6, neutral: 40.1, negative: 24.3, total: 3500 }
+    ],
+    state: [
+      { category: 'Lagos', positive: 48.5, neutral: 32.1, negative: 19.4, total: 8900 },
+      { category: 'Abuja', positive: 51.2, neutral: 29.8, negative: 19.0, total: 6200 },
+      { category: 'Kano', positive: 39.8, neutral: 38.5, negative: 21.7, total: 5800 },
+      { category: 'Rivers', positive: 44.2, neutral: 34.9, negative: 20.9, total: 4100 },
+      { category: 'Oyo', positive: 42.1, neutral: 36.2, negative: 21.7, total: 3800 },
+      { category: 'Kaduna', positive: 40.5, neutral: 37.8, negative: 21.7, total: 3200 }
+    ]
+  };
+};
+
+// Generate filtered demographics data based on selected parties
+export const generateFilteredDemographicsData = (selectedParties: string[] = []) => {
+  const baseData = generatePartyDemographicsData();
+  
+  // If no parties selected, return base data
+  if (selectedParties.length === 0) {
+    return baseData;
+  }
+  
+  // Simulate filtering effect by adjusting values based on selected parties
+  const partyMultipliers: Record<string, number> = {
+    'APC': 0.85,
+    'PDP': 0.92,
+    'LP': 1.15,
+    'NNPP': 1.05
+  };
+  
+  const avgMultiplier = selectedParties.reduce((sum, party) => {
+    return sum + (partyMultipliers[party] || 1);
+  }, 0) / selectedParties.length;
+  
+  return {
+    gender: baseData.gender.map(item => ({
+      ...item,
+      total: Math.floor(item.total * avgMultiplier),
+      positive: Math.min(100, item.positive * (avgMultiplier > 1 ? 1.1 : 0.95)),
+      negative: Math.max(0, item.negative * (avgMultiplier > 1 ? 0.9 : 1.05))
+    })),
+    ageGroup: baseData.ageGroup.map(item => ({
+      ...item,
+      total: Math.floor(item.total * avgMultiplier),
+      positive: Math.min(100, item.positive * (avgMultiplier > 1 ? 1.1 : 0.95)),
+      negative: Math.max(0, item.negative * (avgMultiplier > 1 ? 0.9 : 1.05))
+    })),
+    state: baseData.state.map(item => ({
+      ...item,
+      total: Math.floor(item.total * avgMultiplier),
+      positive: Math.min(100, item.positive * (avgMultiplier > 1 ? 1.1 : 0.95)),
+      negative: Math.max(0, item.negative * (avgMultiplier > 1 ? 0.9 : 1.05))
+    }))
+  };
 };

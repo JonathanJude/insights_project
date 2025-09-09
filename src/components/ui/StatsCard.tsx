@@ -1,5 +1,5 @@
+import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/react/24/solid';
 import React from 'react';
-import { ArrowUpIcon, ArrowDownIcon } from '@heroicons/react/24/solid';
 
 interface StatsCardProps {
   title: string;
@@ -25,14 +25,14 @@ const StatsCard: React.FC<StatsCardProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="interactive-card animate-pulse p-8">
+      <div className="interactive-card p-8">
         <div className="flex items-center justify-between">
           <div className="flex-1">
-            <div className="h-4 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-3/4 mb-4"></div>
-            <div className="h-10 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-1/2 mb-4"></div>
-            <div className="h-3 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-full"></div>
+            <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-lg w-3/4 mb-4 animate-pulse"></div>
+            <div className="h-10 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-lg w-1/2 mb-4 animate-pulse"></div>
+            <div className="h-3 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-lg w-full animate-pulse"></div>
           </div>
-          <div className="w-16 h-16 bg-gradient-to-r from-gray-200 to-gray-300 rounded-2xl"></div>
+          <div className="w-16 h-16 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 rounded-2xl animate-pulse"></div>
         </div>
       </div>
     );
