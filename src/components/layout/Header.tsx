@@ -235,13 +235,13 @@ const Header: React.FC = () => {
                   <p className="font-medium">Demo User</p>
                   <p className="text-secondary">demo@example.com</p>
                 </div>
-                <a
-                  href="#"
+                <Link
+                  to="/profile"
                   className="block px-4 py-2 text-sm text-primary hover:bg-secondary transition-colors duration-150"
                   onClick={() => setShowUserMenu(false)}
                 >
                   Profile
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-primary hover:bg-secondary transition-colors duration-150"

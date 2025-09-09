@@ -10,6 +10,7 @@ import Layout from './components/layout/Layout';
 import Dashboard from './pages/dashboard/Dashboard';
 import PartyAnalytics from './pages/party/PartyAnalytics';
 import PoliticianDetail from './pages/politician/PoliticianDetail';
+import Profile from './pages/profile/Profile';
 import SearchResults from './pages/search/SearchResults';
 import TrendingTopics from './pages/trending/TrendingTopics';
 
@@ -82,6 +83,7 @@ function App() {
               <Route path="/search" element={<SearchResults />} />
               <Route path="/trending" element={<TrendingTopics />} />
               <Route path="/party" element={<PartyAnalytics />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Layout>
         </Router>
