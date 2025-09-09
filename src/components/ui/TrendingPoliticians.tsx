@@ -58,12 +58,12 @@ const TrendingPoliticians: React.FC<TrendingPoliticiansProps> = ({
       <Link
         to={`/politician/${politician.politician.id}`}
         onClick={() => handlePoliticianClick(politician)}
-        className="block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200 hover:border-gray-300"
+        className="block bg-white border border-gray-200 rounded-lg p-3 sm:p-4 hover:shadow-md transition-shadow duration-200 hover:border-gray-300 touch-manipulation"
       >
-        <div className="flex items-start space-x-3">
+        <div className="flex items-start space-x-2 sm:space-x-3">
           {/* Rank */}
           <div className="flex-shrink-0">
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+            <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold ${
               rank === 1 ? 'bg-yellow-100 text-yellow-800' :
               rank === 2 ? 'bg-gray-100 text-gray-800' :
               rank === 3 ? 'bg-orange-100 text-orange-800' :
@@ -98,23 +98,25 @@ const TrendingPoliticians: React.FC<TrendingPoliticiansProps> = ({
                     style={{ backgroundColor: party?.color }}
                   />
                   <span className="text-xs text-gray-600 truncate">
-                    {party?.label} • {politician.politician.state}
+                    <span className="hidden sm:inline">{party?.label} • </span>
+                    <span className="sm:hidden">{party?.label?.substring(0, 3)} • </span>
+                    {politician.politician.state}
                   </span>
                 </div>
               </div>
 
               {/* Trend Indicator */}
-              <div className="flex items-center space-x-1 ml-2">
+              <div className="flex items-center space-x-1 ml-2 flex-shrink-0">
                 {politician.sentimentChange > 0 ? (
-                  <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
                   </svg>
                 ) : politician.sentimentChange < 0 ? (
-                  <svg className="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                 ) : (
-                  <svg className="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                   </svg>
                 )}
@@ -130,10 +132,10 @@ const TrendingPoliticians: React.FC<TrendingPoliticiansProps> = ({
 
             {/* Stats */}
             <div className="flex items-center justify-between mt-3">
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 {/* Mentions */}
                 <div className="flex items-center space-x-1">
-                  <svg className="w-3 h-3 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
                   </svg>
                   <span className="text-xs text-gray-600">
@@ -143,7 +145,7 @@ const TrendingPoliticians: React.FC<TrendingPoliticiansProps> = ({
 
                 {/* Engagement */}
                 <div className="flex items-center space-x-1">
-                  <svg className="w-3 h-3 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-3 h-3 text-gray-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                   </svg>
                   <span className="text-xs text-gray-600">
@@ -153,13 +155,14 @@ const TrendingPoliticians: React.FC<TrendingPoliticiansProps> = ({
               </div>
 
               {/* Sentiment */}
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-1 flex-shrink-0">
                 <div 
                   className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: sentimentColor }}
                 />
                 <span className="text-xs font-medium" style={{ color: sentimentColor }}>
-                  {sentimentLabel}
+                  <span className="hidden sm:inline">{sentimentLabel}</span>
+                  <span className="sm:hidden">{sentimentLabel.charAt(0)}</span>
                 </span>
               </div>
             </div>
