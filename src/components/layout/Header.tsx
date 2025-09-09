@@ -7,10 +7,12 @@ import {
     SunIcon,
     UserCircleIcon
 } from '@heroicons/react/24/outline';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSearchSuggestions } from '../../hooks/useUnifiedSearch';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
+import SearchSuggestions from '../search/SearchSuggestions';
 import NotificationsPanel from '../ui/NotificationsPanel';
 import SettingsModal from '../ui/SettingsModal';
 
@@ -19,6 +21,8 @@ const Header: React.FC = () => {
   const location = useLocation();
   const [localSearchQuery, setLocalSearchQuery] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   
   const { 
     toggleSidebar, 
@@ -32,6 +36,13 @@ const Header: React.FC = () => {
   } = useUIStore();
   
   const { searchQuery: globalSearchQuery, setSearchQuery: setGlobalSearchQuery } = useFilterStore();
+  
+  // Get search suggestions
+  const { data: suggestions = [], isLoading: suggestionsLoading } = useSearchSuggestions(
+    localSearchQuery,
+    8,
+    showSuggestions && localSearchQuery.length >= 2
+  );
 
   // Sync local search query with global search query when on search page
   React.useEffect(() => {
@@ -56,8 +67,57 @@ const Header: React.FC = () => {
   };
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalSearchQuery(e.target.value);
+    const value = e.target.value;
+    setLocalSearchQuery(value);
+    setShowSuggestions(value.length >= 2);
   };
+
+  const handleSearchInputFocus = () => {
+    if (localSearchQuery.length >= 2) {
+      setShowSuggestions(true);
+    }
+  };
+
+  const handleSearchInputBlur = () => {
+    // Delay hiding suggestions to allow for clicks
+    setTimeout(() => setShowSuggestions(false), 200);
+  };
+
+  const handleSuggestionClick = (suggestion: any) => {
+    setShowSuggestions(false);
+    // Navigate based on suggestion type - this will be handled by UnifiedSearchResults
+  };
+
+  const handleSuggestionSelect = (suggestion: any) => {
+    const suggestionText = suggestion.type === 'politician' ? suggestion.item.name :
+                          suggestion.type === 'party' ? suggestion.item.name :
+                          suggestion.type === 'topic' ? suggestion.item.keyword :
+                          suggestion.type === 'state' ? suggestion.item.name :
+                          suggestion.type === 'position' ? suggestion.item.displayName :
+                          suggestion.type === 'platform' ? suggestion.item.displayName :
+                          suggestion.item.name || suggestion.item.keyword || '';
+    
+    setLocalSearchQuery(suggestionText);
+    setShowSuggestions(false);
+    
+    // Trigger search
+    if (suggestionText.trim()) {
+      setGlobalSearchQuery(suggestionText.trim());
+      navigate(`/search?q=${encodeURIComponent(suggestionText.trim())}`);
+    }
+  };
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchInputRef.current && !searchInputRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const unreadNotifications = notifications.length;
 
@@ -91,15 +151,29 @@ const Header: React.FC = () => {
         {/* Center section - Search */}
         <div className="flex-1 max-w-2xl mx-4">
           <form onSubmit={handleSearch} className="relative">
-            <div className="relative">
+            <div className="relative" ref={searchInputRef}>
               <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary" />
               <input
                 type="text"
                 value={localSearchQuery}
                 onChange={handleSearchInputChange}
-                placeholder="Search politicians, parties, or topics..."
+                onFocus={handleSearchInputFocus}
+                onBlur={handleSearchInputBlur}
+                placeholder="Search politicians, parties, topics, states, positions..."
                 className="w-full pl-10 pr-4 py-2 border border-default rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-secondary text-primary text-sm"
+                autoComplete="off"
               />
+              
+              {/* Search Suggestions */}
+              {showSuggestions && (
+                <SearchSuggestions
+                  suggestions={suggestions}
+                  isLoading={suggestionsLoading}
+                  onSuggestionClick={handleSuggestionClick}
+                  onSuggestionSelect={handleSuggestionSelect}
+                  query={localSearchQuery}
+                />
+              )}
             </div>
           </form>
         </div>
@@ -210,9 +284,23 @@ const Header: React.FC = () => {
                 type="text"
                 value={localSearchQuery}
                 onChange={handleSearchInputChange}
-                placeholder="Search politicians, parties, or topics..."
+                onFocus={handleSearchInputFocus}
+                onBlur={handleSearchInputBlur}
+                placeholder="Search politicians, parties, topics, states, positions..."
                 className="w-full pl-10 pr-4 py-2 border border-default rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-secondary text-primary text-sm"
+                autoComplete="off"
               />
+              
+              {/* Mobile Search Suggestions */}
+              {showSuggestions && (
+                <SearchSuggestions
+                  suggestions={suggestions}
+                  isLoading={suggestionsLoading}
+                  onSuggestionClick={handleSuggestionClick}
+                  onSuggestionSelect={handleSuggestionSelect}
+                  query={localSearchQuery}
+                />
+              )}
             </div>
           </form>
         </div>

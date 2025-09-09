@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import FilterBar from '../../components/filters/FilterBar';
 import FilterSummary from '../../components/filters/FilterSummary';
+import UnifiedSearchResults from '../../components/search/UnifiedSearchResults';
 import PoliticianCard from '../../components/ui/PoliticianCard';
 import { usePoliticians } from '../../hooks/usePoliticians';
+import { useUnifiedSearch } from '../../hooks/useUnifiedSearch';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
 import type { Politician } from '../../types';
@@ -72,11 +74,22 @@ const SearchResults: React.FC = () => {
     }
   }, [searchQuery, setSearchParams, searchParams]);
 
-  const { data: paginatedData, isLoading, error } = usePoliticians(currentPage, pageSize);
+  // Use unified search when there's a search query, otherwise use politician search
+  const { data: unifiedResults, isLoading: unifiedLoading } = useUnifiedSearch(
+    searchQuery,
+    { maxResults: 50 },
+    !!searchQuery && searchQuery.length >= 2
+  );
+  
+  const { data: paginatedData, isLoading: politiciansLoading, error } = usePoliticians(currentPage, pageSize);
   
   const politicians = paginatedData?.data || [];
   const totalCount = paginatedData?.pagination?.totalItems || 0;
   const totalPages = paginatedData?.pagination?.totalPages || 1;
+  
+  // Determine which loading state and data to use
+  const isLoading = searchQuery ? unifiedLoading : politiciansLoading;
+  const hasSearchQuery = searchQuery && searchQuery.length >= 2;
 
   // Reset page when search query changes from filter store
   useEffect(() => {
@@ -175,16 +188,24 @@ const SearchResults: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {searchParams.get('filter') === 'positive' ? 'Most Positive Politicians' :
-             searchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians'}
+             hasSearchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians'}
           </h1>
           <p className="text-gray-600">
-            {isLoading ? 'Searching...' : `${totalCount} politician${totalCount !== 1 ? 's' : ''} found`}
-            {hasActiveFilters() && (
+            {isLoading ? 'Searching...' : hasSearchQuery ? 
+              `${unifiedResults?.length || 0} result${(unifiedResults?.length || 0) !== 1 ? 's' : ''} found across all categories` :
+              `${totalCount} politician${totalCount !== 1 ? 's' : ''} found`
+            }
+            {!hasSearchQuery && hasActiveFilters() && (
               <span className="ml-2">
                 • {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
               </span>
             )}
           </p>
+          {hasSearchQuery && unifiedResults && unifiedResults.length > 0 && (
+            <div className="mt-2 text-sm text-gray-500">
+              Search includes politicians, parties, topics, states, positions, and platforms
+            </div>
+          )}
         </div>
         
         <div className="flex items-center space-x-4 mt-4 lg:mt-0">
@@ -209,17 +230,19 @@ const SearchResults: React.FC = () => {
       </div>
 
       {/* Results Count */}
-      <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg">
-        <div className="text-sm text-gray-600">
-          Showing {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, totalCount)} of {totalCount} results
-        </div>
-        
-        {hasActiveFilters() && (
-          <div className="text-sm text-blue-600">
-            {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
+      {!hasSearchQuery && (
+        <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg">
+          <div className="text-sm text-gray-600">
+            Showing {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, totalCount)} of {totalCount} results
           </div>
-        )}
-      </div>
+          
+          {hasActiveFilters() && (
+            <div className="text-sm text-blue-600">
+              {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Results */}
       {error ? (
@@ -236,7 +259,19 @@ const SearchResults: React.FC = () => {
             Try Again
           </button>
         </div>
+      ) : hasSearchQuery ? (
+        // Show unified search results when there's a search query
+        <UnifiedSearchResults
+          results={unifiedResults || []}
+          isLoading={isLoading}
+          query={searchQuery}
+          onResultClick={(result) => {
+            // Handle result click if needed
+            console.log('Search result clicked:', result);
+          }}
+        />
       ) : isLoading ? (
+        // Show loading state for politician grid
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(pageSize)].map((_, index) => (
             <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-pulse">
@@ -256,16 +291,14 @@ const SearchResults: React.FC = () => {
           ))}
         </div>
       ) : politicians.length === 0 ? (
+        // Show no results for politician search
         <div className="text-center py-12">
           <svg className="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <h3 className="text-lg font-medium text-gray-900 mb-2">No Results Found</h3>
           <p className="text-gray-500 mb-4">
-            {searchQuery 
-              ? `No politicians found matching "${searchQuery}" with the current filters.`
-              : 'No politicians found with the current filters.'
-            }
+            No politicians found with the current filters.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4">
             {hasActiveFilters() && (
@@ -288,6 +321,7 @@ const SearchResults: React.FC = () => {
           </div>
         </div>
       ) : (
+        // Show politician grid results
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {politicians.map((politician: Politician) => (
