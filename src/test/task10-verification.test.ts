@@ -51,67 +51,51 @@ vi.mock('../lib/exportUtils', () => ({
 // Mock the chart libraries
 vi.mock('recharts', () => ({
   BarChart: vi.fn(({ children, ...props }: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'bar-chart', ...props }, children);
   }),
   Bar: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'bar', ...props });
   }),
   XAxis: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'x-axis', ...props });
   }),
   YAxis: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'y-axis', ...props });
   }),
   CartesianGrid: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'cartesian-grid', ...props });
   }),
   Tooltip: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'tooltip', ...props });
   }),
   ResponsiveContainer: vi.fn(({ children, ...props }: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'responsive-container', ...props }, children);
   }),
   Legend: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'legend', ...props });
   }),
   RadarChart: vi.fn(({ children, ...props }: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'radar-chart', ...props }, children);
   }),
   PolarGrid: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'polar-grid', ...props });
   }),
   PolarAngleAxis: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'polar-angle-axis', ...props });
   }),
   PolarRadiusAxis: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'polar-radius-axis', ...props });
   }),
   Radar: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'radar', ...props });
   }),
   LineChart: vi.fn(({ children, ...props }: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'line-chart', ...props }, children);
   }),
   Line: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'line', ...props });
   }),
   Cell: vi.fn((props: any) => {
-    const React = require('react');
     return React.createElement('div', { 'data-testid': 'cell', ...props });
   })
 }));
