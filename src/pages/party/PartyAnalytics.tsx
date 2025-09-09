@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+
 import { DemographicsChart, PartyCompareChart } from '../../components/charts';
 import FilterBar from '../../components/filters/FilterBar';
 import FilterIndicator from '../../components/filters/FilterIndicator';
 import StatsCard from '../../components/ui/StatsCard';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { generateFilteredDemographicsData, getPartyInsights, mockDashboardStats } from '../../mock';
 import { useFilterStore } from '../../stores/filterStore';
 import type { PartyInsight } from '../../types';
 
 const PartyAnalytics: React.FC = () => {
+  usePageTitle('Party Analytics');
   const { 
     selectedParties, 
     selectedStates, 

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+
 import FilterBar from '../../components/filters/FilterBar';
 import FilterSummary from '../../components/filters/FilterSummary';
 import UnifiedSearchResults from '../../components/search/UnifiedSearchResults';
 import PoliticianCard from '../../components/ui/PoliticianCard';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { usePoliticians } from '../../hooks/usePoliticians';
 import { useUnifiedSearch } from '../../hooks/useUnifiedSearch';
 import { useFilterStore } from '../../stores/filterStore';
@@ -95,6 +97,10 @@ const SearchResults: React.FC = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);
+
+  // Set page title based on current view
+  usePageTitle(searchParams.get('filter') === 'positive' ? 'Most Positive Politicians' :
+    hasSearchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians');
 
 
 

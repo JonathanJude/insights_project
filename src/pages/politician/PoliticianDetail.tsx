@@ -1,12 +1,14 @@
 import { ChartBarIcon, ChatBubbleLeftRightIcon, EyeIcon, UsersIcon } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import { SentimentChart } from '../../components/charts';
 import DemographicsChart from '../../components/charts/DemographicsChart';
 import PlatformBreakdown from '../../components/charts/PlatformBreakdown';
 import PoliticianImage from '../../components/ui/PoliticianImage';
 import StatsCard from '../../components/ui/StatsCard';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS, SOCIAL_PLATFORMS } from '../../constants';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { usePolitician, usePoliticianInsights } from '../../hooks/usePoliticians';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
@@ -111,7 +113,10 @@ const PoliticianDetail: React.FC = () => {
   const { dateRange } = useFilterStore();
   const [activeTab, setActiveTab] = useState<'overview' | 'sentiment' | 'platforms' | 'demographics'>('overview');
 
+  // Set page title based on politician name - moved to the top to fix hook order issue
   const { data: politician, isLoading: politicianLoading, error: politicianError } = usePolitician(id!);
+  usePageTitle(politician ? `${politician.name}` : 'Politician Details');
+
   const { data: insights, isLoading: insightsLoading } = usePoliticianInsights(id!, {
     startDate: dateRange.start,
     endDate: dateRange.end

@@ -1,16 +1,18 @@
 import {
-    ArrowTrendingDownIcon,
-    ArrowTrendingUpIcon,
-    ChatBubbleLeftRightIcon,
-    ClockIcon,
-    FireIcon,
-    HashtagIcon,
-    MinusIcon
+  ArrowTrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ChatBubbleLeftRightIcon,
+  ClockIcon,
+  FireIcon,
+  HashtagIcon,
+  MinusIcon
 } from '@heroicons/react/24/outline';
 import { useQuery } from '@tanstack/react-query';
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import RefreshButton from '../../components/ui/RefreshButton';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import { mockApiDelay } from '../../mock';
 import { mockPoliticians } from '../../mock/politicians';
 import type { TrendingTopic, TrendingTopicsData } from '../../types/quickActions';
@@ -77,6 +79,7 @@ const generateTrendingTopicsData = (): TrendingTopicsData => {
 };
 
 const TrendingTopics: React.FC = () => {
+  usePageTitle('Trending Topics');
   const [timeframe, setTimeframe] = useState<'24h' | '7d' | '30d'>('24h');
   const [sortBy, setSortBy] = useState<'mentions' | 'sentiment' | 'trend'>('mentions');
 

@@ -18,6 +18,8 @@ import {
   mockTrendingPoliticians
 } from '../../mock';
 
+import { usePageTitle } from '../../hooks/usePageTitle';
+
 // Component imports (we'll create these next)
 import {
   DemographicsChart,
@@ -34,6 +36,7 @@ import { getEnabledQuickActions } from '../../config/quickActions';
 import type { QuickAction } from '../../types/quickActions';
 
 const Dashboard: React.FC = () => {
+  usePageTitle('Dashboard');
   const navigate = useNavigate();
   const quickActions = getEnabledQuickActions();
 
