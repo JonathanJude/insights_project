@@ -1,5 +1,4 @@
 import {
-    ArrowPathIcon,
     ArrowTrendingDownIcon,
     ArrowTrendingUpIcon,
     ChatBubbleLeftRightIcon,
@@ -11,6 +10,7 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import RefreshButton from '../../components/ui/RefreshButton';
 import { mockApiDelay } from '../../mock';
 import { mockPoliticians } from '../../mock/politicians';
 import type { TrendingTopic, TrendingTopicsData } from '../../types/quickActions';
@@ -161,6 +161,12 @@ const TrendingTopics: React.FC = () => {
                 <span className="text-sm text-gray-500">
                   Last updated: {new Date(trendingData.lastUpdated).toLocaleTimeString()}
                 </span>
+                <RefreshButton 
+                  size="sm" 
+                  variant="subtle"
+                  className="opacity-70 hover:opacity-100"
+                  onRefreshStart={handleRefresh}
+                />
               </div>
               <div className="text-sm text-gray-500">
                 {trendingData.totalTopics} topics tracked
@@ -170,14 +176,6 @@ const TrendingTopics: React.FC = () => {
         </div>
         
         <div className="flex items-center space-x-4 mt-4 lg:mt-0">
-          <button
-            onClick={handleRefresh}
-            disabled={isLoading}
-            className="btn-secondary inline-flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ArrowPathIcon className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-            Refresh
-          </button>
           <Link
             to="/search"
             className="btn-secondary inline-flex items-center"

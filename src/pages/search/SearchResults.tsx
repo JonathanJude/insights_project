@@ -237,7 +237,7 @@ const SearchResults: React.FC = () => {
           </button>
         </div>
       ) : isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(pageSize)].map((_, index) => (
             <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 animate-pulse">
               <div className="flex items-center space-x-4 mb-4">
@@ -289,7 +289,7 @@ const SearchResults: React.FC = () => {
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {politicians.map((politician: Politician) => (
               <PoliticianCard key={politician.id} politician={politician} />
             ))}
