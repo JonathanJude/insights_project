@@ -1,19 +1,21 @@
 import {
-    CalendarIcon,
-    ChartBarIcon,
-    ClockIcon,
-    Cog6ToothIcon,
-    EyeIcon,
-    GlobeAltIcon,
-    HeartIcon,
-    MapPinIcon,
-    PencilIcon,
-    ShieldCheckIcon
+  CalendarIcon,
+  ChartBarIcon,
+  ClockIcon,
+  Cog6ToothIcon,
+  EyeIcon,
+  GlobeAltIcon,
+  HeartIcon,
+  MapPinIcon,
+  PencilIcon,
+  ShieldCheckIcon
 } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import StatsCard from '../../components/ui/StatsCard';
 import SkeletonProfile from '../../components/ui/skeletons/SkeletonProfile';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 // Mock user data
 const mockUserData = {
@@ -99,6 +101,7 @@ const mockUserData = {
 };
 
 const Profile: React.FC = () => {
+  usePageTitle('Profile');
   const [activeTab, setActiveTab] = useState<'overview' | 'activity' | 'preferences' | 'security'>('overview');
   const [isLoading, setIsLoading] = useState(false);
 
