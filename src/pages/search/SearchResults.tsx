@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import FiltersPanel from '../../components/filters/FiltersPanel';
+import FilterBar from '../../components/filters/FilterBar';
+import FilterSummary from '../../components/filters/FilterSummary';
 import PoliticianCard from '../../components/ui/PoliticianCard';
-import { SORT_OPTIONS } from '../../constants';
 import { usePoliticians } from '../../hooks/usePoliticians';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
@@ -11,7 +11,6 @@ import type { Politician } from '../../types';
 const SearchResults: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [showFilters, setShowFilters] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 12;
 
@@ -86,51 +85,10 @@ const SearchResults: React.FC = () => {
 
 
 
-  const handleSortChange = (newSortBy: 'name' | 'sentiment' | 'mentions' | 'relevance') => {
-    if (newSortBy === sortBy) {
-      // Toggle sort order if same field
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortBy(newSortBy);
-      setSortOrder('desc'); // Default to descending for new fields
-    }
-    setCurrentPage(1); // Reset to first page
-  };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  const SortButton: React.FC<{
-    sortKey: string;
-    label: string;
-    isActive: boolean;
-    onClick: () => void;
-  }> = ({ label, isActive, onClick }) => (
-    <button
-      onClick={onClick}
-      className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-        isActive
-          ? 'bg-blue-100 text-blue-700'
-          : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-      }`}
-    >
-      <span>{label}</span>
-      {isActive && (
-        <svg 
-          className={`w-4 h-4 transition-transform ${
-            sortOrder === 'desc' ? 'rotate-180' : ''
-          }`} 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-        </svg>
-      )}
-    </button>
-  );
 
   const Pagination: React.FC = () => {
     if (totalPages <= 1) return null;
@@ -230,61 +188,37 @@ const SearchResults: React.FC = () => {
         </div>
         
         <div className="flex items-center space-x-4 mt-4 lg:mt-0">
-          {hasActiveFilters() && (
-            <button
-              onClick={clearAllFilters}
-              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              Clear all filters
-            </button>
-          )}
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
-            </svg>
-            <span>Filters</span>
-            {hasActiveFilters() && (
-              <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full">
-                {getActiveFilterCount()}
-              </span>
-            )}
-          </button>
+          <div className="text-sm text-gray-500">
+            Last updated: {new Date().toLocaleDateString()}
+          </div>
         </div>
       </div>
 
-      {/* Filters Panel */}
-      {showFilters && (
-        <div className="mb-8">
-          <FiltersPanel 
-            isOpen={showFilters}
-            onClose={() => setShowFilters(false)}
-          />
-        </div>
-      )}
+      {/* Enhanced Filter Bar */}
+      <div className="mb-6">
+        <FilterBar 
+          showFilterButton={true}
+          showSortOptions={true}
+          className="mb-4"
+        />
+        
+        {/* Filter Summary */}
+        {hasActiveFilters() && (
+          <FilterSummary className="mb-4" />
+        )}
+      </div>
 
-      {/* Sort Options */}
-      <div className="flex flex-wrap items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg">
-        <div className="flex items-center space-x-2 mb-2 sm:mb-0">
-          <span className="text-sm font-medium text-gray-700">Sort by:</span>
-          <div className="flex flex-wrap gap-2">
-            {SORT_OPTIONS.map((option) => (
-              <SortButton
-                key={option.value}
-                sortKey={option.value}
-                label={option.label}
-                isActive={sortBy === option.value}
-                onClick={() => handleSortChange(option.value as 'name' | 'sentiment' | 'mentions' | 'relevance')}
-              />
-            ))}
-          </div>
+      {/* Results Count */}
+      <div className="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg">
+        <div className="text-sm text-gray-600">
+          Showing {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, totalCount)} of {totalCount} results
         </div>
         
-        <div className="text-sm text-gray-500">
-          Showing {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, totalCount)} of {totalCount}
-        </div>
+        {hasActiveFilters() && (
+          <div className="text-sm text-blue-600">
+            {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
+          </div>
+        )}
       </div>
 
       {/* Results */}

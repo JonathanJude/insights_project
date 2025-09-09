@@ -18,6 +18,22 @@ interface UIStore extends UIState {
   setError: (error: string | null) => void;
   clearError: () => void;
   
+  // Modal actions
+  openModal: (modalName: string) => void;
+  closeModal: (modalName: string) => void;
+  
+  // Mobile detection
+  setIsMobile: (isMobile: boolean) => void;
+  
+  // Recently viewed politicians
+  addToRecentlyViewed: (politician: { id: string }) => void;
+  clearRecentlyViewed: () => void;
+  
+  // Search history
+  addToSearchHistory: (query: string) => void;
+  removeFromSearchHistory: (query: string) => void;
+  getSearchSuggestions: (limit?: number) => string[];
+  
   // Notification state
   notifications: Array<{
     id: string;

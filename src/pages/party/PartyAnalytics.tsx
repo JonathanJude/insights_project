@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { DemographicsChart, PartyCompareChart } from '../../components/charts';
-import FiltersPanel from '../../components/filters/FiltersPanel';
+import FilterBar from '../../components/filters/FilterBar';
+import FilterIndicator from '../../components/filters/FilterIndicator';
 import StatsCard from '../../components/ui/StatsCard';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
 import { generateFilteredDemographicsData, getPartyInsights, mockDashboardStats } from '../../mock';
@@ -122,34 +123,21 @@ const PartyAnalytics: React.FC = () => {
             Compare sentiment and engagement across political parties
           </p>
         </div>
-        
-        <div className="flex items-center space-x-4 mt-4 lg:mt-0">
-          {hasActiveFilters() && (
-            <span className="text-sm text-gray-500">
-              Filters applied
-            </span>
-          )}
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
-            </svg>
-            <span>Filters</span>
-          </button>
-        </div>
       </div>
 
-      {/* Filters Panel */}
-      {showFilters && (
-        <div className="mb-8">
-          <FiltersPanel 
-            isOpen={showFilters}
-            onClose={() => setShowFilters(false)}
-          />
-        </div>
-      )}
+      {/* Enhanced Filter Bar */}
+      <div className="mb-6">
+        <FilterBar 
+          showFilterButton={true}
+          showSortOptions={false}
+          className="mb-4"
+        />
+        
+        {/* Active Filters Indicator */}
+        {hasActiveFilters() && (
+          <FilterIndicator className="mb-4" />
+        )}
+      </div>
 
       {/* Overview Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

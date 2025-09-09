@@ -1,33 +1,39 @@
 import React, { useState } from 'react';
-import { useFilterStore } from '../../stores/filterStore';
-import { 
-  PoliticalParty, 
-  NigerianState, 
-  SocialPlatform, 
-  Gender, 
-  AgeGroup, 
-  PoliticalLevel
-} from '../../types';
-import { 
-  NIGERIAN_STATES, 
-  POLITICAL_PARTIES, 
-  SOCIAL_PLATFORMS, 
-  GENDER_OPTIONS, 
-  AGE_GROUPS, 
+import {
+  AGE_GROUPS,
+  DATE_RANGE_PRESETS,
+  GENDER_OPTIONS,
+  NIGERIAN_STATES,
   POLITICAL_LEVELS,
-  DATE_RANGE_PRESETS 
+  POLITICAL_PARTIES,
+  SOCIAL_PLATFORMS
 } from '../../constants';
+import { useFilterStore } from '../../stores/filterStore';
+import {
+  AgeGroup,
+  Gender,
+  NigerianState,
+  PoliticalLevel,
+  PoliticalParty,
+  SocialPlatform
+} from '../../types';
+import FilterPresets from './FilterPresets';
+import FilterSummary from './FilterSummary';
 
 interface FiltersPanelProps {
   isOpen?: boolean;
   onClose?: () => void;
   className?: string;
+  showSummary?: boolean;
+  variant?: 'panel' | 'sidebar' | 'modal';
 }
 
-const FiltersPanel: React.FC<FiltersPanelProps> = ({ 
-  isOpen = true, 
+const FiltersPanel: React.FC<FiltersPanelProps> = ({
+  isOpen = true,
   onClose,
-  className = ""
+  className = "",
+  showSummary = false,
+  variant = 'panel'
 }) => {
   const {
     selectedParties,
@@ -58,11 +64,30 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
     dateRange: true
   });
 
+  const [showConfirmClear, setShowConfirmClear] = useState(false);
+
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections(prev => ({
       ...prev,
       [section]: !prev[section]
     }));
+  };
+
+  const handleClearAllFilters = () => {
+    if (getActiveFilterCount() > 3) {
+      setShowConfirmClear(true);
+    } else {
+      clearAllFilters();
+    }
+  };
+
+  const confirmClearFilters = () => {
+    clearAllFilters();
+    setShowConfirmClear(false);
+  };
+
+  const cancelClearFilters = () => {
+    setShowConfirmClear(false);
   };
 
   const FilterSection: React.FC<{
@@ -85,10 +110,10 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
             </span>
           )}
         </div>
-        <svg 
+        <svg
           className={`w-5 h-5 text-gray-500 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-          fill="none" 
-          stroke="currentColor" 
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -110,7 +135,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
     color?: string;
     description?: string;
   }> = ({ id, label, checked, onChange, color, description }) => (
-    <label 
+    <label
       htmlFor={id}
       className="flex items-center space-x-3 py-2 cursor-pointer hover:bg-gray-50 rounded px-2 -mx-2 transition-colors"
     >
@@ -122,7 +147,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
       />
       {color && (
-        <div 
+        <div
           className="w-3 h-3 rounded-full flex-shrink-0"
           style={{ backgroundColor: color }}
         />
@@ -138,8 +163,14 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
 
   if (!isOpen) return null;
 
+  const containerClasses = {
+    panel: 'bg-white border border-gray-200 rounded-lg shadow-sm',
+    sidebar: 'bg-white border-r border-gray-200 h-full',
+    modal: 'bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden'
+  };
+
   return (
-    <div className={`bg-white border border-gray-200 rounded-lg shadow-sm ${className}`}>
+    <div className={`${containerClasses[variant]} ${className}`}>
       {/* Header */}
       <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
         <div className="flex items-center space-x-2">
@@ -152,12 +183,40 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
         </div>
         <div className="flex items-center space-x-2">
           {hasActiveFilters() && (
-            <button
-              onClick={clearAllFilters}
-              className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              Clear all
-            </button>
+            <div className="relative">
+              <button
+                onClick={handleClearAllFilters}
+                className="text-sm text-red-600 hover:text-red-700 transition-colors font-medium flex items-center gap-1"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+                Clear all
+              </button>
+
+              {/* Confirmation Modal */}
+              {showConfirmClear && (
+                <div className="absolute top-full right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
+                  <div className="text-sm text-gray-900 mb-3">
+                    Are you sure you want to clear all {getActiveFilterCount()} filters?
+                  </div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={confirmClearFilters}
+                      className="flex-1 px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
+                    >
+                      Clear All
+                    </button>
+                    <button
+                      onClick={cancelClearFilters}
+                      className="flex-1 px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded hover:bg-gray-300 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           )}
           {onClose && (
             <button
@@ -172,8 +231,22 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
         </div>
       </div>
 
+      {/* Filter Presets */}
+      {!hasActiveFilters() && (
+        <div className="px-4 py-3 border-b border-gray-200">
+          <FilterPresets />
+        </div>
+      )}
+
+      {/* Filter Summary */}
+      {showSummary && hasActiveFilters() && (
+        <div className="px-4 py-3 border-b border-gray-200">
+          <FilterSummary showDetails={false} />
+        </div>
+      )}
+
       {/* Filter Sections */}
-      <div className="max-h-96 overflow-y-auto">
+      <div className={`${variant === 'modal' ? 'max-h-[60vh]' : 'max-h-96'} overflow-y-auto`}>
         {/* Political Parties */}
         <FilterSection
           title="Political Parties"
@@ -231,8 +304,8 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
                 const startDate = new Date();
                 startDate.setDate(endDate.getDate() - preset.value);
                 const isSelected = dateRange.start === startDate.toISOString().split('T')[0] &&
-                                 dateRange.end === endDate.toISOString().split('T')[0];
-                
+                  dateRange.end === endDate.toISOString().split('T')[0];
+
                 return (
                   <button
                     key={preset.value}
@@ -240,18 +313,17 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
                       startDate.toISOString().split('T')[0],
                       endDate.toISOString().split('T')[0]
                     )}
-                    className={`px-3 py-2 text-sm rounded border transition-colors ${
-                      isSelected
-                        ? 'bg-blue-50 border-blue-200 text-blue-700'
-                        : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
-                    }`}
+                    className={`px-3 py-2 text-sm rounded border transition-colors ${isSelected
+                      ? 'bg-blue-50 border-blue-200 text-blue-700'
+                      : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'
+                      }`}
                   >
                     {preset.label}
                   </button>
                 );
               })}
             </div>
-            
+
             {/* Custom Date Inputs */}
             <div className="space-y-2">
               <div>
@@ -307,7 +379,7 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
                 ))}
               </div>
             </div>
-            
+
             {/* Age Groups */}
             <div>
               <h4 className="text-sm font-medium text-gray-900 mb-2">Age Groups</h4>
@@ -373,14 +445,36 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
       {hasActiveFilters() && (
         <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-gray-600">
-              {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600">
+                {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
+              </span>
+              <div className="flex items-center gap-1">
+                {selectedParties.length > 0 && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                    {selectedParties.length} parties
+                  </span>
+                )}
+                {selectedStates.length > 0 && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                    {selectedStates.length} states
+                  </span>
+                )}
+                {selectedPlatforms.length > 0 && (
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">
+                    {selectedPlatforms.length} platforms
+                  </span>
+                )}
+              </div>
+            </div>
             <button
-              onClick={clearAllFilters}
-              className="text-sm text-blue-600 hover:text-blue-700 font-medium transition-colors"
+              onClick={handleClearAllFilters}
+              className="text-sm text-red-600 hover:text-red-700 font-medium transition-colors flex items-center gap-1"
             >
-              Clear all filters
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              Clear all
             </button>
           </div>
         </div>
