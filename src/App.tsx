@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -14,29 +14,23 @@ import Profile from './pages/profile/Profile';
 import SearchResults from './pages/search/SearchResults';
 import TrendingTopics from './pages/trending/TrendingTopics';
 
-// Loading Components
+// Error Handling
 
-// Store
+// Loading Components
 import GlobalLoadingIndicator from './components/ui/GlobalLoadingIndicator';
 import { LoadingProvider } from './providers/LoadingProvider';
+
+// Store
+import DashboardErrorBoundary from './components/ui/DashboardErrorBoundary';
+import { createEnhancedQueryClient } from './lib/queryErrorHandler';
 import { useUIStore } from './stores/uiStore';
 
+// Enhanced Query Client with error handling
 
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes
-      retry: 2,
-      refetchOnWindowFocus: false,
-    },
-    mutations: {
-      retry: 1,
-    },
-  },
-});
+
+// Create enhanced query client with error handling
+const queryClient = createEnhancedQueryClient();
 
 function App() {
   const { theme, addNotification, notifications } = useUIStore();
@@ -72,28 +66,40 @@ function App() {
   }, []); // Only run once on app mount
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <LoadingProvider minLoadingTime={300} debounceTime={100}>
-        <Router>
-          <GlobalLoadingIndicator position="top" height={3} />
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/politician/:id" element={<PoliticianDetail />} />
-              <Route path="/search" element={<SearchResults />} />
-              <Route path="/trending" element={<TrendingTopics />} />
-              <Route path="/party" element={<PartyAnalytics />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
-          </Layout>
-        </Router>
+    <DashboardErrorBoundary
+      onError={(error, errorInfo) => {
+        // Log error to console in development
+        if (import.meta.env.DEV) {
+          console.error('App Error Boundary:', error, errorInfo);
+        }
+        
+        // In production, you would send this to an error reporting service
+        // Example: Sentry.captureException(error, { extra: errorInfo });
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        <LoadingProvider minLoadingTime={300} debounceTime={100}>
+          <Router>
+            <GlobalLoadingIndicator position="top" height={3} />
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/politician/:id" element={<PoliticianDetail />} />
+                <Route path="/search" element={<SearchResults />} />
+                <Route path="/trending" element={<TrendingTopics />} />
+                <Route path="/party" element={<PartyAnalytics />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+            </Layout>
+          </Router>
 
-        {/* React Query Devtools - only in development */}
-        {import.meta.env.DEV && (
-          <ReactQueryDevtools initialIsOpen={false} />
-        )}
-      </LoadingProvider>
-    </QueryClientProvider>
+          {/* React Query Devtools - only in development */}
+          {import.meta.env.DEV && (
+            <ReactQueryDevtools initialIsOpen={false} />
+          )}
+        </LoadingProvider>
+      </QueryClientProvider>
+    </DashboardErrorBoundary>
   );
 }
 

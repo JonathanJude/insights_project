@@ -1,6 +1,7 @@
 import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import { useDataRefresh } from '../../hooks/useActionFeedback';
 
 interface RefreshState {
   isRefreshing: boolean;
@@ -25,38 +26,22 @@ const RefreshButton: React.FC<RefreshButtonProps> = ({
   onRefreshComplete,
   onRefreshError
 }) => {
-  const [refreshState, setRefreshState] = useState<RefreshState>({
-    isRefreshing: false,
-    lastRefresh: new Date()
-  });
-  
+  const [lastRefresh, setLastRefresh] = useState(new Date());
   const queryClient = useQueryClient();
+  const { refreshData, isLoading: isRefreshing, error } = useDataRefresh();
   
   const handleRefresh = async () => {
-    setRefreshState(prev => ({ ...prev, isRefreshing: true, error: undefined }));
     onRefreshStart?.();
     
-    try {
-      // Invalidate all queries to trigger fresh data fetching
+    const result = await refreshData(async () => {
       await queryClient.invalidateQueries();
-      
-      setRefreshState(prev => ({ 
-        ...prev, 
-        isRefreshing: false, 
-        lastRefresh: new Date() 
-      }));
-      
+      setLastRefresh(new Date());
+    });
+    
+    if (result !== null) {
       onRefreshComplete?.();
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to refresh data';
-      
-      setRefreshState(prev => ({ 
-        ...prev, 
-        isRefreshing: false, 
-        error: errorMessage 
-      }));
-      
-      onRefreshError?.(errorMessage);
+    } else if (error) {
+      onRefreshError?.(error);
     }
   };
   
@@ -107,23 +92,23 @@ const RefreshButton: React.FC<RefreshButtonProps> = ({
   return (
     <button
       onClick={handleRefresh}
-      disabled={refreshState.isRefreshing}
+      disabled={isRefreshing}
       className={baseClasses}
       title={
-        refreshState.error 
-          ? `Refresh failed: ${refreshState.error}` 
-          : `Refresh data (last updated: ${formatLastRefresh(refreshState.lastRefresh)})`
+        error 
+          ? `Refresh failed: ${error}` 
+          : `Refresh data (last updated: ${formatLastRefresh(lastRefresh)})`
       }
       aria-label="Refresh dashboard data"
     >
       <ArrowPathIcon 
         className={`
           ${iconSizes[size]} 
-          ${refreshState.isRefreshing ? 'animate-spin' : ''} 
+          ${isRefreshing ? 'animate-spin' : ''} 
           transition-transform duration-200
         `} 
       />
-      {refreshState.error && (
+      {error && (
         <span className="ml-1 text-xs text-red-500">!</span>
       )}
     </button>
