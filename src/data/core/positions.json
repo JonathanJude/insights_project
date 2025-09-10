@@ -1,0 +1,540 @@
+{
+  "positions": [
+    {
+      "id": "NG-POS-PRESIDENT",
+      "title": "President",
+      "level": "federal",
+      "category": "executive",
+      "hierarchy": 1,
+      "term": {
+        "duration": 4,
+        "maxTerms": 2,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Head of State and Government",
+        "Commander-in-Chief of Armed Forces",
+        "Chief Executive of the Federation",
+        "Appointing Ministers and Federal Commissioners",
+        "Assenting to Bills passed by National Assembly"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian by birth",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in Nigeria for at least 10 years before election"
+      },
+      "metadata": {
+        "salary": "₦30,000,000",
+        "allowances": "₦25,000,000",
+        "residence": "Aso Rock Presidential Villa",
+        "succession": "Vice President"
+      }
+    },
+    {
+      "id": "NG-POS-VICE-PRESIDENT",
+      "title": "Vice President",
+      "level": "federal",
+      "category": "executive",
+      "hierarchy": 2,
+      "term": {
+        "duration": 4,
+        "maxTerms": 2,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Deputy to the President",
+        "Chairman of National Economic Council",
+        "Performing functions assigned by President",
+        "Acting President when President is absent"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian by birth",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in Nigeria for at least 10 years before election"
+      },
+      "metadata": {
+        "salary": "₦25,000,000",
+        "allowances": "₦20,000,000",
+        "residence": "Aguda House",
+        "succession": "Senate President"
+      }
+    },
+    {
+      "id": "NG-POS-GOVERNOR",
+      "title": "Governor",
+      "level": "state",
+      "category": "executive",
+      "hierarchy": 1,
+      "term": {
+        "duration": 4,
+        "maxTerms": 2,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Chief Executive of the State",
+        "Appointing State Commissioners",
+        "Implementing State policies",
+        "Maintaining law and order in the State"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the state for at least one year before election"
+      },
+      "metadata": {
+        "salary": "₦15,000,000",
+        "allowances": "₦12,000,000",
+        "residence": "Government House",
+        "succession": "Deputy Governor"
+      }
+    },
+    {
+      "id": "NG-POS-DEPUTY-GOVERNOR",
+      "title": "Deputy Governor",
+      "level": "state",
+      "category": "executive",
+      "hierarchy": 2,
+      "term": {
+        "duration": 4,
+        "maxTerms": 2,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Deputy to the Governor",
+        "Performing functions assigned by Governor",
+        "Acting Governor when Governor is absent"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the state for at least one year before election"
+      },
+      "metadata": {
+        "salary": "₦12,000,000",
+        "allowances": "₦10,000,000",
+        "residence": "Deputy Governor's Lodge",
+        "succession": "Speaker of State House of Assembly"
+      }
+    },
+    {
+      "id": "NG-POS-SENATE-PRESIDENT",
+      "title": "Senate President",
+      "level": "federal",
+      "category": "legislative",
+      "hierarchy": 1,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Presiding over Senate sessions",
+        "Third in line of succession to Presidency",
+        "Representing the Senate in official functions"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "prerequisite": "Must be an elected Senator"
+      },
+      "metadata": {
+        "salary": "₦20,000,000",
+        "allowances": "₦15,000,000",
+        "residence": "Senate President's Lodge",
+        "succession": "Deputy Senate President"
+      }
+    },
+    {
+      "id": "NG-POS-SENATOR",
+      "title": "Senator",
+      "level": "federal",
+      "category": "legislative",
+      "hierarchy": 2,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Representing senatorial district",
+        "Making laws for the Federation",
+        "Confirming presidential appointments",
+        "Oversight of executive agencies"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the senatorial district"
+      },
+      "metadata": {
+        "salary": "�N13,500,000",
+        "allowances": "₦10,000,000",
+        "constituency": "Senatorial District",
+        "totalSeats": 109
+      }
+    },
+    {
+      "id": "NG-POS-HOUSE-SPEAKER",
+      "title": "Speaker of House of Representatives",
+      "level": "federal",
+      "category": "legislative",
+      "hierarchy": 1,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Presiding over House sessions",
+        "Fourth in line of succession to Presidency",
+        "Representing the House in official functions"
+      ],
+      "requirements": {
+        "minAge": 30,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "prerequisite": "Must be an elected House member"
+      },
+      "metadata": {
+        "salary": "₦18,000,000",
+        "allowances": "₦13,000,000",
+        "residence": "Speaker's Lodge",
+        "succession": "Deputy Speaker"
+      }
+    },
+    {
+      "id": "NG-POS-HOUSE-REP",
+      "title": "House of Representatives Member",
+      "level": "federal",
+      "category": "legislative",
+      "hierarchy": 2,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Representing federal constituency",
+        "Making laws for the Federation",
+        "Budget appropriation and oversight",
+        "Impeachment proceedings"
+      ],
+      "requirements": {
+        "minAge": 30,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the federal constituency"
+      },
+      "metadata": {
+        "salary": "₦11,500,000",
+        "allowances": "₦8,500,000",
+        "constituency": "Federal Constituency",
+        "totalSeats": 360
+      }
+    },
+    {
+      "id": "NG-POS-STATE-ASSEMBLY-SPEAKER",
+      "title": "Speaker of State House of Assembly",
+      "level": "state",
+      "category": "legislative",
+      "hierarchy": 1,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Presiding over State Assembly sessions",
+        "Third in line of succession to Governorship",
+        "Representing the Assembly in official functions"
+      ],
+      "requirements": {
+        "minAge": 30,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "prerequisite": "Must be an elected Assembly member"
+      },
+      "metadata": {
+        "salary": "₦8,000,000",
+        "allowances": "₦6,000,000",
+        "residence": "Speaker's Lodge",
+        "succession": "Deputy Speaker"
+      }
+    },
+    {
+      "id": "NG-POS-STATE-ASSEMBLY-MEMBER",
+      "title": "State House of Assembly Member",
+      "level": "state",
+      "category": "legislative",
+      "hierarchy": 2,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Representing state constituency",
+        "Making laws for the State",
+        "State budget appropriation and oversight",
+        "Confirming gubernatorial appointments"
+      ],
+      "requirements": {
+        "minAge": 30,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the state constituency"
+      },
+      "metadata": {
+        "salary": "₦5,000,000",
+        "allowances": "₦3,500,000",
+        "constituency": "State Constituency",
+        "totalSeats": "Varies by state"
+      }
+    },
+    {
+      "id": "NG-POS-LGA-CHAIRMAN",
+      "title": "Local Government Chairman",
+      "level": "local",
+      "category": "executive",
+      "hierarchy": 1,
+      "term": {
+        "duration": 3,
+        "maxTerms": 2,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Chief Executive of Local Government Area",
+        "Implementing local government policies",
+        "Managing local government resources",
+        "Coordinating grassroots development"
+      ],
+      "requirements": {
+        "minAge": 25,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the LGA"
+      },
+      "metadata": {
+        "salary": "₦2,500,000",
+        "allowances": "₦2,000,000",
+        "residence": "LGA Secretariat",
+        "succession": "Vice Chairman"
+      }
+    },
+    {
+      "id": "NG-POS-LGA-VICE-CHAIRMAN",
+      "title": "Local Government Vice Chairman",
+      "level": "local",
+      "category": "executive",
+      "hierarchy": 2,
+      "term": {
+        "duration": 3,
+        "maxTerms": 2,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Deputy to LGA Chairman",
+        "Performing functions assigned by Chairman",
+        "Acting Chairman when Chairman is absent"
+      ],
+      "requirements": {
+        "minAge": 25,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the LGA"
+      },
+      "metadata": {
+        "salary": "₦2,000,000",
+        "allowances": "₦1,500,000",
+        "residence": "Vice Chairman's Quarters",
+        "succession": "Leader of Legislative Council"
+      }
+    },
+    {
+      "id": "NG-POS-COUNCILLOR",
+      "title": "Councillor",
+      "level": "local",
+      "category": "legislative",
+      "hierarchy": 1,
+      "term": {
+        "duration": 3,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Representing ward in LGA Legislative Council",
+        "Making bye-laws for the LGA",
+        "Oversight of LGA executive",
+        "Budget approval and monitoring"
+      ],
+      "requirements": {
+        "minAge": 25,
+        "citizenship": "Nigerian citizen",
+        "education": "Secondary school certificate or equivalent",
+        "residency": "Must be resident in the ward"
+      },
+      "metadata": {
+        "salary": "₦1,200,000",
+        "allowances": "₦800,000",
+        "constituency": "Ward",
+        "totalSeats": "Varies by LGA"
+      }
+    },
+    {
+      "id": "NG-POS-CHIEF-JUSTICE",
+      "title": "Chief Justice of Nigeria",
+      "level": "federal",
+      "category": "judicial",
+      "hierarchy": 1,
+      "term": {
+        "duration": null,
+        "maxTerms": null,
+        "unit": "Until retirement at 70"
+      },
+      "responsibilities": [
+        "Head of Nigerian Judiciary",
+        "Presiding over Supreme Court",
+        "Administering oath to President and Vice President",
+        "Judicial administration and reform"
+      ],
+      "requirements": {
+        "minAge": 40,
+        "citizenship": "Nigerian citizen",
+        "education": "Law degree and called to Nigerian Bar",
+        "experience": "At least 15 years post-call experience"
+      },
+      "metadata": {
+        "salary": "₦25,000,000",
+        "allowances": "₦20,000,000",
+        "residence": "Chief Justice's Lodge",
+        "appointment": "Presidential appointment confirmed by Senate"
+      }
+    },
+    {
+      "id": "NG-POS-SUPREME-COURT-JUSTICE",
+      "title": "Justice of Supreme Court",
+      "level": "federal",
+      "category": "judicial",
+      "hierarchy": 2,
+      "term": {
+        "duration": null,
+        "maxTerms": null,
+        "unit": "Until retirement at 70"
+      },
+      "responsibilities": [
+        "Final appellate jurisdiction",
+        "Constitutional interpretation",
+        "Election petition appeals",
+        "Inter-governmental disputes"
+      ],
+      "requirements": {
+        "minAge": 40,
+        "citizenship": "Nigerian citizen",
+        "education": "Law degree and called to Nigerian Bar",
+        "experience": "At least 15 years post-call experience"
+      },
+      "metadata": {
+        "salary": "₦20,000,000",
+        "allowances": "₦15,000,000",
+        "totalSeats": 21,
+        "appointment": "Presidential appointment confirmed by Senate"
+      }
+    },
+    {
+      "id": "NG-POS-MINISTER",
+      "title": "Minister",
+      "level": "federal",
+      "category": "executive",
+      "hierarchy": 3,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Heading federal ministry",
+        "Policy formulation and implementation",
+        "Representing Nigeria internationally",
+        "Reporting to President"
+      ],
+      "requirements": {
+        "minAge": 35,
+        "citizenship": "Nigerian citizen",
+        "education": "University degree",
+        "experience": "Relevant professional experience"
+      },
+      "metadata": {
+        "salary": "₦15,000,000",
+        "allowances": "₦12,000,000",
+        "residence": "Minister's Quarters",
+        "appointment": "Presidential appointment confirmed by Senate"
+      }
+    },
+    {
+      "id": "NG-POS-COMMISSIONER",
+      "title": "Commissioner",
+      "level": "state",
+      "category": "executive",
+      "hierarchy": 3,
+      "term": {
+        "duration": 4,
+        "maxTerms": null,
+        "unit": "years"
+      },
+      "responsibilities": [
+        "Heading state ministry",
+        "State policy implementation",
+        "Advising Governor on sectoral matters",
+        "Inter-state coordination"
+      ],
+      "requirements": {
+        "minAge": 30,
+        "citizenship": "Nigerian citizen",
+        "education": "University degree",
+        "experience": "Relevant professional experience"
+      },
+      "metadata": {
+        "salary": "₦8,000,000",
+        "allowances": "₦6,000,000",
+        "residence": "Commissioner's Quarters",
+        "appointment": "Gubernatorial appointment confirmed by State Assembly"
+      }
+    },
+    {
+      "id": "NG-POS-ASPIRANT",
+      "title": "Political Aspirant",
+      "level": "various",
+      "category": "aspirant",
+      "hierarchy": 1,
+      "term": {
+        "duration": null,
+        "maxTerms": null,
+        "unit": "Campaign period"
+      },
+      "responsibilities": [
+        "Seeking political office",
+        "Campaigning for votes",
+        "Policy advocacy",
+        "Public engagement"
+      ],
+      "requirements": {
+        "minAge": "Varies by office sought",
+        "citizenship": "Nigerian citizen",
+        "education": "Varies by office sought",
+        "residency": "Varies by office sought"
+      },
+      "metadata": {
+        "salary": null,
+        "allowances": null,
+        "status": "Candidate",
+        "appointment": "Party nomination or independent candidacy"
+      }
+    }
+  ]
+}

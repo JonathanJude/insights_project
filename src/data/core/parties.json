@@ -1,0 +1,254 @@
+{
+  "parties": [
+    {
+      "id": "NG-PARTY-APC",
+      "name": "All Progressives Congress",
+      "abbreviation": "APC",
+      "founded": "2013-02-06",
+      "ideology": ["Progressivism", "Conservatism", "Democratic Socialism"],
+      "colors": {
+        "primary": "#FF0000",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/apc.png",
+      "headquarters": {
+        "address": "Plot 84, Cadastral Zone, Central Business District, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Abdullahi Adamu",
+        "nationalSecretary": "Iyiola Omisore"
+      },
+      "metadata": {
+        "registrationNumber": "APC-001",
+        "status": "active",
+        "website": "https://apc.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-PDP",
+      "name": "Peoples Democratic Party",
+      "abbreviation": "PDP",
+      "founded": "1998-08-31",
+      "ideology": ["Social Democracy", "Liberalism", "Centrism"],
+      "colors": {
+        "primary": "#00FF00",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/pdp.png",
+      "headquarters": {
+        "address": "Plot 1970, Michael Okpara Street, Wuse Zone 5, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Iyorchia Ayu",
+        "nationalSecretary": "Samuel Anyanwu"
+      },
+      "metadata": {
+        "registrationNumber": "PDP-001",
+        "status": "active",
+        "website": "https://pdp.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-LP",
+      "name": "Labour Party",
+      "abbreviation": "LP",
+      "founded": "2002-09-17",
+      "ideology": ["Social Democracy", "Labour Movement", "Progressivism"],
+      "colors": {
+        "primary": "#FF69B4",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/lp.png",
+      "headquarters": {
+        "address": "Plot 1348, Ahmadu Bello Way, Victoria Island, Lagos",
+        "stateId": "NG-LA"
+      },
+      "leadership": {
+        "nationalChairman": "Julius Abure",
+        "nationalSecretary": "Umar Farouk Ibrahim"
+      },
+      "metadata": {
+        "registrationNumber": "LP-001",
+        "status": "active",
+        "website": "https://labourparty.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-NNPP",
+      "name": "New Nigeria Peoples Party",
+      "abbreviation": "NNPP",
+      "founded": "2001-10-02",
+      "ideology": ["Nationalism", "Social Democracy", "Populism"],
+      "colors": {
+        "primary": "#800080",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/nnpp.png",
+      "headquarters": {
+        "address": "Plot 1708, Mohammadu Buhari Way, Central Business District, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Boniface Aniebonam",
+        "nationalSecretary": "Dipo Olayoku"
+      },
+      "metadata": {
+        "registrationNumber": "NNPP-001",
+        "status": "active",
+        "website": "https://nnpp.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-APGA",
+      "name": "All Progressives Grand Alliance",
+      "abbreviation": "APGA",
+      "founded": "2002-07-01",
+      "ideology": ["Igbo Nationalism", "Social Democracy", "Federalism"],
+      "colors": {
+        "primary": "#0000FF",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/apga.png",
+      "headquarters": {
+        "address": "Plot 1347, Adetokunbo Ademola Street, Victoria Island, Lagos",
+        "stateId": "NG-LA"
+      },
+      "leadership": {
+        "nationalChairman": "Victor Oye",
+        "nationalSecretary": "Labaran Maku"
+      },
+      "metadata": {
+        "registrationNumber": "APGA-001",
+        "status": "active",
+        "website": "https://apga.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-ADC",
+      "name": "African Democratic Congress",
+      "abbreviation": "ADC",
+      "founded": "2006-06-10",
+      "ideology": ["Pan-Africanism", "Social Democracy", "Progressivism"],
+      "colors": {
+        "primary": "#FFA500",
+        "secondary": "#000000"
+      },
+      "logo": "/assets/logos/adc.png",
+      "headquarters": {
+        "address": "Plot 1234, Tafawa Balewa Way, Central Business District, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Ralph Okey Nwosu",
+        "nationalSecretary": "Alhaji Said Abdullahi"
+      },
+      "metadata": {
+        "registrationNumber": "ADC-001",
+        "status": "active",
+        "website": "https://adc.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-SDP",
+      "name": "Social Democratic Party",
+      "abbreviation": "SDP",
+      "founded": "2013-03-15",
+      "ideology": ["Social Democracy", "Liberalism", "Centrism"],
+      "colors": {
+        "primary": "#800000",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/sdp.png",
+      "headquarters": {
+        "address": "Plot 44, Aguiyi Ironsi Street, Maitama, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Shehu Musa Gabam",
+        "nationalSecretary": "Olu Agunloye"
+      },
+      "metadata": {
+        "registrationNumber": "SDP-001",
+        "status": "active",
+        "website": "https://sdp.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-YPP",
+      "name": "Young Progressives Party",
+      "abbreviation": "YPP",
+      "founded": "2017-11-21",
+      "ideology": ["Youth Empowerment", "Progressivism", "Social Democracy"],
+      "colors": {
+        "primary": "#008000",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/ypp.png",
+      "headquarters": {
+        "address": "Plot 2456, Herbert Macaulay Way, Central Business District, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Bishop Amakiri",
+        "nationalSecretary": "Vidiyeno Bamaiyi"
+      },
+      "metadata": {
+        "registrationNumber": "YPP-001",
+        "status": "active",
+        "website": "https://ypp.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-AA",
+      "name": "Action Alliance",
+      "abbreviation": "AA",
+      "founded": "2005-09-25",
+      "ideology": ["Nationalism", "Social Democracy", "Populism"],
+      "colors": {
+        "primary": "#FFD700",
+        "secondary": "#000000"
+      },
+      "logo": "/assets/logos/aa.png",
+      "headquarters": {
+        "address": "Plot 789, Yakubu Gowon Crescent, Asokoro, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Kenneth Udeze",
+        "nationalSecretary": "James Vernimbe"
+      },
+      "metadata": {
+        "registrationNumber": "AA-001",
+        "status": "active",
+        "website": "https://actionalliance.ng"
+      }
+    },
+    {
+      "id": "NG-PARTY-ADP",
+      "name": "Action Democratic Party",
+      "abbreviation": "ADP",
+      "founded": "2017-07-09",
+      "ideology": ["Democratic Socialism", "Progressivism", "Nationalism"],
+      "colors": {
+        "primary": "#4B0082",
+        "secondary": "#FFFFFF"
+      },
+      "logo": "/assets/logos/adp.png",
+      "headquarters": {
+        "address": "Plot 567, Shehu Shagari Way, Central Business District, Abuja",
+        "stateId": "NG-FCT"
+      },
+      "leadership": {
+        "nationalChairman": "Engr. Yabagi Sani",
+        "nationalSecretary": "Alhaji Nasir El-Rufai"
+      },
+      "metadata": {
+        "registrationNumber": "ADP-001",
+        "status": "active",
+        "website": "https://adp.ng"
+      }
+    }
+  ]
+}

@@ -1,0 +1,617 @@
+{
+  "politicians": [
+    {
+      "id": "NG-POL-001",
+      "firstName": "Peter",
+      "lastName": "Obi",
+      "fullName": "Peter Gregory Obi",
+      "partyId": "NG-PARTY-LP",
+      "currentPositionId": "NG-POS-ASPIRANT",
+      "stateOfOriginId": "NG-AN",
+      "dateOfBirth": "1961-07-19",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Nigeria, Nsukka",
+          "degree": "Bachelor of Arts",
+          "field": "Philosophy",
+          "year": 1984
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-AN",
+          "startDate": "2006-03-17",
+          "endDate": "2014-03-17",
+          "partyId": "NG-PARTY-APGA"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@PeterObi",
+        "facebook": "PeterObiOfficial",
+        "instagram": "peterobi"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-002",
+      "firstName": "Bola",
+      "lastName": "Tinubu",
+      "fullName": "Bola Ahmed Tinubu",
+      "partyId": "NG-PARTY-APC",
+      "currentPositionId": "NG-POS-PRESIDENT",
+      "stateOfOriginId": "NG-LA",
+      "dateOfBirth": "1952-03-29",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "Chicago State University",
+          "degree": "Bachelor of Science",
+          "field": "Accounting",
+          "year": 1979
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-LA",
+          "startDate": "1999-05-29",
+          "endDate": "2007-05-29",
+          "partyId": "NG-PARTY-APC"
+        },
+        {
+          "positionId": "NG-POS-PRESIDENT",
+          "stateId": null,
+          "startDate": "2023-05-29",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@officialABAT",
+        "facebook": "BolaTinubu",
+        "instagram": "bolaahmedtinubu"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-003",
+      "firstName": "Atiku",
+      "lastName": "Abubakar",
+      "fullName": "Atiku Abubakar",
+      "partyId": "NG-PARTY-PDP",
+      "currentPositionId": "NG-POS-ASPIRANT",
+      "stateOfOriginId": "NG-AD",
+      "dateOfBirth": "1946-11-25",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "Ahmadu Bello University",
+          "degree": "Bachelor of Laws",
+          "field": "Law",
+          "year": 1969
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-VICE-PRESIDENT",
+          "stateId": null,
+          "startDate": "1999-05-29",
+          "endDate": "2007-05-29",
+          "partyId": "NG-PARTY-PDP"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@atiku",
+        "facebook": "AtikuAbubakar",
+        "instagram": "atikuabubakar"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-004",
+      "firstName": "Rabiu",
+      "lastName": "Kwankwaso",
+      "fullName": "Rabiu Musa Kwankwaso",
+      "partyId": "NG-PARTY-NNPP",
+      "currentPositionId": "NG-POS-ASPIRANT",
+      "stateOfOriginId": "NG-KN",
+      "dateOfBirth": "1956-10-21",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "Bayero University Kano",
+          "degree": "Bachelor of Engineering",
+          "field": "Civil Engineering",
+          "year": 1981
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-KN",
+          "startDate": "1999-05-29",
+          "endDate": "2003-05-29",
+          "partyId": "NG-PARTY-PDP"
+        },
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-KN",
+          "startDate": "2011-05-29",
+          "endDate": "2015-05-29",
+          "partyId": "NG-PARTY-PDP"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@KwankwasoRM",
+        "facebook": "KwankwasoRM",
+        "instagram": "kwankwasorm"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-005",
+      "firstName": "Kashim",
+      "lastName": "Shettima",
+      "fullName": "Kashim Shettima Mustapha",
+      "partyId": "NG-PARTY-APC",
+      "currentPositionId": "NG-POS-VICE-PRESIDENT",
+      "stateOfOriginId": "NG-BO",
+      "dateOfBirth": "1966-09-02",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Maiduguri",
+          "degree": "Bachelor of Arts",
+          "field": "Geography",
+          "year": 1989
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-BO",
+          "startDate": "2011-05-29",
+          "endDate": "2019-05-29",
+          "partyId": "NG-PARTY-APC"
+        },
+        {
+          "positionId": "NG-POS-VICE-PRESIDENT",
+          "stateId": null,
+          "startDate": "2023-05-29",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@KashimSM",
+        "facebook": "KashimShettima",
+        "instagram": "kashimshettima"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-006",
+      "firstName": "Nyesom",
+      "lastName": "Wike",
+      "fullName": "Nyesom Ezenwo Wike",
+      "partyId": "NG-PARTY-PDP",
+      "currentPositionId": "NG-POS-MINISTER",
+      "stateOfOriginId": "NG-RI",
+      "dateOfBirth": "1967-12-12",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Port Harcourt",
+          "degree": "Bachelor of Laws",
+          "field": "Law",
+          "year": 1988
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-RI",
+          "startDate": "2015-05-29",
+          "endDate": "2023-05-29",
+          "partyId": "NG-PARTY-PDP"
+        },
+        {
+          "positionId": "NG-POS-MINISTER",
+          "stateId": null,
+          "startDate": "2023-08-21",
+          "endDate": null,
+          "partyId": "NG-PARTY-PDP"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@GovWike",
+        "facebook": "NyesomWike",
+        "instagram": "nyesomwike"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-007",
+      "firstName": "Babajide",
+      "lastName": "Sanwo-Olu",
+      "fullName": "Babajide Olusola Sanwo-Olu",
+      "partyId": "NG-PARTY-APC",
+      "currentPositionId": "NG-POS-GOVERNOR",
+      "stateOfOriginId": "NG-LA",
+      "dateOfBirth": "1965-06-25",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Lagos",
+          "degree": "Bachelor of Science",
+          "field": "Surveying",
+          "year": 1987
+        },
+        {
+          "institution": "London Business School",
+          "degree": "Master of Business Administration",
+          "field": "Business Administration",
+          "year": 2002
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-LA",
+          "startDate": "2019-05-29",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@jidesanwoolu",
+        "facebook": "BabajideSanwoOlu",
+        "instagram": "jidesanwoolu"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-008",
+      "firstName": "Godwin",
+      "lastName": "Obaseki",
+      "fullName": "Godwin Nogheghase Obaseki",
+      "partyId": "NG-PARTY-PDP",
+      "currentPositionId": "NG-POS-GOVERNOR",
+      "stateOfOriginId": "NG-ED",
+      "dateOfBirth": "1957-07-01",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Ibadan",
+          "degree": "Bachelor of Arts",
+          "field": "Classics",
+          "year": 1979
+        },
+        {
+          "institution": "Columbia University",
+          "degree": "Master of Business Administration",
+          "field": "Finance and International Business",
+          "year": 1994
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-ED",
+          "startDate": "2016-11-12",
+          "endDate": null,
+          "partyId": "NG-PARTY-PDP"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@GovernorObaseki",
+        "facebook": "GodwinObaseki",
+        "instagram": "governorobaseki"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-009",
+      "firstName": "Seyi",
+      "lastName": "Makinde",
+      "fullName": "Oluseyi Abiodun Makinde",
+      "partyId": "NG-PARTY-PDP",
+      "currentPositionId": "NG-POS-GOVERNOR",
+      "stateOfOriginId": "NG-OY",
+      "dateOfBirth": "1967-12-25",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Lagos",
+          "degree": "Bachelor of Science",
+          "field": "Electrical Engineering",
+          "year": 1990
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-OY",
+          "startDate": "2019-05-29",
+          "endDate": null,
+          "partyId": "NG-PARTY-PDP"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@seyiamakinde",
+        "facebook": "SeyiMakinde",
+        "instagram": "seyimakinde"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-010",
+      "firstName": "Ifeanyi",
+      "lastName": "Ugwuanyi",
+      "fullName": "Ifeanyi Lawrence Ugwuanyi",
+      "partyId": "NG-PARTY-PDP",
+      "currentPositionId": "NG-POS-SENATOR",
+      "stateOfOriginId": "NG-EN",
+      "dateOfBirth": "1964-03-20",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Nigeria, Nsukka",
+          "degree": "Bachelor of Arts",
+          "field": "Political Science",
+          "year": 1988
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-HOUSE-REP",
+          "stateId": "NG-EN",
+          "startDate": "2003-05-29",
+          "endDate": "2015-05-29",
+          "partyId": "NG-PARTY-PDP"
+        },
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-EN",
+          "startDate": "2015-05-29",
+          "endDate": "2023-05-29",
+          "partyId": "NG-PARTY-PDP"
+        },
+        {
+          "positionId": "NG-POS-SENATOR",
+          "stateId": "NG-EN",
+          "startDate": "2023-06-13",
+          "endDate": null,
+          "partyId": "NG-PARTY-PDP"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@IfeanyiUgwuanyi",
+        "facebook": "IfeanyiUgwuanyi",
+        "instagram": "ifeanyiugwuanyi"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-011",
+      "firstName": "Aisha",
+      "lastName": "Yesufu",
+      "fullName": "Aisha Yesufu",
+      "partyId": null,
+      "currentPositionId": "NG-POS-ASPIRANT",
+      "stateOfOriginId": "NG-KN",
+      "dateOfBirth": "1973-12-12",
+      "gender": "female",
+      "education": [
+        {
+          "institution": "Bayero University Kano",
+          "degree": "Bachelor of Science",
+          "field": "Microbiology",
+          "year": 1998
+        }
+      ],
+      "politicalHistory": [],
+      "socialMedia": {
+        "twitter": "@AishaYesufu",
+        "facebook": "AishaYesufu",
+        "instagram": "aishayesufu"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-012",
+      "firstName": "Kemi",
+      "lastName": "Adeosun",
+      "fullName": "Kemi Adeosun",
+      "partyId": "NG-PARTY-APC",
+      "currentPositionId": "NG-POS-ASPIRANT",
+      "stateOfOriginId": "NG-OG",
+      "dateOfBirth": "1967-03-25",
+      "gender": "female",
+      "education": [
+        {
+          "institution": "University of East London",
+          "degree": "Bachelor of Science",
+          "field": "Economics and Accounting",
+          "year": 1989
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-MINISTER",
+          "stateId": null,
+          "startDate": "2015-11-11",
+          "endDate": "2018-09-14",
+          "partyId": "NG-PARTY-APC"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@KemiAdeosun",
+        "facebook": "KemiAdeosun",
+        "instagram": "kemiadeosun"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-013",
+      "firstName": "Godswill",
+      "lastName": "Akpabio",
+      "fullName": "Godswill Obot Akpabio",
+      "partyId": "NG-PARTY-APC",
+      "currentPositionId": "NG-POS-SENATE-PRESIDENT",
+      "stateOfOriginId": "NG-AK",
+      "dateOfBirth": "1962-12-09",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "University of Calabar",
+          "degree": "Bachelor of Laws",
+          "field": "Law",
+          "year": 1986
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-GOVERNOR",
+          "stateId": "NG-AK",
+          "startDate": "2007-05-29",
+          "endDate": "2015-05-29",
+          "partyId": "NG-PARTY-PDP"
+        },
+        {
+          "positionId": "NG-POS-SENATOR",
+          "stateId": "NG-AK",
+          "startDate": "2015-06-09",
+          "endDate": "2019-06-11",
+          "partyId": "NG-PARTY-APC"
+        },
+        {
+          "positionId": "NG-POS-MINISTER",
+          "stateId": null,
+          "startDate": "2019-08-21",
+          "endDate": "2022-05-16",
+          "partyId": "NG-PARTY-APC"
+        },
+        {
+          "positionId": "NG-POS-SENATOR",
+          "stateId": "NG-AK",
+          "startDate": "2023-06-13",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        },
+        {
+          "positionId": "NG-POS-SENATE-PRESIDENT",
+          "stateId": null,
+          "startDate": "2023-06-13",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@Senator_Akpabio",
+        "facebook": "GodswillAkpabio",
+        "instagram": "senatorakpabio"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    },
+    {
+      "id": "NG-POL-014",
+      "firstName": "Tajudeen",
+      "lastName": "Abbas",
+      "fullName": "Tajudeen Abbas",
+      "partyId": "NG-PARTY-APC",
+      "currentPositionId": "NG-POS-HOUSE-SPEAKER",
+      "stateOfOriginId": "NG-KD",
+      "dateOfBirth": "1963-10-01",
+      "gender": "male",
+      "education": [
+        {
+          "institution": "Ahmadu Bello University",
+          "degree": "Bachelor of Science",
+          "field": "Geography",
+          "year": 1985
+        }
+      ],
+      "politicalHistory": [
+        {
+          "positionId": "NG-POS-HOUSE-REP",
+          "stateId": "NG-KD",
+          "startDate": "2011-06-06",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        },
+        {
+          "positionId": "NG-POS-HOUSE-SPEAKER",
+          "stateId": null,
+          "startDate": "2023-06-13",
+          "endDate": null,
+          "partyId": "NG-PARTY-APC"
+        }
+      ],
+      "socialMedia": {
+        "twitter": "@SpeakerAbbas",
+        "facebook": "TajudeenAbbas",
+        "instagram": "speakerabbas"
+      },
+      "metadata": {
+        "isActive": true,
+        "verificationStatus": "verified",
+        "lastUpdated": "2024-01-15T09:00:00Z"
+      }
+    }
+  ]
+}
