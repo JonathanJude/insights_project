@@ -1,18 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Cell,
+    Legend,
+    Pie,
+    PieChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
 } from 'recharts';
 import { SENTIMENT_COLORS } from '../../constants';
+import { ChartConfigUtils } from '../../constants/configurations/chart-configs';
+import { ChartTypes, LoadingStates } from '../../constants/enums';
+import { ERROR_MESSAGES, INFO_MESSAGES } from '../../constants/messages';
 import { simulateDataLoading } from '../../lib/chartDataUtils';
 import { useChartFilterStore } from '../../stores/chartFilterStore';
 import type { ChartFilter } from '../../types';
@@ -31,13 +34,16 @@ interface DemographicsChartProps {
     gender: DemographicData[];
     ageGroup: DemographicData[];
     state: DemographicData[];
-  };
+  } | null;
   isLoading?: boolean;
+  loadingState?: LoadingStates;
   height?: number;
   filter?: ChartFilter;
   onFilterChange?: (filter: ChartFilter) => void;
   showFilters?: boolean;
   showExport?: boolean;
+  errorMessage?: string;
+  dataQualityThreshold?: number;
 }
 
 type ViewType = 'gender' | 'ageGroup' | 'state';
@@ -45,11 +51,14 @@ type ViewType = 'gender' | 'ageGroup' | 'state';
 const DemographicsChart: React.FC<DemographicsChartProps> = ({ 
   data, 
   isLoading = false,
-  height = 400,
+  loadingState = LoadingStates.IDLE,
+  height,
   filter,
   onFilterChange,
   showFilters = true,
-  showExport = true
+  showExport = true,
+  errorMessage,
+  dataQualityThreshold = 0.7
 }) => {
   const { chartFilter, setTimeRange } = useChartFilterStore();
   const [activeView, setActiveView] = useState<ViewType>('gender');
@@ -57,6 +66,12 @@ const DemographicsChart: React.FC<DemographicsChartProps> = ({
   const [internalLoading, setInternalLoading] = useState(false);
   const [chartData, setChartData] = useState<any>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [dataQuality, setDataQuality] = useState<{ score: number; completeness: number } | null>(null);
+  
+  // Get chart configuration
+  const chartConfig = ChartConfigUtils.getConfiguration(chartType === 'bar' ? ChartTypes.BAR : ChartTypes.PIE);
+  const responsiveConfig = ChartConfigUtils.getResponsiveConfig(window.innerWidth);
+  const actualHeight = height || chartConfig.defaultHeight;
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const chartRef = useRef<HTMLDivElement>(null);
@@ -265,24 +280,54 @@ const DemographicsChart: React.FC<DemographicsChartProps> = ({
     return null;
   };
 
-  if (isLoading || internalLoading || !chartData) {
+  // Handle loading states
+  if (isLoading || internalLoading || loadingState === LoadingStates.LOADING) {
     return (
-      <div className="animate-pulse" style={{ height: height + (showFilters ? 60 : 0) }}>
-        {showFilters && (
-          <div className="flex justify-between items-center mb-4">
-            <div className="h-6 bg-gray-200 rounded w-32"></div>
-            <div className="h-8 bg-gray-200 rounded w-32"></div>
+      <div className="animate-pulse" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="bg-gray-200 rounded-lg h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin h-8 w-8 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-2"></div>
+            <p className="text-sm text-gray-600">{INFO_MESSAGES.LOADING_CHARTS}</p>
           </div>
-        )}
-        <div className="flex space-x-2 mb-4">
-          {[1, 2, 3].map(i => (
-            <div key={i} className="h-8 bg-gray-200 rounded w-20"></div>
-          ))}
         </div>
-        <div className="h-full bg-gray-200 rounded"></div>
       </div>
     );
   }
+
+  // Handle error states
+  if (loadingState === LoadingStates.ERROR || errorMessage) {
+    return (
+      <div className="border border-red-200 bg-red-50 rounded-lg p-6" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center">
+            <svg className="w-12 h-12 text-red-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <h3 className="text-lg font-medium text-red-800 mb-2">Chart Error</h3>
+            <p className="text-red-600">{errorMessage || ERROR_MESSAGES.CHART_RENDER_ERROR}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle no data state - check chartData (internal state) after loading is complete
+  if (!internalLoading && !chartData) {
+    return (
+      <div className="border border-gray-200 bg-gray-50 rounded-lg p-6" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center">
+            <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <h3 className="text-lg font-medium text-gray-800 mb-2">No Data Available</h3>
+            <p className="text-gray-600">{INFO_MESSAGES.CHART_NO_DATA}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div 

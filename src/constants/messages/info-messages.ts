@@ -13,6 +13,7 @@ export const INFO_MESSAGES = {
   DATA_SYNCING: 'Synchronizing data across all components...',
   DATA_PROCESSING: 'Processing data for analysis...',
   DATA_VALIDATING: 'Validating data integrity...',
+  DATA_NOT_AVAILABLE: 'Data not available',
   
   // Search Information
   SEARCH_IN_PROGRESS: 'Searching through political database...',
@@ -20,6 +21,12 @@ export const INFO_MESSAGES = {
   SEARCH_NO_RESULTS: 'No results found. Try adjusting your search terms or filters.',
   SEARCH_PARTIAL_RESULTS: 'Showing partial results. Refine your search for more specific results.',
   SEARCH_TOO_MANY_RESULTS: 'Too many results found. Consider adding more specific filters.',
+  SEARCH_HISTORY: 'Recent Searches',
+  POLITICIANS_SECTION: 'Politicians',
+  SEARCH_FOR_QUERY: 'Search for "{query}"',
+  VIEW_ALL_RESULTS: 'View all results',
+  SEARCH_TRY_DIFFERENT: 'Try searching with a different term',
+  SEARCH_ANYWAY: 'Search anyway',
   
   // Filter Information
   FILTERS_ACTIVE: 'Active filters are affecting the displayed results',

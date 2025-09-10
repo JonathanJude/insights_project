@@ -45,6 +45,71 @@ export enum CampaignPhases {
   POST_ELECTION = 'post_election'
 }
 
+export enum PoliticalParties {
+  APC = 'APC',
+  PDP = 'PDP',
+  LP = 'LP',
+  NNPP = 'NNPP',
+  APGA = 'APGA',
+  ADC = 'ADC',
+  SDP = 'SDP',
+  YPP = 'YPP',
+  ZLP = 'ZLP',
+  AAC = 'AAC'
+}
+
+export enum NigerianStates {
+  ABIA = 'Abia',
+  ADAMAWA = 'Adamawa',
+  AKWA_IBOM = 'Akwa Ibom',
+  ANAMBRA = 'Anambra',
+  BAUCHI = 'Bauchi',
+  BAYELSA = 'Bayelsa',
+  BENUE = 'Benue',
+  BORNO = 'Borno',
+  CROSS_RIVER = 'Cross River',
+  DELTA = 'Delta',
+  EBONYI = 'Ebonyi',
+  EDO = 'Edo',
+  EKITI = 'Ekiti',
+  ENUGU = 'Enugu',
+  FCT = 'FCT',
+  GOMBE = 'Gombe',
+  IMO = 'Imo',
+  JIGAWA = 'Jigawa',
+  KADUNA = 'Kaduna',
+  KANO = 'Kano',
+  KATSINA = 'Katsina',
+  KEBBI = 'Kebbi',
+  KOGI = 'Kogi',
+  KWARA = 'Kwara',
+  LAGOS = 'Lagos',
+  NASARAWA = 'Nasarawa',
+  NIGER = 'Niger',
+  OGUN = 'Ogun',
+  ONDO = 'Ondo',
+  OSUN = 'Osun',
+  OYO = 'Oyo',
+  PLATEAU = 'Plateau',
+  RIVERS = 'Rivers',
+  SOKOTO = 'Sokoto',
+  TARABA = 'Taraba',
+  YOBE = 'Yobe',
+  ZAMFARA = 'Zamfara'
+}
+
+export enum SocialPlatforms {
+  TWITTER = 'Twitter',
+  FACEBOOK = 'Facebook',
+  INSTAGRAM = 'Instagram',
+  LINKEDIN = 'LinkedIn',
+  YOUTUBE = 'YouTube',
+  TIKTOK = 'TikTok',
+  THREADS = 'Threads',
+  WHATSAPP = 'WhatsApp',
+  TELEGRAM = 'Telegram'
+}
+
 // Validation functions for political enums
 export const PoliticalEnumValidators = {
   isValidPoliticalLevel: (value: string): value is PoliticalLevels => {

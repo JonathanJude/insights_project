@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
-  AGE_GROUPS,
-  DATE_RANGE_PRESETS,
-  GENDER_OPTIONS,
-  NIGERIAN_STATES,
-  POLITICAL_LEVELS,
-  POLITICAL_PARTIES,
-  SOCIAL_PLATFORMS
+    AGE_GROUPS,
+    DATE_RANGE_PRESETS,
+    GENDER_OPTIONS,
+    NIGERIAN_STATES,
+    POLITICAL_LEVELS,
+    POLITICAL_PARTIES,
+    SOCIAL_PLATFORMS
 } from '../../constants';
+import { LoadingStates } from '../../constants/enums';
+import { ERROR_MESSAGES, INFO_MESSAGES } from '../../constants/messages';
 import { useFilterStore } from '../../stores/filterStore';
 import {
-  AgeGroup,
-  Gender,
-  NigerianState,
-  PoliticalLevel,
-  PoliticalParty,
-  SocialPlatform
+    AgeGroup,
+    Gender,
+    NigerianState,
+    PoliticalLevel,
+    PoliticalParty,
+    SocialPlatform
 } from '../../types';
+import { calculateDataCompleteness } from '../../utils/nullSafeRendering';
 import FilterPresets from './FilterPresets';
 import FilterSummary from './FilterSummary';
 
@@ -26,6 +29,16 @@ interface FiltersPanelProps {
   className?: string;
   showSummary?: boolean;
   variant?: 'panel' | 'sidebar' | 'modal';
+  loadingState?: LoadingStates;
+  errorMessage?: string;
+  availableData?: {
+    parties?: PoliticalParty[];
+    states?: NigerianState[];
+    platforms?: SocialPlatform[];
+    ageGroups?: AgeGroup[];
+    genders?: Gender[];
+    levels?: PoliticalLevel[];
+  };
 }
 
 const FiltersPanel: React.FC<FiltersPanelProps> = ({
@@ -33,7 +46,10 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
   onClose,
   className = "",
   showSummary = false,
-  variant = 'panel'
+  variant = 'panel',
+  loadingState = LoadingStates.IDLE,
+  errorMessage,
+  availableData
 }) => {
   const {
     selectedParties,
@@ -54,6 +70,38 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
     hasActiveFilters,
     getActiveFilterCount
   } = useFilterStore();
+
+  // Generate dynamic filter options based on available data
+  const filterOptions = useMemo(() => {
+    return {
+      parties: availableData?.parties || POLITICAL_PARTIES,
+      states: availableData?.states || NIGERIAN_STATES,
+      platforms: availableData?.platforms || SOCIAL_PLATFORMS,
+      ageGroups: availableData?.ageGroups || AGE_GROUPS,
+      genders: availableData?.genders || GENDER_OPTIONS,
+      levels: availableData?.levels || POLITICAL_LEVELS
+    };
+  }, [availableData]);
+
+  // Calculate data completeness for each filter category
+  const dataCompleteness = useMemo(() => {
+    if (!availableData) return null;
+    
+    return {
+      parties: calculateDataCompleteness(
+        { parties: availableData.parties },
+        ['parties']
+      ),
+      states: calculateDataCompleteness(
+        { states: availableData.states },
+        ['states']
+      ),
+      platforms: calculateDataCompleteness(
+        { platforms: availableData.platforms },
+        ['platforms']
+      )
+    };
+  }, [availableData]);
 
   const [expandedSections, setExpandedSections] = useState({
     parties: true,
@@ -162,6 +210,46 @@ const FiltersPanel: React.FC<FiltersPanelProps> = ({
   );
 
   if (!isOpen) return null;
+
+  // Handle loading state
+  if (loadingState === LoadingStates.LOADING) {
+    return (
+      <div className={`bg-white rounded-lg border border-gray-200 p-6 ${className}`}>
+        <div className="animate-pulse space-y-4">
+          <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+          <div className="space-y-3">
+            <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="h-8 bg-gray-200 rounded"></div>
+              <div className="h-8 bg-gray-200 rounded"></div>
+              <div className="h-8 bg-gray-200 rounded"></div>
+              <div className="h-8 bg-gray-200 rounded"></div>
+            </div>
+          </div>
+          <div className="text-center text-sm text-gray-500 mt-4">
+            {INFO_MESSAGES.LOADING_DATA}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle error state
+  if (loadingState === LoadingStates.ERROR || errorMessage) {
+    return (
+      <div className={`bg-red-50 border border-red-200 rounded-lg p-6 ${className}`}>
+        <div className="flex items-center space-x-2 text-red-600">
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
+          <div>
+            <h3 className="font-medium">Filter Error</h3>
+            <p className="text-sm">{errorMessage || ERROR_MESSAGES.FILTER_LOAD_OPTIONS_ERROR}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const containerClasses = {
     panel: 'bg-white border border-gray-200 rounded-lg shadow-sm',

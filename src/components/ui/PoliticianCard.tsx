@@ -1,21 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
+import { LoadingStates } from '../../constants/enums';
+import { ERROR_MESSAGES, INFO_MESSAGES } from '../../constants/messages';
 import { useIsMobile } from '../../hooks/useMediaQuery';
 import type { EnhancedPoliticianData } from '../../lib/enhancedMockDataService';
 import { useUIStore } from '../../stores/uiStore';
 import type { Politician } from '../../types';
+import { formatNumber, isDataAvailable, safeRender, safeRenderPercentage } from '../../utils/nullSafeRendering';
+import DataAvailabilityIndicator from './DataAvailabilityIndicator';
 import MobilePoliticianCard from './MobilePoliticianCard';
 import PoliticianImage from './PoliticianImage';
 
 interface PoliticianCardProps {
-  politician: Politician;
+  politician: Politician | null | undefined;
   enhancedData?: EnhancedPoliticianData;
   showSentiment?: boolean;
   showStats?: boolean;
   showEnhanced?: boolean;
   className?: string;
   onClick?: () => void;
+  loadingState?: LoadingStates;
+  errorMessage?: string;
 }
 
 const PoliticianCard: React.FC<PoliticianCardProps> = ({ 
@@ -25,10 +31,50 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
   showStats = true,
   showEnhanced = false,
   className = "",
-  onClick
+  onClick,
+  loadingState = LoadingStates.IDLE,
+  errorMessage
 }) => {
   const { addToRecentlyViewed } = useUIStore();
   const isMobile = useIsMobile();
+  
+  // Handle null/undefined politician
+  if (!politician) {
+    return (
+      <div className={`bg-card rounded-lg border border-red-200 p-6 ${className}`}>
+        <div className="flex items-center justify-center space-x-2 text-red-600">
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+          </svg>
+          <span className="text-sm font-medium">
+            {errorMessage || ERROR_MESSAGES.DATA_NOT_FOUND}
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle loading state
+  if (loadingState === LoadingStates.LOADING) {
+    return (
+      <div className={`bg-card rounded-lg border border-default p-6 ${className}`}>
+        <div className="animate-pulse">
+          <div className="flex items-start space-x-4 mb-4">
+            <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
+            <div className="flex-1">
+              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
+              <div className="h-3 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          </div>
+          <div className="text-xs text-gray-500 text-center">
+            {INFO_MESSAGES.LOADING_POLITICIANS}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const partyInfo = POLITICAL_PARTIES.find(party => party.value === politician.party);
 
   // Use mobile-optimized card on mobile devices
@@ -47,7 +93,9 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
   }
   
   const handleClick = () => {
-    addToRecentlyViewed(politician);
+    if (politician) {
+      addToRecentlyViewed(politician);
+    }
     if (onClick) {
       onClick();
     }
@@ -59,21 +107,16 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
     return SENTIMENT_COLORS.neutral;
   };
 
-  const getSentimentLabel = (sentiment: number) => {
+  const getSentimentLabel = (sentiment: number | null | undefined) => {
+    if (sentiment === null || sentiment === undefined || isNaN(sentiment)) {
+      return INFO_MESSAGES.DATA_NOT_AVAILABLE || 'N/A';
+    }
     if (sentiment > 0.1) return 'Positive';
     if (sentiment < -0.1) return 'Negative';
     return 'Neutral';
   };
 
-  const formatNumber = (num: number) => {
-    if (num >= 1000000) {
-      return `${(num / 1000000).toFixed(1)}M`;
-    }
-    if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}K`;
-    }
-    return num.toString();
-  };
+  // Use imported formatNumber utility instead of local function
 
   return (
     <div className={`bg-card rounded-lg border border-default hover:border-default transition-all duration-200 hover:shadow-md touch-manipulation ${className}`}>
@@ -96,10 +139,10 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
           {/* Basic Info */}
           <div className="flex-1 min-w-0">
             <h3 className="text-base sm:text-lg font-semibold text-primary truncate">
-              {politician.name}
+              {safeRender(politician.name, 'Unknown Politician')}
             </h3>
             <p className="text-sm text-secondary mb-1 truncate">
-              {politician.position}
+              {safeRender(politician.position, 'Unknown Position')}
             </p>
             <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
               <span 
@@ -109,12 +152,21 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
                   color: partyInfo?.color || '#6b7280'
                 }}
               >
-                {partyInfo?.label || politician.party}
+                {safeRender(partyInfo?.label || politician.party, 'Unknown Party')}
               </span>
               <div className="flex items-center space-x-2 sm:space-x-0">
                 <span className="text-xs text-secondary hidden sm:inline">•</span>
-                <span className="text-xs text-secondary">{politician.state}</span>
+                <span className="text-xs text-secondary">
+                  {safeRender(politician.state, 'Unknown State')}
+                </span>
               </div>
+              {/* Data completeness indicator */}
+              <DataAvailabilityIndicator
+                isAvailable={isDataAvailable(politician.name) && isDataAvailable(politician.party) && isDataAvailable(politician.state)}
+                message="Incomplete data"
+                size="sm"
+                className="mt-1"
+              />
             </div>
           </div>
           
@@ -157,46 +209,62 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
             </div>
           )}
           
-          {/* Sentiment Badge */}
-          {showSentiment && politician.recentSentiment && (
+          {/* Sentiment Badge with null-safe handling */}
+          {showSentiment && (
             <div className="flex-shrink-0">
-              <div 
-                className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-full text-xs font-medium"
-                style={{
-                  backgroundColor: `${getSentimentColor(politician.recentSentiment.score)}20`,
-                  color: getSentimentColor(politician.recentSentiment.score)
-                }}
-              >
-                <span className="hidden sm:inline">{getSentimentLabel(politician.recentSentiment.score)}</span>
-                <span className="sm:hidden">
-                  {getSentimentLabel(politician.recentSentiment.score).charAt(0)}
-                </span>
-              </div>
+              {politician.recentSentiment?.score !== undefined && politician.recentSentiment?.score !== null ? (
+                <div 
+                  className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-full text-xs font-medium"
+                  style={{
+                    backgroundColor: `${getSentimentColor(politician.recentSentiment.score)}20`,
+                    color: getSentimentColor(politician.recentSentiment.score)
+                  }}
+                >
+                  <span className="hidden sm:inline">{getSentimentLabel(politician.recentSentiment.score)}</span>
+                  <span className="sm:hidden">
+                    {getSentimentLabel(politician.recentSentiment.score).charAt(0)}
+                  </span>
+                </div>
+              ) : (
+                <div className="inline-flex items-center px-2 sm:px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-500">
+                  <span className="hidden sm:inline">{INFO_MESSAGES.DATA_NOT_AVAILABLE || 'N/A'}</span>
+                  <span className="sm:hidden">?</span>
+                </div>
+              )}
             </div>
           )}
         </div>
 
-        {/* Stats */}
-        {showStats && politician.recentSentiment && (
+        {/* Stats with null-safe handling */}
+        {showStats && (
           <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 border-t border-default">
             <div className="text-center">
               <div className="text-base sm:text-lg font-semibold text-primary">
-                {formatNumber(politician.recentSentiment.mentionCount)}
+                {formatNumber(politician.recentSentiment?.mentionCount)}
               </div>
               <div className="text-xs text-secondary">Mentions</div>
             </div>
             <div className="text-center">
               <div className="text-base sm:text-lg font-semibold text-primary">
-                {politician.recentSentiment.changePercentage.toFixed(1)}%
+                {safeRenderPercentage(politician.recentSentiment?.changePercentage)}
               </div>
               <div className="text-xs text-secondary">Change</div>
             </div>
             <div className="text-center">
               <div 
                 className="text-base sm:text-lg font-semibold"
-                style={{ color: getSentimentColor(politician.recentSentiment.score) }}
+                style={{ 
+                  color: politician.recentSentiment?.score !== undefined 
+                    ? getSentimentColor(politician.recentSentiment.score) 
+                    : '#6b7280' 
+                }}
               >
-                {((politician.recentSentiment.score + 1) * 50).toFixed(0)}%
+                {safeRenderPercentage(
+                  politician.recentSentiment?.score !== undefined 
+                    ? (politician.recentSentiment.score + 1) * 50
+                    : undefined,
+                  0
+                )}
               </div>
               <div className="text-xs text-secondary">Sentiment</div>
             </div>

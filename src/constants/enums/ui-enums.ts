@@ -85,6 +85,23 @@ export enum ColorSchemes {
   INFO = "info",
 }
 
+export enum FilterCategories {
+  PARTY = "party",
+  STATE = "state",
+  PLATFORM = "platform",
+  SENTIMENT = "sentiment",
+  AGE_GROUP = "age_group",
+  GENDER = "gender",
+  DATE_RANGE = "date_range",
+  EDUCATION = "education",
+  OCCUPATION = "occupation",
+}
+
+export enum SortDirections {
+  ASC = "asc",
+  DESC = "desc",
+}
+
 // Color palette definitions
 export const ColorPalettes = {
   [ColorSchemes.PRIMARY]: {

@@ -77,6 +77,32 @@ export enum AgeGroups {
   SENIOR_56_PLUS = '56+'
 }
 
+export enum EducationLevels {
+  PRIMARY = 'Primary',
+  SECONDARY = 'Secondary',
+  TERTIARY = 'Tertiary',
+  POSTGRADUATE = 'Postgraduate',
+  VOCATIONAL = 'Vocational',
+  NONE = 'None',
+  UNDEFINED = 'Undefined'
+}
+
+export enum OccupationSectors {
+  AGRICULTURE = 'Agriculture',
+  BUSINESS = 'Business',
+  EDUCATION = 'Education',
+  GOVERNMENT = 'Government',
+  HEALTHCARE = 'Healthcare',
+  TECHNOLOGY = 'Technology',
+  FINANCE = 'Finance',
+  MANUFACTURING = 'Manufacturing',
+  SERVICES = 'Services',
+  STUDENT = 'Student',
+  UNEMPLOYED = 'Unemployed',
+  RETIRED = 'Retired',
+  UNDEFINED = 'Undefined'
+}
+
 // Validation functions for core enums
 export const CoreEnumValidators = {
   isValidMonth: (value: string): value is Months => {

@@ -1,42 +1,52 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  CartesianGrid,
-  Legend,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis
+    CartesianGrid,
+    Legend,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
 } from 'recharts';
 import { SENTIMENT_COLORS } from '../../constants';
+import { ChartConfigUtils } from '../../constants/configurations/chart-configs';
+import { ChartTypes, LoadingStates } from '../../constants/enums';
+import { ERROR_MESSAGES, INFO_MESSAGES } from '../../constants/messages';
 import { convertToChartData, generateFilteredChartData, simulateDataLoading } from '../../lib/chartDataUtils';
 import { useChartFilterStore } from '../../stores/chartFilterStore';
 import type { ChartFilter } from '../../types';
+import { calculateDataCompleteness } from '../../utils/nullSafeRendering';
 
 interface SentimentChartProps {
   isLoading?: boolean;
+  loadingState?: LoadingStates;
   data?: Array<{
     date: string;
     positive: number;
     neutral: number;
     negative: number;
-  }>;
+  }> | null;
   height?: number;
   filter?: ChartFilter;
   onFilterChange?: (filter: ChartFilter) => void;
   showFilters?: boolean;
   showExport?: boolean;
+  errorMessage?: string;
+  dataQualityThreshold?: number;
 }
 
 const SentimentChart: React.FC<SentimentChartProps> = ({ 
-  isLoading = false, 
+  isLoading = false,
+  loadingState = LoadingStates.IDLE,
   data,
-  height = 300,
+  height,
   filter,
   onFilterChange,
   showFilters = true,
-  showExport = true
+  showExport = true,
+  errorMessage,
+  dataQualityThreshold = 0.7
 }) => {
   const { chartFilter, setTimeRange } = useChartFilterStore();
   const [internalLoading, setInternalLoading] = useState(false);
@@ -44,12 +54,18 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [dataQuality, setDataQuality] = useState<{ score: number; completeness: number } | null>(null);
   const chartRef = useRef<HTMLDivElement>(null);
   
   // Use provided filter or store filter
   const activeFilter = filter || chartFilter;
+  
+  // Get chart configuration
+  const chartConfig = ChartConfigUtils.getConfiguration(ChartTypes.LINE);
+  const responsiveConfig = ChartConfigUtils.getResponsiveConfig(window.innerWidth);
+  const actualHeight = height || chartConfig.defaultHeight;
 
-  // Mobile detection
+  // Mobile detection and data quality assessment
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -59,6 +75,30 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Assess data quality when data changes
+  useEffect(() => {
+    if (data && Array.isArray(data)) {
+      const requiredFields = ['date', 'positive', 'neutral', 'negative'];
+      const totalDataPoints = data.length;
+      let validDataPoints = 0;
+      
+      data.forEach(item => {
+        const quality = calculateDataCompleteness(item, requiredFields);
+        if (quality.score >= dataQualityThreshold) {
+          validDataPoints++;
+        }
+      });
+      
+      const completeness = totalDataPoints > 0 ? (validDataPoints / totalDataPoints) * 100 : 0;
+      setDataQuality({
+        score: totalDataPoints > 0 ? validDataPoints / totalDataPoints : 0,
+        completeness
+      });
+    } else {
+      setDataQuality(null);
+    }
+  }, [data, dataQualityThreshold]);
 
   // Touch handlers for swipe gestures
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -175,19 +215,75 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
     return null;
   };
 
-  if (isLoading || internalLoading) {
+  // Handle loading states
+  if (isLoading || internalLoading || loadingState === LoadingStates.LOADING) {
     return (
-      <div className="animate-pulse" style={{ height: height + (showFilters ? 60 : 0) }}>
-        {showFilters && (
-          <div className="flex justify-between items-center mb-4">
-            <div className="h-6 bg-gray-200 rounded w-32"></div>
-            <div className="h-8 bg-gray-200 rounded w-32"></div>
+      <div className="animate-pulse" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="bg-gray-200 rounded-lg h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin h-8 w-8 border-2 border-blue-500 border-t-transparent rounded-full mx-auto mb-2"></div>
+            <p className="text-sm text-gray-600">{INFO_MESSAGES.LOADING_CHARTS}</p>
           </div>
-        )}
-        <div className="h-full bg-gray-200 rounded"></div>
+        </div>
       </div>
     );
   }
+
+  // Handle error states
+  if (loadingState === LoadingStates.ERROR || errorMessage) {
+    return (
+      <div className="border border-red-200 bg-red-50 rounded-lg p-6" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center">
+            <svg className="w-12 h-12 text-red-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <h3 className="text-lg font-medium text-red-800 mb-2">Chart Error</h3>
+            <p className="text-red-600">{errorMessage || ERROR_MESSAGES.CHART_RENDER_ERROR}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle no data state - check chartData (internal state) instead of external data prop
+  if (!internalLoading && (!chartData || !Array.isArray(chartData) || chartData.length === 0)) {
+    return (
+      <div className="border border-gray-200 bg-gray-50 rounded-lg p-6" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center">
+            <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <h3 className="text-lg font-medium text-gray-800 mb-2">No Data Available</h3>
+            <p className="text-gray-600">{INFO_MESSAGES.CHART_NO_DATA}</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle poor data quality
+  if (dataQuality && dataQuality.score < dataQualityThreshold) {
+    return (
+      <div className="border border-yellow-200 bg-yellow-50 rounded-lg p-6" style={{ height: actualHeight + (showFilters ? 60 : 0) }}>
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center">
+            <svg className="w-12 h-12 text-yellow-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <h3 className="text-lg font-medium text-yellow-800 mb-2">Poor Data Quality</h3>
+            <p className="text-yellow-700">
+              {INFO_MESSAGES.CHART_INSUFFICIENT_DATA} 
+              <br />
+              Data completeness: {dataQuality.completeness.toFixed(1)}%
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div 
@@ -262,29 +358,44 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
           )}
         </div>
       )}
-      <div style={{ height }}>
+      {/* Data Quality Indicator */}
+      {dataQuality && dataQuality.completeness < 100 && (
+        <div className="mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded">
+          <div className="flex items-center space-x-2">
+            <svg className="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+            </svg>
+            <p className="text-yellow-800 text-sm">
+              <strong>Note:</strong> {Math.round(100 - dataQuality.completeness)}% of data points are missing or incomplete. 
+              Results may not represent the complete picture.
+            </p>
+          </div>
+        </div>
+      )}
+
+      <div style={{ height: actualHeight }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={chartData}
             margin={{
-              top: 5,
-              right: isMobile ? 10 : 30,
-              left: isMobile ? 10 : 20,
-              bottom: 5,
+              top: responsiveConfig.padding / 2,
+              right: isMobile ? responsiveConfig.padding / 2 : responsiveConfig.padding,
+              left: isMobile ? responsiveConfig.padding / 2 : responsiveConfig.padding,
+              bottom: responsiveConfig.padding / 2,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
               dataKey="date" 
               stroke="#6b7280"
-              fontSize={isMobile ? 10 : 12}
+              fontSize={responsiveConfig.fontSize}
               tickLine={false}
               axisLine={false}
               interval={isMobile ? 'preserveStartEnd' : 'preserveStart'}
             />
             <YAxis 
               stroke="#6b7280"
-              fontSize={isMobile ? 10 : 12}
+              fontSize={responsiveConfig.fontSize}
               tickLine={false}
               axisLine={false}
               domain={[0, 100]}
@@ -297,8 +408,8 @@ const SentimentChart: React.FC<SentimentChartProps> = ({
             />
             <Legend 
               wrapperStyle={{ 
-                paddingTop: '20px',
-                fontSize: isMobile ? '12px' : '14px'
+                paddingTop: `${responsiveConfig.padding}px`,
+                fontSize: `${responsiveConfig.fontSize}px`
               }}
               iconType="circle"
               layout={isMobile ? 'horizontal' : 'horizontal'}

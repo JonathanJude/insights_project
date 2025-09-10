@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { LoadingStates } from '../../constants/enums';
+import { ERROR_MESSAGES, INFO_MESSAGES } from '../../constants/messages';
+import { useEnhancedSearch } from '../../hooks/useEnhancedSearch';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
 import type { Politician } from '../../types';
@@ -10,12 +13,16 @@ interface SearchBarProps {
   className?: string;
   showFilters?: boolean;
   onSearch?: (query: string) => void;
+  loadingState?: LoadingStates;
+  errorMessage?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 
-  placeholder = "Search politicians by name, party, or state...",
+  placeholder = INFO_MESSAGES.SEARCH_IN_PROGRESS,
   className = "",
-  onSearch
+  onSearch,
+  loadingState = LoadingStates.IDLE,
+  errorMessage
 }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -51,29 +58,40 @@ const SearchBar: React.FC<SearchBarProps> = ({
     setIsOpen(value.length >= 2);
   };
 
-  // Handle search submission
+  // Handle search submission with null-safe validation
   const handleSearch = (searchQuery?: string) => {
     const finalQuery = searchQuery || query;
-    if (finalQuery.trim()) {
-      setSearchQuery(finalQuery);
-      executeSearch(finalQuery);
-      
-      if (onSearch) {
-        onSearch(finalQuery);
-      } else {
-        // Always navigate to update URL, even if already on search page
-        navigate(`/search?q=${encodeURIComponent(finalQuery)}`);
+    if (finalQuery?.trim()) {
+      try {
+        setSearchQuery(finalQuery);
+        executeSearch(finalQuery);
+        
+        if (onSearch) {
+          onSearch(finalQuery);
+        } else {
+          // Always navigate to update URL, even if already on search page
+          navigate(`/search?q=${encodeURIComponent(finalQuery)}`);
+        }
+        
+        setIsOpen(false);
+        clearSearch();
+        inputRef.current?.blur();
+      } catch (error) {
+        console.error('Search error:', error);
+        // Handle search error gracefully
       }
-      
-      setIsOpen(false);
-      clearSearch();
-      inputRef.current?.blur();
     }
   };
 
-  // Handle politician selection
+  // Handle politician selection with null-safe data access
   const handlePoliticianSelect = (politician: Politician) => {
-    executeSearch(`${politician.name} (${politician.party})`);
+    if (!politician?.id) {
+      console.warn('Invalid politician data:', politician);
+      return;
+    }
+    
+    const searchTerm = `${politician.name || 'Unknown'} (${politician.party || 'Unknown'})`;
+    executeSearch(searchTerm);
     navigate(`/politician/${politician.id}`);
     setIsOpen(false);
     clearSearch();
@@ -221,9 +239,20 @@ const SearchBar: React.FC<SearchBarProps> = ({
         </div>
 
         {/* Loading Indicator */}
-        {isSearching && (
+        {(isSearching || loadingState === LoadingStates.LOADING) && (
           <div className="absolute inset-y-0 right-12 flex items-center pr-3">
             <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+          </div>
+        )}
+
+        {/* Error Indicator */}
+        {(loadingState === LoadingStates.ERROR || errorMessage) && (
+          <div className="absolute inset-y-0 right-12 flex items-center pr-3">
+            <div className="w-4 h-4 text-red-500" title={errorMessage || ERROR_MESSAGES.SEARCH_FAILED}>
+              <svg fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
           </div>
         )}
 
@@ -247,7 +276,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             <div className="px-4 py-3 text-sm text-gray-500">
               <div className="flex items-center space-x-2">
                 <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
-                <span>Searching...</span>
+                <span>{INFO_MESSAGES.SEARCH_IN_PROGRESS}</span>
               </div>
             </div>
           ) : (
@@ -256,7 +285,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               {historySuggestions.length > 0 && (
                 <div className="py-2">
                   <div className="px-4 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide border-b">
-                    Recent Searches
+                    {INFO_MESSAGES.SEARCH_HISTORY || 'Recent Searches'}
                   </div>
                   {historySuggestions.map((historyQuery, index) => (
                     <button
@@ -295,7 +324,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               {suggestions.length > 0 && (
                 <div className="py-2">
                   <div className="px-4 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide border-b">
-                    Politicians
+                    {INFO_MESSAGES.POLITICIANS_SECTION || 'Politicians'}
                   </div>
                   {suggestions.map((result, index) => {
                     const adjustedIndex = historySuggestions.length + index;
@@ -314,14 +343,23 @@ const SearchBar: React.FC<SearchBarProps> = ({
                           />
                           <div className="flex-1 min-w-0">
                             <div className="text-sm font-medium text-gray-900">
-                              {renderHighlightedText(result.item.name, result.matches)}
+                              {renderHighlightedText(result.item?.name || 'Unknown Politician', result.matches)}
                             </div>
                             <div className="text-xs text-gray-500">
-                              {result.item.party} • {result.item.position} • {result.item.state}
+                              {result.item?.party || 'Unknown Party'} • {result.item?.position || 'Unknown Position'} • {result.item?.state || 'Unknown State'}
                             </div>
                             {result.score && process.env.NODE_ENV === 'development' && (
                               <div className="text-xs text-gray-400">
                                 Score: {(result.score * 100).toFixed(1)}%
+                              </div>
+                            )}
+                            {/* Data availability indicator */}
+                            {(!result.item?.name || !result.item?.party || !result.item?.state) && (
+                              <div className="text-xs text-orange-500 flex items-center space-x-1">
+                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                </svg>
+                                <span>Incomplete data</span>
                               </div>
                             )}
                           </div>
@@ -348,10 +386,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
                     </div>
                     <div>
                       <div className="text-sm font-medium text-gray-900">
-                        Search for "{query}"
+                        {INFO_MESSAGES.SEARCH_FOR_QUERY?.replace('{query}', query) || `Search for "${query}"`}
                       </div>
                       <div className="text-xs text-gray-500">
-                        View all results {performanceMetrics.resultsCount > 0 && `(${performanceMetrics.resultsCount} found)`}
+                        {INFO_MESSAGES.VIEW_ALL_RESULTS || 'View all results'} {performanceMetrics.resultsCount > 0 && `(${performanceMetrics.resultsCount} found)`}
                       </div>
                     </div>
                   </div>
@@ -364,15 +402,15 @@ const SearchBar: React.FC<SearchBarProps> = ({
                   <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  <h3 className="mt-2 text-sm font-medium text-gray-900">No suggestions found</h3>
+                  <h3 className="mt-2 text-sm font-medium text-gray-900">{INFO_MESSAGES.SEARCH_NO_RESULTS || 'No suggestions found'}</h3>
                   <p className="mt-1 text-sm text-gray-500">
-                    Try searching with a different term
+                    {INFO_MESSAGES.SEARCH_TRY_DIFFERENT || 'Try searching with a different term'}
                   </p>
                   <button
                     onClick={() => handleSearch()}
                     className="mt-3 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
                   >
-                    Search anyway
+                    {INFO_MESSAGES.SEARCH_ANYWAY || 'Search anyway'}
                   </button>
                 </div>
               )}
