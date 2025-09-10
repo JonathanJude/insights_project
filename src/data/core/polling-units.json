@@ -1,0 +1,424 @@
+{
+  "pollingUnits": [
+    {
+      "id": "NG-LA-SUR-W01-PU001",
+      "code": "SUR/001/001",
+      "name": "Aguda Primary School I",
+      "wardId": "NG-LA-SUR-W01",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "No. 15 Aguda Street, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5092,
+        "longitude": 3.3658
+      },
+      "capacity": {
+        "maxVoters": 500,
+        "registeredVoters": 487
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": false,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "1999",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W01-PU002",
+      "code": "SUR/001/002",
+      "name": "Aguda Primary School II",
+      "wardId": "NG-LA-SUR-W01",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "No. 15 Aguda Street, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5094,
+        "longitude": 3.366
+      },
+      "capacity": {
+        "maxVoters": 500,
+        "registeredVoters": 456
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "1999",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W01-PU003",
+      "code": "SUR/001/003",
+      "name": "Aguda Community Hall",
+      "wardId": "NG-LA-SUR-W01",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "No. 23 Aguda Road, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5087,
+        "longitude": 3.3651
+      },
+      "capacity": {
+        "maxVoters": 750,
+        "registeredVoters": 698
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "high"
+      },
+      "metadata": {
+        "established": "2003",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W01-PU004",
+      "code": "SUR/001/004",
+      "name": "St. Mary's Catholic Church",
+      "wardId": "NG-LA-SUR-W01",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "No. 8 Church Street, Aguda, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5096,
+        "longitude": 3.3645
+      },
+      "capacity": {
+        "maxVoters": 600,
+        "registeredVoters": 543
+      },
+      "facilities": {
+        "accessible": false,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "2007",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W01-PU005",
+      "code": "SUR/001/005",
+      "name": "Aguda Market Square",
+      "wardId": "NG-LA-SUR-W01",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "Aguda Market, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5083,
+        "longitude": 3.3663
+      },
+      "capacity": {
+        "maxVoters": 400,
+        "registeredVoters": 378
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": false,
+        "hasWater": false,
+        "securityLevel": "low"
+      },
+      "metadata": {
+        "established": "2011",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W02-PU001",
+      "code": "SUR/002/001",
+      "name": "Coker Primary School",
+      "wardId": "NG-LA-SUR-W02",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "No. 12 Coker Road, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5126,
+        "longitude": 3.3689
+      },
+      "capacity": {
+        "maxVoters": 550,
+        "registeredVoters": 512
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "1998",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W02-PU002",
+      "code": "SUR/002/002",
+      "name": "Aguda Secondary School",
+      "wardId": "NG-LA-SUR-W02",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "address": "No. 45 Aguda Street, Surulere, Lagos",
+      "coordinates": {
+        "latitude": 6.5119,
+        "longitude": 3.3692
+      },
+      "capacity": {
+        "maxVoters": 800,
+        "registeredVoters": 734
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "high"
+      },
+      "metadata": {
+        "established": "2001",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W01-PU001",
+      "code": "IKE/001/001",
+      "name": "Agidingbi Primary School",
+      "wardId": "NG-LA-IKE-W01",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "address": "No. 34 Agidingbi Road, Ikeja, Lagos",
+      "coordinates": {
+        "latitude": 6.6025,
+        "longitude": 3.3458
+      },
+      "capacity": {
+        "maxVoters": 600,
+        "registeredVoters": 567
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "1995",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W01-PU002",
+      "code": "IKE/001/002",
+      "name": "Agidingbi Community Centre",
+      "wardId": "NG-LA-IKE-W01",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "address": "No. 67 Agidingbi Close, Ikeja, Lagos",
+      "coordinates": {
+        "latitude": 6.6021,
+        "longitude": 3.3454
+      },
+      "capacity": {
+        "maxVoters": 450,
+        "registeredVoters": 423
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": false,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "2005",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W01-PU001",
+      "code": "ABA-N/001/001",
+      "name": "Ariaria Market Hall",
+      "wardId": "NG-AB-ABA-N-W01",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "address": "Ariaria International Market, Aba North, Abia",
+      "coordinates": {
+        "latitude": 5.1236,
+        "longitude": 7.3725
+      },
+      "capacity": {
+        "maxVoters": 800,
+        "registeredVoters": 756
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": false,
+        "hasWater": false,
+        "securityLevel": "low"
+      },
+      "metadata": {
+        "established": "2007",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W01-PU002",
+      "code": "ABA-N/001/002",
+      "name": "Ariaria Primary School",
+      "wardId": "NG-AB-ABA-N-W01",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "address": "No. 15 Ariaria Road, Aba North, Abia",
+      "coordinates": {
+        "latitude": 5.1232,
+        "longitude": 7.3721
+      },
+      "capacity": {
+        "maxVoters": 500,
+        "registeredVoters": 467
+      },
+      "facilities": {
+        "accessible": false,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "2003",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W01-PU001",
+      "code": "FAG/001/001",
+      "name": "Fagge Central Mosque",
+      "wardId": "NG-KN-FAG-W01",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "address": "Central Mosque Road, Fagge, Kano",
+      "coordinates": {
+        "latitude": 12.0036,
+        "longitude": 8.5191
+      },
+      "capacity": {
+        "maxVoters": 1000,
+        "registeredVoters": 923
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": true,
+        "securityLevel": "high"
+      },
+      "metadata": {
+        "established": "1999",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W01-PU002",
+      "code": "FAG/001/002",
+      "name": "Fagge Primary School A",
+      "wardId": "NG-KN-FAG-W01",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "address": "No. 23 Fagge Road, Fagge, Kano",
+      "coordinates": {
+        "latitude": 12.0032,
+        "longitude": 8.5187
+      },
+      "capacity": {
+        "maxVoters": 600,
+        "registeredVoters": 578
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": false,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "1985",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W01-PU003",
+      "code": "FAG/001/003",
+      "name": "Fagge Primary School B",
+      "wardId": "NG-KN-FAG-W01",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "address": "No. 23 Fagge Road, Fagge, Kano",
+      "coordinates": {
+        "latitude": 12.0034,
+        "longitude": 8.5189
+      },
+      "capacity": {
+        "maxVoters": 600,
+        "registeredVoters": 534
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": true,
+        "hasWater": false,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "1985",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W01-PU004",
+      "code": "FAG/001/004",
+      "name": "Fagge Community Hall",
+      "wardId": "NG-KN-FAG-W01",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "address": "No. 45 Community Road, Fagge, Kano",
+      "coordinates": {
+        "latitude": 12.0038,
+        "longitude": 8.5193
+      },
+      "capacity": {
+        "maxVoters": 750,
+        "registeredVoters": 689
+      },
+      "facilities": {
+        "accessible": true,
+        "hasElectricity": false,
+        "hasWater": true,
+        "securityLevel": "medium"
+      },
+      "metadata": {
+        "established": "2009",
+        "lastUpdated": "2023-12-15",
+        "status": "active"
+      }
+    }
+  ]
+}

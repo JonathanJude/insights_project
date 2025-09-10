@@ -1,0 +1,670 @@
+{
+  "states": [
+    {
+      "id": "NG-AB",
+      "name": "Abia",
+      "code": "AB",
+      "capital": "Umuahia",
+      "region": "south-east",
+      "population": 2833999,
+      "coordinates": {
+        "latitude": 5.4527,
+        "longitude": 7.5248
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 6320,
+        "timezone": "WAT",
+        "slogan": "God's Own State"
+      }
+    },
+    {
+      "id": "NG-AD",
+      "name": "Adamawa",
+      "code": "AD",
+      "capital": "Yola",
+      "region": "north-east",
+      "population": 4248436,
+      "coordinates": {
+        "latitude": 9.2000,
+        "longitude": 12.4833
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 36917,
+        "timezone": "WAT",
+        "slogan": "Land of Beauty"
+      }
+    },
+    {
+      "id": "NG-AK",
+      "name": "Akwa Ibom",
+      "code": "AK",
+      "capital": "Uyo",
+      "region": "south-south",
+      "population": 5450758,
+      "coordinates": {
+        "latitude": 5.0378,
+        "longitude": 7.9036
+      },
+      "metadata": {
+        "established": "1987-09-23",
+        "area_km2": 7081,
+        "timezone": "WAT",
+        "slogan": "Land of Promise"
+      }
+    },
+    {
+      "id": "NG-AN",
+      "name": "Anambra",
+      "code": "AN",
+      "capital": "Awka",
+      "region": "south-east",
+      "population": 5527809,
+      "coordinates": {
+        "latitude": 6.2104,
+        "longitude": 7.0670
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 4844,
+        "timezone": "WAT",
+        "slogan": "Light of the Nation"
+      }
+    },
+    {
+      "id": "NG-BA",
+      "name": "Bauchi",
+      "code": "BA",
+      "capital": "Bauchi",
+      "region": "north-east",
+      "population": 6537390,
+      "coordinates": {
+        "latitude": 10.3158,
+        "longitude": 9.8442
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 45837,
+        "timezone": "WAT",
+        "slogan": "Pearl of Tourism"
+      }
+    },
+    {
+      "id": "NG-BY",
+      "name": "Bayelsa",
+      "code": "BY",
+      "capital": "Yenagoa",
+      "region": "south-south",
+      "population": 1998349,
+      "coordinates": {
+        "latitude": 4.9267,
+        "longitude": 6.2676
+      },
+      "metadata": {
+        "established": "1996-10-01",
+        "area_km2": 10773,
+        "timezone": "WAT",
+        "slogan": "Glory of All Lands"
+      }
+    },
+    {
+      "id": "NG-BE",
+      "name": "Benue",
+      "code": "BE",
+      "capital": "Makurdi",
+      "region": "north-central",
+      "population": 5741815,
+      "coordinates": {
+        "latitude": 7.7319,
+        "longitude": 8.5211
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 34059,
+        "timezone": "WAT",
+        "slogan": "Food Basket of the Nation"
+      }
+    },
+    {
+      "id": "NG-BO",
+      "name": "Borno",
+      "code": "BO",
+      "capital": "Maiduguri",
+      "region": "north-east",
+      "population": 5860183,
+      "coordinates": {
+        "latitude": 11.8311,
+        "longitude": 13.1511
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 70898,
+        "timezone": "WAT",
+        "slogan": "Home of Peace"
+      }
+    },
+    {
+      "id": "NG-CR",
+      "name": "Cross River",
+      "code": "CR",
+      "capital": "Calabar",
+      "region": "south-south",
+      "population": 3737517,
+      "coordinates": {
+        "latitude": 4.9517,
+        "longitude": 8.3250
+      },
+      "metadata": {
+        "established": "1987-05-27",
+        "area_km2": 20156,
+        "timezone": "WAT",
+        "slogan": "The People's Paradise"
+      }
+    },
+    {
+      "id": "NG-DE",
+      "name": "Delta",
+      "code": "DE",
+      "capital": "Asaba",
+      "region": "south-south",
+      "population": 5663362,
+      "coordinates": {
+        "latitude": 6.2000,
+        "longitude": 6.7333
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 17698,
+        "timezone": "WAT",
+        "slogan": "The Big Heart"
+      }
+    },
+    {
+      "id": "NG-EB",
+      "name": "Ebonyi",
+      "code": "EB",
+      "capital": "Abakaliki",
+      "region": "south-east",
+      "population": 2880383,
+      "coordinates": {
+        "latitude": 6.3250,
+        "longitude": 8.1133
+      },
+      "metadata": {
+        "established": "1996-10-01",
+        "area_km2": 5670,
+        "timezone": "WAT",
+        "slogan": "Salt of the Nation"
+      }
+    },
+    {
+      "id": "NG-ED",
+      "name": "Edo",
+      "code": "ED",
+      "capital": "Benin City",
+      "region": "south-south",
+      "population": 4235595,
+      "coordinates": {
+        "latitude": 6.3350,
+        "longitude": 5.6037
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 17802,
+        "timezone": "WAT",
+        "slogan": "Heartbeat of the Nation"
+      }
+    },
+    {
+      "id": "NG-EK",
+      "name": "Ekiti",
+      "code": "EK",
+      "capital": "Ado-Ekiti",
+      "region": "south-west",
+      "population": 3270798,
+      "coordinates": {
+        "latitude": 7.7167,
+        "longitude": 5.3167
+      },
+      "metadata": {
+        "established": "1996-10-01",
+        "area_km2": 6353,
+        "timezone": "WAT",
+        "slogan": "Land of Honour"
+      }
+    },
+    {
+      "id": "NG-EN",
+      "name": "Enugu",
+      "code": "EN",
+      "capital": "Enugu",
+      "region": "south-east",
+      "population": 4411119,
+      "coordinates": {
+        "latitude": 6.4403,
+        "longitude": 7.4914
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 7161,
+        "timezone": "WAT",
+        "slogan": "Coal City State"
+      }
+    },
+    {
+      "id": "NG-GO",
+      "name": "Gombe",
+      "code": "GO",
+      "capital": "Gombe",
+      "region": "north-east",
+      "population": 3256541,
+      "coordinates": {
+        "latitude": 10.2897,
+        "longitude": 11.1678
+      },
+      "metadata": {
+        "established": "1996-10-01",
+        "area_km2": 18768,
+        "timezone": "WAT",
+        "slogan": "Jewel in the Savannah"
+      }
+    },
+    {
+      "id": "NG-IM",
+      "name": "Imo",
+      "code": "IM",
+      "capital": "Owerri",
+      "region": "south-east",
+      "population": 5408756,
+      "coordinates": {
+        "latitude": 5.4839,
+        "longitude": 7.0333
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 5530,
+        "timezone": "WAT",
+        "slogan": "Eastern Heartland"
+      }
+    },
+    {
+      "id": "NG-JI",
+      "name": "Jigawa",
+      "code": "JI",
+      "capital": "Dutse",
+      "region": "north-west",
+      "population": 5828163,
+      "coordinates": {
+        "latitude": 11.7564,
+        "longitude": 9.3453
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 23154,
+        "timezone": "WAT",
+        "slogan": "New World"
+      }
+    },
+    {
+      "id": "NG-KD",
+      "name": "Kaduna",
+      "code": "KD",
+      "capital": "Kaduna",
+      "region": "north-west",
+      "population": 8252366,
+      "coordinates": {
+        "latitude": 10.5222,
+        "longitude": 7.4383
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 46053,
+        "timezone": "WAT",
+        "slogan": "Centre of Learning"
+      }
+    },
+    {
+      "id": "NG-KN",
+      "name": "Kano",
+      "code": "KN",
+      "capital": "Kano",
+      "region": "north-west",
+      "population": 13076892,
+      "coordinates": {
+        "latitude": 12.0022,
+        "longitude": 8.5920
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 20131,
+        "timezone": "WAT",
+        "slogan": "Centre of Commerce"
+      }
+    },
+    {
+      "id": "NG-KT",
+      "name": "Katsina",
+      "code": "KT",
+      "capital": "Katsina",
+      "region": "north-west",
+      "population": 7831319,
+      "coordinates": {
+        "latitude": 12.9908,
+        "longitude": 7.6017
+      },
+      "metadata": {
+        "established": "1987-09-23",
+        "area_km2": 24192,
+        "timezone": "WAT",
+        "slogan": "Home of Hospitality"
+      }
+    },
+    {
+      "id": "NG-KE",
+      "name": "Kebbi",
+      "code": "KE",
+      "capital": "Birnin Kebbi",
+      "region": "north-west",
+      "population": 4440050,
+      "coordinates": {
+        "latitude": 12.4539,
+        "longitude": 4.1975
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 36800,
+        "timezone": "WAT",
+        "slogan": "Land of Equity"
+      }
+    },
+    {
+      "id": "NG-KO",
+      "name": "Kogi",
+      "code": "KO",
+      "capital": "Lokoja",
+      "region": "north-central",
+      "population": 4473490,
+      "coordinates": {
+        "latitude": 7.8000,
+        "longitude": 6.7333
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 29833,
+        "timezone": "WAT",
+        "slogan": "Confluence State"
+      }
+    },
+    {
+      "id": "NG-KW",
+      "name": "Kwara",
+      "code": "KW",
+      "capital": "Ilorin",
+      "region": "north-central",
+      "population": 3192893,
+      "coordinates": {
+        "latitude": 8.9667,
+        "longitude": 4.5667
+      },
+      "metadata": {
+        "established": "1967-05-27",
+        "area_km2": 36825,
+        "timezone": "WAT",
+        "slogan": "State of Harmony"
+      }
+    },
+    {
+      "id": "NG-LA",
+      "name": "Lagos",
+      "code": "LA",
+      "capital": "Ikeja",
+      "region": "south-west",
+      "population": 15946991,
+      "coordinates": {
+        "latitude": 6.5244,
+        "longitude": 3.3792
+      },
+      "metadata": {
+        "established": "1967-05-27",
+        "area_km2": 3345,
+        "timezone": "WAT",
+        "slogan": "Centre of Excellence"
+      }
+    },
+    {
+      "id": "NG-NA",
+      "name": "Nasarawa",
+      "code": "NA",
+      "capital": "Lafia",
+      "region": "north-central",
+      "population": 2523395,
+      "coordinates": {
+        "latitude": 8.4833,
+        "longitude": 8.5167
+      },
+      "metadata": {
+        "established": "1996-10-01",
+        "area_km2": 27117,
+        "timezone": "WAT",
+        "slogan": "Home of Solid Minerals"
+      }
+    },
+    {
+      "id": "NG-NI",
+      "name": "Niger",
+      "code": "NI",
+      "capital": "Minna",
+      "region": "north-central",
+      "population": 5556200,
+      "coordinates": {
+        "latitude": 9.6167,
+        "longitude": 6.5500
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 76363,
+        "timezone": "WAT",
+        "slogan": "Power State"
+      }
+    },
+    {
+      "id": "NG-OG",
+      "name": "Ogun",
+      "code": "OG",
+      "capital": "Abeokuta",
+      "region": "south-west",
+      "population": 5217716,
+      "coordinates": {
+        "latitude": 7.1556,
+        "longitude": 3.3447
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 16762,
+        "timezone": "WAT",
+        "slogan": "Gateway State"
+      }
+    },
+    {
+      "id": "NG-ON",
+      "name": "Ondo",
+      "code": "ON",
+      "capital": "Akure",
+      "region": "south-west",
+      "population": 4671700,
+      "coordinates": {
+        "latitude": 7.2500,
+        "longitude": 5.2000
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 15500,
+        "timezone": "WAT",
+        "slogan": "Sunshine State"
+      }
+    },
+    {
+      "id": "NG-OS",
+      "name": "Osun",
+      "code": "OS",
+      "capital": "Osogbo",
+      "region": "south-west",
+      "population": 4705589,
+      "coordinates": {
+        "latitude": 7.7667,
+        "longitude": 4.5667
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 9251,
+        "timezone": "WAT",
+        "slogan": "State of the Living Spring"
+      }
+    },
+    {
+      "id": "NG-OY",
+      "name": "Oyo",
+      "code": "OY",
+      "capital": "Ibadan",
+      "region": "south-west",
+      "population": 7840864,
+      "coordinates": {
+        "latitude": 8.0000,
+        "longitude": 4.0000
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 28454,
+        "timezone": "WAT",
+        "slogan": "Pace Setter State"
+      }
+    },
+    {
+      "id": "NG-PL",
+      "name": "Plateau",
+      "code": "PL",
+      "capital": "Jos",
+      "region": "north-central",
+      "population": 4200442,
+      "coordinates": {
+        "latitude": 9.2182,
+        "longitude": 9.5179
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 30913,
+        "timezone": "WAT",
+        "slogan": "Home of Peace and Tourism"
+      }
+    },
+    {
+      "id": "NG-RI",
+      "name": "Rivers",
+      "code": "RI",
+      "capital": "Port Harcourt",
+      "region": "south-south",
+      "population": 7303924,
+      "coordinates": {
+        "latitude": 4.8156,
+        "longitude": 7.0498
+      },
+      "metadata": {
+        "established": "1967-05-27",
+        "area_km2": 11077,
+        "timezone": "WAT",
+        "slogan": "Treasure Base of the Nation"
+      }
+    },
+    {
+      "id": "NG-SO",
+      "name": "Sokoto",
+      "code": "SO",
+      "capital": "Sokoto",
+      "region": "north-west",
+      "population": 4998090,
+      "coordinates": {
+        "latitude": 13.0059,
+        "longitude": 5.2476
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 25973,
+        "timezone": "WAT",
+        "slogan": "Seat of the Caliphate"
+      }
+    },
+    {
+      "id": "NG-TA",
+      "name": "Taraba",
+      "code": "TA",
+      "capital": "Jalingo",
+      "region": "north-east",
+      "population": 3066842,
+      "coordinates": {
+        "latitude": 8.8833,
+        "longitude": 11.3667
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 54473,
+        "timezone": "WAT",
+        "slogan": "Nature's Gift to the Nation"
+      }
+    },
+    {
+      "id": "NG-YO",
+      "name": "Yobe",
+      "code": "YO",
+      "capital": "Damaturu",
+      "region": "north-east",
+      "population": 3294718,
+      "coordinates": {
+        "latitude": 11.7500,
+        "longitude": 11.9667
+      },
+      "metadata": {
+        "established": "1991-08-27",
+        "area_km2": 45502,
+        "timezone": "WAT",
+        "slogan": "Pride of the Sahel"
+      }
+    },
+    {
+      "id": "NG-ZA",
+      "name": "Zamfara",
+      "code": "ZA",
+      "capital": "Gusau",
+      "region": "north-west",
+      "population": 4515427,
+      "coordinates": {
+        "latitude": 12.1667,
+        "longitude": 6.2500
+      },
+      "metadata": {
+        "established": "1996-10-01",
+        "area_km2": 39762,
+        "timezone": "WAT",
+        "slogan": "Farming is Our Pride"
+      }
+    },
+    {
+      "id": "NG-FCT",
+      "name": "Federal Capital Territory",
+      "code": "FCT",
+      "capital": "Abuja",
+      "region": "north-central",
+      "population": 3564126,
+      "coordinates": {
+        "latitude": 9.0579,
+        "longitude": 7.4951
+      },
+      "metadata": {
+        "established": "1976-02-03",
+        "area_km2": 7315,
+        "timezone": "WAT",
+        "slogan": "Centre of Unity"
+      }
+    }
+  ]
+}

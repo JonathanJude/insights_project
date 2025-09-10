@@ -1,0 +1,1189 @@
+{
+  "lgas": [
+    {
+      "id": "NG-AB-ABA-N",
+      "name": "Aba North",
+      "code": "ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1167,
+        "longitude": 7.3667
+      },
+      "metadata": {
+        "area_km2": 17.0,
+        "population": 204000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-ABA-S",
+      "name": "Aba South",
+      "code": "ABA-S",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1000,
+        "longitude": 7.3500
+      },
+      "metadata": {
+        "area_km2": 18.5,
+        "population": 312000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-ARO",
+      "name": "Arochukwu",
+      "code": "ARO",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.3833,
+        "longitude": 7.9167
+      },
+      "metadata": {
+        "area_km2": 713.0,
+        "population": 97000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-BEN",
+      "name": "Bende",
+      "code": "BEN",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.5500,
+        "longitude": 7.6333
+      },
+      "metadata": {
+        "area_km2": 786.0,
+        "population": 187000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-IKW",
+      "name": "Ikwuano",
+      "code": "IKW",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.6167,
+        "longitude": 7.5833
+      },
+      "metadata": {
+        "area_km2": 281.0,
+        "population": 123000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-ISI",
+      "name": "Isiala Ngwa North",
+      "code": "ISI-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.4167,
+        "longitude": 7.3833
+      },
+      "metadata": {
+        "area_km2": 198.0,
+        "population": 134000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-ISS",
+      "name": "Isiala Ngwa South",
+      "code": "ISI-S",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.3833,
+        "longitude": 7.3500
+      },
+      "metadata": {
+        "area_km2": 225.0,
+        "population": 148000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-ISU",
+      "name": "Isuikwuato",
+      "code": "ISU",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.8000,
+        "longitude": 7.4833
+      },
+      "metadata": {
+        "area_km2": 1134.0,
+        "population": 114000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-OBI",
+      "name": "Obi Ngwa",
+      "code": "OBI",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.3500,
+        "longitude": 7.4167
+      },
+      "metadata": {
+        "area_km2": 97.0,
+        "population": 156000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-OHA",
+      "name": "Ohafia",
+      "code": "OHA",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.6167,
+        "longitude": 7.8000
+      },
+      "metadata": {
+        "area_km2": 531.0,
+        "population": 179000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-OSI",
+      "name": "Osisioma",
+      "code": "OSI",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1833,
+        "longitude": 7.3833
+      },
+      "metadata": {
+        "area_km2": 62.0,
+        "population": 198000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-UGW",
+      "name": "Ugwunagbo",
+      "code": "UGW",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.2833,
+        "longitude": 7.4500
+      },
+      "metadata": {
+        "area_km2": 260.0,
+        "population": 89000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-UKW",
+      "name": "Ukwa East",
+      "code": "UKW-E",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1167,
+        "longitude": 7.5333
+      },
+      "metadata": {
+        "area_km2": 423.0,
+        "population": 173000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-UKS",
+      "name": "Ukwa West",
+      "code": "UKW-W",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.0833,
+        "longitude": 7.4833
+      },
+      "metadata": {
+        "area_km2": 396.0,
+        "population": 134000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-AB-UMU-N",
+      "name": "Umuahia North",
+      "code": "UMU-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.5333,
+        "longitude": 7.4833
+      },
+      "metadata": {
+        "area_km2": 296.0,
+        "population": 179000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-UMU-S",
+      "name": "Umuahia South",
+      "code": "UMU-S",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.4833,
+        "longitude": 7.4667
+      },
+      "metadata": {
+        "area_km2": 303.0,
+        "population": 167000,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-AB-UMU-NE",
+      "name": "Umu Nneochi",
+      "code": "UMU-NE",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.8833,
+        "longitude": 7.3833
+      },
+      "metadata": {
+        "area_km2": 1123.0,
+        "population": 178000,
+        "established": "1996"
+      }
+    },
+    {
+      "id": "NG-LA-AGB",
+      "name": "Agege",
+      "code": "AGB",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.6167,
+        "longitude": 3.3333
+      },
+      "metadata": {
+        "area_km2": 11.2,
+        "population": 459939,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-AJE",
+      "name": "Ajeromi-Ifelodun",
+      "code": "AJE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4667,
+        "longitude": 3.3167
+      },
+      "metadata": {
+        "area_km2": 12.3,
+        "population": 684105,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-ALI",
+      "name": "Alimosho",
+      "code": "ALI",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5833,
+        "longitude": 3.2500
+      },
+      "metadata": {
+        "area_km2": 137.8,
+        "population": 1277714,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-AMU",
+      "name": "Amuwo-Odofin",
+      "code": "AMU",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4667,
+        "longitude": 3.3833
+      },
+      "metadata": {
+        "area_km2": 179.1,
+        "population": 318166,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-APK",
+      "name": "Apapa",
+      "code": "APK",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4500,
+        "longitude": 3.3667
+      },
+      "metadata": {
+        "area_km2": 26.7,
+        "population": 217362,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-BAD",
+      "name": "Badagry",
+      "code": "BAD",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4167,
+        "longitude": 2.8833
+      },
+      "metadata": {
+        "area_km2": 441.0,
+        "population": 241093,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-EPE",
+      "name": "Epe",
+      "code": "EPE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5833,
+        "longitude": 3.9833
+      },
+      "metadata": {
+        "area_km2": 1218.0,
+        "population": 181409,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-ETI",
+      "name": "Eti-Osa",
+      "code": "ETI",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4333,
+        "longitude": 3.6000
+      },
+      "metadata": {
+        "area_km2": 192.3,
+        "population": 287785,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-IFE",
+      "name": "Ifelodun",
+      "code": "IFE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5167,
+        "longitude": 3.3500
+      },
+      "metadata": {
+        "area_km2": 26.6,
+        "population": 593316,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-IKE",
+      "name": "Ikeja",
+      "code": "IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5967,
+        "longitude": 3.3378
+      },
+      "metadata": {
+        "area_km2": 49.9,
+        "population": 313196,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-IKO",
+      "name": "Ikorodu",
+      "code": "IKO",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.6167,
+        "longitude": 3.5167
+      },
+      "metadata": {
+        "area_km2": 345.0,
+        "population": 535619,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-ISL",
+      "name": "Lagos Island",
+      "code": "ISL",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4500,
+        "longitude": 3.3833
+      },
+      "metadata": {
+        "area_km2": 8.7,
+        "population": 209437,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-MLD",
+      "name": "Lagos Mainland",
+      "code": "MLD",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5000,
+        "longitude": 3.3667
+      },
+      "metadata": {
+        "area_km2": 19.6,
+        "population": 317720,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-MUS",
+      "name": "Mushin",
+      "code": "MUS",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5333,
+        "longitude": 3.3500
+      },
+      "metadata": {
+        "area_km2": 17.5,
+        "population": 633009,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-OJO",
+      "name": "Ojo",
+      "code": "OJO",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.4667,
+        "longitude": 3.1667
+      },
+      "metadata": {
+        "area_km2": 158.0,
+        "population": 598071,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-OSH",
+      "name": "Oshodi-Isolo",
+      "code": "OSH",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5333,
+        "longitude": 3.3167
+      },
+      "metadata": {
+        "area_km2": 44.8,
+        "population": 621509,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-SOM",
+      "name": "Somolu",
+      "code": "SOM",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5333,
+        "longitude": 3.3833
+      },
+      "metadata": {
+        "area_km2": 11.6,
+        "population": 402673,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-LA-SUR",
+      "name": "Surulere",
+      "code": "SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5056,
+        "longitude": 3.3619
+      },
+      "metadata": {
+        "area_km2": 23.0,
+        "population": 503975,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-AJI",
+      "name": "Ajingi",
+      "code": "AJI",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.1167,
+        "longitude": 8.7833
+      },
+      "metadata": {
+        "area_km2": 797.0,
+        "population": 168926,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-ALB",
+      "name": "Albasu",
+      "code": "ALB",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0833,
+        "longitude": 8.3167
+      },
+      "metadata": {
+        "area_km2": 932.0,
+        "population": 201462,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-BAG",
+      "name": "Bagwai",
+      "code": "BAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.3167,
+        "longitude": 8.2833
+      },
+      "metadata": {
+        "area_km2": 421.0,
+        "population": 164065,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-BEK",
+      "name": "Bebeji",
+      "code": "BEK",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.2167,
+        "longitude": 8.2333
+      },
+      "metadata": {
+        "area_km2": 1204.0,
+        "population": 326095,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-BIC",
+      "name": "Bichi",
+      "code": "BIC",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.2333,
+        "longitude": 8.2500
+      },
+      "metadata": {
+        "area_km2": 652.0,
+        "population": 246715,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-BUN",
+      "name": "Bunkure",
+      "code": "BUN",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0500,
+        "longitude": 8.5333
+      },
+      "metadata": {
+        "area_km2": 486.0,
+        "population": 162184,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-DAW",
+      "name": "Dala",
+      "code": "DAW",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9833,
+        "longitude": 8.5167
+      },
+      "metadata": {
+        "area_km2": 15.0,
+        "population": 406330,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-DAN",
+      "name": "Danbatta",
+      "code": "DAN",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.3167,
+        "longitude": 8.5167
+      },
+      "metadata": {
+        "area_km2": 668.0,
+        "population": 224465,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-DAW-K",
+      "name": "Dawaki Kudu",
+      "code": "DAW-K",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.8833,
+        "longitude": 8.4167
+      },
+      "metadata": {
+        "area_km2": 269.0,
+        "population": 118687,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-DAW-T",
+      "name": "Dawaki Tofa",
+      "code": "DAW-T",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9333,
+        "longitude": 8.3833
+      },
+      "metadata": {
+        "area_km2": 189.0,
+        "population": 112348,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-DOG",
+      "name": "Doguwa",
+      "code": "DOG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9000,
+        "longitude": 8.9167
+      },
+      "metadata": {
+        "area_km2": 564.0,
+        "population": 136970,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-FAG",
+      "name": "Fagge",
+      "code": "FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0000,
+        "longitude": 8.5167
+      },
+      "metadata": {
+        "area_km2": 28.0,
+        "population": 781974,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GAB",
+      "name": "Gabasawa",
+      "code": "GAB",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.1833,
+        "longitude": 8.3833
+      },
+      "metadata": {
+        "area_km2": 394.0,
+        "population": 162815,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GAR",
+      "name": "Garko",
+      "code": "GAR",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.8167,
+        "longitude": 8.4833
+      },
+      "metadata": {
+        "area_km2": 162.0,
+        "population": 96331,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GAR-M",
+      "name": "Garun Mallam",
+      "code": "GAR-M",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9500,
+        "longitude": 8.3500
+      },
+      "metadata": {
+        "area_km2": 158.0,
+        "population": 208057,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GAZ",
+      "name": "Gaya",
+      "code": "GAZ",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.8500,
+        "longitude": 8.6833
+      },
+      "metadata": {
+        "area_km2": 520.0,
+        "population": 224336,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GAZ-W",
+      "name": "Gezawa",
+      "code": "GAZ-W",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0833,
+        "longitude": 8.6500
+      },
+      "metadata": {
+        "area_km2": 607.0,
+        "population": 342980,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GWA",
+      "name": "Gwale",
+      "code": "GWA",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0167,
+        "longitude": 8.5000
+      },
+      "metadata": {
+        "area_km2": 18.0,
+        "population": 362059,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-GWA-R",
+      "name": "Gwarzo",
+      "code": "GWA-R",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.1167,
+        "longitude": 8.3333
+      },
+      "metadata": {
+        "area_km2": 532.0,
+        "population": 281085,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KAB",
+      "name": "Kabo",
+      "code": "KAB",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.2333,
+        "longitude": 8.4167
+      },
+      "metadata": {
+        "area_km2": 301.0,
+        "population": 180742,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KAN-M",
+      "name": "Kano Municipal",
+      "code": "KAN-M",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0022,
+        "longitude": 8.5920
+      },
+      "metadata": {
+        "area_km2": 17.0,
+        "population": 365525,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KAR",
+      "name": "Karaye",
+      "code": "KAR",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0333,
+        "longitude": 8.2833
+      },
+      "metadata": {
+        "area_km2": 479.0,
+        "population": 196022,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KAB-I",
+      "name": "Kibiya",
+      "code": "KAB-I",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.1833,
+        "longitude": 8.6167
+      },
+      "metadata": {
+        "area_km2": 362.0,
+        "population": 145987,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KIR",
+      "name": "Kiru",
+      "code": "KIR",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0500,
+        "longitude": 8.7167
+      },
+      "metadata": {
+        "area_km2": 506.0,
+        "population": 185187,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KUM",
+      "name": "Kumbotso",
+      "code": "KUM",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9667,
+        "longitude": 8.5333
+      },
+      "metadata": {
+        "area_km2": 158.0,
+        "population": 294391,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KUN",
+      "name": "Kunchi",
+      "code": "KUN",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.4667,
+        "longitude": 8.4833
+      },
+      "metadata": {
+        "area_km2": 424.0,
+        "population": 169245,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-KUR",
+      "name": "Kura",
+      "code": "KUR",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.7833,
+        "longitude": 8.4333
+      },
+      "metadata": {
+        "area_km2": 210.0,
+        "population": 109855,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-MAD",
+      "name": "Madobi",
+      "code": "MAD",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.7500,
+        "longitude": 8.1833
+      },
+      "metadata": {
+        "area_km2": 499.0,
+        "population": 184205,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-MAK",
+      "name": "Makoda",
+      "code": "MAK",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0833,
+        "longitude": 8.8167
+      },
+      "metadata": {
+        "area_km2": 648.0,
+        "population": 147613,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-MIN",
+      "name": "Minjibir",
+      "code": "MIN",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.1833,
+        "longitude": 8.6500
+      },
+      "metadata": {
+        "area_km2": 497.0,
+        "population": 213584,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-NAS",
+      "name": "Nasarawa",
+      "code": "NAS",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0000,
+        "longitude": 8.5333
+      },
+      "metadata": {
+        "area_km2": 71.0,
+        "population": 618490,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-RAN",
+      "name": "Rano",
+      "code": "RAN",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.5500,
+        "longitude": 8.5833
+      },
+      "metadata": {
+        "area_km2": 520.0,
+        "population": 145439,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-RIM",
+      "name": "Rimin Gado",
+      "code": "RIM",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.8167,
+        "longitude": 8.3500
+      },
+      "metadata": {
+        "area_km2": 212.0,
+        "population": 247207,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-RIS",
+      "name": "Rogo",
+      "code": "RIS",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.6167,
+        "longitude": 8.2833
+      },
+      "metadata": {
+        "area_km2": 711.0,
+        "population": 179830,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-SHA",
+      "name": "Shanono",
+      "code": "SHA",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9833,
+        "longitude": 8.2167
+      },
+      "metadata": {
+        "area_km2": 307.0,
+        "population": 193154,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-SUM",
+      "name": "Sumaila",
+      "code": "SUM",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.5167,
+        "longitude": 8.7167
+      },
+      "metadata": {
+        "area_km2": 918.0,
+        "population": 230969,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-TAK",
+      "name": "Takai",
+      "code": "TAK",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0000,
+        "longitude": 8.7833
+      },
+      "metadata": {
+        "area_km2": 460.0,
+        "population": 293438,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-TAN",
+      "name": "Tarauni",
+      "code": "TAN",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0167,
+        "longitude": 8.5500
+      },
+      "metadata": {
+        "area_km2": 11.0,
+        "population": 518768,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-TOF",
+      "name": "Tofa",
+      "code": "TOF",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9333,
+        "longitude": 8.3167
+      },
+      "metadata": {
+        "area_km2": 435.0,
+        "population": 112452,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-TSA",
+      "name": "Tsanyawa",
+      "code": "TSA",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.1833,
+        "longitude": 8.9000
+      },
+      "metadata": {
+        "area_km2": 632.0,
+        "population": 235331,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-TUD",
+      "name": "Tudun Wada",
+      "code": "TUD",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9833,
+        "longitude": 8.4833
+      },
+      "metadata": {
+        "area_km2": 22.0,
+        "population": 307878,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-UNG",
+      "name": "Ungogo",
+      "code": "UNG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0500,
+        "longitude": 8.5000
+      },
+      "metadata": {
+        "area_km2": 204.0,
+        "population": 447731,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-WAR",
+      "name": "Warawa",
+      "code": "WAR",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.8500,
+        "longitude": 8.6167
+      },
+      "metadata": {
+        "area_km2": 334.0,
+        "population": 162581,
+        "established": "1976"
+      }
+    },
+    {
+      "id": "NG-KN-WUD",
+      "name": "Wudil",
+      "code": "WUD",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.8000,
+        "longitude": 8.8500
+      },
+      "metadata": {
+        "area_km2": 362.0,
+        "population": 179593,
+        "established": "1976"
+      }
+    }
+  ]
+}

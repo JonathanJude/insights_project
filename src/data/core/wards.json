@@ -1,0 +1,684 @@
+{
+  "wards": [
+    {
+      "id": "NG-LA-SUR-W01",
+      "number": 1,
+      "name": "Aguda/Surulere",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5089,
+        "longitude": 3.3654
+      },
+      "metadata": {
+        "area_km2": 2.1,
+        "population": 45230,
+        "registeredVoters": 28450,
+        "pollingUnits": 12
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W02",
+      "number": 2,
+      "name": "Coker/Aguda",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5123,
+        "longitude": 3.3687
+      },
+      "metadata": {
+        "area_km2": 1.8,
+        "population": 38920,
+        "registeredVoters": 24680,
+        "pollingUnits": 10
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W03",
+      "number": 3,
+      "name": "Ijeshatedo/Ijesha",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5156,
+        "longitude": 3.3721
+      },
+      "metadata": {
+        "area_km2": 2.3,
+        "population": 52340,
+        "registeredVoters": 31890,
+        "pollingUnits": 14
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W04",
+      "number": 4,
+      "name": "Itire/Ikate",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5234,
+        "longitude": 3.3598
+      },
+      "metadata": {
+        "area_km2": 1.9,
+        "population": 41560,
+        "registeredVoters": 26780,
+        "pollingUnits": 11
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W05",
+      "number": 5,
+      "name": "Kilo/Maroko",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5067,
+        "longitude": 3.3543
+      },
+      "metadata": {
+        "area_km2": 2.0,
+        "population": 47890,
+        "registeredVoters": 29340,
+        "pollingUnits": 13
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W06",
+      "number": 6,
+      "name": "Lawanson",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5178,
+        "longitude": 3.3612
+      },
+      "metadata": {
+        "area_km2": 1.7,
+        "population": 39670,
+        "registeredVoters": 25120,
+        "pollingUnits": 9
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W07",
+      "number": 7,
+      "name": "Shitta/Balogun",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5045,
+        "longitude": 3.3576
+      },
+      "metadata": {
+        "area_km2": 1.6,
+        "population": 36780,
+        "registeredVoters": 23450,
+        "pollingUnits": 8
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W08",
+      "number": 8,
+      "name": "Surulere",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5098,
+        "longitude": 3.3634
+      },
+      "metadata": {
+        "area_km2": 2.2,
+        "population": 49230,
+        "registeredVoters": 30890,
+        "pollingUnits": 12
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W09",
+      "number": 9,
+      "name": "Ojuelegba",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5012,
+        "longitude": 3.3689
+      },
+      "metadata": {
+        "area_km2": 1.5,
+        "population": 34560,
+        "registeredVoters": 22340,
+        "pollingUnits": 7
+      }
+    },
+    {
+      "id": "NG-LA-SUR-W10",
+      "number": 10,
+      "name": "Adeniran Ogunsanya",
+      "lgaId": "NG-LA-SUR",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5134,
+        "longitude": 3.3567
+      },
+      "metadata": {
+        "area_km2": 1.9,
+        "population": 42890,
+        "registeredVoters": 27560,
+        "pollingUnits": 10
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W01",
+      "number": 1,
+      "name": "Agidingbi",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.6023,
+        "longitude": 3.3456
+      },
+      "metadata": {
+        "area_km2": 3.2,
+        "population": 38450,
+        "registeredVoters": 24890,
+        "pollingUnits": 11
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W02",
+      "number": 2,
+      "name": "Anifowoshe",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5934,
+        "longitude": 3.3389
+      },
+      "metadata": {
+        "area_km2": 2.8,
+        "population": 34670,
+        "registeredVoters": 22340,
+        "pollingUnits": 9
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W03",
+      "number": 3,
+      "name": "Ikeja",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5967,
+        "longitude": 3.3378
+      },
+      "metadata": {
+        "area_km2": 4.1,
+        "population": 52340,
+        "registeredVoters": 33450,
+        "pollingUnits": 15
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W04",
+      "number": 4,
+      "name": "Ojodu",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.6156,
+        "longitude": 3.3234
+      },
+      "metadata": {
+        "area_km2": 3.5,
+        "population": 41230,
+        "registeredVoters": 26780,
+        "pollingUnits": 12
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W05",
+      "number": 5,
+      "name": "Ojota",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5789,
+        "longitude": 3.3456
+      },
+      "metadata": {
+        "area_km2": 2.9,
+        "population": 36890,
+        "registeredVoters": 23670,
+        "pollingUnits": 10
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W06",
+      "number": 6,
+      "name": "Onigbongbo",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5823,
+        "longitude": 3.3512
+      },
+      "metadata": {
+        "area_km2": 2.6,
+        "population": 32450,
+        "registeredVoters": 21230,
+        "pollingUnits": 8
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W07",
+      "number": 7,
+      "name": "Oregun",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5712,
+        "longitude": 3.3423
+      },
+      "metadata": {
+        "area_km2": 3.1,
+        "population": 39560,
+        "registeredVoters": 25340,
+        "pollingUnits": 11
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W08",
+      "number": 8,
+      "name": "Alausa",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.6034,
+        "longitude": 3.3512
+      },
+      "metadata": {
+        "area_km2": 2.7,
+        "population": 33780,
+        "registeredVoters": 22450,
+        "pollingUnits": 9
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W09",
+      "number": 9,
+      "name": "Allen Avenue",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5945,
+        "longitude": 3.3445
+      },
+      "metadata": {
+        "area_km2": 2.4,
+        "population": 31230,
+        "registeredVoters": 20890,
+        "pollingUnits": 8
+      }
+    },
+    {
+      "id": "NG-LA-IKE-W10",
+      "number": 10,
+      "name": "Computer Village",
+      "lgaId": "NG-LA-IKE",
+      "stateId": "NG-LA",
+      "coordinates": {
+        "latitude": 6.5856,
+        "longitude": 3.3389
+      },
+      "metadata": {
+        "area_km2": 2.2,
+        "population": 28670,
+        "registeredVoters": 19450,
+        "pollingUnits": 7
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W01",
+      "number": 1,
+      "name": "Ariaria Market",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1234,
+        "longitude": 7.3723
+      },
+      "metadata": {
+        "area_km2": 1.2,
+        "population": 18450,
+        "registeredVoters": 12340,
+        "pollingUnits": 6
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W02",
+      "number": 2,
+      "name": "Eziama",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1189,
+        "longitude": 7.3645
+      },
+      "metadata": {
+        "area_km2": 1.4,
+        "population": 21230,
+        "registeredVoters": 14560,
+        "pollingUnits": 7
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W03",
+      "number": 3,
+      "name": "Industrial Area",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1156,
+        "longitude": 7.3689
+      },
+      "metadata": {
+        "area_km2": 1.6,
+        "population": 23890,
+        "registeredVoters": 16780,
+        "pollingUnits": 8
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W04",
+      "number": 4,
+      "name": "Ngwa Road",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1098,
+        "longitude": 7.3612
+      },
+      "metadata": {
+        "area_km2": 1.3,
+        "population": 19670,
+        "registeredVoters": 13450,
+        "pollingUnits": 6
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W05",
+      "number": 5,
+      "name": "Ogbor Hill",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1267,
+        "longitude": 7.3756
+      },
+      "metadata": {
+        "area_km2": 1.5,
+        "population": 22340,
+        "registeredVoters": 15230,
+        "pollingUnits": 7
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W06",
+      "number": 6,
+      "name": "Old Aba GRA",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1145,
+        "longitude": 7.3578
+      },
+      "metadata": {
+        "area_km2": 1.1,
+        "population": 17890,
+        "registeredVoters": 12670,
+        "pollingUnits": 5
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W07",
+      "number": 7,
+      "name": "Umuola",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1201,
+        "longitude": 7.3634
+      },
+      "metadata": {
+        "area_km2": 1.3,
+        "population": 20560,
+        "registeredVoters": 14230,
+        "pollingUnits": 6
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W08",
+      "number": 8,
+      "name": "Uratta",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1178,
+        "longitude": 7.3701
+      },
+      "metadata": {
+        "area_km2": 1.4,
+        "population": 21780,
+        "registeredVoters": 15670,
+        "pollingUnits": 7
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W09",
+      "number": 9,
+      "name": "Umuahia Road",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1223,
+        "longitude": 7.3667
+      },
+      "metadata": {
+        "area_km2": 1.2,
+        "population": 18340,
+        "registeredVoters": 12890,
+        "pollingUnits": 6
+      }
+    },
+    {
+      "id": "NG-AB-ABA-N-W10",
+      "number": 10,
+      "name": "Waterside",
+      "lgaId": "NG-AB-ABA-N",
+      "stateId": "NG-AB",
+      "coordinates": {
+        "latitude": 5.1089,
+        "longitude": 7.3589
+      },
+      "metadata": {
+        "area_km2": 1.1,
+        "population": 16890,
+        "registeredVoters": 11450,
+        "pollingUnits": 5
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W01",
+      "number": 1,
+      "name": "Fagge A",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0034,
+        "longitude": 8.5189
+      },
+      "metadata": {
+        "area_km2": 2.1,
+        "population": 58340,
+        "registeredVoters": 38450,
+        "pollingUnits": 18
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W02",
+      "number": 2,
+      "name": "Fagge B",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0067,
+        "longitude": 8.5234
+      },
+      "metadata": {
+        "area_km2": 2.3,
+        "population": 62890,
+        "registeredVoters": 41230,
+        "pollingUnits": 20
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W03",
+      "number": 3,
+      "name": "Fagge C",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9989,
+        "longitude": 8.5156
+      },
+      "metadata": {
+        "area_km2": 2.0,
+        "population": 54670,
+        "registeredVoters": 36780,
+        "pollingUnits": 17
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W04",
+      "number": 4,
+      "name": "Fagge D",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0012,
+        "longitude": 8.5201
+      },
+      "metadata": {
+        "area_km2": 1.9,
+        "population": 51230,
+        "registeredVoters": 34560,
+        "pollingUnits": 16
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W05",
+      "number": 5,
+      "name": "Kwachiri",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9956,
+        "longitude": 8.5123
+      },
+      "metadata": {
+        "area_km2": 2.2,
+        "population": 59780,
+        "registeredVoters": 39890,
+        "pollingUnits": 19
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W06",
+      "number": 6,
+      "name": "Yammata",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0089,
+        "longitude": 8.5267
+      },
+      "metadata": {
+        "area_km2": 2.4,
+        "population": 65340,
+        "registeredVoters": 43450,
+        "pollingUnits": 21
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W07",
+      "number": 7,
+      "name": "Zango",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9923,
+        "longitude": 8.5089
+      },
+      "metadata": {
+        "area_km2": 1.8,
+        "population": 48560,
+        "registeredVoters": 32890,
+        "pollingUnits": 15
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W08",
+      "number": 8,
+      "name": "Kofar Mazugal",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0045,
+        "longitude": 8.5178
+      },
+      "metadata": {
+        "area_km2": 2.1,
+        "population": 57890,
+        "registeredVoters": 38230,
+        "pollingUnits": 18
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W09",
+      "number": 9,
+      "name": "Kofar Ruwa",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 11.9978,
+        "longitude": 8.5145
+      },
+      "metadata": {
+        "area_km2": 1.7,
+        "population": 46780,
+        "registeredVoters": 31450,
+        "pollingUnits": 14
+      }
+    },
+    {
+      "id": "NG-KN-FAG-W10",
+      "number": 10,
+      "name": "Kofar Wambai",
+      "lgaId": "NG-KN-FAG",
+      "stateId": "NG-KN",
+      "coordinates": {
+        "latitude": 12.0123,
+        "longitude": 8.5212
+      },
+      "metadata": {
+        "area_km2": 2.0,
+        "population": 53450,
+        "registeredVoters": 36120,
+        "pollingUnits": 17
+      }
+    }
+  ]
+}
