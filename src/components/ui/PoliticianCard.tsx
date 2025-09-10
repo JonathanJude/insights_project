@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 import type { EnhancedPoliticianData } from '../../lib/enhancedMockDataService';
 import { useUIStore } from '../../stores/uiStore';
 import type { Politician } from '../../types';
+import MobilePoliticianCard from './MobilePoliticianCard';
 import PoliticianImage from './PoliticianImage';
 
 interface PoliticianCardProps {

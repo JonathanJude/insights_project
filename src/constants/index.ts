@@ -1,4 +1,9 @@
-import { PoliticalParty, NigerianState, SocialPlatform, Gender, AgeGroup, PoliticalLevel, SentimentLabel } from '../types';
+import { AgeGroup, Gender, NigerianState, PoliticalLevel, PoliticalParty, SentimentLabel, SocialPlatform } from '../types';
+
+// Export all new configuration constants
+export * from './configurations';
+export * from './enums';
+export * from './messages';
 
 // Nigerian States
 export const NIGERIAN_STATES = [
