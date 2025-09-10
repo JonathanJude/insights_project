@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "politicians.schema.json",
+  "title": "Politicians Schema",
+  "description": "Schema for politicians data structure",
+  "version": "1.0.0",
+  "type": "object",
+  "properties": {
+    "politicians": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/politician"
+      }
+    }
+  },
+  "required": ["politicians"],
+  "definitions": {
+    "politician": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^NG-POL-[0-9]+$",
+          "description": "Unique politician identifier"
+        },
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "First name"
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "Last name"
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Full name"
+        },
+        "partyId": {
+          "type": "string",
+          "pattern": "^NG-PARTY-[A-Z]+$",
+          "description": "Reference to political party"
+        },
+        "currentPositionId": {
+          "type": "string",
+          "pattern": "^NG-POS-[A-Z_]+$",
+          "description": "Reference to current political position"
+        },
+        "stateOfOriginId": {
+          "type": "string",
+          "pattern": "^NG-[A-Z]{2,3}$",
+          "description": "Reference to state of origin"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of birth"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "non-binary", "other"],
+          "description": "Gender"
+        },
+        "education": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/education"
+          }
+        },
+        "politicalHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/politicalHistory"
+          }
+        },
+        "socialMedia": {
+          "$ref": "#/definitions/socialMedia"
+        },
+        "metadata": {
+          "$ref": "#/definitions/politicianMetadata"
+        }
+      },
+      "required": ["id", "firstName", "lastName", "fullName"],
+      "additionalProperties": false
+    },
+    "education": {
+      "type": "object",
+      "properties": {
+        "institution": {
+          "type": "string",
+          "description": "Educational institution"
+        },
+        "degree": {
+          "type": "string",
+          "description": "Degree obtained"
+        },
+        "field": {
+          "type": "string",
+          "description": "Field of study"
+        },
+        "year": {
+          "type": "integer",
+          "minimum": 1900,
+          "maximum": 2030,
+          "description": "Year of graduation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "politicalHistory": {
+      "type": "object",
+      "properties": {
+        "positionId": {
+          "type": "string",
+          "pattern": "^NG-POS-[A-Z_]+$",
+          "description": "Reference to political position"
+        },
+        "stateId": {
+          "type": "string",
+          "pattern": "^NG-[A-Z]{2,3}$",
+          "description": "Reference to state (if applicable)"
+        },
+        "startDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Start date of position"
+        },
+        "endDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "End date of position (null if current)"
+        },
+        "partyId": {
+          "type": "string",
+          "pattern": "^NG-PARTY-[A-Z]+$",
+          "description": "Party during this position"
+        }
+      },
+      "required": ["positionId", "startDate"],
+      "additionalProperties": false
+    },
+    "socialMedia": {
+      "type": "object",
+      "properties": {
+        "twitter": {
+          "type": "string",
+          "description": "Twitter handle"
+        },
+        "facebook": {
+          "type": "string",
+          "description": "Facebook handle"
+        },
+        "instagram": {
+          "type": "string",
+          "description": "Instagram handle"
+        }
+      },
+      "additionalProperties": true
+    },
+    "politicianMetadata": {
+      "type": "object",
+      "properties": {
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether politician is currently active"
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": ["verified", "unverified", "pending", "rejected"],
+          "description": "Verification status"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

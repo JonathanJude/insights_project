@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "parties.schema.json",
+  "title": "Political Parties Schema",
+  "description": "Schema for political parties data structure",
+  "version": "1.0.0",
+  "type": "object",
+  "properties": {
+    "parties": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/party"
+      }
+    }
+  },
+  "required": ["parties"],
+  "definitions": {
+    "party": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^NG-PARTY-[A-Z]+$",
+          "description": "Unique party identifier"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Full party name"
+        },
+        "abbreviation": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 10,
+          "description": "Party abbreviation"
+        },
+        "founded": {
+          "type": "string",
+          "format": "date",
+          "description": "Date party was founded"
+        },
+        "ideology": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Party ideologies"
+        },
+        "colors": {
+          "$ref": "#/definitions/partyColors"
+        },
+        "logo": {
+          "type": "string",
+          "description": "Path to party logo"
+        },
+        "headquarters": {
+          "$ref": "#/definitions/headquarters"
+        },
+        "leadership": {
+          "$ref": "#/definitions/leadership"
+        },
+        "metadata": {
+          "$ref": "#/definitions/partyMetadata"
+        }
+      },
+      "required": ["id", "name", "abbreviation", "colors"],
+      "additionalProperties": false
+    },
+    "partyColors": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Primary color in hex format"
+        },
+        "secondary": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Secondary color in hex format"
+        }
+      },
+      "required": ["primary"],
+      "additionalProperties": false
+    },
+    "headquarters": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "Headquarters address"
+        },
+        "stateId": {
+          "type": "string",
+          "pattern": "^NG-[A-Z]{2,3}$",
+          "description": "State where headquarters is located"
+        }
+      },
+      "additionalProperties": false
+    },
+    "leadership": {
+      "type": "object",
+      "properties": {
+        "nationalChairman": {
+          "type": "string",
+          "description": "National chairman name"
+        },
+        "nationalSecretary": {
+          "type": "string",
+          "description": "National secretary name"
+        }
+      },
+      "additionalProperties": true
+    },
+    "partyMetadata": {
+      "type": "object",
+      "properties": {
+        "registrationNumber": {
+          "type": "string",
+          "description": "Official registration number"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive", "suspended"],
+          "description": "Party status"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "Party website URL"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

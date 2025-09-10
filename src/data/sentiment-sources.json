@@ -1,0 +1,217 @@
+{
+  "sources": [
+    {
+      "id": "twitter",
+      "name": "Twitter",
+      "type": "social_media",
+      "isActive": true,
+      "apiEndpoint": "https://api.twitter.com/2/",
+      "rateLimit": {
+        "requestsPerMinute": 300,
+        "requestsPerHour": 15000,
+        "requestsPerDay": 500000
+      },
+      "dataFields": ["text", "author", "timestamp", "likes", "retweets", "replies"],
+      "metadata": {
+        "description": "Twitter social media platform for real-time sentiment analysis",
+        "website": "https://twitter.com",
+        "icon": "/icons/twitter.svg",
+        "color": "#1DA1F2",
+        "dataRetentionDays": 30,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["social", "microblogging", "real-time"]
+      }
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook",
+      "type": "social_media",
+      "isActive": true,
+      "apiEndpoint": "https://graph.facebook.com/",
+      "rateLimit": {
+        "requestsPerMinute": 200,
+        "requestsPerHour": 10000,
+        "requestsPerDay": 200000
+      },
+      "dataFields": ["text", "author", "timestamp", "likes", "shares", "comments"],
+      "metadata": {
+        "description": "Facebook social media platform for community sentiment analysis",
+        "website": "https://facebook.com",
+        "icon": "/icons/facebook.svg",
+        "color": "#4267B2",
+        "dataRetentionDays": 30,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["social", "networking", "community"]
+      }
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "type": "social_media",
+      "isActive": true,
+      "apiEndpoint": "https://graph.instagram.com/",
+      "rateLimit": {
+        "requestsPerMinute": 200,
+        "requestsPerHour": 5000,
+        "requestsPerDay": 100000
+      },
+      "dataFields": ["caption", "author", "timestamp", "likes", "comments"],
+      "metadata": {
+        "description": "Instagram photo and video sharing platform",
+        "website": "https://instagram.com",
+        "icon": "/icons/instagram.svg",
+        "color": "#E4405F",
+        "dataRetentionDays": 30,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["social", "visual", "photos", "videos"]
+      }
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "type": "video",
+      "isActive": true,
+      "apiEndpoint": "https://www.googleapis.com/youtube/v3/",
+      "rateLimit": {
+        "requestsPerMinute": 100,
+        "requestsPerHour": 10000,
+        "requestsPerDay": 1000000
+      },
+      "dataFields": ["title", "description", "comments", "likes", "views", "duration"],
+      "metadata": {
+        "description": "YouTube video sharing platform for video content sentiment",
+        "website": "https://youtube.com",
+        "icon": "/icons/youtube.svg",
+        "color": "#FF0000",
+        "dataRetentionDays": 60,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["video", "entertainment", "education", "content"]
+      }
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "type": "video",
+      "isActive": false,
+      "rateLimit": {
+        "requestsPerMinute": 50,
+        "requestsPerHour": 1000,
+        "requestsPerDay": 10000
+      },
+      "dataFields": ["description", "author", "timestamp", "likes", "shares", "comments"],
+      "metadata": {
+        "description": "TikTok short-form video platform",
+        "website": "https://tiktok.com",
+        "icon": "/icons/tiktok.svg",
+        "color": "#000000",
+        "dataRetentionDays": 30,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["video", "short-form", "entertainment", "viral"]
+      }
+    },
+    {
+      "id": "news_sites",
+      "name": "News Websites",
+      "type": "news",
+      "isActive": true,
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "requestsPerHour": 1000,
+        "requestsPerDay": 20000
+      },
+      "dataFields": ["headline", "content", "author", "timestamp", "category", "source"],
+      "metadata": {
+        "description": "Aggregated news websites and publications for news sentiment",
+        "icon": "/icons/news.svg",
+        "color": "#2563EB",
+        "dataRetentionDays": 90,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["news", "journalism", "current-events", "politics"]
+      }
+    },
+    {
+      "id": "blogs",
+      "name": "Blogs",
+      "type": "blog",
+      "isActive": true,
+      "rateLimit": {
+        "requestsPerMinute": 30,
+        "requestsPerHour": 500,
+        "requestsPerDay": 5000
+      },
+      "dataFields": ["title", "content", "author", "timestamp", "tags", "category"],
+      "metadata": {
+        "description": "Personal and professional blogs for opinion analysis",
+        "icon": "/icons/blog.svg",
+        "color": "#059669",
+        "dataRetentionDays": 120,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["blog", "opinion", "analysis", "personal"]
+      }
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "type": "forum",
+      "isActive": true,
+      "apiEndpoint": "https://www.reddit.com/api/",
+      "rateLimit": {
+        "requestsPerMinute": 60,
+        "requestsPerHour": 3600,
+        "requestsPerDay": 86400
+      },
+      "dataFields": ["title", "text", "author", "timestamp", "upvotes", "downvotes", "comments"],
+      "metadata": {
+        "description": "Reddit forum platform for community discussions",
+        "website": "https://reddit.com",
+        "icon": "/icons/reddit.svg",
+        "color": "#FF4500",
+        "dataRetentionDays": 45,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["forum", "community", "discussion", "social"]
+      }
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn",
+      "type": "social_media",
+      "isActive": false,
+      "apiEndpoint": "https://api.linkedin.com/v2/",
+      "rateLimit": {
+        "requestsPerMinute": 100,
+        "requestsPerHour": 5000,
+        "requestsPerDay": 100000
+      },
+      "dataFields": ["text", "author", "timestamp", "likes", "shares", "comments"],
+      "metadata": {
+        "description": "LinkedIn professional networking platform",
+        "website": "https://linkedin.com",
+        "icon": "/icons/linkedin.svg",
+        "color": "#0077B5",
+        "dataRetentionDays": 60,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["professional", "networking", "business", "career"]
+      }
+    },
+    {
+      "id": "podcasts",
+      "name": "Podcasts",
+      "type": "podcast",
+      "isActive": true,
+      "rateLimit": {
+        "requestsPerMinute": 10,
+        "requestsPerHour": 100,
+        "requestsPerDay": 1000
+      },
+      "dataFields": ["title", "description", "transcript", "author", "timestamp", "duration"],
+      "metadata": {
+        "description": "Podcast platforms for audio content sentiment analysis",
+        "icon": "/icons/podcast.svg",
+        "color": "#9333EA",
+        "dataRetentionDays": 180,
+        "lastUpdated": "2024-01-15T10:00:00Z",
+        "tags": ["audio", "podcast", "long-form", "interview"]
+      }
+    }
+  ]
+}

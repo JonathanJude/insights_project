@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sentiment-sources.schema.json",
+  "title": "Sentiment Sources Schema",
+  "description": "Schema for sentiment analysis data sources",
+  "version": "1.0.0",
+  "type": "object",
+  "properties": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/sentimentSource"
+      }
+    }
+  },
+  "required": ["sources"],
+  "definitions": {
+    "sentimentSource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_-]+$",
+          "description": "Unique source identifier (e.g., twitter, facebook)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "Display name of the source"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["social_media", "news", "blog", "forum", "video", "podcast", "other"],
+          "description": "Type category of the source"
+        },
+        "isActive": {
+          "type": "boolean",
+          "description": "Whether the source is currently active for data collection"
+        },
+        "apiEndpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "API endpoint for data collection (if applicable)"
+        },
+        "rateLimit": {
+          "$ref": "#/definitions/rateLimit"
+        },
+        "dataFields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Available data fields from this source"
+        },
+        "metadata": {
+          "$ref": "#/definitions/sourceMetadata"
+        }
+      },
+      "required": ["id", "name", "type", "isActive"],
+      "additionalProperties": false
+    },
+    "rateLimit": {
+      "type": "object",
+      "properties": {
+        "requestsPerMinute": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum requests per minute"
+        },
+        "requestsPerHour": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum requests per hour"
+        },
+        "requestsPerDay": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum requests per day"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceMetadata": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description of the source"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "Official website URL"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Path to source icon"
+        },
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Brand color in hex format"
+        },
+        "dataRetentionDays": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "How long to retain data from this source"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last time source configuration was updated"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tags for categorizing the source"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

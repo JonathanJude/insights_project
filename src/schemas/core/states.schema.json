@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "states.schema.json",
+  "title": "Nigerian States Schema",
+  "description": "Schema for Nigerian states data structure",
+  "version": "1.0.0",
+  "type": "object",
+  "properties": {
+    "states": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/state"
+      }
+    }
+  },
+  "required": ["states"],
+  "definitions": {
+    "state": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^NG-[A-Z]{2,3}$",
+          "description": "Unique state identifier (e.g., NG-LA for Lagos)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "Full state name"
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z]{2,3}$",
+          "description": "State code (2-3 letters)"
+        },
+        "capital": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50,
+          "description": "State capital city"
+        },
+        "region": {
+          "type": "string",
+          "enum": ["north-central", "north-east", "north-west", "south-east", "south-south", "south-west"],
+          "description": "Nigerian geopolitical zone"
+        },
+        "population": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "State population"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/coordinates"
+        },
+        "metadata": {
+          "$ref": "#/definitions/stateMetadata"
+        }
+      },
+      "required": ["id", "name", "code", "capital", "region", "coordinates"],
+      "additionalProperties": false
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "required": ["latitude", "longitude"],
+      "additionalProperties": false
+    },
+    "stateMetadata": {
+      "type": "object",
+      "properties": {
+        "established": {
+          "type": "string",
+          "format": "date",
+          "description": "Date when state was established"
+        },
+        "area_km2": {
+          "type": "number",
+          "minimum": 0,
+          "description": "State area in square kilometers"
+        },
+        "timezone": {
+          "type": "string",
+          "enum": ["WAT", "GMT", "UTC"],
+          "description": "State timezone"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}
