@@ -1,0 +1,828 @@
+{
+  "sentimentData": [
+    {
+      "id": "SENT-001",
+      "politicianId": "NG-POL-001",
+      "timestamp": "2024-01-15T08:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "timeOfDay": "morning",
+      "sourceId": "twitter",
+      "content": {
+        "originalPost": "Peter Obi's economic policies are exactly what Nigeria needs right now. His focus on job creation for young people is inspiring! 🇳🇬 #PeterObi #YouthEmpowerment #EconomicGrowth",
+        "author": "@NigerianYouth2024",
+        "authorVerified": false,
+        "authorFollowers": 12500,
+        "postId": "1747123456789012345",
+        "postUrl": "https://twitter.com/NigerianYouth2024/status/1747123456789012345",
+        "language": "en",
+        "hashtags": ["#PeterObi", "#YouthEmpowerment", "#EconomicGrowth"],
+        "mentions": ["@PeterObi"],
+        "mediaAttached": false,
+        "isRetweet": false,
+        "isReply": false,
+        "parentPostId": null
+      },
+      "sentimentLabel": "Positive",
+      "sentimentScore": 0.75,
+      "emotionType": "Joy",
+      "intensity": "Moderate",
+      "complexity": "Simple",
+      "confidence": "High",
+      "confidenceScore": 0.89,
+      "mentions": 1250,
+      "reach": 45000,
+      "engagement": {
+        "likes": 890,
+        "shares": 234,
+        "comments": 156,
+        "reactions": 1280
+      },
+      "demographics": {
+        "ageGroup": "26-35",
+        "gender": "mixed",
+        "education": "Tertiary",
+        "location": "Urban",
+        "occupation": "Professional Services"
+      },
+      "topics": ["Economy", "Youth/Jobs"],
+      "keywords": ["economic growth", "job creation", "youth empowerment"],
+      "context": {
+        "eventType": "Policy Announcements",
+        "campaignPhase": "Pre-Election",
+        "season": "Dry",
+        "politicalClimate": "stable"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "sourceReliability": "High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T08:30:00Z"
+      }
+    },
+    {
+      "id": "SENT-002",
+      "politicianId": "NG-POL-002",
+      "timestamp": "2024-01-15T14:30:00Z",
+      "dateRecorded": "2024-01-15",
+      "timeOfDay": "afternoon",
+      "sourceId": "facebook",
+      "content": {
+        "originalPost": "President Tinubu's infrastructure projects are progressing, but we still need to address the security challenges in the northern states. The road construction in Lagos is good, but what about rural areas? Mixed feelings about the current administration's priorities.",
+        "author": "Amina Hassan",
+        "authorVerified": false,
+        "authorFollowers": 3400,
+        "postId": "pfbid0ABC123DEF456GHI789JKL012MNO345PQR678STU901VWX234YZ",
+        "postUrl": "https://facebook.com/amina.hassan.2024/posts/123456789012345",
+        "language": "en",
+        "hashtags": [],
+        "mentions": [],
+        "mediaAttached": true,
+        "mediaType": "image",
+        "isShared": false,
+        "originalAuthor": null,
+        "groupPosted": false,
+        "pagePosted": false
+      },
+      "sentimentLabel": "Neutral",
+      "sentimentScore": 0.05,
+      "emotionType": "Mixed",
+      "intensity": "Mild",
+      "complexity": "Mixed",
+      "confidence": "Medium",
+      "confidenceScore": 0.67,
+      "mentions": 2100,
+      "reach": 78000,
+      "engagement": {
+        "likes": 1200,
+        "shares": 345,
+        "comments": 289,
+        "reactions": 1834
+      },
+      "demographics": {
+        "ageGroup": "36-45",
+        "gender": "male",
+        "education": "Secondary",
+        "location": "Semi-Urban",
+        "occupation": "Public Sector"
+      },
+      "topics": ["Security", "Infrastructure"],
+      "keywords": ["security challenges", "road infrastructure", "development"],
+      "context": {
+        "eventType": "Government Actions",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "tense"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "sourceReliability": "Medium",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T15:00:00Z"
+      }
+    },
+    {
+      "id": "SENT-003",
+      "politicianId": "NG-POL-003",
+      "timestamp": "2024-01-14T19:45:00Z",
+      "dateRecorded": "2024-01-14",
+      "timeOfDay": "evening",
+      "sourceId": "instagram",
+      "content": {
+        "originalPost": "Another corruption scandal involving Atiku's associates. When will Nigerian politicians learn that we are tired of the same old politics? We need transparency and accountability, not more empty promises! 😡 #EndCorruption #NigerianPolitics",
+        "author": "@concerned_nigerian_youth",
+        "authorVerified": false,
+        "authorFollowers": 8900,
+        "postId": "3234567890123456789",
+        "postUrl": "https://instagram.com/p/C2ABC123DEF456/",
+        "language": "en",
+        "hashtags": ["#EndCorruption", "#NigerianPolitics"],
+        "mentions": [],
+        "mediaAttached": true,
+        "mediaType": "image",
+        "isStory": false,
+        "isReel": false,
+        "isCarousel": false,
+        "location": "Lagos, Nigeria"
+      },
+      "sentimentLabel": "Negative",
+      "sentimentScore": -0.65,
+      "emotionType": "Anger",
+      "intensity": "Strong",
+      "complexity": "Simple",
+      "confidence": "High",
+      "confidenceScore": 0.92,
+      "mentions": 890,
+      "reach": 32000,
+      "engagement": {
+        "likes": 456,
+        "shares": 123,
+        "comments": 234,
+        "reactions": 813
+      },
+      "demographics": {
+        "ageGroup": "18-25",
+        "gender": "mixed",
+        "education": "Tertiary",
+        "location": "Urban",
+        "occupation": "Student"
+      },
+      "topics": ["Corruption", "Election Credibility"],
+      "keywords": [
+        "corruption allegations",
+        "election integrity",
+        "transparency"
+      ],
+      "context": {
+        "eventType": "Scandals",
+        "campaignPhase": "Campaign Period",
+        "season": "Dry",
+        "politicalClimate": "volatile"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "sourceReliability": "High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-14T20:15:00Z"
+      }
+    },
+    {
+      "id": "SENT-004",
+      "politicianId": "NG-POL-004",
+      "timestamp": "2024-01-14T11:20:00Z",
+      "dateRecorded": "2024-01-14",
+      "timeOfDay": "morning",
+      "sourceId": "youtube",
+      "content": {
+        "originalPost": "Kwankwaso's Agricultural Revolution: How NNPP Plans to Transform Nigerian Farming",
+        "description": "In this comprehensive analysis, we explore Rabiu Kwankwaso's detailed agricultural development plan for Nigeria. His focus on supporting smallholder farmers, improving irrigation systems, and creating agricultural cooperatives could be the game-changer Nigeria needs. The man truly understands rural development! This is the kind of leadership we need.",
+        "author": "Nigerian Politics Explained",
+        "authorVerified": true,
+        "authorSubscribers": 234000,
+        "videoId": "dQw4w9WgXcQ123",
+        "videoUrl": "https://youtube.com/watch?v=dQw4w9WgXcQ123",
+        "language": "en",
+        "duration": 1245,
+        "tags": [
+          "Kwankwaso",
+          "Agriculture",
+          "NNPP",
+          "Nigerian Politics",
+          "Rural Development"
+        ],
+        "category": "News & Politics",
+        "isLive": false,
+        "isShorts": false,
+        "thumbnailUrl": "https://img.youtube.com/vi/dQw4w9WgXcQ123/maxresdefault.jpg"
+      },
+      "sentimentLabel": "Very Positive",
+      "sentimentScore": 1.85,
+      "emotionType": "Joy",
+      "intensity": "Strong",
+      "complexity": "Simple",
+      "confidence": "Very High",
+      "confidenceScore": 0.96,
+      "mentions": 567,
+      "reach": 89000,
+      "engagement": {
+        "likes": 2340,
+        "shares": 456,
+        "comments": 189,
+        "reactions": 2985
+      },
+      "demographics": {
+        "ageGroup": "26-35",
+        "gender": "male",
+        "education": "Secondary",
+        "location": "Rural",
+        "occupation": "Agriculture"
+      },
+      "topics": ["Agriculture", "Rural Development"],
+      "keywords": [
+        "agricultural development",
+        "rural empowerment",
+        "farming support"
+      ],
+      "context": {
+        "eventType": "Rallies",
+        "campaignPhase": "Campaign Period",
+        "season": "Dry",
+        "politicalClimate": "optimistic"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "sourceReliability": "Very High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-14T11:50:00Z"
+      }
+    },
+    {
+      "id": "SENT-005",
+      "politicianId": "NG-POL-005",
+      "timestamp": "2024-01-13T16:10:00Z",
+      "dateRecorded": "2024-01-13",
+      "timeOfDay": "afternoon",
+      "sourceId": "news_sites",
+      "content": {
+        "headline": "Vice President Shettima Leads Successful Security Summit with Regional Partners",
+        "originalPost": "Vice President Kashim Shettima has successfully concluded a three-day security summit with leaders from Chad, Niger, and Cameroon, focusing on regional cooperation to combat terrorism and banditry. The summit, held in Abuja, resulted in a comprehensive security framework that surprised many analysts with its depth and practical approach. Shettima's diplomatic skills and understanding of regional dynamics have been praised by international observers. The agreement includes intelligence sharing, joint military operations, and coordinated border security measures.",
+        "author": "Fatima Abdullahi",
+        "publication": "Daily Trust",
+        "articleUrl": "https://dailytrust.com/vp-shettima-security-summit-regional-cooperation-2024",
+        "language": "en",
+        "category": "Politics",
+        "tags": [
+          "Security",
+          "Diplomacy",
+          "Regional Cooperation",
+          "Terrorism",
+          "Border Security"
+        ],
+        "wordCount": 1456,
+        "readTime": "6 min",
+        "publishedDate": "2024-01-13T16:00:00Z"
+      },
+      "sentimentLabel": "Positive",
+      "sentimentScore": 0.82,
+      "emotionType": "Surprise",
+      "intensity": "Moderate",
+      "complexity": "Mixed",
+      "confidence": "High",
+      "confidenceScore": 0.88,
+      "mentions": 1890,
+      "reach": 156000,
+      "engagement": {
+        "likes": 0,
+        "shares": 789,
+        "comments": 345,
+        "reactions": 1134
+      },
+      "demographics": {
+        "ageGroup": "46-55",
+        "gender": "mixed",
+        "education": "Postgraduate",
+        "location": "Urban",
+        "occupation": "Professional Services"
+      },
+      "topics": ["Security", "International Relations"],
+      "keywords": [
+        "security cooperation",
+        "diplomatic relations",
+        "regional stability"
+      ],
+      "context": {
+        "eventType": "International Relations",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "stable"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "sourceReliability": "High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-13T16:40:00Z"
+      }
+    },
+    {
+      "id": "SENT-006",
+      "politicianId": "NG-POL-006",
+      "timestamp": "2024-01-13T09:30:00Z",
+      "dateRecorded": "2024-01-13",
+      "timeOfDay": "morning",
+      "sourceId": "twitter",
+      "content": {
+        "originalPost": "So Wike is now preaching about good governance and accountability? 😂 The same man who spent Rivers State money like it was his personal ATM? Nigerian politicians and their selective amnesia is truly something else. #WikeHypocrisy #RiversState #Accountability",
+        "author": "@RiversStateWatch",
+        "authorVerified": false,
+        "authorFollowers": 45600,
+        "postId": "1746987654321098765",
+        "postUrl": "https://twitter.com/RiversStateWatch/status/1746987654321098765",
+        "language": "en",
+        "hashtags": ["#WikeHypocrisy", "#RiversState", "#Accountability"],
+        "mentions": [],
+        "mediaAttached": false,
+        "isRetweet": false,
+        "isReply": false,
+        "parentPostId": null,
+        "quoteTweet": false
+      },
+      "sentimentLabel": "Very Negative",
+      "sentimentScore": -1.75,
+      "emotionType": "Anger",
+      "intensity": "Strong",
+      "complexity": "Sarcastic",
+      "confidence": "High",
+      "confidenceScore": 0.91,
+      "mentions": 3450,
+      "reach": 234000,
+      "engagement": {
+        "likes": 567,
+        "shares": 1234,
+        "comments": 890,
+        "reactions": 2691
+      },
+      "demographics": {
+        "ageGroup": "18-25",
+        "gender": "mixed",
+        "education": "Tertiary",
+        "location": "Urban",
+        "occupation": "Technology"
+      },
+      "topics": ["Corruption", "Governance"],
+      "keywords": ["governance failure", "accountability", "public trust"],
+      "context": {
+        "eventType": "Scandals",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "volatile"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "sourceReliability": "Medium",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-13T10:00:00Z"
+      }
+    },
+    {
+      "id": "SENT-007",
+      "politicianId": "NG-POL-007",
+      "timestamp": "2024-01-12T13:45:00Z",
+      "dateRecorded": "2024-01-12",
+      "timeOfDay": "afternoon",
+      "sourceId": "facebook",
+      "content": {
+        "originalPost": "Governor Sanwo-Olu's infrastructure development in Lagos is impressive! The new BRT routes and road improvements are making a real difference in our daily commute. Finally, we have a leader who understands urban planning. Keep up the good work! 👏 #LagosWorks #Infrastructure #Development",
+        "author": "Kemi Adebayo",
+        "authorVerified": false,
+        "authorFollowers": 2100,
+        "postId": "pfbid0XYZ789ABC012DEF345GHI678JKL901MNO234PQR567STU890VWX",
+        "postUrl": "https://facebook.com/kemi.adebayo.lagos/posts/987654321098765",
+        "language": "en",
+        "hashtags": ["#LagosWorks", "#Infrastructure", "#Development"],
+        "mentions": [],
+        "mediaAttached": true,
+        "mediaType": "image",
+        "isShared": false,
+        "originalAuthor": null,
+        "groupPosted": false,
+        "pagePosted": false
+      },
+      "sentimentLabel": "Positive",
+      "sentimentScore": 0.68,
+      "emotionType": "Joy",
+      "intensity": "Moderate",
+      "complexity": "Simple",
+      "confidence": "High",
+      "confidenceScore": 0.85,
+      "mentions": 1567,
+      "reach": 67000,
+      "engagement": {
+        "likes": 1890,
+        "shares": 234,
+        "comments": 156,
+        "reactions": 2280
+      },
+      "demographics": {
+        "ageGroup": "36-45",
+        "gender": "mixed",
+        "education": "Secondary",
+        "location": "Urban",
+        "occupation": "Private Sector"
+      },
+      "topics": ["Infrastructure", "Urban Development"],
+      "keywords": [
+        "infrastructure development",
+        "urban planning",
+        "modernization"
+      ],
+      "context": {
+        "eventType": "Government Actions",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "stable"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "sourceReliability": "High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-12T14:15:00Z"
+      }
+    },
+    {
+      "id": "SENT-008",
+      "politicianId": "NG-POL-008",
+      "timestamp": "2024-01-12T07:20:00Z",
+      "dateRecorded": "2024-01-12",
+      "timeOfDay": "morning",
+      "sourceId": "reddit",
+      "content": {
+        "title": "Obaseki's Economic Policies: A Mixed Bag for Edo State",
+        "originalPost": "I've been following Obaseki's economic policies in Edo State, and honestly, it's a mixed bag. On one hand, his education reforms are impressive - the EdoBEST program has shown real results. The digital transformation initiatives are also noteworthy. However, his handling of the industrial sector has been questionable. The Benin Industrial Park project has faced multiple delays, and small businesses are still struggling with access to credit. What do you guys think? Is he doing enough for economic development, or are we just seeing surface-level changes?",
+        "author": "u/EdoStateAnalyst",
+        "authorKarma": 12450,
+        "subreddit": "r/Nigeria",
+        "postId": "1ah2b3c4d5e6f7g8h9i0",
+        "postUrl": "https://reddit.com/r/Nigeria/comments/1ah2b3c4d5e6f7g8h9i0/obasekis_economic_policies_mixed_bag_edo_state/",
+        "language": "en",
+        "flair": "Politics",
+        "isStickied": false,
+        "isLocked": false,
+        "upvoteRatio": 0.73,
+        "awards": []
+      },
+      "sentimentLabel": "Neutral",
+      "sentimentScore": -0.15,
+      "emotionType": "Mixed",
+      "intensity": "Mild",
+      "complexity": "Conditional",
+      "confidence": "Medium",
+      "confidenceScore": 0.72,
+      "mentions": 789,
+      "reach": 23000,
+      "engagement": {
+        "likes": 345,
+        "shares": 89,
+        "comments": 234,
+        "reactions": 668
+      },
+      "demographics": {
+        "ageGroup": "26-35",
+        "gender": "male",
+        "education": "Tertiary",
+        "location": "Urban",
+        "occupation": "Technology"
+      },
+      "topics": ["Economy", "Education"],
+      "keywords": [
+        "economic policy",
+        "education reform",
+        "development strategy"
+      ],
+      "context": {
+        "eventType": "Policy Announcements",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "cautious"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "sourceReliability": "Medium",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-12T07:50:00Z"
+      }
+    },
+    {
+      "id": "SENT-009",
+      "politicianId": "NG-POL-009",
+      "timestamp": "2024-01-11T18:30:00Z",
+      "dateRecorded": "2024-01-11",
+      "timeOfDay": "evening",
+      "sourceId": "instagram",
+      "content": {
+        "originalPost": "Seyi Makinde is doing amazing work in Oyo State! 🔥 The free education policy and healthcare improvements are life-changing. Finally, a governor who truly cares about the people! #SeyiMakinde #OyoState #FreeEducation #Healthcare",
+        "author": "@oyostudent2024",
+        "authorVerified": false,
+        "authorFollowers": 5600,
+        "postId": "3345678901234567890",
+        "postUrl": "https://instagram.com/p/C2DEF456GHI789/",
+        "language": "en",
+        "hashtags": [
+          "#SeyiMakinde",
+          "#OyoState",
+          "#FreeEducation",
+          "#Healthcare"
+        ],
+        "mentions": [],
+        "mediaAttached": true,
+        "mediaType": "video",
+        "isStory": false,
+        "isReel": true,
+        "isCarousel": false,
+        "location": "Ibadan, Nigeria"
+      },
+      "sentimentLabel": "Very Positive",
+      "sentimentScore": 1.92,
+      "emotionType": "Joy",
+      "intensity": "Strong",
+      "complexity": "Simple",
+      "confidence": "Very High",
+      "confidenceScore": 0.98,
+      "mentions": 2340,
+      "reach": 145000,
+      "engagement": {
+        "likes": 4567,
+        "shares": 890,
+        "comments": 456,
+        "reactions": 5913
+      },
+      "demographics": {
+        "ageGroup": "18-25",
+        "gender": "mixed",
+        "education": "Secondary",
+        "location": "Semi-Urban",
+        "occupation": "Student"
+      },
+      "topics": ["Youth/Jobs", "Education"],
+      "keywords": [
+        "youth development",
+        "education access",
+        "skill acquisition"
+      ],
+      "context": {
+        "eventType": "Youth Empowerment",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "optimistic"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "sourceReliability": "Very High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-11T19:00:00Z"
+      }
+    },
+    {
+      "id": "SENT-010",
+      "politicianId": "NG-POL-010",
+      "timestamp": "2024-01-11T12:15:00Z",
+      "dateRecorded": "2024-01-11",
+      "timeOfDay": "afternoon",
+      "sourceId": "news_sites",
+      "content": {
+        "headline": "Former Enugu Governor Ugwuanyi Faces Criticism Over Agricultural Policies",
+        "originalPost": "Former Enugu State Governor Ifeanyi Ugwuanyi's agricultural policies during his tenure have come under renewed scrutiny as farmers in the state continue to struggle with poor yields and inadequate support systems. Despite promises of agricultural transformation, many rural communities report that the promised irrigation systems were never completed, and the agricultural loan schemes remained largely inaccessible to small-scale farmers. Current Senator Ugwuanyi has yet to address these concerns publicly, leading to growing frustration among his constituents.",
+        "author": "Chinedu Okafor",
+        "publication": "The Nation",
+        "articleUrl": "https://thenationonlineng.net/ugwuanyi-agricultural-policies-criticism-enugu-farmers-2024",
+        "language": "en",
+        "category": "Politics",
+        "tags": [
+          "Agriculture",
+          "Enugu State",
+          "Rural Development",
+          "Policy Criticism"
+        ],
+        "wordCount": 892,
+        "readTime": "4 min",
+        "publishedDate": "2024-01-11T12:00:00Z"
+      },
+      "sentimentLabel": "Negative",
+      "sentimentScore": -0.78,
+      "emotionType": "Sadness",
+      "intensity": "Moderate",
+      "complexity": "Mixed",
+      "confidence": "High",
+      "confidenceScore": 0.87,
+      "mentions": 1234,
+      "reach": 89000,
+      "engagement": {
+        "likes": 0,
+        "shares": 456,
+        "comments": 234,
+        "reactions": 690
+      },
+      "demographics": {
+        "ageGroup": "46-55",
+        "gender": "mixed",
+        "education": "Tertiary",
+        "location": "Rural",
+        "occupation": "Agriculture"
+      },
+      "topics": ["Agriculture", "Rural Development"],
+      "keywords": [
+        "agricultural challenges",
+        "rural infrastructure",
+        "farmer support"
+      ],
+      "context": {
+        "eventType": "Economic Announcements",
+        "campaignPhase": "Inter-Election",
+        "season": "Dry",
+        "politicalClimate": "concerned"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "sourceReliability": "High",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-11T12:45:00Z"
+      }
+    }
+  ],
+  "sourceBreakdown": {
+    "twitter": {
+      "totalMentions": 4700,
+      "averageSentiment": 0.12,
+      "dominantEmotion": "Mixed",
+      "engagementRate": 0.18,
+      "peakHours": ["08:00", "14:00", "19:00"],
+      "demographics": {
+        "primaryAgeGroup": "18-25",
+        "primaryEducation": "Tertiary",
+        "primaryLocation": "Urban"
+      }
+    },
+    "facebook": {
+      "totalMentions": 3667,
+      "averageSentiment": 0.37,
+      "dominantEmotion": "Joy",
+      "engagementRate": 0.24,
+      "peakHours": ["12:00", "15:00", "20:00"],
+      "demographics": {
+        "primaryAgeGroup": "36-45",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Semi-Urban"
+      }
+    },
+    "instagram": {
+      "totalMentions": 3230,
+      "averageSentiment": 0.89,
+      "dominantEmotion": "Joy",
+      "engagementRate": 0.32,
+      "peakHours": ["11:00", "16:00", "21:00"],
+      "demographics": {
+        "primaryAgeGroup": "18-25",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Urban"
+      }
+    },
+    "youtube": {
+      "totalMentions": 567,
+      "averageSentiment": 1.85,
+      "dominantEmotion": "Joy",
+      "engagementRate": 0.45,
+      "peakHours": ["10:00", "17:00", "22:00"],
+      "demographics": {
+        "primaryAgeGroup": "26-35",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Rural"
+      }
+    },
+    "news_sites": {
+      "totalMentions": 3124,
+      "averageSentiment": 0.02,
+      "dominantEmotion": "Mixed",
+      "engagementRate": 0.15,
+      "peakHours": ["09:00", "13:00", "18:00"],
+      "demographics": {
+        "primaryAgeGroup": "46-55",
+        "primaryEducation": "Postgraduate",
+        "primaryLocation": "Urban"
+      }
+    },
+    "reddit": {
+      "totalMentions": 789,
+      "averageSentiment": -0.15,
+      "dominantEmotion": "Mixed",
+      "engagementRate": 0.28,
+      "peakHours": ["07:00", "13:00", "23:00"],
+      "demographics": {
+        "primaryAgeGroup": "26-35",
+        "primaryEducation": "Tertiary",
+        "primaryLocation": "Urban"
+      }
+    }
+  },
+  "temporalPatterns": {
+    "hourlyPatterns": {
+      "00:00": { "mentions": 234, "sentiment": 0.12, "engagement": 0.15 },
+      "01:00": { "mentions": 156, "sentiment": 0.08, "engagement": 0.12 },
+      "02:00": { "mentions": 89, "sentiment": 0.05, "engagement": 0.08 },
+      "03:00": { "mentions": 67, "sentiment": 0.03, "engagement": 0.06 },
+      "04:00": { "mentions": 45, "sentiment": 0.02, "engagement": 0.04 },
+      "05:00": { "mentions": 78, "sentiment": 0.06, "engagement": 0.07 },
+      "06:00": { "mentions": 234, "sentiment": 0.18, "engagement": 0.14 },
+      "07:00": { "mentions": 567, "sentiment": 0.25, "engagement": 0.22 },
+      "08:00": { "mentions": 890, "sentiment": 0.32, "engagement": 0.28 },
+      "09:00": { "mentions": 1234, "sentiment": 0.28, "engagement": 0.25 },
+      "10:00": { "mentions": 1456, "sentiment": 0.35, "engagement": 0.31 },
+      "11:00": { "mentions": 1678, "sentiment": 0.42, "engagement": 0.38 },
+      "12:00": { "mentions": 1890, "sentiment": 0.38, "engagement": 0.34 },
+      "13:00": { "mentions": 2100, "sentiment": 0.31, "engagement": 0.29 },
+      "14:00": { "mentions": 2234, "sentiment": 0.29, "engagement": 0.27 },
+      "15:00": { "mentions": 2156, "sentiment": 0.33, "engagement": 0.3 },
+      "16:00": { "mentions": 1987, "sentiment": 0.36, "engagement": 0.33 },
+      "17:00": { "mentions": 1789, "sentiment": 0.39, "engagement": 0.35 },
+      "18:00": { "mentions": 1567, "sentiment": 0.34, "engagement": 0.31 },
+      "19:00": { "mentions": 1345, "sentiment": 0.31, "engagement": 0.28 },
+      "20:00": { "mentions": 1123, "sentiment": 0.28, "engagement": 0.25 },
+      "21:00": { "mentions": 890, "sentiment": 0.25, "engagement": 0.23 },
+      "22:00": { "mentions": 678, "sentiment": 0.22, "engagement": 0.2 },
+      "23:00": { "mentions": 456, "sentiment": 0.18, "engagement": 0.16 }
+    },
+    "dailyPatterns": {
+      "Monday": { "mentions": 18456, "sentiment": 0.28, "engagement": 0.25 },
+      "Tuesday": { "mentions": 19234, "sentiment": 0.31, "engagement": 0.27 },
+      "Wednesday": { "mentions": 20123, "sentiment": 0.33, "engagement": 0.29 },
+      "Thursday": { "mentions": 19876, "sentiment": 0.35, "engagement": 0.31 },
+      "Friday": { "mentions": 18567, "sentiment": 0.32, "engagement": 0.28 },
+      "Saturday": { "mentions": 16789, "sentiment": 0.29, "engagement": 0.26 },
+      "Sunday": { "mentions": 15234, "sentiment": 0.26, "engagement": 0.23 }
+    },
+    "monthlyPatterns": {
+      "January": { "mentions": 234567, "sentiment": 0.31, "engagement": 0.27 },
+      "February": { "mentions": 198765, "sentiment": 0.28, "engagement": 0.25 },
+      "March": { "mentions": 267890, "sentiment": 0.35, "engagement": 0.31 },
+      "April": { "mentions": 245678, "sentiment": 0.33, "engagement": 0.29 },
+      "May": { "mentions": 289012, "sentiment": 0.38, "engagement": 0.34 },
+      "June": { "mentions": 256789, "sentiment": 0.32, "engagement": 0.28 },
+      "July": { "mentions": 234567, "sentiment": 0.29, "engagement": 0.26 },
+      "August": { "mentions": 278901, "sentiment": 0.36, "engagement": 0.32 },
+      "September": {
+        "mentions": 298765,
+        "sentiment": 0.41,
+        "engagement": 0.37
+      },
+      "October": { "mentions": 312456, "sentiment": 0.43, "engagement": 0.39 },
+      "November": { "mentions": 345678, "sentiment": 0.45, "engagement": 0.41 },
+      "December": { "mentions": 289012, "sentiment": 0.34, "engagement": 0.3 }
+    },
+    "seasonalPatterns": {
+      "Dry": {
+        "mentions": 1567890,
+        "sentiment": 0.35,
+        "engagement": 0.31,
+        "dominantTopics": ["Economy", "Infrastructure", "Security"],
+        "peakMonths": ["November", "December", "January", "February", "March"]
+      },
+      "Rainy": {
+        "mentions": 1234567,
+        "sentiment": 0.28,
+        "engagement": 0.25,
+        "dominantTopics": ["Agriculture", "Environment", "Health"],
+        "peakMonths": [
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October"
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "totalRecords": 10,
+    "dateRange": {
+      "start": "2024-01-11T12:15:00Z",
+      "end": "2024-01-15T14:30:00Z"
+    },
+    "dataVersion": "v2.1",
+    "lastUpdated": "2024-01-15T15:00:00Z",
+    "processingEngine": "SentimentAnalyzer-Pro",
+    "qualityScore": 0.87,
+    "completeness": 0.94,
+    "dataRetentionDays": 365,
+    "updateFrequency": "real-time",
+    "sources": [
+      "twitter",
+      "facebook",
+      "instagram",
+      "youtube",
+      "news_sites",
+      "reddit"
+    ],
+    "languages": ["en", "ha", "ig", "yo"],
+    "geographicCoverage": "Nigeria",
+    "confidenceThreshold": 0.6
+  }
+}

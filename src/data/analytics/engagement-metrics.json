@@ -1,0 +1,682 @@
+{
+  "engagementMetrics": [
+    {
+      "id": "ENG-001",
+      "politicianId": "NG-POL-001",
+      "timestamp": "2024-01-15T08:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "timeOfDay": "morning",
+      "sourceId": "twitter",
+      "metrics": {
+        "mentions": 1250,
+        "directMentions": 890,
+        "indirectMentions": 360,
+        "reach": 45000,
+        "impressions": 125000,
+        "uniqueUsers": 38000,
+        "engagement": {
+          "total": 1280,
+          "likes": 890,
+          "shares": 234,
+          "comments": 156,
+          "reactions": 1280,
+          "clicks": 567,
+          "saves": 89
+        },
+        "engagementRate": 0.284,
+        "viralityScore": 0.67,
+        "amplificationFactor": 2.8
+      },
+      "influencerMetrics": {
+        "influencerMentions": 12,
+        "topInfluencerReach": 15000,
+        "influencerAmplification": 1.8,
+        "verifiedUserMentions": 45,
+        "celebrityMentions": 3
+      },
+      "contentAnalysis": {
+        "contentTypes": {
+          "text": 780,
+          "image": 234,
+          "video": 156,
+          "link": 80
+        },
+        "averageContentLength": 145,
+        "hashtagUsage": 234,
+        "mentionUsage": 456
+      },
+      "audienceMetrics": {
+        "newFollowers": 234,
+        "unfollowers": 45,
+        "profileViews": 1890,
+        "audienceGrowthRate": 0.012
+      },
+      "demographics": {
+        "ageDistribution": {
+          "18-25": 0.35,
+          "26-35": 0.28,
+          "36-45": 0.22,
+          "46-55": 0.12,
+          "56+": 0.03
+        },
+        "genderDistribution": {
+          "male": 0.52,
+          "female": 0.46,
+          "other": 0.02
+        },
+        "locationDistribution": {
+          "urban": 0.68,
+          "semi-urban": 0.22,
+          "rural": 0.10
+        },
+        "educationDistribution": {
+          "primary": 0.08,
+          "secondary": 0.34,
+          "tertiary": 0.48,
+          "postgraduate": 0.10
+        }
+      },
+      "topics": ["Economy", "Youth/Jobs"],
+      "sentiment": {
+        "overall": "Positive",
+        "score": 0.75,
+        "distribution": {
+          "positive": 0.68,
+          "neutral": 0.22,
+          "negative": 0.10
+        }
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T08:30:00Z"
+      }
+    },
+    {
+      "id": "ENG-002",
+      "politicianId": "NG-POL-002",
+      "timestamp": "2024-01-15T14:30:00Z",
+      "dateRecorded": "2024-01-15",
+      "timeOfDay": "afternoon",
+      "sourceId": "facebook",
+      "metrics": {
+        "mentions": 2100,
+        "directMentions": 1456,
+        "indirectMentions": 644,
+        "reach": 78000,
+        "impressions": 234000,
+        "uniqueUsers": 65000,
+        "engagement": {
+          "total": 1834,
+          "likes": 1200,
+          "shares": 345,
+          "comments": 289,
+          "reactions": 1834,
+          "clicks": 890,
+          "saves": 156
+        },
+        "engagementRate": 0.235,
+        "viralityScore": 0.45,
+        "amplificationFactor": 3.2
+      },
+      "influencerMetrics": {
+        "influencerMentions": 8,
+        "topInfluencerReach": 22000,
+        "influencerAmplification": 2.1,
+        "verifiedUserMentions": 67,
+        "celebrityMentions": 2
+      },
+      "contentAnalysis": {
+        "contentTypes": {
+          "text": 1234,
+          "image": 456,
+          "video": 289,
+          "link": 121
+        },
+        "averageContentLength": 287,
+        "hashtagUsage": 345,
+        "mentionUsage": 678
+      },
+      "audienceMetrics": {
+        "newFollowers": 156,
+        "unfollowers": 89,
+        "profileViews": 2340,
+        "audienceGrowthRate": 0.008
+      },
+      "demographics": {
+        "ageDistribution": {
+          "18-25": 0.22,
+          "26-35": 0.31,
+          "36-45": 0.28,
+          "46-55": 0.15,
+          "56+": 0.04
+        },
+        "genderDistribution": {
+          "male": 0.58,
+          "female": 0.40,
+          "other": 0.02
+        },
+        "locationDistribution": {
+          "urban": 0.72,
+          "semi-urban": 0.20,
+          "rural": 0.08
+        },
+        "educationDistribution": {
+          "primary": 0.12,
+          "secondary": 0.42,
+          "tertiary": 0.38,
+          "postgraduate": 0.08
+        }
+      },
+      "topics": ["Security", "Infrastructure"],
+      "sentiment": {
+        "overall": "Neutral",
+        "score": 0.05,
+        "distribution": {
+          "positive": 0.42,
+          "neutral": 0.38,
+          "negative": 0.20
+        }
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T15:00:00Z"
+      }
+    },
+    {
+      "id": "ENG-003",
+      "politicianId": "NG-POL-003",
+      "timestamp": "2024-01-14T19:45:00Z",
+      "dateRecorded": "2024-01-14",
+      "timeOfDay": "evening",
+      "sourceId": "instagram",
+      "metrics": {
+        "mentions": 890,
+        "directMentions": 567,
+        "indirectMentions": 323,
+        "reach": 32000,
+        "impressions": 89000,
+        "uniqueUsers": 28000,
+        "engagement": {
+          "total": 813,
+          "likes": 456,
+          "shares": 123,
+          "comments": 234,
+          "reactions": 813,
+          "clicks": 345,
+          "saves": 67
+        },
+        "engagementRate": 0.254,
+        "viralityScore": 0.38,
+        "amplificationFactor": 2.1
+      },
+      "influencerMetrics": {
+        "influencerMentions": 15,
+        "topInfluencerReach": 18000,
+        "influencerAmplification": 2.3,
+        "verifiedUserMentions": 34,
+        "celebrityMentions": 5
+      },
+      "contentAnalysis": {
+        "contentTypes": {
+          "text": 234,
+          "image": 456,
+          "video": 156,
+          "story": 44
+        },
+        "averageContentLength": 98,
+        "hashtagUsage": 567,
+        "mentionUsage": 234
+      },
+      "audienceMetrics": {
+        "newFollowers": 89,
+        "unfollowers": 156,
+        "profileViews": 1234,
+        "audienceGrowthRate": -0.005
+      },
+      "demographics": {
+        "ageDistribution": {
+          "18-25": 0.48,
+          "26-35": 0.32,
+          "36-45": 0.15,
+          "46-55": 0.04,
+          "56+": 0.01
+        },
+        "genderDistribution": {
+          "male": 0.45,
+          "female": 0.53,
+          "other": 0.02
+        },
+        "locationDistribution": {
+          "urban": 0.78,
+          "semi-urban": 0.18,
+          "rural": 0.04
+        },
+        "educationDistribution": {
+          "primary": 0.06,
+          "secondary": 0.28,
+          "tertiary": 0.56,
+          "postgraduate": 0.10
+        }
+      },
+      "topics": ["Corruption", "Election Credibility"],
+      "sentiment": {
+        "overall": "Negative",
+        "score": -0.65,
+        "distribution": {
+          "positive": 0.15,
+          "neutral": 0.25,
+          "negative": 0.60
+        }
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-14T20:15:00Z"
+      }
+    },
+    {
+      "id": "ENG-004",
+      "politicianId": "NG-POL-004",
+      "timestamp": "2024-01-14T11:20:00Z",
+      "dateRecorded": "2024-01-14",
+      "timeOfDay": "morning",
+      "sourceId": "youtube",
+      "metrics": {
+        "mentions": 567,
+        "directMentions": 234,
+        "indirectMentions": 333,
+        "reach": 89000,
+        "impressions": 345000,
+        "uniqueUsers": 67000,
+        "engagement": {
+          "total": 2985,
+          "likes": 2340,
+          "shares": 456,
+          "comments": 189,
+          "reactions": 2985,
+          "clicks": 1234,
+          "saves": 345
+        },
+        "engagementRate": 0.445,
+        "viralityScore": 0.82,
+        "amplificationFactor": 4.5
+      },
+      "influencerMetrics": {
+        "influencerMentions": 6,
+        "topInfluencerReach": 45000,
+        "influencerAmplification": 3.2,
+        "verifiedUserMentions": 23,
+        "celebrityMentions": 1
+      },
+      "contentAnalysis": {
+        "contentTypes": {
+          "video": 456,
+          "shorts": 89,
+          "live": 22
+        },
+        "averageContentLength": 1245,
+        "hashtagUsage": 123,
+        "mentionUsage": 89
+      },
+      "audienceMetrics": {
+        "newSubscribers": 456,
+        "unsubscribers": 23,
+        "channelViews": 12340,
+        "audienceGrowthRate": 0.025
+      },
+      "demographics": {
+        "ageDistribution": {
+          "18-25": 0.28,
+          "26-35": 0.35,
+          "36-45": 0.22,
+          "46-55": 0.12,
+          "56+": 0.03
+        },
+        "genderDistribution": {
+          "male": 0.62,
+          "female": 0.36,
+          "other": 0.02
+        },
+        "locationDistribution": {
+          "urban": 0.45,
+          "semi-urban": 0.32,
+          "rural": 0.23
+        },
+        "educationDistribution": {
+          "primary": 0.15,
+          "secondary": 0.48,
+          "tertiary": 0.32,
+          "postgraduate": 0.05
+        }
+      },
+      "topics": ["Agriculture", "Rural Development"],
+      "sentiment": {
+        "overall": "Very Positive",
+        "score": 1.85,
+        "distribution": {
+          "positive": 0.85,
+          "neutral": 0.12,
+          "negative": 0.03
+        }
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-14T11:50:00Z"
+      }
+    },
+    {
+      "id": "ENG-005",
+      "politicianId": "NG-POL-011",
+      "timestamp": "2024-01-13T16:10:00Z",
+      "dateRecorded": "2024-01-13",
+      "timeOfDay": "afternoon",
+      "sourceId": "twitter",
+      "metrics": {
+        "mentions": 3450,
+        "directMentions": 2340,
+        "indirectMentions": 1110,
+        "reach": 156000,
+        "impressions": 567000,
+        "uniqueUsers": 123000,
+        "engagement": {
+          "total": 4567,
+          "likes": 2890,
+          "shares": 890,
+          "comments": 567,
+          "reactions": 4347,
+          "clicks": 1234,
+          "saves": 220
+        },
+        "engagementRate": 0.372,
+        "viralityScore": 0.78,
+        "amplificationFactor": 3.8
+      },
+      "influencerMetrics": {
+        "influencerMentions": 25,
+        "topInfluencerReach": 67000,
+        "influencerAmplification": 4.2,
+        "verifiedUserMentions": 89,
+        "celebrityMentions": 8
+      },
+      "contentAnalysis": {
+        "contentTypes": {
+          "text": 2340,
+          "image": 567,
+          "video": 345,
+          "link": 198
+        },
+        "averageContentLength": 167,
+        "hashtagUsage": 890,
+        "mentionUsage": 1234
+      },
+      "audienceMetrics": {
+        "newFollowers": 567,
+        "unfollowers": 89,
+        "profileViews": 4567,
+        "audienceGrowthRate": 0.018
+      },
+      "demographics": {
+        "ageDistribution": {
+          "18-25": 0.42,
+          "26-35": 0.31,
+          "36-45": 0.18,
+          "46-55": 0.07,
+          "56+": 0.02
+        },
+        "genderDistribution": {
+          "male": 0.38,
+          "female": 0.60,
+          "other": 0.02
+        },
+        "locationDistribution": {
+          "urban": 0.82,
+          "semi-urban": 0.15,
+          "rural": 0.03
+        },
+        "educationDistribution": {
+          "primary": 0.04,
+          "secondary": 0.22,
+          "tertiary": 0.62,
+          "postgraduate": 0.12
+        }
+      },
+      "topics": ["Youth/Jobs", "Social Justice"],
+      "sentiment": {
+        "overall": "Very Positive",
+        "score": 1.67,
+        "distribution": {
+          "positive": 0.78,
+          "neutral": 0.18,
+          "negative": 0.04
+        }
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-13T16:40:00Z"
+      }
+    }
+  ],
+  "sourceComparison": {
+    "twitter": {
+      "totalEngagement": 5847,
+      "averageEngagementRate": 0.328,
+      "averageViralityScore": 0.725,
+      "averageAmplificationFactor": 3.3,
+      "peakEngagementHours": ["08:00", "14:00", "19:00"],
+      "dominantContentType": "text",
+      "averageContentLength": 156,
+      "influencerImpact": "High",
+      "audienceGrowthRate": 0.015,
+      "sentimentTrend": "Positive"
+    },
+    "facebook": {
+      "totalEngagement": 1834,
+      "averageEngagementRate": 0.235,
+      "averageViralityScore": 0.45,
+      "averageAmplificationFactor": 3.2,
+      "peakEngagementHours": ["12:00", "15:00", "20:00"],
+      "dominantContentType": "text",
+      "averageContentLength": 287,
+      "influencerImpact": "Medium",
+      "audienceGrowthRate": 0.008,
+      "sentimentTrend": "Neutral"
+    },
+    "instagram": {
+      "totalEngagement": 813,
+      "averageEngagementRate": 0.254,
+      "averageViralityScore": 0.38,
+      "averageAmplificationFactor": 2.1,
+      "peakEngagementHours": ["11:00", "16:00", "21:00"],
+      "dominantContentType": "image",
+      "averageContentLength": 98,
+      "influencerImpact": "High",
+      "audienceGrowthRate": -0.005,
+      "sentimentTrend": "Negative"
+    },
+    "youtube": {
+      "totalEngagement": 2985,
+      "averageEngagementRate": 0.445,
+      "averageViralityScore": 0.82,
+      "averageAmplificationFactor": 4.5,
+      "peakEngagementHours": ["10:00", "17:00", "22:00"],
+      "dominantContentType": "video",
+      "averageContentLength": 1245,
+      "influencerImpact": "Medium",
+      "audienceGrowthRate": 0.025,
+      "sentimentTrend": "Very Positive"
+    }
+  },
+  "viralityAnalysis": {
+    "topViralContent": [
+      {
+        "contentId": "VIR-001",
+        "politicianId": "NG-POL-011",
+        "sourceId": "twitter",
+        "viralityScore": 0.95,
+        "reach": 234000,
+        "engagement": 8900,
+        "amplificationFactor": 5.2,
+        "topic": "Youth Empowerment",
+        "contentType": "video",
+        "timestamp": "2024-01-13T14:30:00Z"
+      },
+      {
+        "contentId": "VIR-002",
+        "politicianId": "NG-POL-004",
+        "sourceId": "youtube",
+        "viralityScore": 0.89,
+        "reach": 156000,
+        "engagement": 6700,
+        "amplificationFactor": 4.8,
+        "topic": "Agriculture",
+        "contentType": "video",
+        "timestamp": "2024-01-14T10:15:00Z"
+      },
+      {
+        "contentId": "VIR-003",
+        "politicianId": "NG-POL-001",
+        "sourceId": "twitter",
+        "viralityScore": 0.78,
+        "reach": 89000,
+        "engagement": 3400,
+        "amplificationFactor": 3.9,
+        "topic": "Economy",
+        "contentType": "text",
+        "timestamp": "2024-01-15T07:45:00Z"
+      }
+    ],
+    "viralityFactors": {
+      "timing": {
+        "optimalHours": ["08:00-10:00", "14:00-16:00", "19:00-21:00"],
+        "optimalDays": ["Tuesday", "Wednesday", "Thursday"],
+        "seasonalTrends": {
+          "dry": 1.2,
+          "rainy": 0.8
+        }
+      },
+      "content": {
+        "videoMultiplier": 2.3,
+        "imageMultiplier": 1.8,
+        "textMultiplier": 1.0,
+        "optimalLength": {
+          "twitter": 140,
+          "facebook": 250,
+          "instagram": 125,
+          "youtube": 900
+        }
+      },
+      "topics": {
+        "highVirality": ["Youth/Jobs", "Corruption", "Economy"],
+        "mediumVirality": ["Security", "Infrastructure", "Education"],
+        "lowVirality": ["Agriculture", "Health", "Environment"]
+      }
+    }
+  },
+  "influencerImpact": {
+    "topInfluencers": [
+      {
+        "influencerId": "INF-001",
+        "name": "Political Analyst Pro",
+        "sourceId": "twitter",
+        "followerCount": 234000,
+        "engagementRate": 0.45,
+        "amplificationFactor": 4.2,
+        "politiciansMentioned": ["NG-POL-001", "NG-POL-011"],
+        "averageReach": 89000,
+        "verificationStatus": "verified"
+      },
+      {
+        "influencerId": "INF-002",
+        "name": "Youth Voice Nigeria",
+        "sourceId": "instagram",
+        "followerCount": 156000,
+        "engagementRate": 0.38,
+        "amplificationFactor": 3.8,
+        "politiciansMentioned": ["NG-POL-011", "NG-POL-009"],
+        "averageReach": 67000,
+        "verificationStatus": "verified"
+      },
+      {
+        "influencerId": "INF-003",
+        "name": "Nigerian Politics Today",
+        "sourceId": "youtube",
+        "followerCount": 89000,
+        "engagementRate": 0.52,
+        "amplificationFactor": 5.1,
+        "politiciansMentioned": ["NG-POL-004", "NG-POL-002"],
+        "averageReach": 45000,
+        "verificationStatus": "verified"
+      }
+    ],
+    "influencerCategories": {
+      "political_analysts": {
+        "count": 45,
+        "averageFollowers": 67000,
+        "averageEngagement": 0.42,
+        "amplificationPower": "High"
+      },
+      "youth_advocates": {
+        "count": 78,
+        "averageFollowers": 34000,
+        "averageEngagement": 0.38,
+        "amplificationPower": "High"
+      },
+      "journalists": {
+        "count": 123,
+        "averageFollowers": 89000,
+        "averageEngagement": 0.35,
+        "amplificationPower": "Medium"
+      },
+      "celebrities": {
+        "count": 23,
+        "averageFollowers": 234000,
+        "averageEngagement": 0.28,
+        "amplificationPower": "Very High"
+      }
+    }
+  },
+  "engagementTrends": {
+    "hourlyTrends": {
+      "00:00": 0.12, "01:00": 0.08, "02:00": 0.05, "03:00": 0.03,
+      "04:00": 0.02, "05:00": 0.06, "06:00": 0.14, "07:00": 0.22,
+      "08:00": 0.28, "09:00": 0.25, "10:00": 0.31, "11:00": 0.38,
+      "12:00": 0.34, "13:00": 0.29, "14:00": 0.27, "15:00": 0.30,
+      "16:00": 0.33, "17:00": 0.35, "18:00": 0.31, "19:00": 0.28,
+      "20:00": 0.25, "21:00": 0.23, "22:00": 0.20, "23:00": 0.16
+    },
+    "dailyTrends": {
+      "Monday": 0.25, "Tuesday": 0.31, "Wednesday": 0.35,
+      "Thursday": 0.33, "Friday": 0.28, "Saturday": 0.22, "Sunday": 0.19
+    },
+    "monthlyTrends": {
+      "January": 0.31, "February": 0.28, "March": 0.35, "April": 0.33,
+      "May": 0.38, "June": 0.32, "July": 0.29, "August": 0.36,
+      "September": 0.41, "October": 0.43, "November": 0.45, "December": 0.34
+    }
+  },
+  "metadata": {
+    "totalRecords": 5,
+    "dateRange": {
+      "start": "2024-01-13T16:10:00Z",
+      "end": "2024-01-15T14:30:00Z"
+    },
+    "dataVersion": "v2.1",
+    "lastUpdated": "2024-01-15T15:00:00Z",
+    "processingEngine": "EngagementAnalyzer-Pro",
+    "qualityScore": 0.91,
+    "completeness": 0.96,
+    "dataRetentionDays": 365,
+    "updateFrequency": "real-time",
+    "sources": ["twitter", "facebook", "instagram", "youtube"],
+    "metricsTracked": [
+      "mentions", "reach", "impressions", "engagement", "virality",
+      "amplification", "demographics", "sentiment", "influencer_impact"
+    ],
+    "geographicCoverage": "Nigeria",
+    "confidenceThreshold": 0.7
+  }
+}

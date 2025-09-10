@@ -1,0 +1,733 @@
+{
+  "topicTrends": [
+    {
+      "id": "TOPIC-001",
+      "topicName": "Economy",
+      "category": "policy_area",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.87,
+      "trendDirection": "Rising",
+      "urgencyLevel": "High",
+      "mentions": 15670,
+      "reach": 456000,
+      "engagement": 23450,
+      "sentimentAssociation": {
+        "overall": "Mixed",
+        "score": 0.12,
+        "distribution": {
+          "positive": 0.42,
+          "neutral": 0.35,
+          "negative": 0.23
+        }
+      },
+      "keywords": [
+        "economic growth", "inflation", "unemployment", "GDP", "fiscal policy",
+        "monetary policy", "economic recovery", "job creation", "investment",
+        "economic development", "poverty reduction", "economic stability"
+      ],
+      "relatedTopics": [
+        "Youth/Jobs", "Infrastructure", "Agriculture", "Energy"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-001",
+          "mentions": 3450,
+          "sentiment": "Positive",
+          "score": 0.68
+        },
+        {
+          "politicianId": "NG-POL-002",
+          "mentions": 5670,
+          "sentiment": "Neutral",
+          "score": 0.05
+        },
+        {
+          "politicianId": "NG-POL-003",
+          "mentions": 2890,
+          "sentiment": "Negative",
+          "score": -0.45
+        }
+      ],
+      "sourceBreakdown": {
+        "twitter": { "mentions": 6780, "sentiment": 0.15 },
+        "facebook": { "mentions": 4560, "sentiment": 0.08 },
+        "instagram": { "mentions": 2340, "sentiment": 0.22 },
+        "youtube": { "mentions": 890, "sentiment": 0.45 },
+        "news_sites": { "mentions": 1100, "sentiment": -0.12 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "26-35",
+        "primaryEducation": "Tertiary",
+        "primaryLocation": "Urban",
+        "primaryOccupation": "Professional Services"
+      },
+      "temporalPattern": {
+        "peakHours": ["09:00", "14:00", "20:00"],
+        "peakDays": ["Tuesday", "Wednesday", "Thursday"],
+        "seasonalTrend": "Higher in dry season"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-002",
+      "topicName": "Security",
+      "category": "policy_area",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.92,
+      "trendDirection": "Rising",
+      "urgencyLevel": "Very High",
+      "mentions": 18900,
+      "reach": 567000,
+      "engagement": 34560,
+      "sentimentAssociation": {
+        "overall": "Negative",
+        "score": -0.58,
+        "distribution": {
+          "positive": 0.18,
+          "neutral": 0.25,
+          "negative": 0.57
+        }
+      },
+      "keywords": [
+        "insecurity", "terrorism", "banditry", "kidnapping", "security forces",
+        "military operations", "police reform", "border security", "intelligence",
+        "counter-terrorism", "security challenges", "national security"
+      ],
+      "relatedTopics": [
+        "International Relations", "Governance", "Rural Development"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-002",
+          "mentions": 7890,
+          "sentiment": "Mixed",
+          "score": -0.12
+        },
+        {
+          "politicianId": "NG-POL-005",
+          "mentions": 4560,
+          "sentiment": "Positive",
+          "score": 0.67
+        },
+        {
+          "politicianId": "NG-POL-013",
+          "mentions": 3450,
+          "sentiment": "Neutral",
+          "score": 0.08
+        }
+      ],
+      "sourceBreakdown": {
+        "twitter": { "mentions": 8900, "sentiment": -0.45 },
+        "facebook": { "mentions": 5670, "sentiment": -0.32 },
+        "news_sites": { "mentions": 2890, "sentiment": -0.78 },
+        "youtube": { "mentions": 1440, "sentiment": -0.23 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "36-45",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Rural",
+        "primaryOccupation": "Agriculture"
+      },
+      "temporalPattern": {
+        "peakHours": ["08:00", "13:00", "19:00"],
+        "peakDays": ["Monday", "Wednesday", "Friday"],
+        "seasonalTrend": "Higher during rainy season"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-003",
+      "topicName": "Youth/Jobs",
+      "category": "policy_area",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.94,
+      "trendDirection": "Rising",
+      "urgencyLevel": "Very High",
+      "mentions": 21340,
+      "reach": 678000,
+      "engagement": 45670,
+      "sentimentAssociation": {
+        "overall": "Positive",
+        "score": 0.73,
+        "distribution": {
+          "positive": 0.68,
+          "neutral": 0.22,
+          "negative": 0.10
+        }
+      },
+      "keywords": [
+        "youth empowerment", "job creation", "unemployment", "skill acquisition",
+        "entrepreneurship", "youth development", "employment opportunities",
+        "vocational training", "youth programs", "graduate employment",
+        "youth participation", "digital skills"
+      ],
+      "relatedTopics": [
+        "Education", "Technology", "Economy", "Social Justice"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-001",
+          "mentions": 8900,
+          "sentiment": "Very Positive",
+          "score": 1.45
+        },
+        {
+          "politicianId": "NG-POL-011",
+          "mentions": 6780,
+          "sentiment": "Very Positive",
+          "score": 1.67
+        },
+        {
+          "politicianId": "NG-POL-009",
+          "mentions": 3450,
+          "sentiment": "Positive",
+          "score": 0.89
+        }
+      ],
+      "sourceBreakdown": {
+        "twitter": { "mentions": 9870, "sentiment": 0.78 },
+        "instagram": { "mentions": 6540, "sentiment": 0.92 },
+        "facebook": { "mentions": 3210, "sentiment": 0.56 },
+        "youtube": { "mentions": 1720, "sentiment": 0.83 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "18-25",
+        "primaryEducation": "Tertiary",
+        "primaryLocation": "Urban",
+        "primaryOccupation": "Student"
+      },
+      "temporalPattern": {
+        "peakHours": ["11:00", "16:00", "21:00"],
+        "peakDays": ["Tuesday", "Thursday", "Saturday"],
+        "seasonalTrend": "Consistent year-round"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-004",
+      "topicName": "Corruption",
+      "category": "policy_area",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.78,
+      "trendDirection": "Stable",
+      "urgencyLevel": "High",
+      "mentions": 12450,
+      "reach": 389000,
+      "engagement": 28900,
+      "sentimentAssociation": {
+        "overall": "Negative",
+        "score": -0.82,
+        "distribution": {
+          "positive": 0.08,
+          "neutral": 0.15,
+          "negative": 0.77
+        }
+      },
+      "keywords": [
+        "corruption", "anti-corruption", "transparency", "accountability",
+        "EFCC", "ICPC", "graft", "embezzlement", "financial crimes",
+        "public funds", "corruption scandals", "integrity"
+      ],
+      "relatedTopics": [
+        "Governance", "Election Credibility", "Justice System"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-003",
+          "mentions": 4560,
+          "sentiment": "Negative",
+          "score": -0.78
+        },
+        {
+          "politicianId": "NG-POL-006",
+          "mentions": 3890,
+          "sentiment": "Very Negative",
+          "score": -1.23
+        },
+        {
+          "politicianId": "NG-POL-011",
+          "mentions": 2340,
+          "sentiment": "Positive",
+          "score": 0.89
+        }
+      ],
+      "sourceBreakdown": {
+        "twitter": { "mentions": 5670, "sentiment": -0.89 },
+        "facebook": { "mentions": 3450, "sentiment": -0.67 },
+        "instagram": { "mentions": 2100, "sentiment": -0.78 },
+        "news_sites": { "mentions": 1230, "sentiment": -0.95 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "26-35",
+        "primaryEducation": "Tertiary",
+        "primaryLocation": "Urban",
+        "primaryOccupation": "Professional Services"
+      },
+      "temporalPattern": {
+        "peakHours": ["10:00", "15:00", "20:00"],
+        "peakDays": ["Monday", "Wednesday", "Friday"],
+        "seasonalTrend": "Spikes during election periods"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-005",
+      "topicName": "Cost of Living",
+      "category": "campaign_issue",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.96,
+      "trendDirection": "Rising",
+      "urgencyLevel": "Very High",
+      "mentions": 23890,
+      "reach": 789000,
+      "engagement": 56780,
+      "sentimentAssociation": {
+        "overall": "Very Negative",
+        "score": -1.34,
+        "distribution": {
+          "positive": 0.05,
+          "neutral": 0.12,
+          "negative": 0.83
+        }
+      },
+      "keywords": [
+        "cost of living", "inflation", "high prices", "food prices",
+        "fuel prices", "transportation costs", "housing costs", "basic needs",
+        "affordability", "economic hardship", "price increases", "living expenses"
+      ],
+      "relatedTopics": [
+        "Fuel Subsidy", "Minimum Wage", "Economy", "Social Welfare"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-002",
+          "mentions": 9870,
+          "sentiment": "Very Negative",
+          "score": -1.56
+        },
+        {
+          "politicianId": "NG-POL-001",
+          "mentions": 6540,
+          "sentiment": "Negative",
+          "score": -0.78
+        },
+        {
+          "politicianId": "NG-POL-003",
+          "mentions": 4320,
+          "sentiment": "Negative",
+          "score": -0.89
+        }
+      ],
+      "sourceBreakdown": {
+        "twitter": { "mentions": 11230, "sentiment": -1.23 },
+        "facebook": { "mentions": 7890, "sentiment": -1.45 },
+        "instagram": { "mentions": 3210, "sentiment": -1.12 },
+        "reddit": { "mentions": 1560, "sentiment": -1.67 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "26-35",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Urban",
+        "primaryOccupation": "Private Sector"
+      },
+      "temporalPattern": {
+        "peakHours": ["07:00", "12:00", "18:00"],
+        "peakDays": ["Monday", "Tuesday", "Wednesday"],
+        "seasonalTrend": "Higher during festive seasons"
+      },
+      "metadata": {
+        "dataQuality": "Excellent",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-006",
+      "topicName": "Infrastructure",
+      "category": "policy_area",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.71,
+      "trendDirection": "Stable",
+      "urgencyLevel": "Medium",
+      "mentions": 9870,
+      "reach": 234000,
+      "engagement": 18900,
+      "sentimentAssociation": {
+        "overall": "Mixed",
+        "score": 0.23,
+        "distribution": {
+          "positive": 0.48,
+          "neutral": 0.32,
+          "negative": 0.20
+        }
+      },
+      "keywords": [
+        "infrastructure", "roads", "bridges", "power supply", "water supply",
+        "transportation", "railways", "airports", "seaports", "telecommunications",
+        "digital infrastructure", "public works"
+      ],
+      "relatedTopics": [
+        "Urban Development", "Energy", "Transportation", "Technology"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-007",
+          "mentions": 3450,
+          "sentiment": "Positive",
+          "score": 0.78
+        },
+        {
+          "politicianId": "NG-POL-002",
+          "mentions": 2890,
+          "sentiment": "Mixed",
+          "score": 0.12
+        },
+        {
+          "politicianId": "NG-POL-009",
+          "mentions": 2100,
+          "sentiment": "Positive",
+          "score": 0.67
+        }
+      ],
+      "sourceBreakdown": {
+        "facebook": { "mentions": 4320, "sentiment": 0.34 },
+        "twitter": { "mentions": 3210, "sentiment": 0.18 },
+        "news_sites": { "mentions": 1890, "sentiment": 0.45 },
+        "youtube": { "mentions": 450, "sentiment": 0.67 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "36-45",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Urban",
+        "primaryOccupation": "Public Sector"
+      },
+      "temporalPattern": {
+        "peakHours": ["09:00", "14:00", "19:00"],
+        "peakDays": ["Tuesday", "Wednesday", "Thursday"],
+        "seasonalTrend": "Higher during dry season"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-007",
+      "topicName": "Election Credibility",
+      "category": "campaign_issue",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.85,
+      "trendDirection": "Rising",
+      "urgencyLevel": "High",
+      "mentions": 14560,
+      "reach": 445000,
+      "engagement": 32100,
+      "sentimentAssociation": {
+        "overall": "Negative",
+        "score": -0.67,
+        "distribution": {
+          "positive": 0.22,
+          "neutral": 0.28,
+          "negative": 0.50
+        }
+      },
+      "keywords": [
+        "election credibility", "electoral integrity", "vote buying", "rigging",
+        "INEC", "electoral process", "free and fair elections", "voter suppression",
+        "election monitoring", "electoral reforms", "ballot integrity", "democracy"
+      ],
+      "relatedTopics": [
+        "Corruption", "Governance", "Democracy", "Political Reforms"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-003",
+          "mentions": 5670,
+          "sentiment": "Negative",
+          "score": -0.89
+        },
+        {
+          "politicianId": "NG-POL-001",
+          "mentions": 4320,
+          "sentiment": "Mixed",
+          "score": -0.23
+        },
+        {
+          "politicianId": "NG-POL-011",
+          "mentions": 2890,
+          "sentiment": "Positive",
+          "score": 0.78
+        }
+      ],
+      "sourceBreakdown": {
+        "twitter": { "mentions": 6780, "sentiment": -0.78 },
+        "facebook": { "mentions": 4320, "sentiment": -0.56 },
+        "instagram": { "mentions": 2100, "sentiment": -0.67 },
+        "news_sites": { "mentions": 1360, "sentiment": -0.89 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "26-35",
+        "primaryEducation": "Tertiary",
+        "primaryLocation": "Urban",
+        "primaryOccupation": "Professional Services"
+      },
+      "temporalPattern": {
+        "peakHours": ["10:00", "15:00", "21:00"],
+        "peakDays": ["Monday", "Wednesday", "Friday"],
+        "seasonalTrend": "Spikes during election periods"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    },
+    {
+      "id": "TOPIC-008",
+      "topicName": "Agriculture",
+      "category": "policy_area",
+      "timestamp": "2024-01-15T12:00:00Z",
+      "dateRecorded": "2024-01-15",
+      "trendingScore": 0.63,
+      "trendDirection": "Stable",
+      "urgencyLevel": "Medium",
+      "mentions": 7890,
+      "reach": 189000,
+      "engagement": 14560,
+      "sentimentAssociation": {
+        "overall": "Mixed",
+        "score": 0.34,
+        "distribution": {
+          "positive": 0.52,
+          "neutral": 0.28,
+          "negative": 0.20
+        }
+      },
+      "keywords": [
+        "agriculture", "farming", "food security", "agricultural development",
+        "rural farming", "crop production", "livestock", "irrigation",
+        "agricultural loans", "farmer support", "agribusiness", "food production"
+      ],
+      "relatedTopics": [
+        "Rural Development", "Food Security", "Economy", "Environment"
+      ],
+      "politiciansAssociated": [
+        {
+          "politicianId": "NG-POL-004",
+          "mentions": 3210,
+          "sentiment": "Very Positive",
+          "score": 1.45
+        },
+        {
+          "politicianId": "NG-POL-010",
+          "mentions": 2100,
+          "sentiment": "Negative",
+          "score": -0.67
+        },
+        {
+          "politicianId": "NG-POL-002",
+          "mentions": 1560,
+          "sentiment": "Mixed",
+          "score": 0.12
+        }
+      ],
+      "sourceBreakdown": {
+        "youtube": { "mentions": 2890, "sentiment": 0.78 },
+        "facebook": { "mentions": 2340, "sentiment": 0.23 },
+        "twitter": { "mentions": 1890, "sentiment": 0.12 },
+        "news_sites": { "mentions": 770, "sentiment": 0.45 }
+      },
+      "demographics": {
+        "primaryAgeGroup": "36-45",
+        "primaryEducation": "Secondary",
+        "primaryLocation": "Rural",
+        "primaryOccupation": "Agriculture"
+      },
+      "temporalPattern": {
+        "peakHours": ["06:00", "12:00", "18:00"],
+        "peakDays": ["Monday", "Wednesday", "Saturday"],
+        "seasonalTrend": "Higher during planting and harvest seasons"
+      },
+      "metadata": {
+        "dataQuality": "Good",
+        "processingVersion": "v2.1",
+        "lastUpdated": "2024-01-15T12:30:00Z"
+      }
+    }
+  ],
+  "topicRelationships": {
+    "strongCorrelations": [
+      {
+        "topic1": "Economy",
+        "topic2": "Youth/Jobs",
+        "correlationScore": 0.89,
+        "relationshipType": "causal"
+      },
+      {
+        "topic1": "Cost of Living",
+        "topic2": "Fuel Subsidy",
+        "correlationScore": 0.92,
+        "relationshipType": "causal"
+      },
+      {
+        "topic1": "Security",
+        "topic2": "Agriculture",
+        "correlationScore": 0.76,
+        "relationshipType": "impact"
+      },
+      {
+        "topic1": "Corruption",
+        "topic2": "Election Credibility",
+        "correlationScore": 0.84,
+        "relationshipType": "causal"
+      }
+    ],
+    "topicClusters": [
+      {
+        "clusterId": "CLUSTER-001",
+        "name": "Economic Issues",
+        "topics": ["Economy", "Youth/Jobs", "Cost of Living", "Fuel Subsidy", "Minimum Wage"],
+        "centralTopic": "Economy",
+        "clusterStrength": 0.87
+      },
+      {
+        "clusterId": "CLUSTER-002",
+        "name": "Governance & Democracy",
+        "topics": ["Corruption", "Election Credibility", "Governance", "Accountability"],
+        "centralTopic": "Governance",
+        "clusterStrength": 0.82
+      },
+      {
+        "clusterId": "CLUSTER-003",
+        "name": "Development & Infrastructure",
+        "topics": ["Infrastructure", "Agriculture", "Rural Development", "Urban Development"],
+        "centralTopic": "Infrastructure",
+        "clusterStrength": 0.74
+      }
+    ]
+  },
+  "trendingAnalysis": {
+    "topTrendingTopics": [
+      {
+        "topicId": "TOPIC-005",
+        "topicName": "Cost of Living",
+        "trendingScore": 0.96,
+        "changeFromPreviousWeek": 0.23,
+        "projectedTrend": "Continuing to rise"
+      },
+      {
+        "topicId": "TOPIC-003",
+        "topicName": "Youth/Jobs",
+        "trendingScore": 0.94,
+        "changeFromPreviousWeek": 0.18,
+        "projectedTrend": "Stable high"
+      },
+      {
+        "topicId": "TOPIC-002",
+        "topicName": "Security",
+        "trendingScore": 0.92,
+        "changeFromPreviousWeek": 0.15,
+        "projectedTrend": "Continuing to rise"
+      }
+    ],
+    "emergingTopics": [
+      {
+        "topicName": "Digital Economy",
+        "mentions": 2340,
+        "growthRate": 0.45,
+        "timeToTrend": "2-3 weeks"
+      },
+      {
+        "topicName": "Climate Change",
+        "mentions": 1890,
+        "growthRate": 0.38,
+        "timeToTrend": "3-4 weeks"
+      }
+    ],
+    "decliningTopics": [
+      {
+        "topicName": "COVID-19 Response",
+        "mentions": 890,
+        "declineRate": -0.67,
+        "projectedRelevance": "Low"
+      }
+    ]
+  },
+  "seasonalPatterns": {
+    "drySeasonTopics": [
+      "Economy", "Infrastructure", "Security", "Election Credibility"
+    ],
+    "rainySeasonTopics": [
+      "Agriculture", "Environment", "Health", "Rural Development"
+    ],
+    "yearRoundTopics": [
+      "Youth/Jobs", "Corruption", "Cost of Living", "Education"
+    ]
+  },
+  "eventImpact": {
+    "majorEvents": [
+      {
+        "eventType": "Policy Announcements",
+        "topicsAffected": ["Economy", "Youth/Jobs", "Infrastructure"],
+        "impactScore": 0.78,
+        "duration": "1-2 weeks"
+      },
+      {
+        "eventType": "Security Incidents",
+        "topicsAffected": ["Security", "Agriculture", "Rural Development"],
+        "impactScore": 0.89,
+        "duration": "2-3 weeks"
+      },
+      {
+        "eventType": "Electoral Events",
+        "topicsAffected": ["Election Credibility", "Corruption", "Governance"],
+        "impactScore": 0.92,
+        "duration": "4-6 weeks"
+      }
+    ]
+  },
+  "metadata": {
+    "totalTopics": 8,
+    "dateRange": {
+      "start": "2024-01-15T00:00:00Z",
+      "end": "2024-01-15T23:59:59Z"
+    },
+    "dataVersion": "v2.1",
+    "lastUpdated": "2024-01-15T12:30:00Z",
+    "processingEngine": "TopicTrendAnalyzer-Pro",
+    "qualityScore": 0.89,
+    "completeness": 0.93,
+    "dataRetentionDays": 365,
+    "updateFrequency": "hourly",
+    "sources": ["twitter", "facebook", "instagram", "youtube", "news_sites", "reddit"],
+    "languages": ["en", "ha", "ig", "yo"],
+    "geographicCoverage": "Nigeria",
+    "confidenceThreshold": 0.7,
+    "topicCategories": ["policy_area", "campaign_issue", "event_type"],
+    "analysisDepth": "comprehensive"
+  }
+}
