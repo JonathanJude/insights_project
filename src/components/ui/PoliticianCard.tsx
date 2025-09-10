@@ -26,7 +26,23 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
   onClick
 }) => {
   const { addToRecentlyViewed } = useUIStore();
+  const isMobile = useIsMobile();
   const partyInfo = POLITICAL_PARTIES.find(party => party.value === politician.party);
+
+  // Use mobile-optimized card on mobile devices
+  if (isMobile) {
+    return (
+      <MobilePoliticianCard
+        politician={politician}
+        enhancedData={enhancedData}
+        showSentiment={showSentiment}
+        showStats={showStats}
+        showEnhanced={showEnhanced}
+        className={className}
+        onClick={onClick}
+      />
+    );
+  }
   
   const handleClick = () => {
     addToRecentlyViewed(politician);

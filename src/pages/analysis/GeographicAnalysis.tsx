@@ -4,6 +4,7 @@ import AnalysisFilters from '../../components/analysis/AnalysisFilters';
 import PageLayout from '../../components/layout/PageLayout';
 import { useAnalysisFilters } from '../../hooks/useAnalysisFilters';
 import { useEnhancedPoliticians } from '../../hooks/useEnhancedPoliticians';
+import { useIsMobile } from '../../hooks/useMediaQuery';
 import { ANALYSIS_PAGE_METADATA, usePageNavigation } from '../../hooks/usePageNavigation';
 
 const GeographicAnalysis: React.FC = () => {
@@ -19,6 +20,8 @@ const GeographicAnalysis: React.FC = () => {
     getFilterSummary,
     getContextualData
   } = useAnalysisFilters();
+
+  const isMobile = useIsMobile();
 
   // Use page navigation hook
   usePageNavigation({
