@@ -27,18 +27,20 @@ import {
   PlatformBreakdown,
   SentimentChart
 } from '../../components/charts';
+import EnhancedQuickActions from '../../components/ui/EnhancedQuickActions';
 import RefreshButton from '../../components/ui/RefreshButton';
 import StatsCard from '../../components/ui/StatsCard';
 import TrendingPoliticians from '../../components/ui/TrendingPoliticians';
 
 // Quick Actions
-import { getEnabledQuickActions } from '../../config/quickActions';
+import { getAllQuickActions, getEnabledQuickActions } from '../../config/quickActions';
 import type { QuickAction } from '../../types/quickActions';
 
 const Dashboard: React.FC = () => {
   usePageTitle('Dashboard');
   const navigate = useNavigate();
   const quickActions = getEnabledQuickActions();
+  const allQuickActions = getAllQuickActions();
 
   // Handle quick action clicks
   const handleQuickActionClick = (action: QuickAction) => {
@@ -359,41 +361,12 @@ const Dashboard: React.FC = () => {
             />
           </div>
 
-          {/* Quick Actions */}
-          <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-4 lg:p-6 border border-blue-200/50 shadow-lg hover:shadow-xl transition-all duration-300">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-pink-600/5"></div>
-            <div className="relative">
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-2 h-2 primary-gradient rounded-full"></div>
-                <h3 className="text-lg lg:text-xl font-bold text-gray-900">Quick Actions</h3>
-              </div>
-              <div className="space-y-3">
-                {quickActions.map((action) => {
-                  const IconComponent = action.icon;
-                  return (
-                    <button
-                      key={action.id}
-                      onClick={() => handleQuickActionClick(action)}
-                      className="w-full flex items-center justify-between p-3 lg:p-4 bg-white/80 backdrop-blur-sm rounded-lg hover:bg-white hover:shadow-md transition-all duration-200 group border border-white/50 touch-manipulation"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <IconComponent className="h-4 w-4 lg:h-5 lg:w-5 text-gray-500 group-hover:text-blue-600 transition-colors duration-200 flex-shrink-0" />
-                        <div className="text-left min-w-0 flex-1">
-                          <span className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 block truncate">
-                            {action.label}
-                          </span>
-                          <span className="text-xs text-gray-500 group-hover:text-gray-600 block truncate">
-                            {action.description}
-                          </span>
-                        </div>
-                      </div>
-                      <ArrowRightIcon className="h-4 w-4 text-gray-400 group-hover:text-blue-600 transition-colors duration-200 flex-shrink-0" />
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          {/* Enhanced Quick Actions */}
+          <EnhancedQuickActions
+            variant="enhanced"
+            maxActions={6}
+            onActionClick={handleQuickActionClick}
+          />
         </div>
       </div>
 

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import EnhancedFiltersPanel from '../../components/filters/EnhancedFiltersPanel';
 import FilterBar from '../../components/filters/FilterBar';
 import FilterSummary from '../../components/filters/FilterSummary';
 import UnifiedSearchResults from '../../components/search/UnifiedSearchResults';
 import PoliticianCard from '../../components/ui/PoliticianCard';
+import { useAdvancedSearch } from '../../hooks/useAdvancedSearch';
+import { useEnhancedPoliticians } from '../../hooks/useEnhancedPoliticians';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { usePoliticians } from '../../hooks/usePoliticians';
 import { useUnifiedSearch } from '../../hooks/useUnifiedSearch';
@@ -16,6 +19,9 @@ const SearchResults: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
+  const [showEnhancedFilters, setShowEnhancedFilters] = useState(false);
+  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
+  const [confidenceThreshold, setConfidenceThreshold] = useState(0.5);
   const pageSize = 12;
 
   const {
@@ -38,14 +44,14 @@ const SearchResults: React.FC = () => {
     const filter = searchParams.get('filter');
     const sort = searchParams.get('sort');
     const previousQuery = searchQuery;
-    
+
     // Handle search query
     if (query !== searchQuery) {
       setSearchQuery(query || '');
       if (query) {
         addToSearchHistory(query);
       }
-      
+
       // Reset to first page when search query changes (but not on initial load)
       if (previousQuery !== '' || query !== null) {
         setCurrentPage(1);
@@ -82,15 +88,47 @@ const SearchResults: React.FC = () => {
     { maxResults: 50 },
     !!searchQuery && searchQuery.length >= 2
   );
-  
+
   const { data: paginatedData, isLoading: politiciansLoading, error } = usePoliticians(currentPage, pageSize);
-  
+
   const politicians = paginatedData?.data || [];
   const totalCount = paginatedData?.pagination?.totalItems || 0;
   const totalPages = paginatedData?.pagination?.totalPages || 1;
-  
+
+  // Get enhanced data for current politicians when enhanced view is enabled
+  const politicianIds = politicians.map(p => p.id);
+  const { data: enhancedPoliticians, isLoading: enhancedLoading } = useEnhancedPoliticians(
+    showEnhancedFilters ? politicianIds : []
+  );
+
+  // Advanced search with multi-dimensional filtering
+  const { data: advancedSearchResults, isLoading: advancedSearchLoading } = useAdvancedSearch(
+    {
+      query: searchQuery,
+      parties: [],
+      states: [],
+      platforms: [],
+      geographic: { countries: [], states: [], lgas: [], confidenceThreshold },
+      demographic: { education: [], occupation: [], ageRanges: [18, 65], gender: [], confidenceThreshold },
+      sentiment: { polarity: [], emotions: [], intensityRange: [0, 1], complexity: [], modelAgreement: 0.5 },
+      topics: { policyAreas: [], campaignIssues: [], events: [], trendingThreshold: 0.5 },
+      engagement: { levels: [], viralityThreshold: 0.5, qualityScore: 0.5, influencerAmplification: false },
+      temporal: { timeBlocks: [], daysOfWeek: [], electionPhases: [] }
+    },
+    {
+      limit: pageSize,
+      offset: (currentPage - 1) * pageSize,
+      sortBy: 'relevance',
+      sortOrder: 'desc',
+      includeConfidenceScores: true,
+      includeDataQuality: true
+    },
+    showAdvancedSearch && !!searchQuery && searchQuery.length >= 2
+  );
+
   // Determine which loading state and data to use
-  const isLoading = searchQuery ? unifiedLoading : politiciansLoading;
+  const isLoading = showAdvancedSearch && searchQuery ? advancedSearchLoading :
+    searchQuery ? unifiedLoading : politiciansLoading;
   const hasSearchQuery = searchQuery && searchQuery.length >= 2;
 
   // Reset page when search query changes from filter store
@@ -115,7 +153,7 @@ const SearchResults: React.FC = () => {
     const getPageNumbers = () => {
       const pages = [];
       const maxVisible = 5;
-      
+
       if (totalPages <= maxVisible) {
         for (let i = 1; i <= totalPages; i++) {
           pages.push(i);
@@ -143,7 +181,7 @@ const SearchResults: React.FC = () => {
           pages.push(totalPages);
         }
       }
-      
+
       return pages;
     };
 
@@ -156,7 +194,7 @@ const SearchResults: React.FC = () => {
         >
           Previous
         </button>
-        
+
         {getPageNumbers().map((page, index) => (
           <React.Fragment key={index}>
             {page === '...' ? (
@@ -164,18 +202,17 @@ const SearchResults: React.FC = () => {
             ) : (
               <button
                 onClick={() => handlePageChange(page as number)}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  currentPage === page
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50'
-                }`}
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${currentPage === page
+                  ? 'bg-blue-600 text-white'
+                  : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-50'
+                  }`}
               >
                 {page}
               </button>
             )}
           </React.Fragment>
         ))}
-        
+
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
@@ -194,44 +231,137 @@ const SearchResults: React.FC = () => {
         <div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             {searchParams.get('filter') === 'positive' ? 'Most Positive Politicians' :
-             hasSearchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians'}
+              hasSearchQuery ? `Search Results for "${searchQuery}"` : 'All Politicians'}
           </h1>
           <p className="text-gray-600">
-            {isLoading ? 'Searching...' : hasSearchQuery ? 
-              `${unifiedResults?.length || 0} result${(unifiedResults?.length || 0) !== 1 ? 's' : ''} found across all categories` :
-              `${totalCount} politician${totalCount !== 1 ? 's' : ''} found`
+            {isLoading ? 'Searching...' :
+              showAdvancedSearch && advancedSearchResults ?
+                `${advancedSearchResults.total} result${advancedSearchResults.total !== 1 ? 's' : ''} found with advanced search` :
+                hasSearchQuery ?
+                  `${unifiedResults?.length || 0} result${(unifiedResults?.length || 0) !== 1 ? 's' : ''} found across all categories` :
+                  `${totalCount} politician${totalCount !== 1 ? 's' : ''} found`
             }
             {!hasSearchQuery && hasActiveFilters() && (
               <span className="ml-2">
                 • {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
               </span>
             )}
+            {showAdvancedSearch && advancedSearchResults?.searchMetadata && (
+              <span className="ml-2 text-blue-600">
+                • {advancedSearchResults.searchMetadata.totalDimensions} dimensions analyzed
+              </span>
+            )}
           </p>
-          {hasSearchQuery && unifiedResults && unifiedResults.length > 0 && (
+          {hasSearchQuery && unifiedResults && unifiedResults.length > 0 && !showAdvancedSearch && (
             <div className="mt-2 text-sm text-gray-500">
               Search includes politicians, parties, topics, states, positions, and platforms
             </div>
           )}
+          {showAdvancedSearch && hasSearchQuery && (
+            <div className="mt-2 text-sm text-blue-600">
+              Advanced multi-dimensional search with confidence scoring and data quality analysis
+            </div>
+          )}
         </div>
-        
+
         <div className="flex items-center space-x-4 mt-4 lg:mt-0">
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setShowAdvancedSearch(!showAdvancedSearch)}
+              className={`inline-flex items-center px-3 py-2 border rounded-md text-sm font-medium transition-colors ${showAdvancedSearch
+                ? 'border-blue-300 bg-blue-50 text-blue-700 hover:bg-blue-100'
+                : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              {showAdvancedSearch ? 'Advanced Search' : 'Enable Advanced'}
+              {showAdvancedSearch && <span className="ml-1">🔍</span>}
+            </button>
+
+            <button
+              onClick={() => setShowEnhancedFilters(!showEnhancedFilters)}
+              className={`inline-flex items-center px-3 py-2 border rounded-md text-sm font-medium transition-colors ${showEnhancedFilters
+                ? 'border-purple-300 bg-purple-50 text-purple-700 hover:bg-purple-100'
+                : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              {showEnhancedFilters ? 'Enhanced View' : 'Enable Enhanced'}
+              {showEnhancedFilters && <span className="ml-1">✨</span>}
+            </button>
+          </div>
           <div className="text-sm text-gray-500">
             Last updated: {new Date().toLocaleDateString()}
           </div>
         </div>
       </div>
 
+      {/* Advanced Search Bar */}
+      {showAdvancedSearch && (
+        <div className="mb-6">
+          <AdvancedSearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            onSearch={(query) => {
+              setSearchQuery(query);
+              setCurrentPage(1);
+            }}
+            showSuggestions={true}
+            showConfidenceFilter={true}
+            confidenceThreshold={confidenceThreshold}
+            onConfidenceChange={setConfidenceThreshold}
+            placeholder="Advanced search with multi-dimensional filtering..."
+            className="mb-4"
+          />
+
+          {/* Search Analytics */}
+          {advancedSearchResults && advancedSearchResults.results.length > 0 && (
+            <SearchAnalytics
+              searchResults={advancedSearchResults.results}
+              searchMetadata={advancedSearchResults.searchMetadata}
+              className="mb-4"
+            />
+          )}
+        </div>
+      )}
+
       {/* Enhanced Filter Bar */}
       <div className="mb-6">
-        <FilterBar 
-          showFilterButton={true}
-          showSortOptions={true}
-          className="mb-4"
-        />
-        
-        {/* Filter Summary */}
-        {hasActiveFilters() && (
-          <FilterSummary className="mb-4" />
+        {showEnhancedFilters ? (
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div className="lg:col-span-1">
+              <EnhancedFiltersPanel
+                variant="sidebar"
+                showEnhancedFilters={true}
+                className="h-fit"
+              />
+            </div>
+            <div className="lg:col-span-3">
+              <FilterBar
+                showFilterButton={false}
+                showSortOptions={true}
+                className="mb-4"
+              />
+              {hasActiveFilters() && (
+                <FilterSummary className="mb-4" />
+              )}
+            </div>
+          </div>
+        ) : (
+          <>
+            <FilterBar
+              showFilterButton={true}
+              showSortOptions={true}
+              className="mb-4"
+            />
+            {hasActiveFilters() && (
+              <FilterSummary className="mb-4" />
+            )}
+          </>
         )}
       </div>
 
@@ -241,7 +371,7 @@ const SearchResults: React.FC = () => {
           <div className="text-sm text-gray-600">
             Showing {((currentPage - 1) * pageSize) + 1}-{Math.min(currentPage * pageSize, totalCount)} of {totalCount} results
           </div>
-          
+
           {hasActiveFilters() && (
             <div className="text-sm text-blue-600">
               {getActiveFilterCount()} filter{getActiveFilterCount() !== 1 ? 's' : ''} applied
@@ -264,6 +394,67 @@ const SearchResults: React.FC = () => {
           >
             Try Again
           </button>
+        </div>
+      ) : showAdvancedSearch && advancedSearchResults ? (
+        // Show advanced search results
+        <div className={`grid gap-6 ${showEnhancedFilters
+          ? 'grid-cols-1 lg:grid-cols-2'
+          : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+          }`}>
+          {advancedSearchResults.results.map((result, index) => {
+            const enhancedData = result.politician;
+            return (
+              <div key={result.politician.id} className="relative">
+                <PoliticianCard
+                  politician={result.politician}
+                  enhancedData={enhancedData}
+                  showEnhanced={true}
+                />
+
+                {/* Relevance and confidence indicators */}
+                <div className="absolute top-2 right-2 flex space-x-1">
+                  <div
+                    className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full"
+                    title={`Relevance: ${(result.relevanceScore * 100).toFixed(0)}%`}
+                  >
+                    {(result.relevanceScore * 100).toFixed(0)}%
+                  </div>
+                  {result.politician.dataQuality && (
+                    <div
+                      className={`px-2 py-1 text-xs font-medium rounded-full ${result.politician.dataQuality.confidence > 0.8
+                        ? 'bg-green-100 text-green-800'
+                        : result.politician.dataQuality.confidence > 0.5
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-red-100 text-red-800'
+                        }`}
+                      title={`Data Quality: ${(result.politician.dataQuality.confidence * 100).toFixed(0)}%`}
+                    >
+                      Q{(result.politician.dataQuality.confidence * 100).toFixed(0)}
+                    </div>
+                  )}
+                </div>
+
+                {/* Matched dimensions */}
+                {result.matchedDimensions && result.matchedDimensions.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {result.matchedDimensions.slice(0, 3).map((dimension, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800"
+                      >
+                        {dimension}
+                      </span>
+                    ))}
+                    {result.matchedDimensions.length > 3 && (
+                      <span className="text-xs text-gray-500">
+                        +{result.matchedDimensions.length - 3} more
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       ) : hasSearchQuery ? (
         // Show unified search results when there's a search query
@@ -329,12 +520,35 @@ const SearchResults: React.FC = () => {
       ) : (
         // Show politician grid results
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {politicians.map((politician: Politician) => (
-              <PoliticianCard key={politician.id} politician={politician} />
-            ))}
+          <div className={`grid gap-6 ${showEnhancedFilters
+            ? 'grid-cols-1 lg:grid-cols-2'
+            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+            }`}>
+            {politicians.map((politician: Politician, index: number) => {
+              const enhancedData = enhancedPoliticians?.[index];
+              return (
+                <PoliticianCard
+                  key={politician.id}
+                  politician={politician}
+                  enhancedData={enhancedData}
+                  showEnhanced={showEnhancedFilters}
+                />
+              );
+            })}
           </div>
-          
+
+          {(enhancedLoading && showEnhancedFilters) && (
+            <div className="text-center py-4">
+              <div className="inline-flex items-center px-4 py-2 bg-purple-50 text-purple-700 rounded-lg">
+                <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-purple-700" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Loading enhanced data...
+              </div>
+            </div>
+          )}
+
           <Pagination />
         </>
       )}

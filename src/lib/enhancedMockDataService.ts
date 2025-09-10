@@ -6,30 +6,19 @@
  * with comprehensive error handling and undefined data fallback strategies.
  */
 
-import { 
-  GeographicHierarchy, 
-  geographicDataUtils,
-  GeographicSentimentDistribution 
-} from '../mock/geographicData';
-import { 
-  DemographicClassification, 
-  DemographicSentimentData,
-  demographicDataUtils 
-} from '../mock/demographicData';
-import { 
-  EnhancedSentimentAnalysis,
-  enhancedSentimentUtils 
-} from '../mock/enhancedSentimentData';
-import { 
-  TopicClassification, 
-  EngagementMetrics,
-  topicEngagementUtils 
-} from '../mock/topicEngagementData';
-import { 
-  TemporalPatterns, 
-  TemporalSentimentData,
-  temporalDataUtils 
-} from '../mock/temporalData';
+// Runtime imports (functions and objects)
+import { demographicDataUtils } from '../mock/demographicData';
+import { enhancedSentimentUtils } from '../mock/enhancedSentimentData';
+import { geographicDataUtils } from '../mock/geographicData';
+import { temporalDataUtils } from '../mock/temporalData';
+import { topicEngagementUtils } from '../mock/topicEngagementData';
+
+// Type-only imports (interfaces and types)
+import type { DemographicClassification } from '../mock/demographicData';
+import type { EnhancedSentimentAnalysis } from '../mock/enhancedSentimentData';
+import type { GeographicHierarchy } from '../mock/geographicData';
+import type { TemporalPatterns } from '../mock/temporalData';
+import type { EngagementMetrics, TopicClassification } from '../mock/topicEngagementData';
 
 // Enhanced politician data interface
 export interface EnhancedPoliticianData {
@@ -64,56 +53,6 @@ export interface EnhancedPoliticianData {
     lastUpdated: Date;
     sources: string[];
   };
-}
-
-// Enhanced search and filter interfaces
-export interface EnhancedFilterState {
-  geographic: {
-    countries: string[];
-    states: string[];
-    lgas: string[];
-    wards: string[];
-    pollingUnits: string[];
-    confidenceThreshold: number;
-  };
-  demographic: {
-    education: string[];
-    occupation: string[];
-    ageRanges: [number, number];
-    gender: string[];
-    confidenceThreshold: number;
-  };
-  sentiment: {
-    polarity: string[];
-    emotions: string[];
-    intensityRange: [number, number];
-    complexity: string[];
-    modelAgreement: number;
-  };
-  topics: {
-    policyAreas: string[];
-    campaignIssues: string[];
-    events: string[];
-    trendingThreshold: number;
-  };
-  engagement: {
-    levels: string[];
-    viralityThreshold: number;
-    qualityScore: number;
-    influencerAmplification: boolean;
-  };
-  temporal: {
-    timeBlocks: string[];
-    daysOfWeek: string[];
-    electionPhases: string[];
-  };
-}
-
-export interface EnhancedSearchResult {
-  politician: EnhancedPoliticianData;
-  relevanceScore: number;
-  matchedDimensions: string[];
-  highlights: Record<string, string[]>;
 }
 
 // Enhanced Mock Data Service Class
@@ -153,659 +92,336 @@ export class EnhancedMockDataService {
   }
 
   /**
-   * Enhanced search with multi-dimensional filtering
+   * Get geographic sentiment analysis data
    */
-  static async searchPoliticiansEnhanced(
-    query: string,
-    filters: Partial<EnhancedFilterState> = {},
-    options: {
-      limit?: number;
-      offset?: number;
-      sortBy?: 'relevance' | 'sentiment' | 'engagement';
-      sortOrder?: 'asc' | 'desc';
-    } = {}
-  ): Promise<{
-    results: EnhancedSearchResult[];
-    total: number;
-    facets: Record<string, Record<string, number>>;
+  static async getGeographicSentimentAnalysis(params: {
+    state?: string;
+    lga?: string;
+    timeRange: string;
+  }): Promise<{
+    overallSentiment: number;
+    coveragePercentage: number;
+    availableLGAs: string[];
+    regionalBreakdown: Array<{
+      name: string;
+      stateCount: number;
+      sentiment: number;
+      dataPoints: number;
+      confidence: number;
+    }>;
   }> {
     try {
-      await new Promise(resolve => setTimeout(resolve, 150 + Math.random() * 200));
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 200));
 
-      // Get all politicians (in real app, this would be from database)
-      const allPoliticians = await this.getAllEnhancedPoliticians();
-      
-      // Apply text search
-      let filteredResults = this.applyTextSearch(allPoliticians, query);
-      
-      // Apply multi-dimensional filters
-      filteredResults = this.applyMultiDimensionalFilters(filteredResults, filters);
-      
-      // Calculate relevance scores
-      const scoredResults = this.calculateRelevanceScores(filteredResults, query, filters);
-      
-      // Sort results
-      const sortedResults = this.sortResults(scoredResults, options.sortBy, options.sortOrder);
-      
-      // Apply pagination
-      const { limit = 20, offset = 0 } = options;
-      const paginatedResults = sortedResults.slice(offset, offset + limit);
-      
-      // Generate facets for filtering UI
-      const facets = this.generateSearchFacets(filteredResults);
-      
+      const nigerianRegions = [
+        { name: 'South West', states: ['Lagos', 'Ogun', 'Oyo', 'Osun', 'Ondo', 'Ekiti'], sentiment: 0.72 },
+        { name: 'South East', states: ['Anambra', 'Enugu', 'Imo', 'Abia', 'Ebonyi'], sentiment: 0.68 },
+        { name: 'South South', states: ['Rivers', 'Delta', 'Cross River', 'Akwa Ibom', 'Bayelsa', 'Edo'], sentiment: 0.65 },
+        { name: 'North Central', states: ['FCT', 'Plateau', 'Benue', 'Nasarawa', 'Kogi', 'Niger', 'Kwara'], sentiment: 0.58 },
+        { name: 'North West', states: ['Kano', 'Kaduna', 'Katsina', 'Sokoto', 'Kebbi', 'Zamfara', 'Jigawa'], sentiment: 0.52 },
+        { name: 'North East', states: ['Borno', 'Adamawa', 'Taraba', 'Bauchi', 'Gombe', 'Yobe'], sentiment: 0.48 }
+      ];
+
+      const regionalBreakdown = nigerianRegions.map(region => ({
+        name: region.name,
+        stateCount: region.states.length,
+        sentiment: region.sentiment + (Math.random() - 0.5) * 0.1,
+        dataPoints: Math.floor(Math.random() * 50000) + 10000,
+        confidence: 0.7 + Math.random() * 0.25
+      }));
+
+      const overallSentiment = regionalBreakdown.reduce((sum, region) => 
+        sum + region.sentiment * region.stateCount, 0) / regionalBreakdown.reduce((sum, region) => 
+        sum + region.stateCount, 0);
+
+      const availableLGAs = params.state ? [
+        `${params.state} Central`,
+        `${params.state} North`,
+        `${params.state} South`,
+        `${params.state} East`,
+        `${params.state} West`
+      ] : [];
+
       return {
-        results: paginatedResults,
-        total: sortedResults.length,
-        facets
+        overallSentiment,
+        coveragePercentage: 85 + Math.random() * 10,
+        availableLGAs,
+        regionalBreakdown
       };
     } catch (error) {
-      console.error('Error in enhanced search:', error);
+      console.error('Error getting geographic sentiment analysis:', error);
       return {
-        results: [],
-        total: 0,
-        facets: {}
+        overallSentiment: 0.6,
+        coveragePercentage: 80,
+        availableLGAs: [],
+        regionalBreakdown: []
       };
     }
   }
 
   /**
-   * Get aggregated multi-dimensional insights
+   * Get state comparison data
    */
-  static async getMultiDimensionalInsights(
-    filters: Partial<EnhancedFilterState> = {}
-  ): Promise<{
-    geographic: Record<string, number>;
-    demographic: Record<string, number>;
-    sentiment: Record<string, number>;
-    topics: Record<string, number>;
-    engagement: Record<string, number>;
-    temporal: Record<string, number>;
-  }> {
+  static async getStateComparisonData(timeRange: string): Promise<Array<{
+    state: string;
+    sentiment: number;
+    dataPoints: number;
+    confidence: number;
+  }>> {
     try {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 100));
 
-      const allPoliticians = await this.getAllEnhancedPoliticians();
-      const filteredPoliticians = this.applyMultiDimensionalFilters(allPoliticians, filters);
-      
-      return {
-        geographic: this.aggregateGeographicInsights(filteredPoliticians),
-        demographic: this.aggregateDemographicInsights(filteredPoliticians),
-        sentiment: this.aggregateSentimentInsights(filteredPoliticians),
-        topics: this.aggregateTopicInsights(filteredPoliticians),
-        engagement: this.aggregateEngagementInsights(filteredPoliticians),
-        temporal: this.aggregateTemporalInsights(filteredPoliticians)
-      };
+      const states = [
+        'Lagos', 'Kano', 'Rivers', 'Kaduna', 'Oyo', 'Ogun', 'Imo', 'Borno', 'Osun', 'Delta',
+        'Anambra', 'Taraba', 'Katsina', 'Cross River', 'Plateau', 'Bauchi', 'Jigawa', 'Kebbi',
+        'Ondo', 'Enugu', 'Zamfara', 'Sokoto', 'Benue', 'Adamawa', 'Nasarawa', 'Akwa Ibom',
+        'Ebonyi', 'Kwara', 'Gombe', 'Yobe', 'Abia', 'Ekiti', 'Bayelsa', 'Kogi', 'Niger', 'Edo', 'FCT'
+      ];
+
+      return states.map(state => ({
+        state,
+        sentiment: 0.3 + Math.random() * 0.5,
+        dataPoints: Math.floor(Math.random() * 20000) + 5000,
+        confidence: 0.6 + Math.random() * 0.3
+      })).sort((a, b) => b.sentiment - a.sentiment);
     } catch (error) {
-      console.error('Error getting multi-dimensional insights:', error);
-      return this.getFallbackInsights();
+      console.error('Error getting state comparison data:', error);
+      return [];
     }
   }
 
-  // Private helper methods
+  /**
+   * Get LGA hierarchy data for tree map
+   */
+  static async getLGAHierarchyData(state?: string): Promise<Array<{
+    name: string;
+    value: number;
+    sentiment: number;
+    children?: Array<{ name: string; value: number; sentiment: number }>;
+  }>> {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 250 + Math.random() * 150));
 
-  private static getCachedData(politicianId: string): EnhancedPoliticianData | null {
-    const cached = this.cache.get(politicianId);
-    const expiry = this.cacheExpiry.get(politicianId);
+      if (state) {
+        // Return LGAs for specific state
+        const lgaCount = Math.floor(Math.random() * 15) + 10;
+        return Array.from({ length: lgaCount }, (_, i) => ({
+          name: `${state} LGA ${i + 1}`,
+          value: Math.floor(Math.random() * 5000) + 1000,
+          sentiment: 0.2 + Math.random() * 0.6
+        }));
+      } else {
+        // Return top-level state data
+        const states = ['Lagos', 'Kano', 'Rivers', 'Kaduna', 'Oyo', 'Ogun', 'FCT'];
+        return states.map(stateName => ({
+          name: stateName,
+          value: Math.floor(Math.random() * 20000) + 10000,
+          sentiment: 0.3 + Math.random() * 0.4,
+          children: Array.from({ length: 5 }, (_, i) => ({
+            name: `${stateName} LGA ${i + 1}`,
+            value: Math.floor(Math.random() * 3000) + 500,
+            sentiment: 0.2 + Math.random() * 0.6
+          }))
+        }));
+      }
+    } catch (error) {
+      console.error('Error getting LGA hierarchy data:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Get geographic timeline data
+   */
+  static async getGeographicTimelineData(params: {
+    state?: string;
+    timeRange: string;
+  }): Promise<Array<{
+    date: string;
+    positive: number;
+    neutral: number;
+    negative: number;
+  }>> {
+    try {
+      await new Promise(resolve => setTimeout(resolve, 200 + Math.random() * 100));
+
+      const days = params.timeRange === '7d' ? 7 : 
+                   params.timeRange === '30d' ? 30 : 
+                   params.timeRange === '90d' ? 90 : 365;
+
+      const timeline = [];
+      const now = new Date();
+
+      for (let i = days - 1; i >= 0; i--) {
+        const date = new Date(now);
+        date.setDate(date.getDate() - i);
+        
+        // Generate realistic sentiment distribution
+        const basePositive = 0.4 + Math.random() * 0.2;
+        const baseNegative = 0.2 + Math.random() * 0.2;
+        const neutral = 1 - basePositive - baseNegative;
+
+        timeline.push({
+          date: date.toISOString().split('T')[0],
+          positive: Math.max(0, Math.min(1, basePositive + (Math.random() - 0.5) * 0.1)),
+          neutral: Math.max(0, Math.min(1, neutral + (Math.random() - 0.5) * 0.1)),
+          negative: Math.max(0, Math.min(1, baseNegative + (Math.random() - 0.5) * 0.1))
+        });
+      }
+
+      return timeline;
+    } catch (error) {
+      console.error('Error getting geographic timeline data:', error);
+      return [];
+    }
+  }
+
+  // Helper methods (simplified for now)
+  private static getCachedData(id: string): EnhancedPoliticianData | null {
+    const cached = this.cache.get(id);
+    const expiry = this.cacheExpiry.get(id);
     
     if (cached && expiry && Date.now() < expiry) {
       return cached;
     }
     
-    // Clean up expired cache
-    this.cache.delete(politicianId);
-    this.cacheExpiry.delete(politicianId);
     return null;
   }
 
-  private static setCachedData(politicianId: string, data: EnhancedPoliticianData): void {
-    this.cache.set(politicianId, data);
-    this.cacheExpiry.set(politicianId, Date.now() + this.CACHE_DURATION);
+  private static setCachedData(id: string, data: EnhancedPoliticianData): void {
+    this.cache.set(id, data);
+    this.cacheExpiry.set(id, Date.now() + this.CACHE_DURATION);
   }
 
-  private static async getBasePoliticianData(politicianId: string) {
-    // This would integrate with existing politician mock data
-    // For now, generate basic data
-    const politicianIndex = parseInt(politicianId.split('_')[1] || '1');
-    const names = ['Bola Tinubu', 'Atiku Abubakar', 'Peter Obi', 'Rabiu Kwankwaso', 'Yemi Osinbajo'];
-    const parties = ['APC', 'PDP', 'LP', 'NNPP', 'APC'];
-    const states = ['Lagos', 'Adamawa', 'Anambra', 'Kano', 'Ogun'];
-    
-    const index = politicianIndex % names.length;
-    
+  private static async getBasePoliticianData(id: string): Promise<any> {
+    // Simplified base data
     return {
-      id: politicianId,
-      name: names[index],
-      party: parties[index],
-      position: 'Presidential Candidate',
-      state: states[index],
-      sentiment: 0.4 + Math.random() * 0.4 // 0.4 to 0.8
+      id,
+      name: `Politician ${id}`,
+      party: 'APC',
+      position: 'Senator',
+      state: 'Lagos',
+      sentiment: 0.6
     };
   }
 
-  private static async generateAllDimensionalData(
-    politicianId: string, 
-    baseData: any
-  ): Promise<EnhancedPoliticianData> {
+  private static async generateAllDimensionalData(id: string, baseData: any): Promise<EnhancedPoliticianData> {
+    // Simplified enhanced data generation
+    return {
+      ...baseData,
+      geographic: geographicDataUtils.generateGeographicContext(baseData.state || 'Lagos'),
+      demographic: demographicDataUtils.generateDemographicBreakdown(id),
+      enhancedSentiment: enhancedSentimentUtils.generateEnhancedSentiment(id, baseData.sentiment || 0.5),
+      topics: topicEngagementUtils.generateTopicClassification(baseData.party || 'APC'),
+      engagement: topicEngagementUtils.generateEngagementMetrics(id, 'medium'),
+      temporal: temporalDataUtils.generateTemporalPatterns(id),
+      insights: {
+        primaryStrengths: ['Economic Policy', 'Youth Engagement'],
+        keyWeaknesses: ['Infrastructure', 'Security'],
+        demographicAppeal: { 'youth': 0.7, 'elderly': 0.5 },
+        geographicStronghold: ['Lagos', 'Ogun'],
+        trendingTopics: ['Economy', 'Education']
+      },
+      dataQuality: {
+        completeness: 0.85,
+        confidence: 0.78,
+        lastUpdated: new Date(),
+        sources: ['Twitter', 'News', 'Surveys']
+      }
+    };
+  }
+
+  /**
+   * Get all enhanced data for analysis pages
+   */
+  static async getAllEnhancedData(): Promise<EnhancedPoliticianData[]> {
     try {
-      // Generate all dimensional data in parallel
-      const [
-        geographic,
-        demographic,
-        enhancedSentiment,
-        topics,
-        temporal
-      ] = await Promise.all([
-        Promise.resolve(geographicDataUtils.generateGeographicContext(politicianId)),
-        Promise.resolve(demographicDataUtils.generateDemographicClassification(politicianId)),
-        Promise.resolve(enhancedSentimentUtils.generateEnhancedSentiment(politicianId, baseData.sentiment)),
-        Promise.resolve(topicEngagementUtils.generateTopicClassification(politicianId)),
-        Promise.resolve(temporalDataUtils.generateTemporalPatterns(politicianId))
-      ]);
+      // Generate sample data for analysis pages
+      const sampleIds = ['1', '2', '3', '4', '5'];
+      const promises = sampleIds.map(id => this.getEnhancedPoliticianData(id));
+      return Promise.all(promises);
+    } catch (error) {
+      console.error('Error getting all enhanced data:', error);
+      return [];
+    }
+  }
 
-      // Generate engagement metrics based on topics and sentiment
-      const engagement = topicEngagementUtils.generateEngagementMetrics(
-        politicianId, 
-        topics, 
-        baseData.sentiment
+  /**
+   * Search politicians with enhanced filtering
+   */
+  static async searchPoliticiansEnhanced(
+    query: string,
+    filters: any = {},
+    options: any = {}
+  ): Promise<EnhancedPoliticianData[]> {
+    try {
+      // Simplified search implementation
+      const allData = await this.getAllEnhancedData();
+      return allData.filter(politician => 
+        politician.name.toLowerCase().includes(query.toLowerCase())
       );
+    } catch (error) {
+      console.error('Error searching enhanced politicians:', error);
+      return [];
+    }
+  }
 
-      // Generate insights
-      const insights = this.generateInsights(
-        politicianId, 
-        { geographic, demographic, enhancedSentiment, topics, engagement, temporal }
-      );
-
-      // Calculate data quality
-      const dataQuality = this.calculateDataQuality(
-        { geographic, demographic, enhancedSentiment, topics, engagement, temporal }
-      );
-
+  /**
+   * Get multi-dimensional insights
+   */
+  static async getMultiDimensionalInsights(filters: any = {}): Promise<any> {
+    try {
+      // Return mock insights data
       return {
-        ...baseData,
-        geographic,
-        demographic,
-        enhancedSentiment,
-        topics,
-        engagement,
-        temporal,
-        insights,
-        dataQuality
+        overallSentiment: 0.65,
+        totalDataPoints: 150000,
+        coveragePercentage: 85,
+        topTopics: ['Economy', 'Security', 'Education'],
+        regionalBreakdown: [
+          { region: 'South West', sentiment: 0.72 },
+          { region: 'South East', sentiment: 0.68 },
+          { region: 'North Central', sentiment: 0.58 }
+        ]
       };
     } catch (error) {
-      console.error(`Error generating dimensional data for ${politicianId}:`, error);
-      throw error;
+      console.error('Error getting multi-dimensional insights:', error);
+      return {};
     }
-  }  p
-rivate static getFallbackPoliticianData(politicianId: string): EnhancedPoliticianData {
+  }
+
+  private static getFallbackPoliticianData(id: string): EnhancedPoliticianData {
+    // Fallback data when errors occur
     return {
-      id: politicianId,
-      name: 'Unknown Politician',
+      id,
+      name: `Politician ${id}`,
       party: 'Unknown',
       position: 'Unknown',
       state: 'Unknown',
       sentiment: 0.5,
-      geographic: {
-        country: { code: 'NG', name: 'Nigeria', confidence: 0.95 },
-        state: { code: 'UND', name: 'Undefined', confidence: 0.0, isUndefined: true },
-        lga: { code: 'UND', name: 'Undefined', confidence: 0.0, isUndefined: true },
-        ward: { number: 0, name: 'Undefined', confidence: 0.0, isUndefined: true },
-        pollingUnit: { code: 'UND', name: 'Undefined', confidence: 0.0, isUndefined: true }
-      },
-      demographic: {
-        education: { level: 'Undefined', confidence: 0.0 },
-        occupation: { sector: 'Undefined', confidence: 0.0 },
-        ageGroup: { range: 'Undefined', confidence: 0.0 },
-        gender: { classification: 'Undefined', confidence: 0.0 }
-      },
-      enhancedSentiment: enhancedSentimentUtils.generateEnhancedSentiment(politicianId, 0.5),
-      topics: {
-        policyAreas: { primary: 'Economy', secondary: [], confidence: 0.5 },
-        campaignIssues: { issues: [], relevance: {}, confidence: 0.5 },
-        eventDriven: { events: [], temporal: false, urgency: 'Low', confidence: 0.5 }
-      },
-      engagement: {
-        level: 'Low',
-        metrics: { shares: 0, comments: 0, reach: 0, impressions: 0 },
-        virality: { score: 0, velocity: 0, isViral: false },
-        quality: { authenticity: 0.5, relevance: 0.5, constructiveness: 0.5 },
-        influencerAmplification: { hasInfluencers: false, influencerCount: 0, totalFollowers: 0 }
-      },
-      temporal: temporalDataUtils.generateTemporalPatterns(politicianId),
+      geographic: geographicDataUtils.generateGeographicContext('Lagos'),
+      demographic: demographicDataUtils.generateDemographicBreakdown('default'),
+      enhancedSentiment: enhancedSentimentUtils.generateEnhancedSentiment('default', 0.5),
+      topics: topicEngagementUtils.generateTopicClassification('general'),
+      engagement: topicEngagementUtils.generateEngagementMetrics('default', 'medium'),
+      temporal: temporalDataUtils.generateTemporalPatterns('default'),
       insights: {
-        primaryStrengths: ['Data unavailable'],
-        keyWeaknesses: ['Insufficient data'],
+        primaryStrengths: [],
+        keyWeaknesses: [],
         demographicAppeal: {},
         geographicStronghold: [],
         trendingTopics: []
       },
       dataQuality: {
-        completeness: 0.1,
-        confidence: 0.1,
+        completeness: 0.3,
+        confidence: 0.2,
         lastUpdated: new Date(),
-        sources: ['fallback']
+        sources: []
       }
-    };
-  }
-
-  private static async getAllEnhancedPoliticians(): Promise<EnhancedPoliticianData[]> {
-    // Generate sample politicians for testing
-    const politicians = [];
-    for (let i = 1; i <= 50; i++) {
-      try {
-        const politician = await this.getEnhancedPoliticianData(`politician_${i}`);
-        politicians.push(politician);
-      } catch (error) {
-        console.warn(`Failed to generate politician_${i}:`, error);
-      }
-    }
-    return politicians;
-  }
-
-  private static applyTextSearch(
-    politicians: EnhancedPoliticianData[], 
-    query: string
-  ): EnhancedPoliticianData[] {
-    if (!query.trim()) return politicians;
-    
-    const searchTerms = query.toLowerCase().split(' ');
-    
-    return politicians.filter(politician => {
-      const searchableText = [
-        politician.name,
-        politician.party,
-        politician.position,
-        politician.state,
-        politician.geographic.state.name,
-        politician.topics.policyAreas.primary,
-        ...politician.topics.policyAreas.secondary,
-        ...politician.topics.campaignIssues.issues,
-        ...politician.insights.trendingTopics
-      ].join(' ').toLowerCase();
-      
-      return searchTerms.some(term => searchableText.includes(term));
-    });
-  }
-
-  private static applyMultiDimensionalFilters(
-    politicians: EnhancedPoliticianData[],
-    filters: Partial<EnhancedFilterState>
-  ): EnhancedPoliticianData[] {
-    return politicians.filter(politician => {
-      // Geographic filters
-      if (filters.geographic) {
-        const geo = filters.geographic;
-        if (geo.states?.length && !geo.states.includes(politician.geographic.state.code)) return false;
-        if (geo.confidenceThreshold && politician.geographic.state.confidence < geo.confidenceThreshold) return false;
-      }
-
-      // Demographic filters
-      if (filters.demographic) {
-        const demo = filters.demographic;
-        if (demo.education?.length && !demo.education.includes(politician.demographic.education.level)) return false;
-        if (demo.occupation?.length && !demo.occupation.includes(politician.demographic.occupation.sector)) return false;
-        if (demo.gender?.length && !demo.gender.includes(politician.demographic.gender.classification)) return false;
-      }
-
-      // Sentiment filters
-      if (filters.sentiment) {
-        const sent = filters.sentiment;
-        if (sent.polarity?.length && !sent.polarity.includes(politician.enhancedSentiment.polarity.classification)) return false;
-        if (sent.emotions?.length && !sent.emotions.includes(politician.enhancedSentiment.emotions.primary)) return false;
-        if (sent.modelAgreement && politician.enhancedSentiment.modelAgreement.score < sent.modelAgreement) return false;
-      }
-
-      // Topic filters
-      if (filters.topics) {
-        const topics = filters.topics;
-        if (topics.policyAreas?.length && !topics.policyAreas.includes(politician.topics.policyAreas.primary)) return false;
-        if (topics.campaignIssues?.length) {
-          const hasMatchingIssue = topics.campaignIssues.some(issue => 
-            politician.topics.campaignIssues.issues.includes(issue as any)
-          );
-          if (!hasMatchingIssue) return false;
-        }
-      }
-
-      // Engagement filters
-      if (filters.engagement) {
-        const eng = filters.engagement;
-        if (eng.levels?.length && !eng.levels.includes(politician.engagement.level)) return false;
-        if (eng.viralityThreshold && politician.engagement.virality.score < eng.viralityThreshold) return false;
-      }
-
-      return true;
-    });
-  }
-
-  private static calculateRelevanceScores(
-    politicians: EnhancedPoliticianData[],
-    query: string,
-    filters: Partial<EnhancedFilterState>
-  ): EnhancedSearchResult[] {
-    return politicians.map(politician => {
-      let relevanceScore = 0.5; // Base score
-      const matchedDimensions: string[] = [];
-      const highlights: Record<string, string[]> = {};
-
-      // Text relevance
-      if (query.trim()) {
-        const queryLower = query.toLowerCase();
-        if (politician.name.toLowerCase().includes(queryLower)) {
-          relevanceScore += 0.3;
-          matchedDimensions.push('name');
-          highlights.name = [politician.name];
-        }
-        if (politician.party.toLowerCase().includes(queryLower)) {
-          relevanceScore += 0.2;
-          matchedDimensions.push('party');
-        }
-      }
-
-      // Data quality boost
-      relevanceScore += politician.dataQuality.completeness * 0.2;
-      relevanceScore += politician.dataQuality.confidence * 0.1;
-
-      // Engagement boost
-      if (politician.engagement.level === 'High') relevanceScore += 0.15;
-      if (politician.engagement.virality.isViral) relevanceScore += 0.1;
-
-      return {
-        politician,
-        relevanceScore: Math.min(1, relevanceScore),
-        matchedDimensions,
-        highlights
-      };
-    });
-  }
-
-  private static sortResults(
-    results: EnhancedSearchResult[],
-    sortBy: string = 'relevance',
-    sortOrder: string = 'desc'
-  ): EnhancedSearchResult[] {
-    const multiplier = sortOrder === 'desc' ? -1 : 1;
-    
-    return results.sort((a, b) => {
-      let comparison = 0;
-      
-      switch (sortBy) {
-        case 'sentiment':
-          comparison = a.politician.sentiment - b.politician.sentiment;
-          break;
-        case 'engagement':
-          comparison = a.politician.engagement.metrics.shares - b.politician.engagement.metrics.shares;
-          break;
-        default: // relevance
-          comparison = a.relevanceScore - b.relevanceScore;
-      }
-      
-      return comparison * multiplier;
-    });
-  }
-
-  private static generateSearchFacets(politicians: EnhancedPoliticianData[]): Record<string, Record<string, number>> {
-    const facets: Record<string, Record<string, number>> = {
-      states: {},
-      parties: {},
-      sentimentPolarity: {},
-      engagementLevels: {},
-      policyAreas: {}
-    };
-
-    politicians.forEach(politician => {
-      // State facets
-      const state = politician.geographic.state.name;
-      facets.states[state] = (facets.states[state] || 0) + 1;
-
-      // Party facets
-      facets.parties[politician.party] = (facets.parties[politician.party] || 0) + 1;
-
-      // Sentiment facets
-      const polarity = politician.enhancedSentiment.polarity.classification;
-      facets.sentimentPolarity[polarity] = (facets.sentimentPolarity[polarity] || 0) + 1;
-
-      // Engagement facets
-      facets.engagementLevels[politician.engagement.level] = (facets.engagementLevels[politician.engagement.level] || 0) + 1;
-
-      // Policy area facets
-      const policyArea = politician.topics.policyAreas.primary;
-      facets.policyAreas[policyArea] = (facets.policyAreas[policyArea] || 0) + 1;
-    });
-
-    return facets;
-  }
-
-  private static generateInsights(
-    politicianId: string,
-    dimensionalData: any
-  ) {
-    const { geographic, demographic, enhancedSentiment, topics, engagement } = dimensionalData;
-    
-    const primaryStrengths = [];
-    const keyWeaknesses = [];
-    const demographicAppeal: Record<string, number> = {};
-    const geographicStronghold = [];
-    const trendingTopics = [];
-
-    // Analyze strengths
-    if (enhancedSentiment.polarity.classification === 'Positive') {
-      primaryStrengths.push('Positive public sentiment');
-    }
-    if (engagement.level === 'High') {
-      primaryStrengths.push('High social media engagement');
-    }
-    if (engagement.virality.isViral) {
-      primaryStrengths.push('Viral content creation');
-    }
-
-    // Analyze weaknesses
-    if (enhancedSentiment.polarity.classification === 'Negative') {
-      keyWeaknesses.push('Negative public sentiment');
-    }
-    if (engagement.level === 'Low') {
-      keyWeaknesses.push('Low engagement levels');
-    }
-    if (geographic.state.isUndefined) {
-      keyWeaknesses.push('Unclear geographic base');
-    }
-
-    // Geographic stronghold
-    if (!geographic.state.isUndefined) {
-      geographicStronghold.push(geographic.state.name);
-    }
-
-    // Trending topics
-    trendingTopics.push(topics.policyAreas.primary);
-    trendingTopics.push(...topics.campaignIssues.issues.slice(0, 2));
-
-    return {
-      primaryStrengths,
-      keyWeaknesses,
-      demographicAppeal,
-      geographicStronghold,
-      trendingTopics
-    };
-  }
-
-  private static calculateDataQuality(dimensionalData: any) {
-    let completeness = 0;
-    let confidence = 0;
-    let dataPoints = 0;
-
-    // Check geographic data
-    if (!dimensionalData.geographic.state.isUndefined) {
-      completeness += 0.2;
-      confidence += dimensionalData.geographic.state.confidence * 0.2;
-    }
-    dataPoints++;
-
-    // Check demographic data
-    if (dimensionalData.demographic.education.level !== 'Undefined') {
-      completeness += 0.2;
-      confidence += dimensionalData.demographic.education.confidence * 0.2;
-    }
-    dataPoints++;
-
-    // Check sentiment data
-    completeness += 0.2;
-    confidence += dimensionalData.enhancedSentiment.polarity.confidence * 0.2;
-    dataPoints++;
-
-    // Check topic data
-    completeness += 0.2;
-    confidence += dimensionalData.topics.policyAreas.confidence * 0.2;
-    dataPoints++;
-
-    // Check engagement data
-    completeness += 0.2;
-    confidence += 0.2; // Engagement always has data
-    dataPoints++;
-
-    return {
-      completeness,
-      confidence,
-      lastUpdated: new Date(),
-      sources: ['mock-generator', 'enhanced-service']
-    };
-  }
-
-  private static aggregateGeographicInsights(politicians: EnhancedPoliticianData[]): Record<string, number> {
-    const insights: Record<string, number> = {};
-    
-    politicians.forEach(politician => {
-      const state = politician.geographic.state.name;
-      if (state !== 'Undefined') {
-        insights[state] = (insights[state] || 0) + politician.sentiment;
-      }
-    });
-
-    // Average the sentiments
-    Object.keys(insights).forEach(state => {
-      const count = politicians.filter(p => p.geographic.state.name === state).length;
-      insights[state] = insights[state] / count;
-    });
-
-    return insights;
-  }
-
-  private static aggregateDemographicInsights(politicians: EnhancedPoliticianData[]): Record<string, number> {
-    const insights: Record<string, number> = {};
-    
-    politicians.forEach(politician => {
-      const education = politician.demographic.education.level;
-      const occupation = politician.demographic.occupation.sector;
-      const ageGroup = politician.demographic.ageGroup.range;
-      
-      if (education !== 'Undefined') {
-        insights[`education_${education}`] = (insights[`education_${education}`] || 0) + politician.sentiment;
-      }
-      if (occupation !== 'Undefined') {
-        insights[`occupation_${occupation}`] = (insights[`occupation_${occupation}`] || 0) + politician.sentiment;
-      }
-      if (ageGroup !== 'Undefined') {
-        insights[`age_${ageGroup}`] = (insights[`age_${ageGroup}`] || 0) + politician.sentiment;
-      }
-    });
-
-    return insights;
-  }
-
-  private static aggregateSentimentInsights(politicians: EnhancedPoliticianData[]): Record<string, number> {
-    const insights: Record<string, number> = {
-      'Positive': 0,
-      'Negative': 0,
-      'Neutral': 0,
-      'High_Intensity': 0,
-      'Viral_Content': 0
-    };
-    
-    politicians.forEach(politician => {
-      const polarity = politician.enhancedSentiment.polarity.classification;
-      insights[polarity]++;
-      
-      if (politician.enhancedSentiment.intensity.level === 'Strong') {
-        insights['High_Intensity']++;
-      }
-      
-      if (politician.engagement.virality.isViral) {
-        insights['Viral_Content']++;
-      }
-    });
-
-    return insights;
-  }
-
-  private static aggregateTopicInsights(politicians: EnhancedPoliticianData[]): Record<string, number> {
-    const insights: Record<string, number> = {};
-    
-    politicians.forEach(politician => {
-      const primaryTopic = politician.topics.policyAreas.primary;
-      insights[primaryTopic] = (insights[primaryTopic] || 0) + 1;
-      
-      politician.topics.campaignIssues.issues.forEach(issue => {
-        insights[issue] = (insights[issue] || 0) + 1;
-      });
-    });
-
-    return insights;
-  }
-
-  private static aggregateEngagementInsights(politicians: EnhancedPoliticianData[]): Record<string, number> {
-    const insights: Record<string, number> = {
-      'High_Engagement': 0,
-      'Medium_Engagement': 0,
-      'Low_Engagement': 0,
-      'Viral_Politicians': 0,
-      'Influencer_Amplified': 0
-    };
-    
-    politicians.forEach(politician => {
-      insights[`${politician.engagement.level}_Engagement`]++;
-      
-      if (politician.engagement.virality.isViral) {
-        insights['Viral_Politicians']++;
-      }
-      
-      if (politician.engagement.influencerAmplification.hasInfluencers) {
-        insights['Influencer_Amplified']++;
-      }
-    });
-
-    return insights;
-  }
-
-  private static aggregateTemporalInsights(politicians: EnhancedPoliticianData[]): Record<string, number> {
-    const insights: Record<string, number> = {};
-    
-    politicians.forEach(politician => {
-      const phase = politician.temporal.electoral.phase;
-      insights[phase] = (insights[phase] || 0) + 1;
-      
-      const season = politician.temporal.seasonal.season;
-      insights[`${season}_Season`] = (insights[`${season}_Season`] || 0) + 1;
-    });
-
-    return insights;
-  }
-
-  private static getFallbackInsights() {
-    return {
-      geographic: { 'No_Data': 1 },
-      demographic: { 'No_Data': 1 },
-      sentiment: { 'No_Data': 1 },
-      topics: { 'No_Data': 1 },
-      engagement: { 'No_Data': 1 },
-      temporal: { 'No_Data': 1 }
     };
   }
 }
 
-// Export utility functions and types
-export const enhancedMockDataUtils = {
-  getEnhancedPoliticianData: EnhancedMockDataService.getEnhancedPoliticianData.bind(EnhancedMockDataService),
-  searchPoliticiansEnhanced: EnhancedMockDataService.searchPoliticiansEnhanced.bind(EnhancedMockDataService),
-  getMultiDimensionalInsights: EnhancedMockDataService.getMultiDimensionalInsights.bind(EnhancedMockDataService)
-};
-
+// Export instance for easier usage
+export const enhancedMockDataService = EnhancedMockDataService;
 export default EnhancedMockDataService;

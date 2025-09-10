@@ -7,8 +7,9 @@ export interface QuickAction {
   icon: ComponentType<{ className?: string }>;
   route: string;
   params?: Record<string, string>;
-  badge?: number;
+  badge?: string | number;
   isEnabled?: boolean;
+  category?: string;
 }
 
 export interface TrendingTopic {

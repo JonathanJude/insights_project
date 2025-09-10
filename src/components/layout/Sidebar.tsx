@@ -1,5 +1,7 @@
 import {
   ChartBarIcon,
+  ChevronDownIcon,
+  ChevronRightIcon,
   ClockIcon,
   HomeIcon,
   MagnifyingGlassIcon,
@@ -13,7 +15,7 @@ import {
   MagnifyingGlassIcon as MagnifyingGlassIconSolid,
   UserGroupIcon as UserGroupIconSolid
 } from '@heroicons/react/24/solid';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { POLITICAL_PARTIES } from '../../constants';
 import { mockPoliticians } from '../../mock/politicians';
@@ -24,6 +26,7 @@ const Sidebar: React.FC = () => {
   const location = useLocation();
   const { isMobile, toggleSidebar, recentPoliticians = [] } = useUIStore();
   const { selectedParties, toggleParty, clearAllFilters, hasActiveFilters } = useFilterStore();
+  const [isAdvancedAnalysisExpanded, setIsAdvancedAnalysisExpanded] = useState(true);
 
   const navigation = [
     {
@@ -123,6 +126,147 @@ const Sidebar: React.FC = () => {
               </Link>
             );
           })}
+        </div>
+
+        {/* Advanced Analysis Section */}
+        <div className="pt-6">
+          <button
+            onClick={() => setIsAdvancedAnalysisExpanded(!isAdvancedAnalysisExpanded)}
+            className="flex items-center justify-between w-full text-xs font-semibold text-secondary uppercase tracking-wider mb-3 hover:text-primary transition-colors group"
+          >
+            <div className="flex items-center">
+              <span className="mr-2">✨</span>
+              Advanced Analysis
+            </div>
+            <div className="transition-transform duration-200 ease-in-out">
+              {isAdvancedAnalysisExpanded ? (
+                <ChevronDownIcon className="h-3 w-3" />
+              ) : (
+                <ChevronRightIcon className="h-3 w-3" />
+              )}
+            </div>
+          </button>
+          
+          <div 
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+              isAdvancedAnalysisExpanded 
+                ? 'max-h-96 opacity-100' 
+                : 'max-h-0 opacity-0'
+            }`}
+          >
+            <div className="space-y-1 pb-2">
+            <Link
+              to="/analysis/geographic"
+              onClick={handleLinkClick}
+              className={`
+                group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                ${
+                  location.pathname === '/analysis/geographic'
+                    ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-r-2 border-purple-700 dark:border-purple-400'
+                    : 'text-primary hover:text-primary hover:bg-secondary hover:translate-x-1'
+                }
+              `}
+            >
+              <span className="mr-3 text-lg transition-transform group-hover:scale-110">🗺️</span>
+              <span className="flex-1">Geographic Analysis</span>
+            </Link>
+            
+            <Link
+              to="/analysis/demographic"
+              onClick={handleLinkClick}
+              className={`
+                group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                ${
+                  location.pathname === '/analysis/demographic'
+                    ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-r-2 border-purple-700 dark:border-purple-400'
+                    : 'text-primary hover:text-primary hover:bg-secondary hover:translate-x-1'
+                }
+              `}
+            >
+              <span className="mr-3 text-lg transition-transform group-hover:scale-110">👥</span>
+              <span className="flex-1">Demographic Insights</span>
+              <span className="ml-2 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-medium shadow-sm">
+                New
+              </span>
+            </Link>
+            
+            <Link
+              to="/analysis/sentiment"
+              onClick={handleLinkClick}
+              className={`
+                group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                ${
+                  location.pathname === '/analysis/sentiment'
+                    ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-r-2 border-purple-700 dark:border-purple-400'
+                    : 'text-primary hover:text-primary hover:bg-secondary hover:translate-x-1'
+                }
+              `}
+            >
+              <span className="mr-3 text-lg transition-transform group-hover:scale-110">💭</span>
+              <span className="flex-1">Sentiment Deep Dive</span>
+              <span className="ml-2 text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded-full font-medium shadow-sm">
+                New
+              </span>
+            </Link>
+            
+            <Link
+              to="/analysis/topics"
+              onClick={handleLinkClick}
+              className={`
+                group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                ${
+                  location.pathname === '/analysis/topics'
+                    ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-r-2 border-purple-700 dark:border-purple-400'
+                    : 'text-primary hover:text-primary hover:bg-secondary hover:translate-x-1'
+                }
+              `}
+            >
+              <span className="mr-3 text-lg transition-transform group-hover:scale-110">📊</span>
+              <span className="flex-1">Topic Trends</span>
+              <span className="ml-2 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full font-medium shadow-sm">
+                New
+              </span>
+            </Link>
+            
+            <Link
+              to="/analysis/engagement"
+              onClick={handleLinkClick}
+              className={`
+                group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                ${
+                  location.pathname === '/analysis/engagement'
+                    ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-r-2 border-purple-700 dark:border-purple-400'
+                    : 'text-primary hover:text-primary hover:bg-secondary hover:translate-x-1'
+                }
+              `}
+            >
+              <span className="mr-3 text-lg transition-transform group-hover:scale-110">🚀</span>
+              <span className="flex-1">Engagement Patterns</span>
+              <span className="ml-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-medium shadow-sm">
+                New
+              </span>
+            </Link>
+            
+            <Link
+              to="/analysis/temporal"
+              onClick={handleLinkClick}
+              className={`
+                group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                ${
+                  location.pathname === '/analysis/temporal'
+                    ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border-r-2 border-purple-700 dark:border-purple-400'
+                    : 'text-primary hover:text-primary hover:bg-secondary hover:translate-x-1'
+                }
+              `}
+            >
+              <span className="mr-3 text-lg transition-transform group-hover:scale-110">⏰</span>
+              <span className="flex-1">Time Analysis</span>
+              <span className="ml-2 text-xs bg-indigo-100 text-indigo-600 px-2 py-1 rounded-full font-medium shadow-sm">
+                New
+              </span>
+            </Link>
+            </div>
+          </div>
         </div>
 
         {/* Quick Filters Section */}

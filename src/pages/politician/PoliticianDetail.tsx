@@ -850,6 +850,134 @@ const PoliticianDetail: React.FC = () => {
             </div>
           </div>
         )}
+
+        {/* Advanced Analysis Entry Points */}
+        <div className="mt-8">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              🔍 Advanced Analysis for {politician.name}
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Dive deeper into {politician.name}'s political sentiment across multiple dimensions
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link
+                to={`/analysis/geographic?politician=${politician.id}`}
+                className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl">🗺️</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
+                      Geographic Analysis
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      Sentiment across states and regions
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to={`/analysis/demographic?politician=${politician.id}`}
+                className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl">👥</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
+                      Demographic Insights
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      Age, education, and occupation patterns
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to={`/analysis/sentiment?politician=${politician.id}`}
+                className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl">💭</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
+                      Sentiment Deep Dive
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      Emotion analysis and intensity mapping
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to={`/analysis/topics?politician=${politician.id}`}
+                className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
+                      Topic Trends
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      Policy areas and campaign issues
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to={`/analysis/engagement?politician=${politician.id}`}
+                className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl">🚀</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
+                      Engagement Patterns
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      Virality and influence networks
+                    </p>
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to={`/analysis/temporal?politician=${politician.id}`}
+                className="group p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all duration-200"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <span className="text-2xl">⏰</span>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 group-hover:text-blue-600">
+                      Time Analysis
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      Temporal patterns and trends
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

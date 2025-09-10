@@ -6,13 +6,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 // Layout Components
 import Layout from './components/layout/Layout';
 
-// Pages
-import Dashboard from './pages/dashboard/Dashboard';
-import PartyAnalytics from './pages/party/PartyAnalytics';
-import PoliticianDetail from './pages/politician/PoliticianDetail';
-import Profile from './pages/profile/Profile';
-import SearchResults from './pages/search/SearchResults';
-import TrendingTopics from './pages/trending/TrendingTopics';
+// Route Configuration
 
 // Error Handling
 
@@ -21,7 +15,9 @@ import GlobalLoadingIndicator from './components/ui/GlobalLoadingIndicator';
 import { LoadingProvider } from './providers/LoadingProvider';
 
 // Store
+import RouteSuspense from './components/layout/RouteSuspense';
 import DashboardErrorBoundary from './components/ui/DashboardErrorBoundary';
+import { routes } from './config/routes';
 import { createEnhancedQueryClient } from './lib/queryErrorHandler';
 import { useUIStore } from './stores/uiStore';
 
@@ -95,14 +91,20 @@ function App() {
           <Router>
             <GlobalLoadingIndicator position="top" height={3} />
             <Layout>
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/politician/:id" element={<PoliticianDetail />} />
-                <Route path="/search" element={<SearchResults />} />
-                <Route path="/trending" element={<TrendingTopics />} />
-                <Route path="/party" element={<PartyAnalytics />} />
-                <Route path="/profile" element={<Profile />} />
-              </Routes>
+              <RouteSuspense>
+                <Routes>
+                  {routes.map((route) => {
+                    const Component = route.component;
+                    return (
+                      <Route
+                        key={route.path}
+                        path={route.path}
+                        element={<Component />}
+                      />
+                    );
+                  })}
+                </Routes>
+              </RouteSuspense>
             </Layout>
           </Router>
 
