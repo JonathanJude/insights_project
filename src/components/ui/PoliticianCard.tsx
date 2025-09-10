@@ -1,27 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { POLITICAL_PARTIES, SENTIMENT_COLORS } from '../../constants';
+import type { EnhancedPoliticianData } from '../../lib/enhancedMockDataService';
 import { useUIStore } from '../../stores/uiStore';
 import type { Politician } from '../../types';
 import PoliticianImage from './PoliticianImage';
 
 interface PoliticianCardProps {
   politician: Politician;
+  enhancedData?: EnhancedPoliticianData;
   showSentiment?: boolean;
   showStats?: boolean;
+  showEnhanced?: boolean;
   className?: string;
   onClick?: () => void;
 }
 
 const PoliticianCard: React.FC<PoliticianCardProps> = ({ 
   politician, 
+  enhancedData,
   showSentiment = true,
   showStats = true,
+  showEnhanced = false,
   className = "",
   onClick
 }) => {
   const { addToRecentlyViewed } = useUIStore();
+  const isMobile = useIsMobile();
   const partyInfo = POLITICAL_PARTIES.find(party => party.value === politician.party);
+
+  // Use mobile-optimized card on mobile devices
+  if (isMobile) {
+    return (
+      <MobilePoliticianCard
+        politician={politician}
+        enhancedData={enhancedData}
+        showSentiment={showSentiment}
+        showStats={showStats}
+        showEnhanced={showEnhanced}
+        className={className}
+        onClick={onClick}
+      />
+    );
+  }
   
   const handleClick = () => {
     addToRecentlyViewed(politician);
@@ -95,6 +116,45 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
             </div>
           </div>
           
+          {/* Enhanced geographic context */}
+          {showEnhanced && enhancedData && !enhancedData.geographic.state.isUndefined && (
+            <div className="mt-2 flex items-center space-x-2 text-xs">
+              <div className="flex items-center space-x-1">
+                <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span className="text-gray-600">
+                  {enhancedData.geographic.lga.name !== 'Undefined' ? enhancedData.geographic.lga.name : enhancedData.geographic.state.name}
+                </span>
+              </div>
+              {enhancedData.geographic.state.confidence > 0.7 && (
+                <div className="w-2 h-2 bg-green-400 rounded-full" title="High confidence location data" />
+              )}
+            </div>
+          )}
+          
+          {/* Enhanced demographic highlights */}
+          {showEnhanced && enhancedData && (
+            <div className="mt-2 flex flex-wrap gap-1">
+              {enhancedData.demographic.ageGroup.range !== 'Undefined' && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                  Age: {enhancedData.demographic.ageGroup.range}
+                </span>
+              )}
+              {enhancedData.demographic.education.level !== 'Undefined' && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-800">
+                  {enhancedData.demographic.education.level}
+                </span>
+              )}
+              {enhancedData.demographic.occupation.sector !== 'Undefined' && enhancedData.demographic.occupation.sector === 'Technology' && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                  Tech
+                </span>
+              )}
+            </div>
+          )}
+          
           {/* Sentiment Badge */}
           {showSentiment && politician.recentSentiment && (
             <div className="flex-shrink-0">
@@ -138,6 +198,71 @@ const PoliticianCard: React.FC<PoliticianCardProps> = ({
               </div>
               <div className="text-xs text-secondary">Sentiment</div>
             </div>
+          </div>
+        )}
+
+        {/* Enhanced Multi-Dimensional Sentiment Indicators */}
+        {showEnhanced && enhancedData && (
+          <div className="pt-4 border-t border-default">
+            <div className="grid grid-cols-2 gap-3">
+              {/* Emotion Indicator */}
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-1 mb-1">
+                  <span className="text-xs text-secondary">Primary Emotion:</span>
+                  {enhancedData.enhancedSentiment.emotions.primary === 'Joy' && (
+                    <span className="text-yellow-500">😊</span>
+                  )}
+                  {enhancedData.enhancedSentiment.emotions.primary === 'Anger' && (
+                    <span className="text-red-500">😠</span>
+                  )}
+                  {enhancedData.enhancedSentiment.emotions.primary === 'Fear' && (
+                    <span className="text-purple-500">😰</span>
+                  )}
+                  {enhancedData.enhancedSentiment.emotions.primary === 'Sadness' && (
+                    <span className="text-blue-500">😢</span>
+                  )}
+                  {enhancedData.enhancedSentiment.emotions.primary === 'Disgust' && (
+                    <span className="text-green-500">🤢</span>
+                  )}
+                  {enhancedData.enhancedSentiment.emotions.primary === 'Mixed' && (
+                    <span className="text-gray-500">🤔</span>
+                  )}
+                </div>
+                <div className="text-xs font-medium text-primary">
+                  {enhancedData.enhancedSentiment.emotions.primary}
+                </div>
+              </div>
+
+              {/* Engagement Level */}
+              <div className="text-center">
+                <div className="text-xs text-secondary mb-1">Engagement:</div>
+                <div className={`text-xs font-medium px-2 py-1 rounded-full ${
+                  enhancedData.engagement.level === 'High' ? 'bg-green-100 text-green-800' :
+                  enhancedData.engagement.level === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                  'bg-gray-100 text-gray-800'
+                }`}>
+                  {enhancedData.engagement.level}
+                  {enhancedData.engagement.virality.isViral && ' 🔥'}
+                </div>
+              </div>
+            </div>
+
+            {/* Topic Highlights */}
+            {enhancedData.topics.policyAreas.primary && (
+              <div className="mt-3">
+                <div className="text-xs text-secondary mb-1">Primary Focus:</div>
+                <div className="flex flex-wrap gap-1">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">
+                    {enhancedData.topics.policyAreas.primary}
+                  </span>
+                  {enhancedData.topics.campaignIssues.issues.slice(0, 1).map((issue, index) => (
+                    <span key={index} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-orange-100 text-orange-800">
+                      {issue}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 

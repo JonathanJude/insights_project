@@ -13,6 +13,10 @@ interface ExportButtonProps {
   className?: string;
   size?: 'sm' | 'md' | 'lg';
   showShareButton?: boolean;
+  // Enhanced multi-dimensional export props
+  enhancedData?: EnhancedPoliticianData[];
+  showAdvancedExport?: boolean;
+  enableMultiDimensional?: boolean;
 }
 
 const ExportButton: React.FC<ExportButtonProps> = ({
@@ -23,11 +27,16 @@ const ExportButton: React.FC<ExportButtonProps> = ({
   view = 'dashboard',
   className = '',
   size = 'md',
-  showShareButton = true
+  showShareButton = true,
+  enhancedData,
+  showAdvancedExport = false,
+  enableMultiDimensional = false
 }) => {
   const [isExporting, setIsExporting] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const filterState = useFilterStore();
 
@@ -68,18 +77,29 @@ const ExportButton: React.FC<ExportButtonProps> = ({
   };
 
   const handleShare = async () => {
-    try {
-      const shareableLink = generateShareableLink(filterState, view);
-      await copyShareableLink(shareableLink);
-      
-      // Show success notification
-      if (typeof window !== 'undefined' && window.alert) {
-        window.alert('Shareable link copied to clipboard!');
+    if (enableMultiDimensional) {
+      // Show advanced share modal for multi-dimensional data
+      setShowShareModal(true);
+    } else {
+      // Use simple share for basic data
+      try {
+        const shareableLink = generateShareableLink(filterState, view);
+        await copyShareableLink(shareableLink);
+        
+        // Show success notification
+        if (typeof window !== 'undefined' && window.alert) {
+          window.alert('Shareable link copied to clipboard!');
+        }
+      } catch (error) {
+        console.error('Share failed:', error);
+        setExportError('Failed to generate shareable link');
       }
-    } catch (error) {
-      console.error('Share failed:', error);
-      setExportError('Failed to generate shareable link');
     }
+  };
+
+  const handleAdvancedExport = () => {
+    setShowExportModal(true);
+    setShowDropdown(false);
   };
 
   // Close dropdown when clicking outside
@@ -177,6 +197,20 @@ const ExportButton: React.FC<ExportButtonProps> = ({
             >
               CSV Data
             </button>
+
+            {/* Advanced Export Option */}
+            {showAdvancedExport && (
+              <>
+                <div className="border-t border-gray-200 dark:border-gray-700 mt-1 pt-1">
+                  <button
+                    onClick={handleAdvancedExport}
+                    className="w-full text-left px-3 py-2 text-sm text-blue-600 dark:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700 font-medium"
+                  >
+                    Advanced Export...
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -192,6 +226,40 @@ const ExportButton: React.FC<ExportButtonProps> = ({
             ×
           </button>
         </div>
+      )}
+
+      {/* Advanced Export Modal */}
+      {showExportModal && enhancedData && (
+        <ExportModal
+          isOpen={showExportModal}
+          onClose={() => setShowExportModal(false)}
+          data={enhancedData}
+          chartElement={chartElement}
+          chartType={chartType}
+          filters={filters}
+          title="Export Multi-Dimensional Analysis"
+        />
+      )}
+
+      {/* Share Modal */}
+      {showShareModal && (
+        <ShareModal
+          isOpen={showShareModal}
+          onClose={() => setShowShareModal(false)}
+          shareableState={{
+            filters: filterState,
+            view: { page: view, chartType },
+            preferences: {
+              showConfidenceScores: true,
+              showDataQuality: true,
+              showUndefinedData: true,
+              chartTheme: 'auto',
+              compactMode: false
+            }
+          }}
+          title="Share Multi-Dimensional Analysis"
+          description="Share your comprehensive political sentiment analysis with geographic, demographic, and temporal insights."
+        />
       )}
     </div>
   );
