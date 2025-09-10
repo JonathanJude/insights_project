@@ -1,0 +1,663 @@
+{
+  "electoralEvents": [
+    {
+      "id": "NG-EVENT-2023-001",
+      "title": "2023 Presidential Election",
+      "date": "2023-02-25",
+      "type": "election",
+      "category": "presidential",
+      "level": "federal",
+      "description": "Nigerian Presidential and National Assembly Elections",
+      "location": {
+        "scope": "national",
+        "states": "all",
+        "constituencies": "all"
+      },
+      "participants": [
+        {
+          "candidateId": "NG-POL-TINUBU",
+          "partyId": "NG-PARTY-APC",
+          "role": "presidential_candidate"
+        },
+        {
+          "candidateId": "NG-POL-ATIKU",
+          "partyId": "NG-PARTY-PDP",
+          "role": "presidential_candidate"
+        },
+        {
+          "candidateId": "NG-POL-OBI",
+          "partyId": "NG-PARTY-LP",
+          "role": "presidential_candidate"
+        },
+        {
+          "candidateId": "NG-POL-KWANKWASO",
+          "partyId": "NG-PARTY-NNPP",
+          "role": "presidential_candidate"
+        }
+      ],
+      "results": {
+        "winner": {
+          "candidateId": "NG-POL-TINUBU",
+          "partyId": "NG-PARTY-APC",
+          "votes": 8794726,
+          "percentage": 36.61
+        },
+        "runnerUp": {
+          "candidateId": "NG-POL-ATIKU",
+          "partyId": "NG-PARTY-PDP",
+          "votes": 6984520,
+          "percentage": 29.07
+        },
+        "totalValidVotes": 25286616,
+        "totalRegisteredVoters": 93469008,
+        "turnout": 27.1,
+        "spoiltVotes": 939278,
+        "statesWon": {
+          "NG-POL-TINUBU": 12,
+          "NG-POL-ATIKU": 12,
+          "NG-POL-OBI": 11,
+          "NG-POL-KWANKWASO": 1
+        }
+      },
+      "impact": {
+        "political": {
+          "significance": "high",
+          "description": "First time a candidate won without securing 25% in 2/3 of states controversy",
+          "precedents": ["Constitutional interpretation on 25% requirement in FCT"]
+        },
+        "social": {
+          "significance": "high",
+          "description": "Youth mobilization and social media influence reached unprecedented levels",
+          "movements": ["Obidient Movement", "BAT Movement"]
+        },
+        "economic": {
+          "significance": "medium",
+          "description": "Market uncertainty during election period",
+          "indicators": ["Naira volatility", "Stock market fluctuations"]
+        }
+      },
+      "outcomes": [
+        {
+          "type": "legal",
+          "description": "Multiple election petitions filed at Presidential Election Petition Court",
+          "status": "resolved",
+          "resolution": "Supreme Court upheld INEC declaration"
+        },
+        {
+          "type": "political",
+          "description": "APC retained federal power with new leadership",
+          "status": "implemented",
+          "resolution": "Bola Tinubu inaugurated as President"
+        },
+        {
+          "type": "social",
+          "description": "Increased political awareness among youth",
+          "status": "ongoing",
+          "resolution": "Continued civic engagement"
+        }
+      ],
+      "analysis": {
+        "voterBehavior": {
+          "patterns": ["Urban-rural divide", "Generational differences", "Religious considerations"],
+          "demographics": {
+            "youth": "High support for Peter Obi",
+            "elderly": "Traditional party loyalty maintained",
+            "urban": "Labour Party performed strongly",
+            "rural": "APC and PDP dominated"
+          }
+        },
+        "campaignDynamics": {
+          "digitalCampaigning": "Unprecedented use of social media",
+          "grassrootsMovements": "Organic citizen movements emerged",
+          "traditionalPolitics": "Established parties relied on structures"
+        },
+        "electoralIntegrity": {
+          "challenges": ["BVAS technical issues", "Result transmission delays", "Violence in some areas"],
+          "improvements": ["Electronic voter accreditation", "Real-time result viewing portal"]
+        }
+      },
+      "metadata": {
+        "conductingBody": "INEC",
+        "internationalObservers": ["EU", "AU", "ECOWAS", "Commonwealth"],
+        "mediaAttention": "high",
+        "controversies": ["FCT 25% requirement", "BVAS functionality", "Result transmission"],
+        "historicalSignificance": "First election with electronic voter accreditation nationwide"
+      }
+    },
+    {
+      "id": "NG-EVENT-2023-002",
+      "title": "2023 Gubernatorial Elections",
+      "date": "2023-03-18",
+      "type": "election",
+      "category": "gubernatorial",
+      "level": "state",
+      "description": "Nigerian Gubernatorial and State Assembly Elections",
+      "location": {
+        "scope": "multi-state",
+        "states": 28,
+        "constituencies": "state_and_assembly"
+      },
+      "results": {
+        "summary": {
+          "apcWins": 15,
+          "pdpWins": 9,
+          "lpWins": 2,
+          "nnppWins": 1,
+          "apgaWins": 1,
+          "totalStates": 28
+        },
+        "keyUpsets": [
+          {
+            "state": "Lagos",
+            "winner": "APC",
+            "significance": "Retained despite presidential loss to LP"
+          },
+          {
+            "state": "Ogun",
+            "winner": "APC",
+            "significance": "Maintained control in Southwest"
+          }
+        ]
+      },
+      "impact": {
+        "political": {
+          "significance": "high",
+          "description": "Established state-level power distribution for 2023-2027 term",
+          "precedents": ["Split-ticket voting patterns confirmed"]
+        },
+        "governance": {
+          "significance": "high",
+          "description": "Determined state-level policy directions",
+          "implications": ["Federal-state relations dynamics", "Resource allocation patterns"]
+        }
+      },
+      "outcomes": [
+        {
+          "type": "governance",
+          "description": "New governors inaugurated across 28 states",
+          "status": "completed",
+          "resolution": "Peaceful transitions in most states"
+        },
+        {
+          "type": "legal",
+          "description": "Election petitions filed in multiple states",
+          "status": "mostly_resolved",
+          "resolution": "Various tribunal and court decisions"
+        }
+      ],
+      "analysis": {
+        "partyPerformance": {
+          "apc": "Maintained dominance with strategic wins",
+          "pdp": "Lost ground but retained significant presence",
+          "labourParty": "Limited breakthrough despite presidential showing",
+          "nnpp": "Consolidated Kano base"
+        },
+        "regionalPatterns": {
+          "northWest": "APC dominance continued",
+          "northEast": "Mixed results with APC leading",
+          "northCentral": "Competitive with multiple party wins",
+          "southWest": "APC maintained control",
+          "southEast": "LP made inroads but limited wins",
+          "southSouth": "PDP retained significant presence"
+        }
+      },
+      "metadata": {
+        "conductingBody": "INEC",
+        "postponements": ["Initial postponement from March 11 to March 18"],
+        "challenges": ["Logistics issues", "Security concerns in some states"],
+        "innovations": ["Continued use of BVAS technology"]
+      }
+    },
+    {
+      "id": "NG-EVENT-2019-001",
+      "title": "2019 Presidential Election",
+      "date": "2019-02-23",
+      "type": "election",
+      "category": "presidential",
+      "level": "federal",
+      "description": "Nigerian Presidential and National Assembly Elections",
+      "location": {
+        "scope": "national",
+        "states": "all",
+        "constituencies": "all"
+      },
+      "participants": [
+        {
+          "candidateId": "NG-POL-BUHARI",
+          "partyId": "NG-PARTY-APC",
+          "role": "presidential_candidate"
+        },
+        {
+          "candidateId": "NG-POL-ATIKU",
+          "partyId": "NG-PARTY-PDP",
+          "role": "presidential_candidate"
+        }
+      ],
+      "results": {
+        "winner": {
+          "candidateId": "NG-POL-BUHARI",
+          "partyId": "NG-PARTY-APC",
+          "votes": 15191847,
+          "percentage": 55.6
+        },
+        "runnerUp": {
+          "candidateId": "NG-POL-ATIKU",
+          "partyId": "NG-PARTY-PDP",
+          "votes": 11262978,
+          "percentage": 41.2
+        },
+        "totalValidVotes": 27324583,
+        "totalRegisteredVoters": 84004084,
+        "turnout": 34.75,
+        "statesWon": {
+          "NG-POL-BUHARI": 19,
+          "NG-POL-ATIKU": 17
+        }
+      },
+      "impact": {
+        "political": {
+          "significance": "high",
+          "description": "Buhari secured second term, APC consolidated federal power",
+          "precedents": ["Incumbent advantage demonstrated"]
+        },
+        "economic": {
+          "significance": "medium",
+          "description": "Policy continuity assured markets",
+          "indicators": ["Stable currency post-election", "Infrastructure focus continued"]
+        }
+      },
+      "outcomes": [
+        {
+          "type": "legal",
+          "description": "PDP challenged results at Presidential Election Petition Tribunal",
+          "status": "resolved",
+          "resolution": "Supreme Court upheld Buhari's victory"
+        },
+        {
+          "type": "governance",
+          "description": "APC continued federal administration",
+          "status": "completed",
+          "resolution": "Buhari inaugurated for second term"
+        }
+      ],
+      "analysis": {
+        "voterBehavior": {
+          "patterns": ["Regional voting patterns", "Incumbent advantage", "Security concerns influence"],
+          "demographics": {
+            "north": "Strong support for Buhari",
+            "south": "Mixed results with PDP competitive",
+            "rural": "APC performed well",
+            "urban": "More competitive races"
+          }
+        },
+        "campaignIssues": {
+          "primary": ["Security", "Economy", "Corruption"],
+          "secondary": ["Infrastructure", "Agriculture", "Youth employment"]
+        }
+      },
+      "metadata": {
+        "conductingBody": "INEC",
+        "postponements": ["Originally scheduled for February 16, postponed to February 23"],
+        "internationalObservers": ["EU", "AU", "ECOWAS", "Commonwealth"],
+        "innovations": ["Smart Card Reader technology enhanced"]
+      }
+    },
+    {
+      "id": "NG-EVENT-2015-001",
+      "title": "2015 Presidential Election",
+      "date": "2015-03-28",
+      "type": "election",
+      "category": "presidential",
+      "level": "federal",
+      "description": "Nigerian Presidential and National Assembly Elections",
+      "location": {
+        "scope": "national",
+        "states": "all",
+        "constituencies": "all"
+      },
+      "participants": [
+        {
+          "candidateId": "NG-POL-BUHARI",
+          "partyId": "NG-PARTY-APC",
+          "role": "presidential_candidate"
+        },
+        {
+          "candidateId": "NG-POL-JONATHAN",
+          "partyId": "NG-PARTY-PDP",
+          "role": "presidential_candidate"
+        }
+      ],
+      "results": {
+        "winner": {
+          "candidateId": "NG-POL-BUHARI",
+          "partyId": "NG-PARTY-APC",
+          "votes": 15424921,
+          "percentage": 53.96
+        },
+        "runnerUp": {
+          "candidateId": "NG-POL-JONATHAN",
+          "partyId": "NG-PARTY-PDP",
+          "votes": 12853162,
+          "percentage": 44.96
+        },
+        "totalValidVotes": 28587564,
+        "totalRegisteredVoters": 68833476,
+        "turnout": 43.65,
+        "statesWon": {
+          "NG-POL-BUHARI": 21,
+          "NG-POL-JONATHAN": 15
+        }
+      },
+      "impact": {
+        "political": {
+          "significance": "critical",
+          "description": "First democratic transition from ruling party to opposition in Nigeria",
+          "precedents": ["Peaceful power transfer established", "Opposition victory legitimized"]
+        },
+        "social": {
+          "significance": "high",
+          "description": "Demonstrated democratic maturity",
+          "movements": ["Change movement", "Youth political engagement"]
+        },
+        "international": {
+          "significance": "high",
+          "description": "Enhanced Nigeria's democratic reputation globally",
+          "recognition": ["International praise for peaceful transition"]
+        }
+      },
+      "outcomes": [
+        {
+          "type": "political",
+          "description": "APC formed federal government for first time",
+          "status": "completed",
+          "resolution": "Buhari inaugurated as President"
+        },
+        {
+          "type": "democratic",
+          "description": "Peaceful power transfer achieved",
+          "status": "completed",
+          "resolution": "Jonathan conceded defeat gracefully"
+        },
+        {
+          "type": "governance",
+          "description": "New policy directions implemented",
+          "status": "implemented",
+          "resolution": "Anti-corruption focus, security emphasis"
+        }
+      ],
+      "analysis": {
+        "historicalSignificance": {
+          "democratic": "First successful opposition victory",
+          "institutional": "Strengthened electoral institutions",
+          "precedential": "Established peaceful transition norm"
+        },
+        "campaignDynamics": {
+          "changeMessage": "APC's change narrative resonated",
+          "incumbentChallenges": "Security issues, corruption perceptions hurt PDP",
+          "coalitionBuilding": "APC successfully merged opposition parties"
+        },
+        "voterBehavior": {
+          "patterns": ["Anti-incumbency sentiment", "Regional realignment", "Issue-based voting"],
+          "turnout": "Higher than previous elections",
+          "demographics": "Cross-regional support for change"
+        }
+      },
+      "metadata": {
+        "conductingBody": "INEC",
+        "postponements": ["Originally scheduled for February 14, postponed to March 28"],
+        "internationalObservers": ["EU", "AU", "ECOWAS", "Commonwealth", "Carter Center"],
+        "innovations": ["Permanent Voter Cards (PVC)", "Smart Card Readers"],
+        "historicalNote": "Marked end of 16-year PDP federal rule"
+      }
+    },
+    {
+      "id": "NG-EVENT-2022-001",
+      "title": "APC Presidential Primary Election",
+      "date": "2022-06-08",
+      "type": "primary",
+      "category": "presidential",
+      "level": "party",
+      "description": "All Progressives Congress Presidential Primary Election",
+      "location": {
+        "venue": "Eagle Square, Abuja",
+        "scope": "national",
+        "delegates": "party_delegates"
+      },
+      "participants": [
+        {
+          "candidateId": "NG-POL-TINUBU",
+          "role": "aspirant",
+          "background": "Former Lagos Governor"
+        },
+        {
+          "candidateId": "NG-POL-OSINBAJO",
+          "role": "aspirant",
+          "background": "Vice President"
+        },
+        {
+          "candidateId": "NG-POL-AMAECHI",
+          "role": "aspirant",
+          "background": "Former Transportation Minister"
+        }
+      ],
+      "results": {
+        "winner": {
+          "candidateId": "NG-POL-TINUBU",
+          "votes": 1271,
+          "percentage": 52.3
+        },
+        "runnerUp": {
+          "candidateId": "NG-POL-AMAECHI",
+          "votes": 316,
+          "percentage": 13.0
+        },
+        "totalValidVotes": 2430,
+        "totalDelegates": 2430
+      },
+      "impact": {
+        "political": {
+          "significance": "high",
+          "description": "Determined APC presidential candidate for 2023",
+          "implications": ["South-West political influence", "Generational transition"]
+        },
+        "party": {
+          "significance": "high",
+          "description": "Resolved succession question within APC",
+          "dynamics": ["Buhari's neutrality", "Delegate politics"]
+        }
+      },
+      "outcomes": [
+        {
+          "type": "nomination",
+          "description": "Tinubu emerged as APC presidential candidate",
+          "status": "completed",
+          "resolution": "Formal nomination by party"
+        },
+        {
+          "type": "party_unity",
+          "description": "Other aspirants rallied behind Tinubu",
+          "status": "achieved",
+          "resolution": "Campaign integration and support"
+        }
+      ],
+      "analysis": {
+        "delegateDynamics": {
+          "patterns": ["Regional bloc voting", "Governor influence", "Money politics allegations"],
+          "strategies": ["Ground game organization", "Delegate cultivation", "Alliance building"]
+        },
+        "campaignStrategies": {
+          "tinubu": "Extensive delegate outreach, 'Emi lo kan' message",
+          "osinbajo": "Incumbency advantage, technocratic appeal",
+          "amaechi": "Loyalty narrative, infrastructure record"
+        }
+      },
+      "metadata": {
+        "duration": "12 hours",
+        "delegates": 2430,
+        "aspirants": 23,
+        "withdrawals": "Several aspirants withdrew before voting",
+        "controversies": ["Delegate authenticity", "Vote buying allegations"]
+      }
+    },
+    {
+      "id": "NG-EVENT-2022-002",
+      "title": "PDP Presidential Primary Election",
+      "date": "2022-05-28",
+      "type": "primary",
+      "category": "presidential",
+      "level": "party",
+      "description": "Peoples Democratic Party Presidential Primary Election",
+      "location": {
+        "venue": "MKO Abiola Stadium, Abuja",
+        "scope": "national",
+        "delegates": "party_delegates"
+      },
+      "participants": [
+        {
+          "candidateId": "NG-POL-ATIKU",
+          "role": "aspirant",
+          "background": "Former Vice President"
+        },
+        {
+          "candidateId": "NG-POL-WIKE",
+          "role": "aspirant",
+          "background": "Rivers State Governor"
+        },
+        {
+          "candidateId": "NG-POL-SARAKI",
+          "role": "aspirant",
+          "background": "Former Senate President"
+        }
+      ],
+      "results": {
+        "winner": {
+          "candidateId": "NG-POL-ATIKU",
+          "votes": 371,
+          "percentage": 42.5
+        },
+        "runnerUp": {
+          "candidateId": "NG-POL-WIKE",
+          "votes": 237,
+          "percentage": 27.1
+        },
+        "totalValidVotes": 874,
+        "totalDelegates": 874
+      },
+      "impact": {
+        "political": {
+          "significance": "high",
+          "description": "Determined PDP presidential candidate for 2023",
+          "implications": ["North-South political balance", "Party unity challenges"]
+        },
+        "party": {
+          "significance": "medium",
+          "description": "Created internal divisions within PDP",
+          "dynamics": ["Wike's grievances", "G5 governors emergence"]
+        }
+      },
+      "outcomes": [
+        {
+          "type": "nomination",
+          "description": "Atiku emerged as PDP presidential candidate",
+          "status": "completed",
+          "resolution": "Formal nomination by party"
+        },
+        {
+          "type": "party_crisis",
+          "description": "Wike and allies formed G5 governors group",
+          "status": "unresolved",
+          "resolution": "Continued internal party tensions"
+        }
+      ],
+      "analysis": {
+        "delegateDynamics": {
+          "patterns": ["Regional considerations", "Anti-establishment sentiment", "Experience factor"],
+          "strategies": ["Atiku's national network", "Wike's resource mobilization", "Consensus building attempts"]
+        },
+        "consequences": {
+          "immediate": "Party division emerged",
+          "longTerm": "Affected 2023 general election performance",
+          "structural": "Highlighted PDP internal contradictions"
+        }
+      },
+      "metadata": {
+        "duration": "8 hours",
+        "delegates": 874,
+        "aspirants": 17,
+        "controversies": ["Delegate inducement", "Consensus failure", "Zoning debate"]
+      }
+    }
+  ],
+  "eventCategories": [
+    {
+      "id": "ELECTION",
+      "name": "General Elections",
+      "description": "Official elections conducted by INEC",
+      "subcategories": ["presidential", "gubernatorial", "legislative", "local_government"]
+    },
+    {
+      "id": "PRIMARY",
+      "name": "Party Primaries",
+      "description": "Internal party candidate selection processes",
+      "subcategories": ["presidential_primary", "gubernatorial_primary", "legislative_primary"]
+    },
+    {
+      "id": "TRIBUNAL",
+      "name": "Election Tribunals",
+      "description": "Legal proceedings challenging election results",
+      "subcategories": ["presidential_tribunal", "gubernatorial_tribunal", "legislative_tribunal"]
+    },
+    {
+      "id": "REFERENDUM",
+      "name": "Referendums",
+      "description": "Direct democracy votes on specific issues",
+      "subcategories": ["constitutional", "policy", "local"]
+    },
+    {
+      "id": "RECALL",
+      "name": "Recall Elections",
+      "description": "Processes to remove elected officials",
+      "subcategories": ["gubernatorial_recall", "legislative_recall", "local_recall"]
+    }
+  ],
+  "impactLevels": {
+    "critical": {
+      "description": "Events that fundamentally changed Nigerian politics",
+      "examples": ["2015 democratic transition", "1999 return to democracy"]
+    },
+    "high": {
+      "description": "Events with significant political consequences",
+      "examples": ["2023 youth political awakening", "Major party primary outcomes"]
+    },
+    "medium": {
+      "description": "Events with moderate political impact",
+      "examples": ["State-level elections", "By-elections"]
+    },
+    "low": {
+      "description": "Events with limited political impact",
+      "examples": ["Local government elections", "Minor party activities"]
+    }
+  },
+  "metadata": {
+    "lastUpdated": "2024-01-15T11:00:00Z",
+    "version": "1.0.0",
+    "sources": [
+      "Independent National Electoral Commission (INEC)",
+      "Political party records",
+      "Media reports and analysis",
+      "Academic research"
+    ],
+    "dataQuality": "high",
+    "completeness": 90,
+    "coverage": {
+      "timeRange": "2015-2023",
+      "eventTypes": ["elections", "primaries", "tribunals"],
+      "geographicScope": "national"
+    },
+    "notes": [
+      "Focus on major electoral events with significant political impact",
+      "Results data verified against official INEC announcements",
+      "Analysis includes contemporary and retrospective assessments"
+    ]
+  }
+}

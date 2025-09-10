@@ -1,0 +1,485 @@
+{
+  "electionSchedules": [
+    {
+      "id": "NG-ELEC-2023-PRES",
+      "type": "presidential",
+      "level": "federal",
+      "year": 2023,
+      "title": "2023 Presidential Election",
+      "description": "Nigerian Presidential and National Assembly Elections",
+      "electionDate": "2023-02-25",
+      "runoffDate": null,
+      "status": "completed",
+      "phases": {
+        "voterRegistration": {
+          "startDate": "2021-06-28",
+          "endDate": "2023-01-09",
+          "description": "Continuous Voter Registration (CVR)",
+          "status": "completed"
+        },
+        "partyPrimaries": {
+          "startDate": "2022-04-04",
+          "endDate": "2022-06-09",
+          "description": "Political party primary elections",
+          "status": "completed"
+        },
+        "campaignPeriod": {
+          "startDate": "2022-09-28",
+          "endDate": "2023-02-23",
+          "description": "Official campaign period",
+          "status": "completed"
+        },
+        "electionWeek": {
+          "startDate": "2023-02-19",
+          "endDate": "2023-02-25",
+          "description": "Final week before election",
+          "status": "completed"
+        },
+        "resultCollation": {
+          "startDate": "2023-02-25",
+          "endDate": "2023-03-01",
+          "description": "Results collation and announcement",
+          "status": "completed"
+        },
+        "tribunalPeriod": {
+          "startDate": "2023-03-01",
+          "endDate": "2024-02-29",
+          "description": "Election petition tribunal period",
+          "status": "completed"
+        }
+      },
+      "milestones": [
+        {
+          "id": "PRES-2023-M1",
+          "date": "2022-06-08",
+          "title": "APC Presidential Primary",
+          "description": "Bola Tinubu wins APC presidential primary",
+          "category": "primary",
+          "importance": "high"
+        },
+        {
+          "id": "PRES-2023-M2",
+          "date": "2022-05-28",
+          "title": "PDP Presidential Primary",
+          "description": "Atiku Abubakar wins PDP presidential primary",
+          "category": "primary",
+          "importance": "high"
+        },
+        {
+          "id": "PRES-2023-M3",
+          "date": "2022-05-30",
+          "title": "LP Presidential Primary",
+          "description": "Peter Obi wins Labour Party presidential primary",
+          "category": "primary",
+          "importance": "high"
+        },
+        {
+          "id": "PRES-2023-M4",
+          "date": "2023-02-25",
+          "title": "Election Day",
+          "description": "Presidential and National Assembly elections held",
+          "category": "election",
+          "importance": "critical"
+        },
+        {
+          "id": "PRES-2023-M5",
+          "date": "2023-03-01",
+          "title": "Results Declared",
+          "description": "INEC declares Bola Tinubu as President-elect",
+          "category": "result",
+          "importance": "critical"
+        }
+      ],
+      "deadlines": [
+        {
+          "id": "PRES-2023-D1",
+          "date": "2022-04-04",
+          "title": "Party Primary Deadline",
+          "description": "Deadline for conducting party primaries",
+          "type": "regulatory",
+          "status": "met"
+        },
+        {
+          "id": "PRES-2023-D2",
+          "date": "2022-06-17",
+          "title": "Candidate Nomination Deadline",
+          "description": "Deadline for submitting candidate nominations to INEC",
+          "type": "regulatory",
+          "status": "met"
+        },
+        {
+          "id": "PRES-2023-D3",
+          "date": "2023-01-09",
+          "title": "Voter Registration Deadline",
+          "description": "Final deadline for voter registration",
+          "type": "regulatory",
+          "status": "met"
+        },
+        {
+          "id": "PRES-2023-D4",
+          "date": "2023-02-23",
+          "title": "Campaign End Deadline",
+          "description": "End of official campaign period",
+          "type": "regulatory",
+          "status": "met"
+        }
+      ],
+      "metadata": {
+        "totalRegisteredVoters": 93469008,
+        "totalValidVotes": 25286616,
+        "turnoutPercentage": 27.1,
+        "numberOfStates": 36,
+        "numberOfLGAs": 774,
+        "numberOfPollingUnits": 176846,
+        "conductingBody": "INEC",
+        "electionCycle": "2023-2027",
+        "constitutionalBasis": "1999 Constitution (as amended)"
+      }
+    },
+    {
+      "id": "NG-ELEC-2023-GOV",
+      "type": "gubernatorial",
+      "level": "state",
+      "year": 2023,
+      "title": "2023 Gubernatorial Elections",
+      "description": "Nigerian Gubernatorial and State Assembly Elections",
+      "electionDate": "2023-03-18",
+      "runoffDate": null,
+      "status": "completed",
+      "phases": {
+        "voterRegistration": {
+          "startDate": "2021-06-28",
+          "endDate": "2023-01-09",
+          "description": "Continuous Voter Registration (CVR)",
+          "status": "completed"
+        },
+        "partyPrimaries": {
+          "startDate": "2022-04-04",
+          "endDate": "2022-06-09",
+          "description": "Political party primary elections",
+          "status": "completed"
+        },
+        "campaignPeriod": {
+          "startDate": "2022-09-28",
+          "endDate": "2023-03-16",
+          "description": "Official campaign period",
+          "status": "completed"
+        },
+        "electionWeek": {
+          "startDate": "2023-03-12",
+          "endDate": "2023-03-18",
+          "description": "Final week before election",
+          "status": "completed"
+        },
+        "resultCollation": {
+          "startDate": "2023-03-18",
+          "endDate": "2023-03-22",
+          "description": "Results collation and announcement",
+          "status": "completed"
+        },
+        "tribunalPeriod": {
+          "startDate": "2023-03-22",
+          "endDate": "2024-03-21",
+          "description": "Election petition tribunal period",
+          "status": "completed"
+        }
+      },
+      "milestones": [
+        {
+          "id": "GOV-2023-M1",
+          "date": "2023-03-18",
+          "title": "Gubernatorial Election Day",
+          "description": "Gubernatorial and State Assembly elections held",
+          "category": "election",
+          "importance": "critical"
+        },
+        {
+          "id": "GOV-2023-M2",
+          "date": "2023-03-22",
+          "title": "Results Declaration",
+          "description": "INEC declares winners in most states",
+          "category": "result",
+          "importance": "high"
+        }
+      ],
+      "deadlines": [
+        {
+          "id": "GOV-2023-D1",
+          "date": "2022-06-17",
+          "title": "Candidate Nomination Deadline",
+          "description": "Deadline for submitting gubernatorial candidate nominations",
+          "type": "regulatory",
+          "status": "met"
+        },
+        {
+          "id": "GOV-2023-D2",
+          "date": "2023-03-16",
+          "title": "Campaign End Deadline",
+          "description": "End of official campaign period",
+          "type": "regulatory",
+          "status": "met"
+        }
+      ],
+      "metadata": {
+        "numberOfStates": 28,
+        "numberOfStateAssemblySeats": 993,
+        "conductingBody": "INEC",
+        "electionCycle": "2023-2027",
+        "constitutionalBasis": "1999 Constitution (as amended)"
+      }
+    },
+    {
+      "id": "NG-ELEC-2027-PRES",
+      "type": "presidential",
+      "level": "federal",
+      "year": 2027,
+      "title": "2027 Presidential Election",
+      "description": "Nigerian Presidential and National Assembly Elections",
+      "electionDate": "2027-02-27",
+      "runoffDate": null,
+      "status": "scheduled",
+      "phases": {
+        "voterRegistration": {
+          "startDate": "2025-06-01",
+          "endDate": "2027-01-15",
+          "description": "Continuous Voter Registration (CVR)",
+          "status": "not_started"
+        },
+        "partyPrimaries": {
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-15",
+          "description": "Political party primary elections",
+          "status": "not_started"
+        },
+        "campaignPeriod": {
+          "startDate": "2026-09-30",
+          "endDate": "2027-02-25",
+          "description": "Official campaign period",
+          "status": "not_started"
+        },
+        "electionWeek": {
+          "startDate": "2027-02-21",
+          "endDate": "2027-02-27",
+          "description": "Final week before election",
+          "status": "not_started"
+        },
+        "resultCollation": {
+          "startDate": "2027-02-27",
+          "endDate": "2027-03-05",
+          "description": "Results collation and announcement",
+          "status": "not_started"
+        },
+        "tribunalPeriod": {
+          "startDate": "2027-03-05",
+          "endDate": "2028-03-04",
+          "description": "Election petition tribunal period",
+          "status": "not_started"
+        }
+      },
+      "milestones": [
+        {
+          "id": "PRES-2027-M1",
+          "date": "2026-06-15",
+          "title": "Party Primaries Completion",
+          "description": "All political parties complete presidential primaries",
+          "category": "primary",
+          "importance": "high"
+        },
+        {
+          "id": "PRES-2027-M2",
+          "date": "2027-02-27",
+          "title": "Election Day",
+          "description": "Presidential and National Assembly elections",
+          "category": "election",
+          "importance": "critical"
+        }
+      ],
+      "deadlines": [
+        {
+          "id": "PRES-2027-D1",
+          "date": "2026-04-01",
+          "title": "Party Primary Deadline",
+          "description": "Deadline for conducting party primaries",
+          "type": "regulatory",
+          "status": "pending"
+        },
+        {
+          "id": "PRES-2027-D2",
+          "date": "2026-06-30",
+          "title": "Candidate Nomination Deadline",
+          "description": "Deadline for submitting candidate nominations to INEC",
+          "type": "regulatory",
+          "status": "pending"
+        },
+        {
+          "id": "PRES-2027-D3",
+          "date": "2027-01-15",
+          "title": "Voter Registration Deadline",
+          "description": "Final deadline for voter registration",
+          "type": "regulatory",
+          "status": "pending"
+        }
+      ],
+      "metadata": {
+        "estimatedRegisteredVoters": 100000000,
+        "conductingBody": "INEC",
+        "electionCycle": "2027-2031",
+        "constitutionalBasis": "1999 Constitution (as amended)"
+      }
+    },
+    {
+      "id": "NG-ELEC-2027-GOV",
+      "type": "gubernatorial",
+      "level": "state",
+      "year": 2027,
+      "title": "2027 Gubernatorial Elections",
+      "description": "Nigerian Gubernatorial and State Assembly Elections",
+      "electionDate": "2027-03-20",
+      "runoffDate": null,
+      "status": "scheduled",
+      "phases": {
+        "voterRegistration": {
+          "startDate": "2025-06-01",
+          "endDate": "2027-01-15",
+          "description": "Continuous Voter Registration (CVR)",
+          "status": "not_started"
+        },
+        "partyPrimaries": {
+          "startDate": "2026-04-01",
+          "endDate": "2026-06-15",
+          "description": "Political party primary elections",
+          "status": "not_started"
+        },
+        "campaignPeriod": {
+          "startDate": "2026-09-30",
+          "endDate": "2027-03-18",
+          "description": "Official campaign period",
+          "status": "not_started"
+        },
+        "electionWeek": {
+          "startDate": "2027-03-14",
+          "endDate": "2027-03-20",
+          "description": "Final week before election",
+          "status": "not_started"
+        },
+        "resultCollation": {
+          "startDate": "2027-03-20",
+          "endDate": "2027-03-24",
+          "description": "Results collation and announcement",
+          "status": "not_started"
+        },
+        "tribunalPeriod": {
+          "startDate": "2027-03-24",
+          "endDate": "2028-03-23",
+          "description": "Election petition tribunal period",
+          "status": "not_started"
+        }
+      },
+      "milestones": [
+        {
+          "id": "GOV-2027-M1",
+          "date": "2027-03-20",
+          "title": "Gubernatorial Election Day",
+          "description": "Gubernatorial and State Assembly elections",
+          "category": "election",
+          "importance": "critical"
+        }
+      ],
+      "deadlines": [
+        {
+          "id": "GOV-2027-D1",
+          "date": "2026-06-30",
+          "title": "Candidate Nomination Deadline",
+          "description": "Deadline for submitting gubernatorial candidate nominations",
+          "type": "regulatory",
+          "status": "pending"
+        }
+      ],
+      "metadata": {
+        "numberOfStates": 36,
+        "numberOfStateAssemblySeats": 993,
+        "conductingBody": "INEC",
+        "electionCycle": "2027-2031",
+        "constitutionalBasis": "1999 Constitution (as amended)"
+      }
+    }
+  ],
+  "electionCycles": [
+    {
+      "id": "CYCLE-2019-2023",
+      "startYear": 2019,
+      "endYear": 2023,
+      "status": "completed",
+      "elections": [
+        "NG-ELEC-2019-PRES",
+        "NG-ELEC-2019-GOV"
+      ]
+    },
+    {
+      "id": "CYCLE-2023-2027",
+      "startYear": 2023,
+      "endYear": 2027,
+      "status": "active",
+      "elections": [
+        "NG-ELEC-2023-PRES",
+        "NG-ELEC-2023-GOV"
+      ]
+    },
+    {
+      "id": "CYCLE-2027-2031",
+      "startYear": 2027,
+      "endYear": 2031,
+      "status": "scheduled",
+      "elections": [
+        "NG-ELEC-2027-PRES",
+        "NG-ELEC-2027-GOV"
+      ]
+    }
+  ],
+  "electionPatterns": {
+    "presidentialCycle": {
+      "frequency": 4,
+      "unit": "years",
+      "description": "Presidential elections held every 4 years"
+    },
+    "gubernatorialCycle": {
+      "frequency": 4,
+      "unit": "years",
+      "description": "Gubernatorial elections held every 4 years"
+    },
+    "nationalAssemblyCycle": {
+      "frequency": 4,
+      "unit": "years",
+      "description": "National Assembly elections held every 4 years"
+    },
+    "stateAssemblyCycle": {
+      "frequency": 4,
+      "unit": "years",
+      "description": "State Assembly elections held every 4 years"
+    },
+    "electionSequence": [
+      {
+        "order": 1,
+        "type": "presidential",
+        "description": "Presidential and National Assembly elections held first"
+      },
+      {
+        "order": 2,
+        "type": "gubernatorial",
+        "description": "Gubernatorial and State Assembly elections held 3 weeks later"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "source": "Independent National Electoral Commission (INEC)",
+    "dataQuality": "high",
+    "completeness": 95,
+    "notes": [
+      "Election dates are based on INEC official announcements",
+      "Future election dates are projected based on constitutional requirements",
+      "Tribunal periods may vary based on petition filing dates"
+    ]
+  }
+}
