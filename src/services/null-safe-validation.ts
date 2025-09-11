@@ -893,6 +893,23 @@ export class NullSafeValidationService {
       }
     };
   }
+
+  /**
+   * Validate a politician record
+   */
+  validatePolitician(politician: any): { isValid: boolean; warnings: string[] } {
+    const validationResult = this.validateRecord(politician, 'politician');
+    
+    const warnings: string[] = [];
+    if (validationResult.suggestions.length > 0) {
+      warnings.push(...validationResult.suggestions);
+    }
+    
+    return {
+      isValid: validationResult.isValid,
+      warnings
+    };
+  }
 }
 
 // Export singleton instance

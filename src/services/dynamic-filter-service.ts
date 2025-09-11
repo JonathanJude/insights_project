@@ -13,7 +13,33 @@
  * - Performance optimization with caching
  */
 
-import { EventEmitter } from 'events';
+// Simple browser-compatible event emitter
+class EventEmitter {
+  private events: { [key: string]: Function[] } = {};
+  
+  on(event: string, callback: Function) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+    this.events[event].push(callback);
+  }
+  
+  emit(event: string, ...args: any[]) {
+    if (this.events[event]) {
+      this.events[event].forEach(callback => callback(...args));
+    }
+  }
+  
+  off(event: string, callback: Function) {
+    if (this.events[event]) {
+      this.events[event] = this.events[event].filter(cb => cb !== callback);
+    }
+  }
+  
+  removeAllListeners() {
+    this.events = {};
+  }
+}
 import { LoadingStates } from '../constants/enums';
 import { ERROR_MESSAGES } from '../constants/messages';
 import { constantService } from './constant-service';
@@ -292,7 +318,7 @@ export class DynamicFilterService extends EventEmitter {
   }
   
   /**
-   * Generate filter options for platforms from sentiment data
+   * Generate filter options for platforms (basic social media platforms)
    */
   async generatePlatformOptions(): Promise<FilterOption[]> {
     const cacheKey = 'platform-options';
@@ -302,55 +328,35 @@ export class DynamicFilterService extends EventEmitter {
       if (cached) return cached;
     }
     
-    try {
-      const sentimentData = await dataLoader.loadData(
-        'sentiment-data',
-        () => fetch('/data/analytics/sentiment-data.json').then(r => r.json())
-      );
-      
-      // Extract unique platforms from sentiment data
-      const platformSet = new Set<string>();
-      sentimentData.sentimentData?.forEach((entry: any) => {
-        if (entry.platform) {
-          platformSet.add(entry.platform);
-        }
-      });
-      
-      const platformColors: Record<string, string> = {
-        'Twitter': '#1DA1F2',
-        'Facebook': '#4267B2',
-        'Instagram': '#E4405F',
-        'TikTok': '#000000',
-        'YouTube': '#FF0000',
-        'LinkedIn': '#0077B5',
-        'Threads': '#000000'
-      };
-      
-      const options: FilterOption[] = Array.from(platformSet).map(platform => ({
-        value: platform,
-        label: platform,
-        count: 0,
-        color: platformColors[platform] || '#6B7280',
-        description: `Social media platform: ${platform}`,
-        metadata: {
-          type: 'social-media',
-          hasData: true
-        },
-        isAvailable: true,
-        dataQuality: 'good' as const
-      }));
-      
-      if (this.config.enableCaching) {
-        this.setCache(cacheKey, options);
-      }
-      
-      return options;
-      
-    } catch (error) {
-      console.error('Error generating platform options:', error);
-      // Return default platform options if data loading fails
-      return this.getDefaultPlatformOptions();
+    // Basic platform definitions (since no dedicated platforms file exists)
+    const platforms = [
+      { id: 'twitter', displayName: 'Twitter/X', category: 'microblogging', color: '#1DA1F2' },
+      { id: 'facebook', displayName: 'Facebook', category: 'social networking', color: '#4267B2' },
+      { id: 'instagram', displayName: 'Instagram', category: 'visual media', color: '#E4405F' },
+      { id: 'threads', displayName: 'Threads', category: 'microblogging', color: '#000000' },
+      { id: 'youtube', displayName: 'YouTube', category: 'video sharing', color: '#FF0000' },
+      { id: 'tiktok', displayName: 'TikTok', category: 'video sharing', color: '#000000' },
+      { id: 'news', displayName: 'News Media', category: 'traditional media', color: '#2C3E50' }
+    ];
+    
+    const options: FilterOption[] = platforms.map(platform => ({
+      value: platform.id,
+      label: platform.displayName,
+      count: 0,
+      color: platform.color,
+      description: `${platform.category} platform`,
+      metadata: {
+        category: platform.category
+      },
+      isAvailable: true,
+      dataQuality: 'good' as const
+    }));
+    
+    if (this.config.enableCaching) {
+      this.setCache(cacheKey, options);
     }
+    
+    return options;
   }
   
   /**
@@ -408,20 +414,22 @@ export class DynamicFilterService extends EventEmitter {
     try {
       const topicData = await dataLoader.loadData(
         'topic-trends',
-        () => fetch('/data/analytics/topic-trends.json').then(r => r.json())
+        () => import('../data/analytics/topic-trends.json'),
+        { cacheTTL: 30 * 60 * 1000 } // 30 minutes
       );
       
       const options: FilterOption[] = topicData.topicTrends?.map((topic: any) => ({
-        value: topic.id || topic.topic,
-        label: topic.topic || topic.name,
-        count: topic.mentionCount || 0,
-        description: topic.description || `Policy area: ${topic.topic}`,
+        value: topic.id,
+        label: topic.topicName,
+        count: topic.mentions || 0,
+        description: `${topic.category} - ${topic.trendDirection} trend`,
         metadata: {
           category: topic.category,
           keywords: topic.keywords,
           trendDirection: topic.trendDirection,
-          urgency: topic.urgency,
-          lastUpdated: topic.lastUpdated
+          urgency: topic.urgencyLevel,
+          sentiment: topic.sentimentAssociation,
+          trendingScore: topic.trendingScore
         },
         isAvailable: topic.isActive !== false,
         dataQuality: this.assessDataQuality(topic)

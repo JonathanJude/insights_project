@@ -127,8 +127,10 @@ export class DataLoaderService extends EventEmitter {
     // Start cache cleanup
     this.startCacheCleanup(options.cleanupInterval || 60 * 1000); // 1 minute
     
-    // Handle process cleanup
-    process.on('beforeExit', () => this.cleanup());
+    // Handle process cleanup (only in Node.js environment)
+    if (typeof process !== 'undefined' && process.on) {
+      process.on('beforeExit', () => this.cleanup());
+    }
   }
   
   /**

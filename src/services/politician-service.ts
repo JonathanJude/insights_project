@@ -11,23 +11,23 @@
 import { ErrorTypes } from '../constants/enums/system-enums';
 import { ERROR_MESSAGES } from '../constants/messages/error-messages';
 import type {
-    PaginatedResponse,
-    Politician,
-    SearchFilters
+  PaginatedResponse,
+  Politician,
+  SearchFilters
 } from '../types';
 import {
-    AgeGroup,
-    Gender,
-    NigerianState,
-    PoliticalLevel,
-    PoliticalParty,
-    PoliticalPosition
+  AgeGroup,
+  Gender,
+  NigerianState,
+  PoliticalLevel,
+  PoliticalParty,
+  PoliticalPosition
 } from '../types';
 import type {
-    PoliticalParty as JSONPoliticalParty,
-    Politician as JSONPolitician,
-    Position as JSONPosition,
-    State as JSONState
+  PoliticalParty as JSONPoliticalParty,
+  Politician as JSONPolitician,
+  Position as JSONPosition,
+  State as JSONState
 } from '../types/data-models';
 import { dataLoader } from './data-loader';
 import { DataValidatorService } from './data-validation-framework';
@@ -81,7 +81,13 @@ export class PoliticianService {
   private async loadReferenceData(): Promise<PoliticianTransformContext> {
     const cacheKey = 'reference-data';
     const cached = this.cache.get<PoliticianTransformContext>(cacheKey);
-    if (cached) return cached;
+    // Check for both null and undefined
+    if (cached !== null && cached !== undefined) {
+      // Additional check to make sure the cached data is valid
+      if (cached.parties && cached.states && cached.positions) {
+        return cached;
+      }
+    }
 
     try {
       const [partiesData, statesData, positionsData] = await Promise.all([
@@ -99,6 +105,24 @@ export class PoliticianService {
         )
       ]);
 
+      // Add null checks for the loaded data
+      if (!partiesData || !statesData || !positionsData) {
+        throw new Error('Failed to load reference data');
+      }
+
+      // Add checks for the arrays
+      if (!partiesData.parties || !Array.isArray(partiesData.parties)) {
+        throw new Error('Invalid parties data');
+      }
+      
+      if (!statesData.states || !Array.isArray(statesData.states)) {
+        throw new Error('Invalid states data');
+      }
+      
+      if (!positionsData.positions || !Array.isArray(positionsData.positions)) {
+        throw new Error('Invalid positions data');
+      }
+
       const context: PoliticianTransformContext = {
         parties: new Map(partiesData.parties.map(p => [p.id, p])),
         states: new Map(statesData.states.map(s => [s.id, s])),
@@ -110,7 +134,13 @@ export class PoliticianService {
       return context;
 
     } catch (error) {
-      throw new Error(`${ERROR_MESSAGES[ErrorTypes.DATA_LOADING_ERROR]}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      console.error('Error loading reference data:', error);
+      // Return empty maps as fallback instead of throwing
+      return {
+        parties: new Map(),
+        states: new Map(),
+        positions: new Map()
+      };
     }
   }
 

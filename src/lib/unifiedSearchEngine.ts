@@ -3,6 +3,7 @@ import type {
     Politician
 } from '../types';
 import type { TrendingTopic } from '../types/quickActions';
+import { dataLoader } from '../services/data-loader';
 
 // Unified search result interface
 export interface UnifiedSearchResult<T = any> {
@@ -49,6 +50,8 @@ interface SearchablePosition {
   name: string;
   displayName: string;
   level: string;
+  category: string;
+  hierarchy: number;
   searchableText: string;
 }
 
@@ -56,6 +59,7 @@ interface SearchablePlatform {
   id: string;
   name: string;
   displayName: string;
+  category: string;
   searchableText: string;
 }
 
@@ -83,7 +87,7 @@ export class UnifiedSearchEngine {
     this.positionsFuse = new Fuse([], this.getPositionFuseOptions());
     this.platformsFuse = new Fuse([], this.getPlatformFuseOptions());
     
-    // Initialize static data
+    // Initialize static data asynchronously
     this.initializeStaticData();
   }
 
@@ -175,65 +179,79 @@ export class UnifiedSearchEngine {
     };
   }
 
-  private initializeStaticData(): void {
-    // Initialize parties
-    this.parties = [
-      { id: 'APC', name: 'APC', fullName: 'All Progressives Congress', searchableText: 'APC All Progressives Congress ruling party' },
-      { id: 'PDP', name: 'PDP', fullName: 'Peoples Democratic Party', searchableText: 'PDP Peoples Democratic Party opposition' },
-      { id: 'LP', name: 'LP', fullName: 'Labour Party', searchableText: 'LP Labour Party Peter Obi' },
-      { id: 'NNPP', name: 'NNPP', fullName: 'New Nigeria Peoples Party', searchableText: 'NNPP New Nigeria Peoples Party Kwankwaso' },
-      { id: 'APGA', name: 'APGA', fullName: 'All Progressives Grand Alliance', searchableText: 'APGA All Progressives Grand Alliance' },
-      { id: 'ADC', name: 'ADC', fullName: 'African Democratic Congress', searchableText: 'ADC African Democratic Congress' },
-      { id: 'SDP', name: 'SDP', fullName: 'Social Democratic Party', searchableText: 'SDP Social Democratic Party' },
-      { id: 'YPP', name: 'YPP', fullName: 'Young Progressives Party', searchableText: 'YPP Young Progressives Party youth' }
-    ];
+  private async initializeStaticData(): Promise<void> {
+    try {
+      // Load positions data
+      const positionsData = await dataLoader.loadData(
+        'positions',
+        () => import('../data/core/positions.json'),
+        { cacheTTL: 30 * 60 * 1000 } // 30 minutes
+      );
+      
+      // Initialize parties (this remains static as it's from the enum)
+      this.parties = [
+        { id: 'APC', name: 'APC', fullName: 'All Progressives Congress', searchableText: 'APC All Progressives Congress ruling party' },
+        { id: 'PDP', name: 'PDP', fullName: 'Peoples Democratic Party', searchableText: 'PDP Peoples Democratic Party opposition' },
+        { id: 'LP', name: 'LP', fullName: 'Labour Party', searchableText: 'LP Labour Party Peter Obi' },
+        { id: 'NNPP', name: 'NNPP', fullName: 'New Nigeria Peoples Party', searchableText: 'NNPP New Nigeria Peoples Party Kwankwaso' },
+        { id: 'APGA', name: 'APGA', fullName: 'All Progressives Grand Alliance', searchableText: 'APGA All Progressives Grand Alliance' },
+        { id: 'ADC', name: 'ADC', fullName: 'African Democratic Congress', searchableText: 'ADC African Democratic Congress' },
+        { id: 'SDP', name: 'SDP', fullName: 'Social Democratic Party', searchableText: 'SDP Social Democratic Party' },
+        { id: 'YPP', name: 'YPP', fullName: 'Young Progressives Party', searchableText: 'YPP Young Progressives Party youth' }
+      ];
 
-    // Initialize states
-    const nigerianStates = [
-      'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno',
-      'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'FCT', 'Gombe', 'Imo',
-      'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
-      'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba',
-      'Yobe', 'Zamfara'
-    ];
-    
-    this.states = nigerianStates.map(state => ({
-      id: state,
-      name: state,
-      searchableText: `${state} state nigeria`
-    }));
+      // Initialize states (this remains static as it's from the states data)
+      const nigerianStates = [
+        'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno',
+        'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'FCT', 'Gombe', 'Imo',
+        'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
+        'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba',
+        'Yobe', 'Zamfara'
+      ];
+      
+      this.states = nigerianStates.map(state => ({
+        id: state,
+        name: state,
+        searchableText: `${state} state nigeria`
+      }));
 
-    // Initialize positions
-    this.positions = [
-      { id: 'president', name: 'president', displayName: 'President', level: 'federal', searchableText: 'president federal executive head of state' },
-      { id: 'vice_president', name: 'vice_president', displayName: 'Vice President', level: 'federal', searchableText: 'vice president federal deputy' },
-      { id: 'governor', name: 'governor', displayName: 'Governor', level: 'state', searchableText: 'governor state executive chief executive' },
-      { id: 'deputy_governor', name: 'deputy_governor', displayName: 'Deputy Governor', level: 'state', searchableText: 'deputy governor state deputy' },
-      { id: 'senator', name: 'senator', displayName: 'Senator', level: 'federal', searchableText: 'senator federal legislature upper chamber' },
-      { id: 'house_rep', name: 'house_rep', displayName: 'House of Representatives', level: 'federal', searchableText: 'house of representatives federal legislature lower chamber rep' },
-      { id: 'state_assembly', name: 'state_assembly', displayName: 'State Assembly', level: 'state', searchableText: 'state assembly legislature state house' },
-      { id: 'local_chairman', name: 'local_chairman', displayName: 'Local Government Chairman', level: 'local', searchableText: 'local government chairman local executive' },
-      { id: 'councillor', name: 'councillor', displayName: 'Councillor', level: 'local', searchableText: 'councillor local government ward' },
-      { id: 'minister', name: 'minister', displayName: 'Minister', level: 'federal', searchableText: 'minister federal cabinet executive' },
-      { id: 'commissioner', name: 'commissioner', displayName: 'Commissioner', level: 'state', searchableText: 'commissioner state cabinet executive' }
-    ];
+      // Initialize positions from JSON data
+      this.positions = positionsData.positions.map((position: any) => ({
+        id: position.id,
+        name: position.title.toLowerCase().replace(/\s+/g, '_'),
+        displayName: position.title,
+        level: position.level,
+        category: position.category,
+        hierarchy: position.hierarchy,
+        searchableText: `${position.title} ${position.level} ${position.category} ${position.responsibilities.join(' ')}`
+      }));
 
-    // Initialize platforms
-    this.platforms = [
-      { id: 'twitter', name: 'twitter', displayName: 'Twitter/X', searchableText: 'twitter x social media platform' },
-      { id: 'facebook', name: 'facebook', displayName: 'Facebook', searchableText: 'facebook social media platform' },
-      { id: 'instagram', name: 'instagram', displayName: 'Instagram', searchableText: 'instagram social media platform photos' },
-      { id: 'threads', name: 'threads', displayName: 'Threads', searchableText: 'threads social media platform meta' },
-      { id: 'youtube', name: 'youtube', displayName: 'YouTube', searchableText: 'youtube video platform google' },
-      { id: 'tiktok', name: 'tiktok', displayName: 'TikTok', searchableText: 'tiktok video platform short videos' },
-      { id: 'news', name: 'news', displayName: 'News Media', searchableText: 'news media traditional journalism' }
-    ];
+      // Initialize platforms with basic social media platforms (since no dedicated platforms file exists)
+      this.platforms = [
+        { id: 'twitter', name: 'twitter', displayName: 'Twitter/X', category: 'microblogging', searchableText: 'twitter x social media platform' },
+        { id: 'facebook', name: 'facebook', displayName: 'Facebook', category: 'social networking', searchableText: 'facebook social media platform' },
+        { id: 'instagram', name: 'instagram', displayName: 'Instagram', category: 'visual media', searchableText: 'instagram social media platform photos' },
+        { id: 'threads', name: 'threads', displayName: 'Threads', category: 'microblogging', searchableText: 'threads social media platform meta' },
+        { id: 'youtube', name: 'youtube', displayName: 'YouTube', category: 'video sharing', searchableText: 'youtube video platform google' },
+        { id: 'tiktok', name: 'tiktok', displayName: 'TikTok', category: 'video sharing', searchableText: 'tiktok video platform short videos' },
+        { id: 'news', name: 'news', displayName: 'News Media', category: 'traditional media', searchableText: 'news media traditional journalism' }
+      ];
 
-    // Update Fuse instances
-    this.partiesFuse.setCollection(this.parties);
-    this.statesFuse.setCollection(this.states);
-    this.positionsFuse.setCollection(this.positions);
-    this.platformsFuse.setCollection(this.platforms);
+      // Update Fuse instances
+      this.partiesFuse.setCollection(this.parties);
+      this.statesFuse.setCollection(this.states);
+      this.positionsFuse.setCollection(this.positions);
+      this.platformsFuse.setCollection(this.platforms);
+      
+    } catch (error) {
+      console.error('Error initializing static data in UnifiedSearchEngine:', error);
+      
+      // Fallback to minimal static data
+      this.parties = [];
+      this.states = [];
+      this.positions = [];
+      this.platforms = [];
+    }
   }
 
   /**
