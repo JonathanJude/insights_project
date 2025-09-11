@@ -17,7 +17,6 @@ import {
     SocialPlatform,
     TimeFrame
 } from '../types';
-import { mockPoliticians } from './politicians';
 
 // Generate mock sentiment insights for a politician
 export const generateSentimentInsights = (politicianId: string, days: number = 30): SentimentInsight[] => {
@@ -238,7 +237,7 @@ export const mockPlatformSentiment: PlatformSentiment[] = [
 
 // Mock dashboard stats
 export const mockDashboardStats: DashboardStats = {
-  totalPoliticians: mockPoliticians.length,
+  totalPoliticians: 50, // Hardcoded value since mockPoliticians is now async
   totalMentions: 156890,
   overallSentiment: {
     positive: 45.2,

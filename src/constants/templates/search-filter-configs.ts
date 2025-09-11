@@ -1,5 +1,5 @@
 import { EducationLevels, OccupationSectors } from '../enums/core-enums';
-import { SocialPlatforms } from '../enums/political-enums';
+import { SocialPlatform } from '../../types';
 import { SentimentLabels } from '../enums/sentiment-enums';
 import { FilterCategories, SortDirections } from '../enums/ui-enums';
 // Import party and state constants from JSON data
@@ -251,7 +251,7 @@ export const POPULAR_POLITICIANS_PRESET: FilterPreset = {
   category: FilterCategories.SENTIMENT,
   filters: {
     sentiments: [SentimentLabels.POSITIVE, SentimentLabels.VERY_POSITIVE],
-    platforms: [SocialPlatforms.TWITTER, SocialPlatforms.FACEBOOK, SocialPlatforms.INSTAGRAM]
+    platforms: [SocialPlatform.TWITTER, SocialPlatform.FACEBOOK, SocialPlatform.INSTAGRAM]
   },
   isDefault: true,
   isPopular: true,
@@ -274,7 +274,7 @@ export const TRENDING_TOPICS_PRESET: FilterPreset = {
     dateRange: {
       preset: '7d'
     },
-    platforms: [SocialPlatforms.TWITTER, SocialPlatforms.THREADS]
+    platforms: [SocialPlatform.TWITTER, SocialPlatform.THREADS]
   },
   isDefault: false,
   isPopular: true,
@@ -384,11 +384,11 @@ export const SOCIAL_MEDIA_FOCUS_PRESET: FilterPreset = {
   category: FilterCategories.PLATFORM,
   filters: {
     platforms: [
-      SocialPlatforms.TWITTER,
-      SocialPlatforms.FACEBOOK,
-      SocialPlatforms.INSTAGRAM,
-      SocialPlatforms.THREADS,
-      SocialPlatforms.TIKTOK
+      SocialPlatform.TWITTER,
+      SocialPlatform.FACEBOOK,
+      SocialPlatform.INSTAGRAM,
+      SocialPlatform.THREADS,
+      SocialPlatform.TIKTOK
     ]
   },
   isDefault: false,
