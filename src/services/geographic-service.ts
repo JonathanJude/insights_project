@@ -105,7 +105,13 @@ export class GeographicService {
     try {
       const statesData = await dataLoader.loadData<{ states: JSONState[] }>(
         CACHE_KEYS.STATES,
-        () => import('../data/core/states.json').then(m => m.default)
+        async () => {
+          const response = await fetch('/data/states.json');
+          if (!response.ok) {
+            throw new Error('Failed to load states data');
+          }
+          return response.json();
+        }
       );
 
       // Validate data structure

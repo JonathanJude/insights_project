@@ -1,0 +1,35 @@
+{
+  "demographicDistributions": {
+    "education": {
+      "Secondary": 0.35,
+      "Tertiary": 0.28,
+      "Postgraduate": 0.12,
+      "Primary": 0.15,
+      "Undefined": 0.10
+    },
+    "occupation": {
+      "Public Sector": 0.18,
+      "Private Sector": 0.22,
+      "Student": 0.15,
+      "Self-Employed": 0.20,
+      "Professional Services": 0.08,
+      "Technology": 0.05,
+      "Agriculture": 0.08,
+      "Unemployed": 0.04
+    },
+    "ageGroups": {
+      "18-25": 0.25,
+      "26-35": 0.30,
+      "36-45": 0.20,
+      "46-55": 0.15,
+      "56-65": 0.07,
+      "65+": 0.03
+    },
+    "gender": {
+      "Male": 0.52,
+      "Female": 0.46,
+      "Non-Binary": 0.01,
+      "Undefined": 0.01
+    }
+  }
+}

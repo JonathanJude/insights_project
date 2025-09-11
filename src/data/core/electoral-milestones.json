@@ -1,0 +1,60 @@
+{
+  "electoralMilestones": [
+    {
+      "name": "Voter Registration Opens",
+      "date": "2024-06-01",
+      "type": "Registration",
+      "impact": "Medium",
+      "description": "INEC opens continuous voter registration"
+    },
+    {
+      "name": "Party Primaries Begin",
+      "date": "2024-08-15",
+      "type": "Campaign",
+      "impact": "High",
+      "description": "Political parties conduct primary elections"
+    },
+    {
+      "name": "Campaign Period Begins",
+      "date": "2024-09-28",
+      "type": "Campaign",
+      "impact": "High",
+      "description": "Official campaign period starts (150 days before election)"
+    },
+    {
+      "name": "Presidential Debate",
+      "date": "2025-01-15",
+      "type": "Debate",
+      "impact": "High",
+      "description": "Presidential candidates debate"
+    },
+    {
+      "name": "Campaign Ends",
+      "date": "2025-02-23",
+      "type": "Campaign",
+      "impact": "Medium",
+      "description": "Campaign activities must end 24 hours before election"
+    },
+    {
+      "name": "Presidential Election",
+      "date": "2025-02-25",
+      "type": "Election",
+      "impact": "High",
+      "description": "Presidential and National Assembly elections"
+    },
+    {
+      "name": "Governorship Election",
+      "date": "2025-03-11",
+      "type": "Election",
+      "impact": "High",
+      "description": "Governorship and State Assembly elections"
+    },
+    {
+      "name": "Results Declaration",
+      "date": "2025-03-15",
+      "type": "Result",
+      "impact": "High",
+      "description": "Final election results declared"
+    }
+  ]
+}

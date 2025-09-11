@@ -18,13 +18,26 @@ import {
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { POLITICAL_PARTIES } from '../../constants';
-import { mockPoliticians } from '../../mock/politicians';
+import { politicianService } from '../../services/politician-service';
 import { useFilterStore } from '../../stores/filterStore';
 import { useUIStore } from '../../stores/uiStore';
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const { isMobile, toggleSidebar, recentPoliticians = [] } = useUIStore();
+  const [politicians, setPoliticians] = React.useState<any[]>([]);
+
+  React.useEffect(() => {
+    const loadPoliticians = async () => {
+      try {
+        const allPoliticians = await politicianService.getAllPoliticians();
+        setPoliticians(allPoliticians);
+      } catch (error) {
+        console.error('Error loading politicians:', error);
+      }
+    };
+    loadPoliticians();
+  }, []);
   const { selectedParties, toggleParty, clearAllFilters, hasActiveFilters } = useFilterStore();
   const [isAdvancedAnalysisExpanded, setIsAdvancedAnalysisExpanded] = useState(true);
 
@@ -324,7 +337,7 @@ const Sidebar: React.FC = () => {
             </div>
             <div className="space-y-1">
               {recentPoliticians.slice(0, 5).map((politicianId: string) => {
-                const politician = mockPoliticians.find(p => p.id === politicianId);
+                const politician = politicians.find(p => p.id === politicianId);
                 const displayName = politician ? politician.name : `Politician ${politicianId}`;
                 const initials = politician && politician.firstName && politician.lastName ? 
                   `${politician.firstName.charAt(0)}${politician.lastName.charAt(0)}`.toUpperCase() :

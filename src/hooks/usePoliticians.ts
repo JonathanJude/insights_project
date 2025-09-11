@@ -4,10 +4,10 @@ import {
   getTrendingPoliticians,
   mockApiDelay,
   mockPaginate,
-  mockPoliticians,
   searchPoliticians as searchPoliticiansSimple,
   simulateRealisticErrors,
 } from "../mock";
+import { politicianService } from "../services/politician-service";
 import { useFilterStore } from "../stores/filterStore";
 import { useUIStore } from "../stores/uiStore";
 import type {
@@ -81,7 +81,7 @@ export const usePoliticians = (
       await mockApiDelay(300, 0.4); // 300ms ± 40% variance
 
       // Enhanced search function that handles filters
-      const searchPoliticiansWithFilters = (filters: {
+      const searchPoliticiansWithFilters = async (filters: {
         query?: string;
         party?: PoliticalParty[];
         state?: NigerianState[];
@@ -93,11 +93,14 @@ export const usePoliticians = (
       }) => {
         let results: Politician[];
 
+        // Get politicians from service
+        const politiciansData = await politicianService.getAllPoliticians();
+
         // Use enhanced search if query is provided
         if (filters.query) {
           try {
             const { getSearchEngine } = require("../lib/searchEngine");
-            const searchEngine = getSearchEngine(mockPoliticians);
+            const searchEngine = getSearchEngine(politiciansData);
             const searchResults = searchEngine.search(filters.query, {
               maxResults: 100,
             });
@@ -107,7 +110,7 @@ export const usePoliticians = (
             results = searchPoliticiansSimple(filters.query);
           }
         } else {
-          results = mockPoliticians;
+          results = politiciansData;
         }
 
         // Apply filters
@@ -169,7 +172,7 @@ export const usePoliticians = (
         return results;
       };
 
-      const filteredPoliticians = searchPoliticiansWithFilters({
+      const filteredPoliticians = await searchPoliticiansWithFilters({
         query: searchParams.q,
         party: searchParams.party,
         state: searchParams.state,
@@ -215,7 +218,8 @@ export const usePolitician = (id: string) => {
     queryFn: async (): Promise<Politician> => {
       await mockApiDelay(200);
 
-      const politician = mockPoliticians.find((p) => p.id === id);
+      const politicians = await politicianService.getAllPoliticians();
+      const politician = politicians.find((p) => p.id === id);
       if (!politician) {
         throw new Error(`Politician with id ${id} not found`);
       }
@@ -310,7 +314,8 @@ export const usePoliticianSuggestions = (
       // Use enhanced search for better results
       try {
         const { getSearchEngine } = await import("../lib/searchEngine");
-        const searchEngine = getSearchEngine(mockPoliticians);
+        const politicians = await politicianService.getAllPoliticians();
+        const searchEngine = getSearchEngine(politicians);
         const suggestions = searchEngine.getSuggestions(query, 10);
         return suggestions.map((result) => result.item);
       } catch {
@@ -387,7 +392,8 @@ export const usePrefetchPolitician = () => {
       queryFn: async (): Promise<Politician> => {
         await mockApiDelay(100);
 
-        const politician = mockPoliticians.find((p) => p.id === politicianId);
+        const politicians = await politicianService.getAllPoliticians();
+        const politician = politicians.find((p) => p.id === politicianId);
         if (!politician) {
           throw new Error(`Politician with id ${politicianId} not found`);
         }

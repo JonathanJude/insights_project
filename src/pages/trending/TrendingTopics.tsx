@@ -14,11 +14,11 @@ import { Link } from 'react-router-dom';
 import RefreshButton from '../../components/ui/RefreshButton';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { mockApiDelay } from '../../mock';
-import { mockPoliticians } from '../../mock/politicians';
+import { politicianService } from '../../services/politician-service';
 import type { TrendingTopic, TrendingTopicsData } from '../../types/quickActions';
 
 // Mock data generator for trending topics
-const generateTrendingTopicsData = (): TrendingTopicsData => {
+const generateTrendingTopicsData = async (): Promise<TrendingTopicsData> => {
   const topicKeywords = [
     'economic policy', 'infrastructure development', 'education reform', 'healthcare system',
     'security challenges', 'corruption fight', 'youth empowerment', 'agriculture support',
@@ -51,7 +51,9 @@ const generateTrendingTopicsData = (): TrendingTopicsData => {
       trend,
       changePercentage: (Math.random() - 0.5) * 60, // -30% to +30%
       relatedPoliticians: Array.from({ length: Math.floor(Math.random() * 5) + 1 }, () => {
-        const randomPolitician = mockPoliticians[Math.floor(Math.random() * mockPoliticians.length)];
+        const politicians = politicianService.getCachedPoliticians() || [];
+        if (politicians.length === 0) return { id: 'unknown', name: 'Unknown Politician', party: 'Unknown' };
+        const randomPolitician = politicians[Math.floor(Math.random() * politicians.length)];
         return {
           id: randomPolitician.id,
           name: randomPolitician.name,

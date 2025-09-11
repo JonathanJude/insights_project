@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getUnifiedSearchEngine, type UnifiedSearchOptions, type UnifiedSearchResult } from '../lib/unifiedSearchEngine';
 import { mockApiDelay } from '../mock';
-import { mockPoliticians } from '../mock/politicians';
+import { politicianService } from '../services/politician-service';
 import { useUIStore } from '../stores/uiStore';
 import type { TrendingTopic } from '../types/quickActions';
 
 // Generate mock trending topics for search
-const generateMockTopics = (): TrendingTopic[] => {
+const generateMockTopics = (politicians: any[] = []): TrendingTopic[] => {
   const topicKeywords = [
     'economic policy', 'infrastructure development', 'education reform', 'healthcare system',
     'security challenges', 'corruption fight', 'youth empowerment', 'agriculture support',
@@ -27,7 +27,7 @@ const generateMockTopics = (): TrendingTopic[] => {
     sentimentLabel: (['positive', 'negative', 'neutral'] as const)[Math.floor(Math.random() * 3)],
     trend: (['rising', 'falling', 'stable'] as const)[Math.floor(Math.random() * 3)],
     changePercentage: (Math.random() - 0.5) * 60,
-    relatedPoliticians: mockPoliticians.slice(0, Math.floor(Math.random() * 5) + 1).map(p => ({
+    relatedPoliticians: politicians.slice(0, Math.floor(Math.random() * 5) + 1).map((p: any) => ({
       id: p.id,
       name: p.name,
       party: p.party
@@ -62,9 +62,21 @@ export const useUnifiedSearch = (
 
   // Initialize search engine with data
   useEffect(() => {
-    const searchEngine = getUnifiedSearchEngine();
-    searchEngine.updatePoliticians(mockPoliticians);
-    searchEngine.updateTopics(generateMockTopics());
+    const initializeSearchEngine = async () => {
+      try {
+        const searchEngine = getUnifiedSearchEngine();
+        const politicians = await politicianService.getAllPoliticians();
+        searchEngine.updatePoliticians(politicians);
+        searchEngine.updateTopics(generateMockTopics(politicians));
+      } catch (error) {
+        console.error('Error initializing search engine:', error);
+        // Fallback to empty politicians
+        const searchEngine = getUnifiedSearchEngine();
+        searchEngine.updatePoliticians([]);
+        searchEngine.updateTopics(generateMockTopics([]));
+      }
+    };
+    initializeSearchEngine();
   }, []);
 
   return useQuery<UnifiedSearchResult[], Error>({
@@ -108,9 +120,21 @@ export const useSearchSuggestions = (
 ) => {
   // Initialize search engine with data
   useEffect(() => {
-    const searchEngine = getUnifiedSearchEngine();
-    searchEngine.updatePoliticians(mockPoliticians);
-    searchEngine.updateTopics(generateMockTopics());
+    const initializeSearchEngine = async () => {
+      try {
+        const searchEngine = getUnifiedSearchEngine();
+        const politicians = await politicianService.getAllPoliticians();
+        searchEngine.updatePoliticians(politicians);
+        searchEngine.updateTopics(generateMockTopics(politicians));
+      } catch (error) {
+        console.error('Error initializing search engine:', error);
+        // Fallback to empty politicians
+        const searchEngine = getUnifiedSearchEngine();
+        searchEngine.updatePoliticians([]);
+        searchEngine.updateTopics(generateMockTopics([]));
+      }
+    };
+    initializeSearchEngine();
   }, []);
 
   return useQuery<UnifiedSearchResult[], Error>({
@@ -146,9 +170,21 @@ export const useSearchByType = (
 ) => {
   // Initialize search engine with data
   useEffect(() => {
-    const searchEngine = getUnifiedSearchEngine();
-    searchEngine.updatePoliticians(mockPoliticians);
-    searchEngine.updateTopics(generateMockTopics());
+    const initializeSearchEngine = async () => {
+      try {
+        const searchEngine = getUnifiedSearchEngine();
+        const politicians = await politicianService.getAllPoliticians();
+        searchEngine.updatePoliticians(politicians);
+        searchEngine.updateTopics(generateMockTopics(politicians));
+      } catch (error) {
+        console.error('Error initializing search engine:', error);
+        // Fallback to empty politicians
+        const searchEngine = getUnifiedSearchEngine();
+        searchEngine.updatePoliticians([]);
+        searchEngine.updateTopics(generateMockTopics([]));
+      }
+    };
+    initializeSearchEngine();
   }, []);
 
   return useQuery<UnifiedSearchResult[], Error>({
@@ -179,9 +215,21 @@ export const useSearchByType = (
 export const useSearchStats = (query: string, enabled: boolean = true) => {
   // Initialize search engine with data
   useEffect(() => {
-    const searchEngine = getUnifiedSearchEngine();
-    searchEngine.updatePoliticians(mockPoliticians);
-    searchEngine.updateTopics(generateMockTopics());
+    const initializeSearchEngine = async () => {
+      try {
+        const searchEngine = getUnifiedSearchEngine();
+        const politicians = await politicianService.getAllPoliticians();
+        searchEngine.updatePoliticians(politicians);
+        searchEngine.updateTopics(generateMockTopics(politicians));
+      } catch (error) {
+        console.error('Error initializing search engine:', error);
+        // Fallback to empty politicians
+        const searchEngine = getUnifiedSearchEngine();
+        searchEngine.updatePoliticians([]);
+        searchEngine.updateTopics(generateMockTopics([]));
+      }
+    };
+    initializeSearchEngine();
   }, []);
 
   return useQuery({

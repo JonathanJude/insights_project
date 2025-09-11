@@ -1,0 +1,48 @@
+{
+  "temporalSentimentFactors": {
+    "electoralPhaseAdjustments": {
+      "Inter-Election": 0,
+      "Pre-Election": -0.05,
+      "Campaign Period": -0.10,
+      "Election Week": -0.15,
+      "Election Day": -0.20,
+      "Post-Election": -0.08
+    },
+    "polarizationBase": {
+      "Inter-Election": 0.3,
+      "Pre-Election": 0.4,
+      "Campaign Period": 0.7,
+      "Election Week": 0.9,
+      "Election Day": 1.0,
+      "Post-Election": 0.6
+    },
+    "weeklySentimentAdjustments": {
+      "Inter-Election": 0.02,
+      "Pre-Election": -0.02,
+      "Campaign Period": -0.08,
+      "Election Week": -0.12,
+      "Election Day": -0.15,
+      "Post-Election": -0.05
+    },
+    "eventProbabilities": {
+      "Inter-Election": 0.3,
+      "Pre-Election": 0.5,
+      "Campaign Period": 0.8,
+      "Election Week": 1.0,
+      "Election Day": 0.6,
+      "Post-Election": 0.4
+    },
+    "possibleEvents": [
+      "Policy announcement",
+      "Campaign rally",
+      "Media interview",
+      "Social media controversy",
+      "Public appearance",
+      "Party meeting",
+      "Debate participation",
+      "Community visit",
+      "Economic statement",
+      "Security briefing"
+    ]
+  }
+}

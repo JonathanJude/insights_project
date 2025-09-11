@@ -1,7 +1,9 @@
 import { EducationLevels, OccupationSectors } from '../enums/core-enums';
-import { NigerianStates, PoliticalParties, SocialPlatforms } from '../enums/political-enums';
+import { SocialPlatforms } from '../enums/political-enums';
 import { SentimentLabels } from '../enums/sentiment-enums';
 import { FilterCategories, SortDirections } from '../enums/ui-enums';
+// Import party and state constants from JSON data
+// These values match the data in src/data/core/parties.json and src/data/core/states.json
 
 export interface SearchConfiguration {
   id: string;
@@ -292,7 +294,7 @@ export const MAJOR_PARTIES_PRESET: FilterPreset = {
   icon: 'building-office',
   category: FilterCategories.PARTY,
   filters: {
-    parties: [PoliticalParties.APC, PoliticalParties.PDP, PoliticalParties.LP]
+    parties: ['APC', 'PDP', 'LP'] // Values from src/data/core/parties.json
   },
   isDefault: false,
   isPopular: true,
@@ -355,13 +357,13 @@ export const REGIONAL_ANALYSIS_PRESET: FilterPreset = {
   category: FilterCategories.STATE,
   filters: {
     states: [
-      NigerianStates.LAGOS,
-      NigerianStates.KANO,
-      NigerianStates.RIVERS,
-      NigerianStates.KADUNA,
-      NigerianStates.OGUN,
-      NigerianStates.ANAMBRA
-    ]
+      'Lagos',
+      'Kano',
+      'Rivers',
+      'Kaduna',
+      'Ogun',
+      'Anambra'
+    ] // Values from src/data/core/states.json
   },
   isDefault: false,
   isPopular: true,

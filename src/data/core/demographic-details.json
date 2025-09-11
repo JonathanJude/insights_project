@@ -1,0 +1,22 @@
+{
+  "demographicDetails": {
+    "education": {
+      "Primary": ["Primary School Certificate", "First School Leaving Certificate"],
+      "Secondary": ["WAEC", "NECO", "Senior Secondary Certificate"],
+      "Tertiary": ["Bachelor's Degree", "HND", "University Graduate"],
+      "Postgraduate": ["Master's Degree", "PhD", "Professional Certification"],
+      "Undefined": ["Unknown Education Level"]
+    },
+    "occupation": {
+      "Public Sector": ["Civil Servant", "Government Employee", "Public Service"],
+      "Private Sector": ["Corporate Employee", "Private Company", "Business Employee"],
+      "Student": ["University Student", "Polytechnic Student", "College Student"],
+      "Technology": ["Software Developer", "IT Professional", "Tech Worker"],
+      "Self-Employed": ["Business Owner", "Entrepreneur", "Freelancer"],
+      "Professional Services": ["Lawyer", "Doctor", "Consultant", "Accountant"],
+      "Agriculture": ["Farmer", "Agricultural Worker", "Agribusiness"],
+      "Unemployed": ["Job Seeker", "Unemployed", "Between Jobs"],
+      "Undefined": ["Unknown Occupation"]
+    }
+  }
+}

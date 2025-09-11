@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { mockPoliticians } from '../mock/politicians';
+import { politicianService } from '../services/politician-service';
 
 export interface AnalysisFilters {
   party: string;
@@ -53,15 +53,29 @@ export const useAnalysisFilters = () => {
     }
   }, [searchParams]);
 
-  // Convert mock politicians to filtered politician format
-  const availablePoliticians: FilteredPolitician[] = useMemo(() => {
-    return mockPoliticians.map(politician => ({
-      id: politician.id,
-      name: politician.name,
-      party: politician.party,
-      position: politician.position,
-      state: politician.state
-    }));
+  // Load politicians from service
+  const [availablePoliticians, setAvailablePoliticians] = useState<FilteredPolitician[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPoliticians = async () => {
+      try {
+        const politicians = await politicianService.getAllPoliticians();
+        const filteredPoliticians: FilteredPolitician[] = politicians.map(politician => ({
+          id: politician.id,
+          name: politician.name,
+          party: politician.party,
+          position: politician.position,
+          state: politician.state
+        }));
+        setAvailablePoliticians(filteredPoliticians);
+      } catch (error) {
+        console.error('Error loading politicians:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadPoliticians();
   }, []);
 
   // Get filtered politicians based on current filters
@@ -156,6 +170,7 @@ export const useAnalysisFilters = () => {
     filteredPoliticians,
     selectedPoliticianData,
     hasActiveFilters,
+    loading,
     updateFilter,
     clearAllFilters,
     getFilterSummary,

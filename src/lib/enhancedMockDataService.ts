@@ -7,18 +7,16 @@
  */
 
 // Runtime imports (functions and objects)
-import { demographicDataUtils } from '../mock/demographicData';
-import { enhancedSentimentUtils } from '../mock/enhancedSentimentData';
-import { geographicDataUtils } from '../mock/geographicData';
-import { temporalDataUtils } from '../mock/temporalData';
-import { topicEngagementUtils } from '../mock/topicEngagementData';
+import { demographicService } from '../services/demographic-service';
+import { geographicService } from '../services/geographic-service';
+import { temporalService } from '../services/temporal-service';
+import { politicianService } from '../services/politician-service';
 
 // Type-only imports (interfaces and types)
-import type { DemographicClassification } from '../mock/demographicData';
-import type { EnhancedSentimentAnalysis } from '../mock/enhancedSentimentData';
-import type { GeographicHierarchy } from '../mock/geographicData';
-import type { TemporalPatterns } from '../mock/temporalData';
-import type { EngagementMetrics, TopicClassification } from '../mock/topicEngagementData';
+import type { DemographicClassification } from '../services/demographic-service';
+import type { GeographicHierarchy, GeographicSentiment } from '../services/geographic-service';
+import type { TemporalPatterns } from '../services/temporal-service';
+import type { Politician } from '../services/politician-service';
 
 // Enhanced politician data interface
 export interface EnhancedPoliticianData {

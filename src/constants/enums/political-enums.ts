@@ -45,58 +45,11 @@ export enum CampaignPhases {
   POST_ELECTION = 'post_election'
 }
 
-export enum PoliticalParties {
-  APC = 'APC',
-  PDP = 'PDP',
-  LP = 'LP',
-  NNPP = 'NNPP',
-  APGA = 'APGA',
-  ADC = 'ADC',
-  SDP = 'SDP',
-  YPP = 'YPP',
-  ZLP = 'ZLP',
-  AAC = 'AAC'
-}
+// Political parties data is now loaded from src/data/core/parties.json
+// Use partyUtils from src/utils/party-utils.ts instead
 
-export enum NigerianStates {
-  ABIA = 'Abia',
-  ADAMAWA = 'Adamawa',
-  AKWA_IBOM = 'Akwa Ibom',
-  ANAMBRA = 'Anambra',
-  BAUCHI = 'Bauchi',
-  BAYELSA = 'Bayelsa',
-  BENUE = 'Benue',
-  BORNO = 'Borno',
-  CROSS_RIVER = 'Cross River',
-  DELTA = 'Delta',
-  EBONYI = 'Ebonyi',
-  EDO = 'Edo',
-  EKITI = 'Ekiti',
-  ENUGU = 'Enugu',
-  FCT = 'FCT',
-  GOMBE = 'Gombe',
-  IMO = 'Imo',
-  JIGAWA = 'Jigawa',
-  KADUNA = 'Kaduna',
-  KANO = 'Kano',
-  KATSINA = 'Katsina',
-  KEBBI = 'Kebbi',
-  KOGI = 'Kogi',
-  KWARA = 'Kwara',
-  LAGOS = 'Lagos',
-  NASARAWA = 'Nasarawa',
-  NIGER = 'Niger',
-  OGUN = 'Ogun',
-  ONDO = 'Ondo',
-  OSUN = 'Osun',
-  OYO = 'Oyo',
-  PLATEAU = 'Plateau',
-  RIVERS = 'Rivers',
-  SOKOTO = 'Sokoto',
-  TARABA = 'Taraba',
-  YOBE = 'Yobe',
-  ZAMFARA = 'Zamfara'
-}
+// Nigerian states data is now loaded from src/data/core/states.json  
+// Use stateUtils from src/utils/state-utils.ts instead
 
 export enum SocialPlatforms {
   TWITTER = 'Twitter',

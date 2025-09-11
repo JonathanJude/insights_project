@@ -1,0 +1,71 @@
+{
+  "demographicSentimentPatterns": {
+    "education": {
+      "Secondary": { "baseScore": 0.45, "variance": 0.15 },
+      "Tertiary": { "baseScore": 0.55, "variance": 0.12 },
+      "Postgraduate": { "baseScore": 0.62, "variance": 0.10 },
+      "Primary": { "baseScore": 0.38, "variance": 0.18 },
+      "Undefined": { "baseScore": 0.50, "variance": 0.20 }
+    },
+    "occupation": {
+      "Public Sector": { "baseScore": 0.58, "politicalAwareness": 0.85 },
+      "Private Sector": { "baseScore": 0.52, "economicFocus": 0.78 },
+      "Student": { "baseScore": 0.48, "socialMediaActivity": 0.90 },
+      "Technology": { "baseScore": 0.65, "digitalEngagement": 0.95 },
+      "Self-Employed": { "baseScore": 0.42, "economicConcerns": 0.82 },
+      "Professional Services": { "baseScore": 0.60, "politicalEngagement": 0.75 },
+      "Agriculture": { "baseScore": 0.35, "ruralConcerns": 0.88 },
+      "Unemployed": { "baseScore": 0.25, "economicAnxiety": 0.95 },
+      "Undefined": { "baseScore": 0.50, "uncertainty": 0.70 }
+    },
+    "ageGroups": {
+      "18-25": { 
+        "socialMediaUsage": 0.92, 
+        "politicalEngagement": 0.65,
+        "baseScore": 0.48,
+        "variance": 0.20
+      },
+      "26-35": { 
+        "economicConcerns": 0.85, 
+        "familyFocus": 0.70,
+        "baseScore": 0.52,
+        "variance": 0.15
+      },
+      "36-45": { 
+        "careerStability": 0.78, 
+        "communityInvolvement": 0.72,
+        "baseScore": 0.55,
+        "variance": 0.12
+      },
+      "46-55": { 
+        "establishedViews": 0.82, 
+        "politicalExperience": 0.80,
+        "baseScore": 0.58,
+        "variance": 0.10
+      },
+      "56-65": { 
+        "traditionalValues": 0.88, 
+        "stabilityPreference": 0.85,
+        "baseScore": 0.60,
+        "variance": 0.08
+      },
+      "65+": { 
+        "conservativeViews": 0.90, 
+        "experienceWeight": 0.92,
+        "baseScore": 0.62,
+        "variance": 0.06
+      },
+      "Undefined": {
+        "uncertainty": 0.80,
+        "baseScore": 0.50,
+        "variance": 0.25
+      }
+    },
+    "gender": {
+      "Male": { "baseScore": 0.51, "variance": 0.15 },
+      "Female": { "baseScore": 0.49, "variance": 0.15 },
+      "Non-Binary": { "baseScore": 0.45, "variance": 0.20 },
+      "Undefined": { "baseScore": 0.50, "variance": 0.25 }
+    }
+  }
+}

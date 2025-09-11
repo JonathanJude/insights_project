@@ -4,15 +4,31 @@ import { CartesianGrid, Cell, Line, LineChart, Pie, PieChart, ResponsiveContaine
 import { POLITICAL_PARTIES } from '../../constants';
 import { usePageTitle } from '../../hooks/usePageTitle';
 import { getSentimentColor, getSentimentLabel } from '../../lib/sentimentUtils';
-import { mockPoliticians } from '../../mock/politicians';
+import { politicianService } from '../../services/politician-service';
+import type { PoliticalParty } from '../../types';
 
 const PartyDetail: React.FC = () => {
   const { partyId } = useParams<{ partyId: string }>();
   const [selectedView, setSelectedView] = useState<'overview' | 'politicians' | 'analytics'>('overview');
+  const [partyPoliticians, setPartyPoliticians] = useState<any[]>([]);
 
   // Find party information
   const party = POLITICAL_PARTIES.find(p => p.value === partyId);
-  const partyPoliticians = mockPoliticians.filter(p => p.party === partyId);
+
+  React.useEffect(() => {
+    const loadPartyPoliticians = async () => {
+      if (!partyId) return;
+      
+      try {
+        const allPoliticians = await politicianService.getAllPoliticians();
+        const filteredPoliticians = allPoliticians.filter(p => p.party === partyId);
+        setPartyPoliticians(filteredPoliticians);
+      } catch (error) {
+        console.error('Error loading party politicians:', error);
+      }
+    };
+    loadPartyPoliticians();
+  }, [partyId]);
 
   usePageTitle(party ? `${party.label} - Party Analysis` : 'Party Analysis');
 

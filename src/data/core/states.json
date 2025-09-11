@@ -16,7 +16,26 @@
         "area_km2": 6320,
         "timezone": "WAT",
         "slogan": "God's Own State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ABA",
+          "name": "Aba North",
+          "wards": [
+            {"number": 1, "name": "Aba Urban Ward 1", "pollingUnits": ["ABA/001/001", "ABA/001/002", "ABA/001/003"]},
+            {"number": 2, "name": "Aba Urban Ward 2", "pollingUnits": ["ABA/002/001", "ABA/002/002"]},
+            {"number": 3, "name": "Aba Urban Ward 3", "pollingUnits": ["ABA/003/001", "ABA/003/002"]}
+          ]
+        },
+        {
+          "code": "UMU",
+          "name": "Umuahia North",
+          "wards": [
+            {"number": 1, "name": "Umuahia Central", "pollingUnits": ["UMU/001/001", "UMU/001/002"]},
+            {"number": 2, "name": "Umuahia South", "pollingUnits": ["UMU/002/001", "UMU/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-AD",
@@ -34,7 +53,17 @@
         "area_km2": 36917,
         "timezone": "WAT",
         "slogan": "Land of Beauty"
-      }
+      },
+      "lgas": [
+        {
+          "code": "YOL",
+          "name": "Yola North",
+          "wards": [
+            {"number": 1, "name": "Yola Central", "pollingUnits": ["YOL/001/001", "YOL/001/002"]},
+            {"number": 2, "name": "Yola South", "pollingUnits": ["YOL/002/001", "YOL/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-AK",
@@ -52,7 +81,17 @@
         "area_km2": 7081,
         "timezone": "WAT",
         "slogan": "Land of Promise"
-      }
+      },
+      "lgas": [
+        {
+          "code": "UYO",
+          "name": "Uyo",
+          "wards": [
+            {"number": 1, "name": "Uyo Urban", "pollingUnits": ["UYO/001/001", "UYO/001/002"]},
+            {"number": 2, "name": "Uyo Rural", "pollingUnits": ["UYO/002/001", "UYO/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-AN",
@@ -70,7 +109,17 @@
         "area_km2": 4844,
         "timezone": "WAT",
         "slogan": "Light of the Nation"
-      }
+      },
+      "lgas": [
+        {
+          "code": "AWK",
+          "name": "Awka South",
+          "wards": [
+            {"number": 1, "name": "Awka Central", "pollingUnits": ["AWK/001/001", "AWK/001/002"]},
+            {"number": 2, "name": "Awka North", "pollingUnits": ["AWK/002/001", "AWK/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-BA",
@@ -88,7 +137,17 @@
         "area_km2": 45837,
         "timezone": "WAT",
         "slogan": "Pearl of Tourism"
-      }
+      },
+      "lgas": [
+        {
+          "code": "BAU",
+          "name": "Bauchi",
+          "wards": [
+            {"number": 1, "name": "Bauchi Central", "pollingUnits": ["BAU/001/001", "BAU/001/002"]},
+            {"number": 2, "name": "Bauchi South", "pollingUnits": ["BAU/002/001", "BAU/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-BY",
@@ -106,7 +165,17 @@
         "area_km2": 10773,
         "timezone": "WAT",
         "slogan": "Glory of All Lands"
-      }
+      },
+      "lgas": [
+        {
+          "code": "YEN",
+          "name": "Yenagoa",
+          "wards": [
+            {"number": 1, "name": "Yenagoa Central", "pollingUnits": ["YEN/001/001", "YEN/001/002"]},
+            {"number": 2, "name": "Yenagoa South", "pollingUnits": ["YEN/002/001", "YEN/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-BE",
@@ -124,7 +193,17 @@
         "area_km2": 34059,
         "timezone": "WAT",
         "slogan": "Food Basket of the Nation"
-      }
+      },
+      "lgas": [
+        {
+          "code": "MAK",
+          "name": "Makurdi",
+          "wards": [
+            {"number": 1, "name": "Makurdi Central", "pollingUnits": ["MAK/001/001", "MAK/001/002"]},
+            {"number": 2, "name": "Makurdi North", "pollingUnits": ["MAK/002/001", "MAK/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-BO",
@@ -142,7 +221,17 @@
         "area_km2": 70898,
         "timezone": "WAT",
         "slogan": "Home of Peace"
-      }
+      },
+      "lgas": [
+        {
+          "code": "MAI",
+          "name": "Maiduguri",
+          "wards": [
+            {"number": 1, "name": "Maiduguri Central", "pollingUnits": ["MAI/001/001", "MAI/001/002"]},
+            {"number": 2, "name": "Maiduguri South", "pollingUnits": ["MAI/002/001", "MAI/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-CR",
@@ -160,7 +249,17 @@
         "area_km2": 20156,
         "timezone": "WAT",
         "slogan": "The People's Paradise"
-      }
+      },
+      "lgas": [
+        {
+          "code": "CAL",
+          "name": "Calabar South",
+          "wards": [
+            {"number": 1, "name": "Calabar Central", "pollingUnits": ["CAL/001/001", "CAL/001/002"]},
+            {"number": 2, "name": "Calabar South", "pollingUnits": ["CAL/002/001", "CAL/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-DE",
@@ -178,7 +277,17 @@
         "area_km2": 17698,
         "timezone": "WAT",
         "slogan": "The Big Heart"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ASA",
+          "name": "Asaba",
+          "wards": [
+            {"number": 1, "name": "Asaba Central", "pollingUnits": ["ASA/001/001", "ASA/001/002"]},
+            {"number": 2, "name": "Asaba North", "pollingUnits": ["ASA/002/001", "ASA/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-EB",
@@ -196,7 +305,17 @@
         "area_km2": 5670,
         "timezone": "WAT",
         "slogan": "Salt of the Nation"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ABA",
+          "name": "Abakaliki",
+          "wards": [
+            {"number": 1, "name": "Abakaliki Central", "pollingUnits": ["ABA/001/001", "ABA/001/002"]},
+            {"number": 2, "name": "Abakaliki North", "pollingUnits": ["ABA/002/001", "ABA/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-ED",
@@ -214,7 +333,17 @@
         "area_km2": 17802,
         "timezone": "WAT",
         "slogan": "Heartbeat of the Nation"
-      }
+      },
+      "lgas": [
+        {
+          "code": "BEN",
+          "name": "Benin City",
+          "wards": [
+            {"number": 1, "name": "Benin Central", "pollingUnits": ["BEN/001/001", "BEN/001/002"]},
+            {"number": 2, "name": "Benin South", "pollingUnits": ["BEN/002/001", "BEN/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-EK",
@@ -232,7 +361,17 @@
         "area_km2": 6353,
         "timezone": "WAT",
         "slogan": "Land of Honour"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ADO",
+          "name": "Ado-Ekiti",
+          "wards": [
+            {"number": 1, "name": "Ado Central", "pollingUnits": ["ADO/001/001", "ADO/001/002"]},
+            {"number": 2, "name": "Ado North", "pollingUnits": ["ADO/002/001", "ADO/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-EN",
@@ -250,7 +389,17 @@
         "area_km2": 7161,
         "timezone": "WAT",
         "slogan": "Coal City State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ENU",
+          "name": "Enugu North",
+          "wards": [
+            {"number": 1, "name": "Enugu Central", "pollingUnits": ["ENU/001/001", "ENU/001/002"]},
+            {"number": 2, "name": "Enugu South", "pollingUnits": ["ENU/002/001", "ENU/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-GO",
@@ -268,7 +417,17 @@
         "area_km2": 18768,
         "timezone": "WAT",
         "slogan": "Jewel in the Savannah"
-      }
+      },
+      "lgas": [
+        {
+          "code": "GOM",
+          "name": "Gombe",
+          "wards": [
+            {"number": 1, "name": "Gombe Central", "pollingUnits": ["GOM/001/001", "GOM/001/002"]},
+            {"number": 2, "name": "Gombe South", "pollingUnits": ["GOM/002/001", "GOM/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-IM",
@@ -286,7 +445,17 @@
         "area_km2": 5530,
         "timezone": "WAT",
         "slogan": "Eastern Heartland"
-      }
+      },
+      "lgas": [
+        {
+          "code": "OWE",
+          "name": "Owerri",
+          "wards": [
+            {"number": 1, "name": "Owerri Central", "pollingUnits": ["OWE/001/001", "OWE/001/002"]},
+            {"number": 2, "name": "Owerri North", "pollingUnits": ["OWE/002/001", "OWE/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-JI",
@@ -304,7 +473,17 @@
         "area_km2": 23154,
         "timezone": "WAT",
         "slogan": "New World"
-      }
+      },
+      "lgas": [
+        {
+          "code": "DUT",
+          "name": "Dutse",
+          "wards": [
+            {"number": 1, "name": "Dutse Central", "pollingUnits": ["DUT/001/001", "DUT/001/002"]},
+            {"number": 2, "name": "Dutse North", "pollingUnits": ["DUT/002/001", "DUT/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-KD",
@@ -322,7 +501,17 @@
         "area_km2": 46053,
         "timezone": "WAT",
         "slogan": "Centre of Learning"
-      }
+      },
+      "lgas": [
+        {
+          "code": "KAD",
+          "name": "Kaduna North",
+          "wards": [
+            {"number": 1, "name": "Kaduna Central", "pollingUnits": ["KAD/001/001", "KAD/001/002"]},
+            {"number": 2, "name": "Kaduna South", "pollingUnits": ["KAD/002/001", "KAD/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-KN",
@@ -340,7 +529,25 @@
         "area_km2": 20131,
         "timezone": "WAT",
         "slogan": "Centre of Commerce"
-      }
+      },
+      "lgas": [
+        {
+          "code": "KNM",
+          "name": "Kano Municipal",
+          "wards": [
+            {"number": 1, "name": "Fagge", "pollingUnits": ["KNM/001/001", "KNM/001/002", "KNM/001/003"]},
+            {"number": 2, "name": "Gwale", "pollingUnits": ["KNM/002/001", "KNM/002/002"]}
+          ]
+        },
+        {
+          "code": "NAS",
+          "name": "Nasarawa",
+          "wards": [
+            {"number": 1, "name": "Nasarawa", "pollingUnits": ["NAS/001/001", "NAS/001/002"]},
+            {"number": 2, "name": "Hotoro", "pollingUnits": ["NAS/002/001", "NAS/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-KT",
@@ -358,7 +565,17 @@
         "area_km2": 24192,
         "timezone": "WAT",
         "slogan": "Home of Hospitality"
-      }
+      },
+      "lgas": [
+        {
+          "code": "KAT",
+          "name": "Katsina",
+          "wards": [
+            {"number": 1, "name": "Katsina Central", "pollingUnits": ["KAT/001/001", "KAT/001/002"]},
+            {"number": 2, "name": "Katsina North", "pollingUnits": ["KAT/002/001", "KAT/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-KE",
@@ -376,7 +593,17 @@
         "area_km2": 36800,
         "timezone": "WAT",
         "slogan": "Land of Equity"
-      }
+      },
+      "lgas": [
+        {
+          "code": "BIR",
+          "name": "Birnin Kebbi",
+          "wards": [
+            {"number": 1, "name": "Birnin Central", "pollingUnits": ["BIR/001/001", "BIR/001/002"]},
+            {"number": 2, "name": "Birnin North", "pollingUnits": ["BIR/002/001", "BIR/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-KO",
@@ -394,7 +621,17 @@
         "area_km2": 29833,
         "timezone": "WAT",
         "slogan": "Confluence State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "LOK",
+          "name": "Lokoja",
+          "wards": [
+            {"number": 1, "name": "Lokoja Central", "pollingUnits": ["LOK/001/001", "LOK/001/002"]},
+            {"number": 2, "name": "Lokoja North", "pollingUnits": ["LOK/002/001", "LOK/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-KW",
@@ -412,7 +649,17 @@
         "area_km2": 36825,
         "timezone": "WAT",
         "slogan": "State of Harmony"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ILR",
+          "name": "Ilorin",
+          "wards": [
+            {"number": 1, "name": "Ilorin Central", "pollingUnits": ["ILR/001/001", "ILR/001/002"]},
+            {"number": 2, "name": "Ilorin North", "pollingUnits": ["ILR/002/001", "ILR/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-LA",
@@ -430,7 +677,45 @@
         "area_km2": 3345,
         "timezone": "WAT",
         "slogan": "Centre of Excellence"
-      }
+      },
+      "lgas": [
+        {
+          "code": "SUR",
+          "name": "Surulere",
+          "wards": [
+            {"number": 1, "name": "Aguda/Surulere", "pollingUnits": ["SUR/001/001", "SUR/001/002", "SUR/001/003"]},
+            {"number": 2, "name": "Coker/Aguda", "pollingUnits": ["SUR/002/001", "SUR/002/002"]},
+            {"number": 3, "name": "Iponri", "pollingUnits": ["SUR/003/001", "SUR/003/002", "SUR/003/003"]}
+          ]
+        },
+        {
+          "code": "IKJ",
+          "name": "Ikeja",
+          "wards": [
+            {"number": 1, "name": "Agidingbi", "pollingUnits": ["IKJ/001/001", "IKJ/001/002"]},
+            {"number": 2, "name": "Anifowoshe", "pollingUnits": ["IKJ/002/001", "IKJ/002/002", "IKJ/002/003"]},
+            {"number": 3, "name": "Ojodu", "pollingUnits": ["IKJ/003/001", "IKJ/003/002"]}
+          ]
+        },
+        {
+          "code": "ALM",
+          "name": "Alimosho",
+          "wards": [
+            {"number": 1, "name": "Abesan", "pollingUnits": ["ALM/001/001", "ALM/001/002", "ALM/001/003"]},
+            {"number": 2, "name": "Egbeda", "pollingUnits": ["ALM/002/001", "ALM/002/002"]},
+            {"number": 3, "name": "Idimu", "pollingUnits": ["ALM/003/001", "ALM/003/002", "ALM/003/003"]}
+          ]
+        },
+        {
+          "code": "ETO",
+          "name": "Eti-Osa",
+          "wards": [
+            {"number": 1, "name": "Victoria Island I", "pollingUnits": ["ETO/001/001", "ETO/001/002"]},
+            {"number": 2, "name": "Victoria Island II", "pollingUnits": ["ETO/002/001", "ETO/002/002"]},
+            {"number": 3, "name": "Lekki", "pollingUnits": ["ETO/003/001", "ETO/003/002", "ETO/003/003"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-NA",
@@ -448,7 +733,17 @@
         "area_km2": 27117,
         "timezone": "WAT",
         "slogan": "Home of Solid Minerals"
-      }
+      },
+      "lgas": [
+        {
+          "code": "LAF",
+          "name": "Lafia",
+          "wards": [
+            {"number": 1, "name": "Lafia Central", "pollingUnits": ["LAF/001/001", "LAF/001/002"]},
+            {"number": 2, "name": "Lafia North", "pollingUnits": ["LAF/002/001", "LAF/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-NI",
@@ -466,7 +761,17 @@
         "area_km2": 76363,
         "timezone": "WAT",
         "slogan": "Power State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "MIN",
+          "name": "Minna",
+          "wards": [
+            {"number": 1, "name": "Minna Central", "pollingUnits": ["MIN/001/001", "MIN/001/002"]},
+            {"number": 2, "name": "Minna North", "pollingUnits": ["MIN/002/001", "MIN/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-OG",
@@ -484,7 +789,17 @@
         "area_km2": 16762,
         "timezone": "WAT",
         "slogan": "Gateway State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "ABE",
+          "name": "Abeokuta",
+          "wards": [
+            {"number": 1, "name": "Abeokuta Central", "pollingUnits": ["ABE/001/001", "ABE/001/002"]},
+            {"number": 2, "name": "Abeokuta North", "pollingUnits": ["ABE/002/001", "ABE/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-ON",
@@ -502,7 +817,17 @@
         "area_km2": 15500,
         "timezone": "WAT",
         "slogan": "Sunshine State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "AKU",
+          "name": "Akure",
+          "wards": [
+            {"number": 1, "name": "Akure Central", "pollingUnits": ["AKU/001/001", "AKU/001/002"]},
+            {"number": 2, "name": "Akure North", "pollingUnits": ["AKU/002/001", "AKU/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-OS",
@@ -520,7 +845,17 @@
         "area_km2": 9251,
         "timezone": "WAT",
         "slogan": "State of the Living Spring"
-      }
+      },
+      "lgas": [
+        {
+          "code": "OSO",
+          "name": "Osogbo",
+          "wards": [
+            {"number": 1, "name": "Osogbo Central", "pollingUnits": ["OSO/001/001", "OSO/001/002"]},
+            {"number": 2, "name": "Osogbo North", "pollingUnits": ["OSO/002/001", "OSO/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-OY",
@@ -538,7 +873,17 @@
         "area_km2": 28454,
         "timezone": "WAT",
         "slogan": "Pace Setter State"
-      }
+      },
+      "lgas": [
+        {
+          "code": "IBA",
+          "name": "Ibadan",
+          "wards": [
+            {"number": 1, "name": "Ibadan Central", "pollingUnits": ["IBA/001/001", "IBA/001/002"]},
+            {"number": 2, "name": "Ibadan North", "pollingUnits": ["IBA/002/001", "IBA/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-PL",
@@ -556,7 +901,17 @@
         "area_km2": 30913,
         "timezone": "WAT",
         "slogan": "Home of Peace and Tourism"
-      }
+      },
+      "lgas": [
+        {
+          "code": "JOS",
+          "name": "Jos",
+          "wards": [
+            {"number": 1, "name": "Jos Central", "pollingUnits": ["JOS/001/001", "JOS/001/002"]},
+            {"number": 2, "name": "Jos North", "pollingUnits": ["JOS/002/001", "JOS/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-RI",
@@ -574,7 +929,25 @@
         "area_km2": 11077,
         "timezone": "WAT",
         "slogan": "Treasure Base of the Nation"
-      }
+      },
+      "lgas": [
+        {
+          "code": "PHC",
+          "name": "Port Harcourt",
+          "wards": [
+            {"number": 1, "name": "Mile 1 Diobu", "pollingUnits": ["PHC/001/001", "PHC/001/002"]},
+            {"number": 2, "name": "Mile 2 Diobu", "pollingUnits": ["PHC/002/001", "PHC/002/002"]}
+          ]
+        },
+        {
+          "code": "OBG",
+          "name": "Obio-Akpor",
+          "wards": [
+            {"number": 1, "name": "Rumuolumeni", "pollingUnits": ["OBG/001/001", "OBG/001/002"]},
+            {"number": 2, "name": "Rumuokwuta", "pollingUnits": ["OBG/002/001", "OBG/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-SO",
@@ -592,7 +965,17 @@
         "area_km2": 25973,
         "timezone": "WAT",
         "slogan": "Seat of the Caliphate"
-      }
+      },
+      "lgas": [
+        {
+          "code": "SOK",
+          "name": "Sokoto",
+          "wards": [
+            {"number": 1, "name": "Sokoto Central", "pollingUnits": ["SOK/001/001", "SOK/001/002"]},
+            {"number": 2, "name": "Sokoto North", "pollingUnits": ["SOK/002/001", "SOK/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-TA",
@@ -610,7 +993,17 @@
         "area_km2": 54473,
         "timezone": "WAT",
         "slogan": "Nature's Gift to the Nation"
-      }
+      },
+      "lgas": [
+        {
+          "code": "JAL",
+          "name": "Jalingo",
+          "wards": [
+            {"number": 1, "name": "Jalingo Central", "pollingUnits": ["JAL/001/001", "JAL/001/002"]},
+            {"number": 2, "name": "Jalingo North", "pollingUnits": ["JAL/002/001", "JAL/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-YO",
@@ -628,7 +1021,17 @@
         "area_km2": 45502,
         "timezone": "WAT",
         "slogan": "Pride of the Sahel"
-      }
+      },
+      "lgas": [
+        {
+          "code": "DAM",
+          "name": "Damaturu",
+          "wards": [
+            {"number": 1, "name": "Damaturu Central", "pollingUnits": ["DAM/001/001", "DAM/001/002"]},
+            {"number": 2, "name": "Damaturu North", "pollingUnits": ["DAM/002/001", "DAM/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-ZA",
@@ -646,7 +1049,17 @@
         "area_km2": 39762,
         "timezone": "WAT",
         "slogan": "Farming is Our Pride"
-      }
+      },
+      "lgas": [
+        {
+          "code": "GUS",
+          "name": "Gusau",
+          "wards": [
+            {"number": 1, "name": "Gusau Central", "pollingUnits": ["GUS/001/001", "GUS/001/002"]},
+            {"number": 2, "name": "Gusau North", "pollingUnits": ["GUS/002/001", "GUS/002/002"]}
+          ]
+        }
+      ]
     },
     {
       "id": "NG-FCT",
@@ -664,7 +1077,25 @@
         "area_km2": 7315,
         "timezone": "WAT",
         "slogan": "Centre of Unity"
-      }
+      },
+      "lgas": [
+        {
+          "code": "GAR",
+          "name": "Garki",
+          "wards": [
+            {"number": 1, "name": "Garki I", "pollingUnits": ["GAR/001/001", "GAR/001/002"]},
+            {"number": 2, "name": "Garki II", "pollingUnits": ["GAR/002/001", "GAR/002/002"]}
+          ]
+        },
+        {
+          "code": "WUS",
+          "name": "Wuse",
+          "wards": [
+            {"number": 1, "name": "Wuse I", "pollingUnits": ["WUS/001/001", "WUS/001/002"]},
+            {"number": 2, "name": "Wuse II", "pollingUnits": ["WUS/002/001", "WUS/002/002"]}
+          ]
+        }
+      ]
     }
   ]
 }

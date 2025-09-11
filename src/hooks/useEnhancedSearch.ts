@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getSearchEngine, SearchResult } from '../lib/searchEngine';
-import { mockPoliticians } from '../mock/politicians';
+import { politicianService } from '../services/politician-service';
 import { useUIStore } from '../stores/uiStore';
 import type { Politician } from '../types';
 
@@ -52,13 +52,26 @@ export const useEnhancedSearch = (options: UseEnhancedSearchOptions = {}) => {
     searchHistory 
   } = useUIStore();
 
-  // Initialize search engine
-  const searchEngine = useMemo(() => {
-    try {
-      return getSearchEngine(mockPoliticians);
-    } catch {
-      return getSearchEngine(mockPoliticians);
-    }
+  // State for search engine initialization
+  const [searchEngine, setSearchEngine] = useState<any>(null);
+  const [politicians, setPoliticians] = useState<Politician[]>([]);
+
+  // Initialize search engine with data
+  useEffect(() => {
+    const initializeSearchEngine = async () => {
+      try {
+        const politiciansData = await politicianService.getAllPoliticians();
+        setPoliticians(politiciansData);
+        const engine = getSearchEngine(politiciansData);
+        setSearchEngine(engine);
+      } catch (error) {
+        console.error('Error initializing search engine:', error);
+        // Fallback to empty politicians
+        const engine = getSearchEngine([]);
+        setSearchEngine(engine);
+      }
+    };
+    initializeSearchEngine();
   }, []);
 
   // Debounced search query
@@ -93,12 +106,12 @@ export const useEnhancedSearch = (options: UseEnhancedSearchOptions = {}) => {
       // Simulate API delay for realistic performance
       await new Promise(resolve => setTimeout(resolve, 50));
 
-      const results = searchEngine.search(debouncedQuery, {
+      const results = searchEngine?.search(debouncedQuery, {
         maxResults: 50,
         threshold: 0.4
-      });
+      }) || [];
 
-      const suggestions = searchEngine.getSuggestions(debouncedQuery, maxSuggestions);
+      const suggestions = searchEngine?.getSuggestions(debouncedQuery, maxSuggestions) || [];
       
       const endTime = performance.now();
       const searchTime = endTime - startTime;
@@ -182,17 +195,17 @@ export const useEnhancedSearch = (options: UseEnhancedSearchOptions = {}) => {
   const searchByField = useCallback((query: string, field: keyof Politician) => {
     if (!query || query.length < minQueryLength) return [];
     
-    return searchEngine.searchByField(query, field, maxSuggestions);
+    return searchEngine?.searchByField(query, field, maxSuggestions) || [];
   }, [searchEngine, minQueryLength, maxSuggestions]);
 
   const getExactMatches = useCallback((query: string) => {
     if (!query || query.length < minQueryLength) return [];
     
-    return searchEngine.getExactMatches(query);
+    return searchEngine?.getExactMatches(query) || [];
   }, [searchEngine, minQueryLength]);
 
   const highlightMatches = useCallback((text: string, matches?: any[]) => {
-    return searchEngine.highlightMatches(text, matches);
+    return searchEngine?.highlightMatches(text, matches) || text;
   }, [searchEngine]);
 
   // Performance metrics

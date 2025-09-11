@@ -9,7 +9,29 @@
  * - Data quality scoring and reporting
  */
 
-import { EventEmitter } from 'events';
+// Simple browser-compatible event emitter
+class EventEmitter {
+  private events: { [key: string]: Function[] } = {};
+  
+  on(event: string, callback: Function) {
+    if (!this.events[event]) {
+      this.events[event] = [];
+    }
+    this.events[event].push(callback);
+  }
+  
+  emit(event: string, ...args: any[]) {
+    if (this.events[event]) {
+      this.events[event].forEach(callback => callback(...args));
+    }
+  }
+  
+  off(event: string, callback: Function) {
+    if (this.events[event]) {
+      this.events[event] = this.events[event].filter(cb => cb !== callback);
+    }
+  }
+}
 import { schemaValidator, type ValidationError, type ValidationResult } from './schema-validator';
 
 // Data integrity types
@@ -1182,174 +1204,7 @@ export class DataValidatorService {
   }
 }
 
-/**
- * Data Validator Service - Simplified interface for common validation tasks
- */
-export class DataValidatorService {
-  private static instance: DataValidatorService;
-  private framework: DataValidationFramework;
-  
-  private constructor() {
-    this.framework = DataValidationFramework.getInstance();
-  }
-  
-  static getInstance(): DataValidatorService {
-    if (!DataValidatorService.instance) {
-      DataValidatorService.instance = new DataValidatorService();
-    }
-    return DataValidatorService.instance;
-  }
-  
-  /**
-   * Validate states data
-   */
-  validateStatesData(data: any): ValidationResult {
-    return schemaValidator.validateData('states', data);
-  }
-  
-  /**
-   * Validate politicians data
-   */
-  validatePoliticiansData(data: any): ValidationResult {
-    return schemaValidator.validateData('politicians', data);
-  }
-  
-  /**
-   * Validate parties data
-   */
-  validatePartiesData(data: any): ValidationResult {
-    return schemaValidator.validateData('parties', data);
-  }
-  
-  /**
-   * Validate LGAs data
-   */
-  validateLGAsData(data: any): ValidationResult {
-    return schemaValidator.validateData('lgas', data);
-  }
-  
-  /**
-   * Validate wards data
-   */
-  validateWardsData(data: any): ValidationResult {
-    return schemaValidator.validateData('wards', data);
-  }
-  
-  /**
-   * Validate polling units data
-   */
-  validatePollingUnitsData(data: any): ValidationResult {
-    return schemaValidator.validateData('polling-units', data);
-  }
-  
-  /**
-   * Validate sentiment data
-   */
-  validateSentimentData(data: any): ValidationResult {
-    return schemaValidator.validateData('sentiment-data', data);
-  }
-  
-  /**
-   * Validate engagement data
-   */
-  validateEngagementData(data: any): ValidationResult {
-    return schemaValidator.validateData('engagement-metrics', data);
-  }
-  
-  /**
-   * Validate topic data
-   */
-  validateTopicData(data: any): ValidationResult {
-    return schemaValidator.validateData('topic-trends', data);
-  }
-  
-  /**
-   * Validate election data
-   */
-  validateElectionData(data: any): ValidationResult {
-    return schemaValidator.validateData('election-schedules', data);
-  }
-  
-  /**
-   * Validate electoral events data
-   */
-  validateElectoralEventsData(data: any): ValidationResult {
-    return schemaValidator.validateData('electoral-events', data);
-  }
-  
-  /**
-   * Validate cross-references between data files
-   */
-  validateCrossReferences(dataFiles: { [fileName: string]: any }): ValidationResult {
-    // Simplified cross-reference validation
-    const errors: any[] = [];
-    const warnings: any[] = [];
-    
-    // Check politician references
-    if (dataFiles.politicians && dataFiles.parties && dataFiles.states) {
-      const politicians = dataFiles.politicians.politicians || [];
-      const partyIds = new Set((dataFiles.parties.parties || []).map((p: any) => p.id));
-      const stateIds = new Set((dataFiles.states.states || []).map((s: any) => s.id));
-      
-      politicians.forEach((politician: any, index: number) => {
-        if (politician.partyId && !partyIds.has(politician.partyId)) {
-          errors.push({
-            path: `/politicians/${index}/partyId`,
-            message: `Invalid party reference: ${politician.partyId}`,
-            value: politician.partyId
-          });
-        }
-        
-        if (politician.stateOfOriginId && !stateIds.has(politician.stateOfOriginId)) {
-          errors.push({
-            path: `/politicians/${index}/stateOfOriginId`,
-            message: `Invalid state reference: ${politician.stateOfOriginId}`,
-            value: politician.stateOfOriginId
-          });
-        }
-      });
-    }
-    
-    return {
-      isValid: errors.length === 0,
-      errors,
-      warnings,
-      score: errors.length === 0 ? 100 : Math.max(0, 100 - (errors.length * 10))
-    };
-  }
-  
-  /**
-   * Validate batch of data files
-   */
-  validateBatch(validations: Array<{
-    schemaName: string;
-    data: any;
-    fileName: string;
-  }>): Map<string, ValidationResult> {
-    const results = new Map<string, ValidationResult>();
-    
-    validations.forEach(({ schemaName, data, fileName }) => {
-      try {
-        const result = schemaValidator.validateData(schemaName, data);
-        results.set(fileName, result);
-      } catch (error) {
-        results.set(fileName, {
-          isValid: false,
-          errors: [{
-            path: '/',
-            message: `Validation failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
-            value: undefined
-          }],
-          warnings: [],
-          score: 0
-        });
-      }
-    });
-    
-    return results;
-  }
-}
-
 // Export singleton instance
 export const dataValidationFramework = DataValidationFramework.getInstance();
+export const dataValidatorService = DataValidatorService.getInstance();
 export default DataValidationFramework;
