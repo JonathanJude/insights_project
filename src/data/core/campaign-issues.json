@@ -1,0 +1,192 @@
+{
+  "campaignIssues": [
+    {
+      "id": "ISSUE-COST-OF-LIVING",
+      "name": "Cost of Living",
+      "description": "Rising cost of living and inflation impact on citizens",
+      "frequency": 0.22,
+      "urgency": "High",
+      "category": "economic",
+      "impact": "widespread",
+      "affectedDemographics": ["all", "low-income", "middle-class"],
+      "regionalFocus": ["national", "urban", "rural"],
+      "sentiment": {
+        "base": 0.15,
+        "variance": 0.10,
+        "trend": "negative"
+      },
+      "policyAreaId": "POLICY-ECONOMY",
+      "keywords": ["cost-of-living", "inflation", "prices", "food-prices", "fuel-prices", "expenses"],
+      "stakeholders": ["citizens", "government", "businesses", "labor-unions"],
+      "proposedSolutions": [
+        "Minimum wage increase",
+        "Fuel subsidy removal with palliatives",
+        "Price control measures",
+        "Social safety nets"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "ISSUE-FUEL-SUBSIDY",
+      "name": "Fuel Subsidy",
+      "description": "Fuel subsidy removal and its economic implications",
+      "frequency": 0.18,
+      "urgency": "High",
+      "category": "economic",
+      "impact": "significant",
+      "affectedDemographics": ["all", "transport-workers", "businesses"],
+      "regionalFocus": ["national"],
+      "sentiment": {
+        "base": 0.20,
+        "variance": 0.15,
+        "trend": "controversial"
+      },
+      "policyAreaId": "POLICY-ECONOMY",
+      "keywords": ["fuel-subsidy", "petrol", "diesel", "kerosene", "energy", "subsidy-removal"],
+      "stakeholders": ["government", "citizens", "oil-marketers", "transport-sector"],
+      "proposedSolutions": [
+        "Gradual subsidy removal",
+        "Targeted palliatives",
+        "Public transportation investment",
+        "Alternative energy promotion"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "ISSUE-INSECURITY",
+      "name": "Insecurity",
+      "description": "General security challenges across the country",
+      "frequency": 0.16,
+      "urgency": "High",
+      "category": "security",
+      "impact": "severe",
+      "affectedDemographics": ["all", "rural-communities", "farmers"],
+      "regionalFocus": ["north-east", "north-west", "north-central", "south-south"],
+      "sentiment": {
+        "base": 0.18,
+        "variance": 0.12,
+        "trend": "negative"
+      },
+      "policyAreaId": "POLICY-SECURITY",
+      "keywords": ["insecurity", "safety", "terrorism", "kidnapping", "banditry", "violence"],
+      "stakeholders": ["security-agencies", "citizens", "government", "communities"],
+      "proposedSolutions": [
+        "Security sector reform",
+        "Community policing",
+        "Intelligence gathering",
+        "Job creation for youth"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "ISSUE-UNEMPLOYMENT",
+      "name": "Unemployment",
+      "description": "High unemployment rates especially among youth",
+      "frequency": 0.14,
+      "urgency": "High",
+      "category": "social",
+      "impact": "severe",
+      "affectedDemographics": ["youth", "graduates", "urban-population"],
+      "regionalFocus": ["national", "urban"],
+      "sentiment": {
+        "base": 0.22,
+        "variance": 0.15,
+        "trend": "stable"
+      },
+      "policyAreaId": "POLICY-YOUTH-JOBS",
+      "keywords": ["unemployment", "jobs", "youth-employment", "graduates", "job-creation"],
+      "stakeholders": ["youth", "government", "private-sector", "educational-institutions"],
+      "proposedSolutions": [
+        "Skills acquisition programs",
+        "Entrepreneurship support",
+        "Industrial policy",
+        "Public works programs"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "ISSUE-POWER-SUPPLY",
+      "name": "Power Supply",
+      "description": "Electricity generation, transmission and distribution challenges",
+      "frequency": 0.12,
+      "urgency": "Medium",
+      "category": "infrastructure",
+      "impact": "significant",
+      "affectedDemographics": ["all", "businesses", "households"],
+      "regionalFocus": ["national"],
+      "sentiment": {
+        "base": 0.25,
+        "variance": 0.18,
+        "trend": "improving"
+      },
+      "policyAreaId": "POLICY-INFRASTRUCTURE",
+      "keywords": ["power", "electricity", "energy", "generation", "distribution", "transmission"],
+      "stakeholders": ["government", "discos", "gencos", "consumers", "businesses"],
+      "proposedSolutions": [
+        "Privatization reform",
+        "Renewable energy investment",
+        "Infrastructure upgrade",
+        "Tariff restructuring"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "ISSUE-ELECTION-CREDIBILITY",
+      "name": "Election Credibility",
+      "description": "Trust in electoral process and institutions",
+      "frequency": 0.10,
+      "urgency": "Medium",
+      "category": "governance",
+      "impact": "high",
+      "affectedDemographics": ["voters", "political-parties", "observers"],
+      "regionalFocus": ["national"],
+      "sentiment": {
+        "base": 0.35,
+        "variance": 0.25,
+        "trend": "improving"
+      },
+      "policyAreaId": "POLICY-CORRUPTION",
+      "keywords": ["elections", "voting", "inec", "credibility", "transparency", "democracy"],
+      "stakeholders": ["inec", "voters", "political-parties", "observers", "security-agencies"],
+      "proposedSolutions": [
+        "Electoral reform",
+        "Technology adoption",
+        "Voter education",
+        "Security improvement"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "ISSUE-MINIMUM-WAGE",
+      "name": "Minimum Wage",
+      "description": "National minimum wage review and implementation",
+      "frequency": 0.08,
+      "urgency": "Medium",
+      "category": "economic",
+      "impact": "moderate",
+      "affectedDemographics": ["workers", "civil-servants", "private-sector"],
+      "regionalFocus": ["national"],
+      "sentiment": {
+        "base": 0.40,
+        "variance": 0.20,
+        "trend": "positive"
+      },
+      "policyAreaId": "POLICY-ECONOMY",
+      "keywords": ["minimum-wage", "salary", "workers", "labor", "income", "wages"],
+      "stakeholders": ["workers", "government", "employers", "labor-unions"],
+      "proposedSolutions": [
+        "Wage increase negotiation",
+        "Productivity-linked wages",
+        "Regional wage variations",
+        "Inflation adjustment mechanism"
+      ],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    }
+  ],
+  "metadata": {
+    "totalCount": 7,
+    "lastUpdated": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "description": "Nigerian political campaign issues with detailed analysis and proposed solutions"
+  }
+}

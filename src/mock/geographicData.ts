@@ -6,6 +6,8 @@
  * confidence scoring and undefined data handling.
  */
 
+import { dataLoader } from '../services/data-loader';
+
 // Geographic hierarchy interfaces
 export interface GeographicHierarchy {
   country: {
@@ -58,121 +60,46 @@ export interface NigerianState {
   lgas: LGA[];
 }
 
-// Nigerian States and FCT with realistic LGA data
-export const nigerianStates: NigerianState[] = [
-  {
-    code: 'LA',
-    name: 'Lagos',
-    capital: 'Ikeja',
-    lgas: [
-      {
-        code: 'SUR',
-        name: 'Surulere',
-        wards: [
-          { number: 1, name: 'Aguda/Surulere', pollingUnits: ['SUR/001/001', 'SUR/001/002', 'SUR/001/003'] },
-          { number: 2, name: 'Coker/Aguda', pollingUnits: ['SUR/002/001', 'SUR/002/002'] },
-          { number: 3, name: 'Iponri', pollingUnits: ['SUR/003/001', 'SUR/003/002', 'SUR/003/003'] }
-        ]
-      },
-      {
-        code: 'IKJ',
-        name: 'Ikeja',
-        wards: [
-          { number: 1, name: 'Agidingbi', pollingUnits: ['IKJ/001/001', 'IKJ/001/002'] },
-          { number: 2, name: 'Anifowoshe', pollingUnits: ['IKJ/002/001', 'IKJ/002/002', 'IKJ/002/003'] },
-          { number: 3, name: 'Ojodu', pollingUnits: ['IKJ/003/001', 'IKJ/003/002'] }
-        ]
-      },
-      {
-        code: 'ALM',
-        name: 'Alimosho',
-        wards: [
-          { number: 1, name: 'Abesan', pollingUnits: ['ALM/001/001', 'ALM/001/002', 'ALM/001/003'] },
-          { number: 2, name: 'Egbeda', pollingUnits: ['ALM/002/001', 'ALM/002/002'] },
-          { number: 3, name: 'Idimu', pollingUnits: ['ALM/003/001', 'ALM/003/002', 'ALM/003/003'] }
-        ]
-      },
-      {
-        code: 'ETO',
-        name: 'Eti-Osa',
-        wards: [
-          { number: 1, name: 'Victoria Island I', pollingUnits: ['ETO/001/001', 'ETO/001/002'] },
-          { number: 2, name: 'Victoria Island II', pollingUnits: ['ETO/002/001', 'ETO/002/002'] },
-          { number: 3, name: 'Lekki', pollingUnits: ['ETO/003/001', 'ETO/003/002', 'ETO/003/003'] }
-        ]
-      }
-    ]
-  },
-  {
-    code: 'AB',
-    name: 'Abuja (FCT)',
-    capital: 'Abuja',
-    lgas: [
-      {
-        code: 'GAR',
-        name: 'Garki',
-        wards: [
-          { number: 1, name: 'Garki I', pollingUnits: ['GAR/001/001', 'GAR/001/002'] },
-          { number: 2, name: 'Garki II', pollingUnits: ['GAR/002/001', 'GAR/002/002'] }
-        ]
-      },
-      {
-        code: 'WUS',
-        name: 'Wuse',
-        wards: [
-          { number: 1, name: 'Wuse I', pollingUnits: ['WUS/001/001', 'WUS/001/002'] },
-          { number: 2, name: 'Wuse II', pollingUnits: ['WUS/002/001', 'WUS/002/002'] }
-        ]
-      }
-    ]
-  },
-  {
-    code: 'KN',
-    name: 'Kano',
-    capital: 'Kano',
-    lgas: [
-      {
-        code: 'KNM',
-        name: 'Kano Municipal',
-        wards: [
-          { number: 1, name: 'Fagge', pollingUnits: ['KNM/001/001', 'KNM/001/002', 'KNM/001/003'] },
-          { number: 2, name: 'Gwale', pollingUnits: ['KNM/002/001', 'KNM/002/002'] }
-        ]
-      },
-      {
-        code: 'NAS',
-        name: 'Nasarawa',
-        wards: [
-          { number: 1, name: 'Nasarawa', pollingUnits: ['NAS/001/001', 'NAS/001/002'] },
-          { number: 2, name: 'Hotoro', pollingUnits: ['NAS/002/001', 'NAS/002/002'] }
-        ]
-      }
-    ]
-  },
-  {
-    code: 'RV',
-    name: 'Rivers',
-    capital: 'Port Harcourt',
-    lgas: [
-      {
-        code: 'PHC',
-        name: 'Port Harcourt',
-        wards: [
-          { number: 1, name: 'Mile 1 Diobu', pollingUnits: ['PHC/001/001', 'PHC/001/002'] },
-          { number: 2, name: 'Mile 2 Diobu', pollingUnits: ['PHC/002/001', 'PHC/002/002'] }
-        ]
-      },
-      {
-        code: 'OBG',
-        name: 'Obio-Akpor',
-        wards: [
-          { number: 1, name: 'Rumuolumeni', pollingUnits: ['OBG/001/001', 'OBG/001/002'] },
-          { number: 2, name: 'Rumuokwuta', pollingUnits: ['OBG/002/001', 'OBG/002/002'] }
-        ]
-      }
-    ]
+// Nigerian States and FCT data loaded from JSON
+export const nigerianStates: NigerianState[] = [];
+
+// Load states from JSON and convert format
+export const loadStatesFromJSON = async (): Promise<NigerianState[]> => {
+  try {
+    const statesData = await dataLoader.loadData(
+      'geographic-states',
+      () => import('../data/core/states.json'),
+      { cacheTTL: 30 * 60 * 1000 } // 30 minutes
+    );
+    
+    // Convert JSON format to internal format
+    return statesData.states.map((state: any) => ({
+      code: state.code,
+      name: state.name,
+      capital: state.capital,
+      lgas: state.lgas.map((lga: any) => ({
+        code: lga.code,
+        name: lga.name,
+        wards: lga.wards.map((ward: any) => ({
+          number: ward.number,
+          name: ward.name,
+          pollingUnits: ward.pollingUnits
+        }))
+      }))
+    }));
+  } catch (error) {
+    console.error('Error loading states from JSON:', error);
+    return [];
   }
-];
+};
+
+// Initialize states asynchronously
+export const initializeStates = async (): Promise<void> => {
+  if (nigerianStates.length === 0) {
+    const states = await loadStatesFromJSON();
+    nigerianStates.push(...states);
+  }
+};
 
 // Geographic sentiment distribution data
 export interface GeographicSentimentDistribution {

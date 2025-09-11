@@ -1,0 +1,329 @@
+{
+  "policyAreas": [
+    {
+      "id": "POLICY-ECONOMY",
+      "name": "Economy",
+      "description": "Economic policies, financial management, and economic development",
+      "weight": 0.25,
+      "category": "economic",
+      "priority": "high",
+      "subTopics": [
+        {
+          "id": "SUB-GDP-GROWTH",
+          "name": "GDP Growth",
+          "description": "Gross Domestic Product growth and economic expansion"
+        },
+        {
+          "id": "SUB-INFLATION",
+          "name": "Inflation",
+          "description": "Price stability and inflation control measures"
+        },
+        {
+          "id": "SUB-EXCHANGE-RATE",
+          "name": "Exchange Rate",
+          "description": "Currency valuation and foreign exchange policies"
+        },
+        {
+          "id": "SUB-TRADE",
+          "name": "Trade",
+          "description": "International trade, import/export policies"
+        },
+        {
+          "id": "SUB-INVESTMENT",
+          "name": "Investment",
+          "description": "Foreign direct investment and local investment promotion"
+        }
+      ],
+      "sentiment": {
+        "base": 0.35,
+        "variance": 0.20,
+        "trend": "stable"
+      },
+      "relatedParties": ["APC", "PDP", "LP", "NNPP"],
+      "keywords": ["economy", "finance", "business", "trade", "investment", "gdp", "inflation"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-SECURITY",
+      "name": "Security",
+      "description": "National security, defense, and internal security matters",
+      "weight": 0.20,
+      "category": "security",
+      "priority": "high",
+      "subTopics": [
+        {
+          "id": "SUB-TERRORISM",
+          "name": "Terrorism",
+          "description": "Counter-terrorism efforts and terrorist activities"
+        },
+        {
+          "id": "SUB-KIDNAPPING",
+          "name": "Kidnapping",
+          "description": "Kidnapping for ransom and abduction incidents"
+        },
+        {
+          "id": "SUB-BANDITRY",
+          "name": "Banditry",
+          "description": "Armed banditry and rural insecurity"
+        },
+        {
+          "id": "SUB-POLICE-REFORM",
+          "name": "Police Reform",
+          "description": "Police restructuring and law enforcement reforms"
+        },
+        {
+          "id": "SUB-MILITARY-OPS",
+          "name": "Military Operations",
+          "description": "Military interventions and internal security operations"
+        }
+      ],
+      "sentiment": {
+        "base": 0.25,
+        "variance": 0.15,
+        "trend": "negative"
+      },
+      "relatedParties": ["APC", "PDP"],
+      "keywords": ["security", "terrorism", "kidnapping", "banditry", "police", "military", "safety"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-CORRUPTION",
+      "name": "Corruption",
+      "description": "Anti-corruption measures, transparency, and accountability",
+      "weight": 0.15,
+      "category": "governance",
+      "priority": "high",
+      "subTopics": [
+        {
+          "id": "SUB-EFCC-CASES",
+          "name": "EFCC Cases",
+          "description": "Economic and Financial Crimes Commission investigations"
+        },
+        {
+          "id": "SUB-TRANSPARENCY",
+          "name": "Transparency",
+          "description": "Government transparency and open governance"
+        },
+        {
+          "id": "SUB-PROCUREMENT",
+          "name": "Public Procurement",
+          "description": "Government contracting and procurement processes"
+        },
+        {
+          "id": "SUB-ASSET-RECOVERY",
+          "name": "Asset Recovery",
+          "description": "Recovery of stolen assets and looted funds"
+        }
+      ],
+      "sentiment": {
+        "base": 0.20,
+        "variance": 0.25,
+        "trend": "improving"
+      },
+      "relatedParties": ["APC", "PDP"],
+      "keywords": ["corruption", "efcc", "transparency", "accountability", "procurement", "assets"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-INFRASTRUCTURE",
+      "name": "Infrastructure",
+      "description": "Physical infrastructure development and maintenance",
+      "weight": 0.12,
+      "category": "development",
+      "priority": "medium",
+      "subTopics": [
+        {
+          "id": "SUB-ROADS",
+          "name": "Roads",
+          "description": "Road construction, maintenance, and transportation networks"
+        },
+        {
+          "id": "SUB-RAILWAYS",
+          "name": "Railways",
+          "description": "Rail transportation development and modernization"
+        },
+        {
+          "id": "SUB-AIRPORTS",
+          "name": "Airports",
+          "description": "Airport development and aviation infrastructure"
+        },
+        {
+          "id": "SUB-BRIDGES",
+          "name": "Bridges",
+          "description": "Bridge construction and maintenance"
+        },
+        {
+          "id": "SUB-URBAN-DEV",
+          "name": "Urban Development",
+          "description": "Urban infrastructure and city planning"
+        }
+      ],
+      "sentiment": {
+        "base": 0.45,
+        "variance": 0.18,
+        "trend": "positive"
+      },
+      "relatedParties": ["APC", "PDP", "LP"],
+      "keywords": ["infrastructure", "roads", "railways", "airports", "bridges", "construction", "transport"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-YOUTH-JOBS",
+      "name": "Youth/Jobs",
+      "description": "Youth employment and job creation initiatives",
+      "weight": 0.10,
+      "category": "social",
+      "priority": "high",
+      "subTopics": [
+        {
+          "id": "SUB-YOUTH-EMPLOYMENT",
+          "name": "Youth Employment",
+          "description": "Youth job creation and employment programs"
+        },
+        {
+          "id": "SUB-SKILLS-DEV",
+          "name": "Skills Development",
+          "description": "Vocational training and skills acquisition programs"
+        },
+        {
+          "id": "SUB-ENTREPRENEURSHIP",
+          "name": "Entrepreneurship",
+          "description": "Youth entrepreneurship and business development"
+        },
+        {
+          "id": "SUB-TECH-HUBS",
+          "name": "Tech Hubs",
+          "description": "Technology hubs and digital innovation centers"
+        }
+      ],
+      "sentiment": {
+        "base": 0.40,
+        "variance": 0.22,
+        "trend": "improving"
+      },
+      "relatedParties": ["APC", "PDP", "LP", "NNPP"],
+      "keywords": ["youth", "jobs", "employment", "skills", "entrepreneurship", "technology", "innovation"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-EDUCATION",
+      "name": "Education",
+      "description": "Educational policies and academic development",
+      "weight": 0.08,
+      "category": "social",
+      "priority": "medium",
+      "subTopics": [
+        {
+          "id": "SUB-ASUU-STRIKES",
+          "name": "ASUU Strikes",
+          "description": "Academic Staff Union of Universities strikes and labor issues"
+        },
+        {
+          "id": "SUB-SCHOOL-INFRA",
+          "name": "School Infrastructure",
+          "description": "Educational infrastructure and facilities development"
+        },
+        {
+          "id": "SUB-CURRICULUM",
+          "name": "Curriculum Reform",
+          "description": "Educational curriculum review and reform"
+        },
+        {
+          "id": "SUB-FUNDING",
+          "name": "Funding",
+          "description": "Educational funding and budget allocation"
+        }
+      ],
+      "sentiment": {
+        "base": 0.35,
+        "variance": 0.20,
+        "trend": "stable"
+      },
+      "relatedParties": ["APC", "PDP", "LP"],
+      "keywords": ["education", "schools", "universities", "asuu", "curriculum", "funding", "students"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-HEALTH",
+      "name": "Health",
+      "description": "Healthcare policies and medical services",
+      "weight": 0.06,
+      "category": "social",
+      "priority": "medium",
+      "subTopics": [
+        {
+          "id": "SUB-HEALTHCARE-ACCESS",
+          "name": "Healthcare Access",
+          "description": "Healthcare accessibility and service delivery"
+        },
+        {
+          "id": "SUB-MEDICAL-TOURISM",
+          "name": "Medical Tourism",
+          "description": "Medical travel and healthcare tourism issues"
+        },
+        {
+          "id": "SUB-DISEASE-OUTBREAKS",
+          "name": "Disease Outbreaks",
+          "description": "Disease control and outbreak management"
+        },
+        {
+          "id": "SUB-HEALTH-INSURANCE",
+          "name": "Health Insurance",
+          "description": "Health insurance coverage and healthcare financing"
+        }
+      ],
+      "sentiment": {
+        "base": 0.30,
+        "variance": 0.18,
+        "trend": "improving"
+      },
+      "relatedParties": ["APC", "PDP"],
+      "keywords": ["health", "healthcare", "medical", "hospitals", "insurance", "disease", "treatment"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    },
+    {
+      "id": "POLICY-AGRICULTURE",
+      "name": "Agriculture",
+      "description": "Agricultural policies and food security",
+      "weight": 0.04,
+      "category": "economic",
+      "priority": "low",
+      "subTopics": [
+        {
+          "id": "SUB-FOOD-SECURITY",
+          "name": "Food Security",
+          "description": "Food availability and security measures"
+        },
+        {
+          "id": "SUB-FARMER-CONFLICTS",
+          "name": "Farmer-Herder Conflicts",
+          "description": "Conflicts between farmers and herders"
+        },
+        {
+          "id": "SUB-AGRIC-LOANS",
+          "name": "Agricultural Loans",
+          "description": "Financing and loans for agricultural activities"
+        },
+        {
+          "id": "SUB-AGRIC-TECH",
+          "name": "Technology",
+          "description": "Agricultural technology and mechanization"
+        }
+      ],
+      "sentiment": {
+        "base": 0.42,
+        "variance": 0.16,
+        "trend": "positive"
+      },
+      "relatedParties": ["APC", "PDP"],
+      "keywords": ["agriculture", "farming", "food-security", "farmers", "herders", "crops", "livestock"],
+      "lastUpdated": "2024-01-15T10:00:00Z"
+    }
+  ],
+  "metadata": {
+    "totalCount": 8,
+    "lastUpdated": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "description": "Nigerian political policy areas with detailed categorization and sentiment analysis"
+  }
+}

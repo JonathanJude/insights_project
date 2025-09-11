@@ -200,19 +200,17 @@ export class UnifiedSearchEngine {
         { id: 'YPP', name: 'YPP', fullName: 'Young Progressives Party', searchableText: 'YPP Young Progressives Party youth' }
       ];
 
-      // Initialize states (this remains static as it's from the states data)
-      const nigerianStates = [
-        'Abia', 'Adamawa', 'Akwa Ibom', 'Anambra', 'Bauchi', 'Bayelsa', 'Benue', 'Borno',
-        'Cross River', 'Delta', 'Ebonyi', 'Edo', 'Ekiti', 'Enugu', 'FCT', 'Gombe', 'Imo',
-        'Jigawa', 'Kaduna', 'Kano', 'Katsina', 'Kebbi', 'Kogi', 'Kwara', 'Lagos', 'Nasarawa',
-        'Niger', 'Ogun', 'Ondo', 'Osun', 'Oyo', 'Plateau', 'Rivers', 'Sokoto', 'Taraba',
-        'Yobe', 'Zamfara'
-      ];
+      // Initialize states from JSON data
+      const statesData = await dataLoader.loadData(
+        'states',
+        () => import('../data/core/states.json'),
+        { cacheTTL: 30 * 60 * 1000 } // 30 minutes
+      );
       
-      this.states = nigerianStates.map(state => ({
-        id: state,
-        name: state,
-        searchableText: `${state} state nigeria`
+      this.states = statesData.states.map((state: any) => ({
+        id: state.id,
+        name: state.name,
+        searchableText: `${state.name} state nigeria ${state.region}`
       }));
 
       // Initialize positions from JSON data

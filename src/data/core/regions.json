@@ -1,0 +1,458 @@
+{
+  "regions": [
+    {
+      "id": "NG-REG-SOUTH-WEST",
+      "name": "South West",
+      "description": "South Western geopolitical zone of Nigeria",
+      "capital": "Ibadan",
+      "majorCities": ["Lagos", "Ibadan", "Abeokuta", "Akure", "Oshogbo", "Ilorin"],
+      "states": [
+        {
+          "id": "NG-LA",
+          "name": "Lagos",
+          "capital": "Ikeja",
+          "economicImportance": "Commercial hub, financial center",
+          "population": "14,368,000",
+          "keyIndustries": ["Finance", "Commerce", "Technology", "Manufacturing"]
+        },
+        {
+          "id": "NG-OY",
+          "name": "Oyo",
+          "capital": "Ibadan",
+          "economicImportance": "Agriculture, education, commerce",
+          "population": "7,840,000",
+          "keyIndustries": ["Agriculture", "Education", "Commerce"]
+        },
+        {
+          "id": "NG-OG",
+          "name": "Ogun",
+          "capital": "Abeokuta",
+          "economicImportance": "Industrial hub, gateway state",
+          "population": "5,217,000",
+          "keyIndustries": ["Manufacturing", "Agriculture", "Mining"]
+        },
+        {
+          "id": "NG-OS",
+          "name": "Osun",
+          "capital": "Oshogbo",
+          "economicImportance": "Agriculture, education, tourism",
+          "population": "4,705,000",
+          "keyIndustries": ["Agriculture", "Education", "Tourism"]
+        },
+        {
+          "id": "NG-ON",
+          "name": "Ondo",
+          "capital": "Akure",
+          "economicImportance": "Agriculture, bitumen deposits",
+          "population": "4,651,000",
+          "keyIndustries": ["Agriculture", "Mining", "Forestry"]
+        },
+        {
+          "id": "NG-EK",
+          "name": "Ekiti",
+          "capital": "Ado-Ekiti",
+          "economicImportance": "Education, agriculture",
+          "population": "3,315,000",
+          "keyIndustries": ["Education", "Agriculture", "Services"]
+        }
+      ],
+      "demographics": {
+        "population": "40,096,000",
+        "ethnicGroups": ["Yoruba"],
+        "majorReligions": ["Christianity", "Islam", "Traditional"],
+        "languages": ["Yoruba", "English"]
+      },
+      "economicProfile": {
+        "majorSectors": ["Commerce", "Industry", "Agriculture", "Services"],
+        "keyResources": ["Oil", "Agricultural products", "Mineral resources"],
+        "investmentOpportunities": ["Technology", "Manufacturing", "Tourism"]
+      },
+      "politicalCharacteristics": {
+        "dominantParties": ["APC", "PDP"],
+        "votingPatterns": "Competitive",
+        "keyIssues": ["Economic development", "Infrastructure", "Education"]
+      }
+    },
+    {
+      "id": "NG-REG-SOUTH-EAST",
+      "name": "South East",
+      "description": "South Eastern geopolitical zone of Nigeria",
+      "capital": "Enugu",
+      "majorCities": ["Enugu", "Aba", "Onitsha", "Owerri", "Abakaliki", "Umuahia"],
+      "states": [
+        {
+          "id": "NG-EN",
+          "name": "Enugu",
+          "capital": "Enugu",
+          "economicImportance": "Coal mining, education, commerce",
+          "population": "4,411,000",
+          "keyIndustries": ["Mining", "Education", "Commerce"]
+        },
+        {
+          "id": "NG-AB",
+          "name": "Abia",
+          "capital": "Umuahia",
+          "economicImportance": "Commerce, oil and gas, manufacturing",
+          "population": "3,720,000",
+          "keyIndustries": ["Manufacturing", "Commerce", "Oil & Gas"]
+        },
+        {
+          "id": "NG-IM",
+          "name": "Imo",
+          "capital": "Owerri",
+          "economicImportance": "Agriculture, commerce, education",
+          "population": "5,408,000",
+          "keyIndustries": ["Agriculture", "Commerce", "Education"]
+        },
+        {
+          "id": "NG-AN",
+          "name": "Anambra",
+          "capital": "Awka",
+          "economicImportance": "Commerce, oil and gas, manufacturing",
+          "population": "5,527,000",
+          "keyIndustries": ["Commerce", "Manufacturing", "Oil & Gas"]
+        },
+        {
+          "id": "NG-EB",
+          "name": "Ebonyi",
+          "capital": "Abakaliki",
+          "economicImportance": "Agriculture, solid minerals",
+          "population": "3,334,000",
+          "keyIndustries": ["Agriculture", "Mining", "Food processing"]
+        }
+      ],
+      "demographics": {
+        "population": "22,400,000",
+        "ethnicGroups": ["Igbo"],
+        "majorReligions": ["Christianity"],
+        "languages": ["Igbo", "English"]
+      },
+      "economicProfile": {
+        "majorSectors": ["Commerce", "Manufacturing", "Agriculture", "Oil & Gas"],
+        "keyResources": ["Oil", "Gas", "Agricultural products", "Solid minerals"],
+        "investmentOpportunities": ["Manufacturing", "Commerce", "Technology"]
+      },
+      "politicalCharacteristics": {
+        "dominantParties": ["APGA", "PDP", "LP"],
+        "votingPatterns": "Strong regional alignment",
+        "keyIssues": ["Economic marginalization", "Infrastructure development", "Political inclusion"]
+      }
+    },
+    {
+      "id": "NG-REG-SOUTH-SOUTH",
+      "name": "South South",
+      "description": "South Southern geopolitical zone of Nigeria",
+      "capital": "Port Harcourt",
+      "majorCities": ["Port Harcourt", "Warri", "Calabar", "Uyo", "Yenagoa", "Asaba"],
+      "states": [
+        {
+          "id": "NG-RI",
+          "name": "Rivers",
+          "capital": "Port Harcourt",
+          "economicImportance": "Oil and gas hub",
+          "population": "7,303,000",
+          "keyIndustries": ["Oil & Gas", "Manufacturing", "Commerce"]
+        },
+        {
+          "id": "NG-DE",
+          "name": "Delta",
+          "capital": "Asaba",
+          "economicImportance": "Oil and gas production",
+          "population": "5,713,000",
+          "keyIndustries": ["Oil & Gas", "Agriculture", "Commerce"]
+        },
+        {
+          "id": "NG-CR",
+          "name": "Cross River",
+          "capital": "Calabar",
+          "economicImportance": "Tourism, agriculture, commerce",
+          "population": "3,875,000",
+          "keyIndustries": ["Tourism", "Agriculture", "Commerce"]
+        },
+        {
+          "id": "NG-AK",
+          "name": "Akwa Ibom",
+          "capital": "Uyo",
+          "economicImportance": "Oil production, agriculture",
+          "population": "5,482,000",
+          "keyIndustries": ["Oil & Gas", "Agriculture", "Manufacturing"]
+        },
+        {
+          "id": "NG-BY",
+          "name": "Bayelsa",
+          "capital": "Yenagoa",
+          "economicImportance": "Oil and gas production",
+          "population": "2,278,000",
+          "keyIndustries": ["Oil & Gas", "Fishing", "Agriculture"]
+        },
+        {
+          "id": "NG-ED",
+          "name": "Edo",
+          "capital": "Benin City",
+          "economicImportance": "Agriculture, manufacturing, culture",
+          "population": "4,502,000",
+          "keyIndustries": ["Agriculture", "Manufacturing", "Tourism"]
+        }
+      ],
+      "demographics": {
+        "population": "29,153,000",
+        "ethnicGroups": ["Ijaw", "Itsekiri", "Urhobo", "Isoko", "Bini", "Efik", "Ibibio"],
+        "majorReligions": ["Christianity", "Traditional"],
+        "languages": ["English", "Pidgin", "Various indigenous languages"]
+      },
+      "economicProfile": {
+        "majorSectors": ["Oil & Gas", "Agriculture", "Tourism", "Manufacturing"],
+        "keyResources": ["Oil", "Gas", "Agricultural products", "Marine resources"],
+        "investmentOpportunities": ["Oil & Gas services", "Agriculture", "Tourism"]
+      },
+      "politicalCharacteristics": {
+        "dominantParties": ["PDP", "APC"],
+        "votingPatterns": "Resource-influenced",
+        "keyIssues": ["Resource control", "Environmental protection", "Development"]
+      }
+    },
+    {
+      "id": "NG-REG-NORTH-WEST",
+      "name": "North West",
+      "description": "North Western geopolitical zone of Nigeria",
+      "capital": "Kaduna",
+      "majorCities": ["Kano", "Kaduna", "Sokoto", "Katsina", "Zaria", "Gusau"],
+      "states": [
+        {
+          "id": "NG-KN",
+          "name": "Kano",
+          "capital": "Kano",
+          "economicImportance": "Commercial center, agriculture",
+          "population": "16,076,000",
+          "keyIndustries": ["Commerce", "Agriculture", "Manufacturing"]
+        },
+        {
+          "id": "NG-KD",
+          "name": "Kaduna",
+          "capital": "Kaduna",
+          "economicImportance": "Industrial center, agriculture",
+          "population": "8,252,000",
+          "keyIndustries": ["Manufacturing", "Agriculture", "Military"]
+        },
+        {
+          "id": "NG-KT",
+          "name": "Katsina",
+          "capital": "Katsina",
+          "economicImportance": "Agriculture, Islamic education",
+          "population": "7,831,000",
+          "keyIndustries": ["Agriculture", "Education", "Commerce"]
+        },
+        {
+          "id": "NG-SO",
+          "name": "Sokoto",
+          "capital": "Sokoto",
+          "economicImportance": "Agriculture, historical center",
+          "population": "6,406,000",
+          "keyIndustries": ["Agriculture", "Education", "Tourism"]
+        },
+        {
+          "id": "NG-ZF",
+          "name": "Zamfara",
+          "capital": "Gusau",
+          "economicImportance": "Agriculture, solid minerals",
+          "population": "3,840,000",
+          "keyIndustries": ["Agriculture", "Mining", "Commerce"]
+        },
+        {
+          "id": "NG-KE",
+          "name": "Kebbi",
+          "capital": "Birnin Kebbi",
+          "economicImportance": "Agriculture, fishing",
+          "population": "4,363,000",
+          "keyIndustries": ["Agriculture", "Fishing", "Commerce"]
+        },
+        {
+          "id": "NG-JI",
+          "name": "Jigawa",
+          "capital": "Dutse",
+          "economicImportance": "Agriculture, commerce",
+          "population": "6,549,000",
+          "keyIndustries": ["Agriculture", "Commerce", "Manufacturing"]
+        }
+      ],
+      "demographics": {
+        "population": "53,617,000",
+        "ethnicGroups": ["Hausa", "Fulani"],
+        "majorReligions": ["Islam"],
+        "languages": ["Hausa", "Fulfulde", "English"]
+      },
+      "economicProfile": {
+        "majorSectors": ["Agriculture", "Commerce", "Manufacturing", "Services"],
+        "keyResources": ["Agricultural products", "Solid minerals", "Human resources"],
+        "investmentOpportunities": ["Agriculture", "Manufacturing", "Renewable energy"]
+      },
+      "politicalCharacteristics": {
+        "dominantParties": ["APC", "PDP"],
+        "votingPatterns": "Conservative",
+        "keyIssues": ["Security", "Agriculture", "Education", "Religious matters"]
+      }
+    },
+    {
+      "id": "NG-REG-NORTH-EAST",
+      "name": "North East",
+      "description": "North Eastern geopolitical zone of Nigeria",
+      "capital": "Maiduguri",
+      "majorCities": ["Maiduguri", "Yola", "Bauchi", "Gombe", "Jalingo", "Damaturu"],
+      "states": [
+        {
+          "id": "NG-BO",
+          "name": "Borno",
+          "capital": "Maiduguri",
+          "economicImportance": "Agriculture, trade",
+          "population": "5,863,000",
+          "keyIndustries": ["Agriculture", "Commerce", "Services"]
+        },
+        {
+          "id": "NG-AD",
+          "name": "Adamawa",
+          "capital": "Yola",
+          "economicImportance": "Agriculture, education",
+          "population": "4,251,000",
+          "keyIndustries": ["Agriculture", "Education", "Commerce"]
+        },
+        {
+          "id": "NG-YO",
+          "name": "Yobe",
+          "capital": "Damaturu",
+          "economicImportance": "Agriculture, trade",
+          "population": "3,672,000",
+          "keyIndustries": ["Agriculture", "Commerce", "Services"]
+        },
+        {
+          "id": "NG-BA",
+          "name": "Bauchi",
+          "capital": "Bauchi",
+          "economicImportance": "Agriculture, tourism, mining",
+          "population": "6,537,000",
+          "keyIndustries": ["Agriculture", "Mining", "Tourism"]
+        },
+        {
+          "id": "NG-GO",
+          "name": "Gombe",
+          "capital": "Gombe",
+          "economicImportance": "Agriculture, commerce",
+          "population": "3,565,000",
+          "keyIndustries": ["Agriculture", "Commerce", "Services"]
+        },
+        {
+          "id": "NG-TA",
+          "name": "Taraba",
+          "capital": "Jalingo",
+          "economicImportance": "Agriculture, tourism",
+          "population": "3,004,000",
+          "keyIndustries": ["Agriculture", "Tourism", "Commerce"]
+        }
+      ],
+      "demographics": {
+        "population": "26,892,000",
+        "ethnicGroups": ["Kanuri", "Hausa", "Fulani", "Various minority groups"],
+        "majorReligions": ["Islam", "Christianity"],
+        "languages": ["Hausa", "Kanuri", "Various indigenous languages", "English"]
+      },
+      "economicProfile": {
+        "majorSectors": ["Agriculture", "Commerce", "Services"],
+        "keyResources": ["Agricultural products", "Solid minerals", "Tourism potential"],
+        "investmentOpportunities": ["Agriculture", "Reconstruction", "Renewable energy"]
+      },
+      "politicalCharacteristics": {
+        "dominantParties": ["APC", "PDP"],
+        "votingPatterns": "Varied (security-influenced)",
+        "keyIssues": ["Security", "Reconstruction", "Humanitarian aid", "Development"]
+      }
+    },
+    {
+      "id": "NG-REG-NORTH-CENTRAL",
+      "name": "North Central",
+      "description": "North Central geopolitical zone of Nigeria",
+      "capital": "Abuja",
+      "majorCities": ["Abuja", "Lokoja", "Minna", "Jos", "Lafia", "Makurdi"],
+      "states": [
+        {
+          "id": "NG-FCT",
+          "name": "Federal Capital Territory",
+          "capital": "Abuja",
+          "economicImportance": "Administrative center, diplomacy",
+          "population": "3,564,000",
+          "keyIndustries": ["Government", "Diplomacy", "Services"]
+        },
+        {
+          "id": "NG-NI",
+          "name": "Niger",
+          "capital": "Minna",
+          "economicImportance": "Agriculture, energy (hydro power)",
+          "population": "5,556,000",
+          "keyIndustries": ["Agriculture", "Energy", "Mining"]
+        },
+        {
+          "id": "NG-PL",
+          "name": "Plateau",
+          "capital": "Jos",
+          "economicImportance": "Agriculture, tourism, mining",
+          "population": "4,200,000",
+          "keyIndustries": ["Agriculture", "Tourism", "Mining"]
+        },
+        {
+          "id": "NG-KW",
+          "name": "Kwara",
+          "capital": "Ilorin",
+          "economicImportance": "Agriculture, education",
+          "population": "3,192,000",
+          "keyIndustries": ["Agriculture", "Education", "Manufacturing"]
+        },
+        {
+          "id": "NG-NS",
+          "name": "Nasarawa",
+          "capital": "Lafia",
+          "economicImportance": "Agriculture, solid minerals",
+          "population": "2,523,000",
+          "keyIndustries": ["Agriculture", "Mining", "Commerce"]
+        },
+        {
+          "id": "NG-BE",
+          "name": "Benue",
+          "capital": "Makurdi",
+          "economicImportance": "Agriculture (food basket)",
+          "population": "5,742,000",
+          "keyIndustries": ["Agriculture", "Food processing", "Commerce"]
+        },
+        {
+          "id": "NG-KO",
+          "name": "Kogi",
+          "capital": "Lokoja",
+          "economicImportance": "Agriculture, mineral resources",
+          "population": "4,473,000",
+          "keyIndustries": ["Agriculture", "Mining", "Manufacturing"]
+        }
+      ],
+      "demographics": {
+        "population": "29,250,000",
+        "ethnicGroups": ["Various ethnic groups (middle belt)"],
+        "majorReligions": ["Christianity", "Islam", "Traditional"],
+        "languages": ["Various indigenous languages", "English"]
+      },
+      "economicProfile": {
+        "majorSectors": ["Agriculture", "Mining", "Services", "Government"],
+        "keyResources": ["Agricultural products", "Solid minerals", "Human resources"],
+        "investmentOpportunities": ["Agriculture", "Mining", "Real estate", "Services"]
+      },
+      "politicalCharacteristics": {
+        "dominantParties": ["APC", "PDP"],
+        "votingPatterns": "Mixed (ethnically diverse)",
+        "keyIssues": ["Farmer-herder conflicts", "Resource control", "Development", "Security"]
+      }
+    }
+  ],
+  "metadata": {
+    "totalCount": 6,
+    "totalStates": 36,
+    "fctIncluded": true,
+    "lastUpdated": "2024-01-15T10:00:00Z",
+    "version": "1.0.0",
+    "description": "Nigerian geopolitical zones with detailed state information and characteristics"
+  }
+}

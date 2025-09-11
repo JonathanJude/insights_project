@@ -51,17 +51,23 @@ export enum CampaignPhases {
 // Nigerian states data is now loaded from src/data/core/states.json  
 // Use stateUtils from src/utils/state-utils.ts instead
 
-export enum SocialPlatforms {
-  TWITTER = 'Twitter',
-  FACEBOOK = 'Facebook',
-  INSTAGRAM = 'Instagram',
-  LINKEDIN = 'LinkedIn',
-  YOUTUBE = 'YouTube',
-  TIKTOK = 'TikTok',
-  THREADS = 'Threads',
-  WHATSAPP = 'WhatsApp',
-  TELEGRAM = 'Telegram'
-}
+// Social platforms are now loaded dynamically from sentiment-sources.json
+// Use platformService from src/services/platform-service.ts instead
+// 
+// Legacy platform constants for backward compatibility:
+export const LEGACY_SOCIAL_PLATFORMS = {
+  TWITTER: 'Twitter',
+  FACEBOOK: 'Facebook',
+  INSTAGRAM: 'Instagram',
+  LINKEDIN: 'LinkedIn',
+  YOUTUBE: 'YouTube',
+  TIKTOK: 'TikTok',
+  THREADS: 'Threads',
+  WHATSAPP: 'WhatsApp',
+  TELEGRAM: 'Telegram'
+} as const;
+
+export type SocialPlatforms = typeof LEGACY_SOCIAL_PLATFORMS[keyof typeof LEGACY_SOCIAL_PLATFORMS];
 
 // Validation functions for political enums
 export const PoliticalEnumValidators = {
